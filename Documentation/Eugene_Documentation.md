@@ -1,12 +1,19 @@
-# Design Pattern Name:
+# Name:
+# Student Number: 
 
-## Intent of Design Pattern: 
+# My Responsibilities In The Project: 
 
-## Describe The Context & Problem:
-* Explain the situation or the domain where the pattern applies:
-* The constraints that affect the design pattern:
-* The challenges or drawbacks of existing solutions:
-* The goals or requirements that the pattern meets:
+# System Name: 
+# What Is The [Put Your System Name Here] Systems's Purpose:
 
-## Illustration of The Solution:
-* Visual or textual representation of the pattern, such as a UML diagram or a code snippet, to show the components and relationships of the pattern, and how they interact and collaborate
+# What Are The [Put Your System Name Here] System's Components:
+
+# What Design Patterns Does The [Put Your System Name Here] System Use:
+
+# What Other Systems Does The [Put Your System Name Here] System Interact With:
+
+# Diagrams
+
+## UML Class Diagrams
+
+## Other UML Diagrams (activity, state, etc.)
