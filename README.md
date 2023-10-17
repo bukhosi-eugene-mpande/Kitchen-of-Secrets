@@ -5,6 +5,7 @@ This repository will hold the final project for cos-214
 # -minus the smoking area
 # -base: making the genereal seating area --> **1 or 2 peeps per table**
 # -implement no. tables and combine tables to create bigger tables...
+# -attach waiter to table (create pointer to ayanda waiters)
 
 BRIDGE PATTERN TEMP UML:
 
