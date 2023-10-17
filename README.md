@@ -1,6 +1,8 @@
 # COS214-Project
 This repository will hold the final project for cos-214
 
+BRIDGE PATTERN TEMP UML:
+
 +---------------------------------------------------+
 |                  SeatingPlan                      |
 +---------------------------------------------------+
@@ -38,3 +40,50 @@ This repository will hold the final project for cos-214
 | +assignTable(): void | +assignTable(): void | +assignTable(): void |
 | +markOccupied(): void | +markOccupied(): void | +markOccupied(): void |
 +-----------------+ +-----------------+ +-----------------+
+
+
+
+
+
+OBSERVER PATTERN TEMP UML:
+
++--------------------------------------+
+|        SeatingPlanSubject            |
++--------------------------------------+
+| -observers: std::vector<Observer*>  |
++--------------------------------------+
+| +registerObserver(Observer*): void |
+| +removeObserver(Observer*): void   |
+| +notifyObservers(): void           |
++--------------------------------------+
+              /          |           \
+             /           |            \
+            /            |             \
++-------------------+ +----------------+ +-------------------+
+| SmokingSectionSubj| | PrivateSectionS| | GeneralSectionSubj|
++-------------------+ +----------------+ +-------------------+
+| +registerObserver(Observer*): void | | +registerObserver(Observer*): void | | +registerObserver(Observer*): void |
+| +removeObserver(Observer*): void   | | +removeObserver(Observer*): void   | | +removeObserver(Observer*): void   |
+| +notifyObservers(): void           | | +notifyObservers(): void           | | +notifyObservers(): void           |
++-------------------+ +----------------+ +-------------------+
+              \           |            /
+               \          |           /
+                \         |          /
++------------------+ +------------------+
+|       Observer     | |      Waiter    |
++------------------+ +------------------+
+| +update(): void   | | +update(): void|
++------------------+ +------------------+
+              |          |           |
+              |          |           |
+              | +-------------------+
+              | |      Manager      |
+              | +-------------------+
+              | | +update(): void   |
+              | +-------------------+
+              |          |
+              | +-------------------+
+              | |     Customer      |
+              | +-------------------+
+              | | +update(): void  |
+              | +-------------------+
