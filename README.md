@@ -1,6 +1,11 @@
 # COS214-Project
 This repository will hold the final project for cos-214
 
+# changes : 
+# -minus the smoking area
+# -base: making the genereal seating area --> **1 or 2 peeps per table**
+# -implement no. tables and combine tables to create bigger tables...
+
 BRIDGE PATTERN TEMP UML:
 
 +---------------------------------------------------+
@@ -16,11 +21,11 @@ BRIDGE PATTERN TEMP UML:
                    /              |              \
                   /               |               \
 +-----------------+ +-----------------+ +-----------------+
-| SmokingSection  | | PrivateSection  | | GeneralSection  |
+|                  | | PrivateSection  | | GeneralSection  |
 +-----------------+ +-----------------+ +-----------------+
-| +assignTable(): void | +assignTable(): void | +assignTable(): void |
-| +markTableOccupied(): void | +markTableOccupied(): void | +markTableOccupied(): void |
-| +isTableAvailable(): bool | +isTableAvailable(): bool | +isTableAvailable(): bool |
+|                  | +assignTable(): void | +assignTable(): void |
+|                  | | +markTableOccupied(): void | +markTableOccupied(): void |
+|                  | | +isTableAvailable(): bool | +isTableAvailable(): bool |
 +-----------------+ +-----------------+ +-----------------+
 
 +---------------------------------------------------+
@@ -34,11 +39,11 @@ BRIDGE PATTERN TEMP UML:
            /               |               \
           /                |                \
 +-----------------+ +-----------------+ +-----------------+
-| SmokingTable    | | PrivateTable    | | GeneralTable    |
+|                  | | PrivateTable    | | GeneralTable    |
 +-----------------+ +-----------------+ +-----------------+
-| +isAvailable(): bool | +isAvailable(): bool | +isAvailable(): bool |
-| +assignTable(): void | +assignTable(): void | +assignTable(): void |
-| +markOccupied(): void | +markOccupied(): void | +markOccupied(): void |
+|                  | | +isAvailable(): bool | +isAvailable(): bool |
+|                  | | +assignTable(): void | +assignTable(): void |
+|                  | | +markOccupied(): void | +markOccupied(): void |
 +-----------------+ +-----------------+ +-----------------+
 
 - Abstraction (SeatingPlan): The SeatingPlan class represents the higher-level part of the system that interacts with clients and customers. It defines high-level operations related to managing seating, such as assignTable(), markTableOccupied(), and isTableAvailable(). This class will maintain a reference to an Implementor object.
@@ -47,7 +52,7 @@ BRIDGE PATTERN TEMP UML:
 - Concrete Implementors (SmokingTable, PrivateTable, GeneralTable): These are the concrete classes that implement the TableImplementation interface. Each class represents a different type of table, such as SmokingTable, PrivateTable, or GeneralTable. Each Concrete Implementor provides specific implementations of isAvailable(), assignTable(), and markOccupied() based on the characteristics of the table type.
 
 
-OBSERVER PATTERN TEMP UML:
+OBSERVER PATTERN TEMP UML:   
 
                                                 +------------------------------------------------+
                                                 |                  SeatingPlanSubject            |
@@ -64,11 +69,11 @@ OBSERVER PATTERN TEMP UML:
                  /                                                      |                                    \
                 /                                                       |                                     \
 +--------------------------------------------+ +--------------------------------------------+ +--------------------------------------------+
-|              SmokingSectionSubj            | |            PrivateSectionSubj              | |             GeneralSectionSubj             |
+|                                          | |            PrivateSectionSubj              | |             GeneralSectionSubj             |
 +--------------------------------------------+ +--------------------------------------------+ +--------------------------------------------+
-| +registerObserver(observer: Observer): void| | +registerObserver(observer: Observer): void| | +registerObserver(observer: Observer): void|
-| +removeObserver(observer: Observer): void  | | +removeObserver(observer: Observer): void  | | +removeObserver(observer: Observer): void  |
-| +notifyObservers(): void                   | | +notifyObservers(): void                   | | +notifyObservers(): void                   |
+|                                            | | +registerObserver(observer: Observer): void| | +registerObserver(observer: Observer): void|
+|                                            | | +removeObserver(observer: Observer): void  | | +removeObserver(observer: Observer): void  |
+|                                            | | +notifyObservers(): void                   | | +notifyObservers(): void                   |
 +--------------------------------------------+ +--------------------------------------------+ +--------------------------------------------+
 
 +------------------------------------------------+
@@ -81,9 +86,10 @@ OBSERVER PATTERN TEMP UML:
                  /            |              \
                 /             |               \
 +------------------+ +------------------+ +------------------+
-|      Waiter     | |      Manager    | |     Customer       |
+|      
+                 | |      Manager    | |    
 +------------------+ +------------------+ +------------------+
-| +update(): void  | | +update(): void  | | +update(): void  |
+|                    | | +update(): void  | |  |
 +------------------+ +------------------+ +------------------+
 
 - Subject (SeatingPlanSubject): Create a SeatingPlanSubject class that represents the subject, which is responsible for maintaining a list of observers and notifying them when there are changes in the seating plan. This class would contain the state and methods for managing observers.
