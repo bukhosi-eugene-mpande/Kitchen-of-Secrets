@@ -1,6 +1,8 @@
 makefile
 .vscode
 .DS_STORE
+bin
+obj
 Documentation/.DS_STORE
 # accounting ingonores
 src/accounting/makefile
