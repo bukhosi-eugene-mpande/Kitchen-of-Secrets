@@ -1,5 +1,5 @@
-# Name:
-# Student Number: 
+# Name: Ayanda Juqu
+# Student Number: 21589021
 
 # My Responsibilities In The Project: 
 
