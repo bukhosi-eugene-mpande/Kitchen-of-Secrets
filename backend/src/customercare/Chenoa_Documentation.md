@@ -19,7 +19,7 @@ Implement the State pattern to model different states of customer satisfaction. 
 
 - Observer Pattern:
 
-Implement the Observer pattern to manage customer satisfaction. The customers can be observers, and the restaurant staff (waiters, chefs, and managers) can be subjects. When staff members visit a table or take specific actions (e.g., addressing complaints or providing fast service), they can notify the customer (observer) about the service improvements, which can affect the customer's happiness/state
+Implement the Observer pattern to manage customer satisfaction. The customers can be subjects, and the restaurant staff (waiters, chefs, and managers) can be observers. When staff members visit a table or take specific actions (e.g., addressing complaints or providing fast service), they can notify the customer about the service improvements, which can affect the customer's happiness/state
 
 - Command Pattern and the Iterator Pattern 
 In the context of managing the round-robin scheduling of chefs and waiters visiting tables, where each visit is encapsulated as a command
@@ -45,5 +45,6 @@ Use the Chain of Responsibility pattern to handle customer complaints. Create a 
 # Diagrams
 
 ## UML Class Diagrams
+![UML Class Diagram](Additional_Material/CustomerCare.png)
 
 ## Other UML Diagrams (activity, state, etc.)
