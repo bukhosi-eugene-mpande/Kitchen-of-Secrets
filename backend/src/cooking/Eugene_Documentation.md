@@ -120,4 +120,4 @@ vector<MenuItem> buildOrder(unordered_map<string, int> order){
 
 ### UML Class Diagram
 
-![UML Class Diagram](../additional_material/UML-ClassDiagram.svg)
+![UML Class Diagram](../additional_material/UML-Kitchen-class-diagram.svg)
