@@ -13,11 +13,11 @@ MenuItem::~MenuItem(){
 
 MenuItem::MenuItem(const MenuItem& other) {
     this->name = other.name;
-    this->mealIngredients = other.getIngredients();
-    this->mealPrice = other.getPrice();
+    this->mealIngredients = other.getMealIngredients() ;
+    this->mealPrice = other.getMealPrice();
 }
 
-std::unordered_map<std::string,int> MenuItem::getIngredients() const {
+std::unordered_map<std::string,int> MenuItem::getMealIngredients() const {
     return this->mealIngredients;
 }
 
@@ -25,7 +25,7 @@ std::string MenuItem::getName() const {
     return this->name;
 }
 
-double MenuItem::getPrice() const{
+double MenuItem::getMealPrice() const{
     return this->mealPrice;
 }
 

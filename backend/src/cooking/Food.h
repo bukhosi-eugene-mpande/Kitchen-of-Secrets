@@ -2,6 +2,7 @@
 #define Food_H
 
 #include "MenuItem.h"
+#include "AbstractOrder.h"
 
 /**
  * @brief The Food class represents a food item in a restaurant.
@@ -10,7 +11,7 @@
  * and methods for calculating the price and ingredients needed to make the food item.
  */
 
-class Food : public MenuItem {
+class Food : public MenuItem , AbstractOrder{
 
     public:
         Food(double price,std::string name, std::unordered_map<std::string,int> ingredients);

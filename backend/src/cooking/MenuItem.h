@@ -42,20 +42,6 @@ class MenuItem {
         virtual ~MenuItem();
 
         /**
-         * @brief Calculates the price of the menu item.
-         * 
-         * @return The price of the menu item
-         */
-        virtual double calculatePrice() = 0;
-
-        /**
-         * @brief Calculates the ingredients needed to make the menu item.
-         * 
-         * This method updates the ingredients map with the quantities needed to make the menu item.
-         */
-        virtual std::unordered_map<std::string,int> calculateIngredients() = 0;
-
-        /**
          * @brief Creates a copy of the MenuItem object.
          * 
          * @return A shared pointer to the copied MenuItem object 
@@ -82,9 +68,9 @@ class MenuItem {
          * 
          * @return A map of ingredient names to their quantities
          */
-        std::unordered_map<std::string,int> getIngredients() const;
+        std::unordered_map<std::string,int> getMealIngredients() const;
 
-        double getPrice() const;
+        double getMealPrice() const;
 
         bool getIsPrepared() const;
         
