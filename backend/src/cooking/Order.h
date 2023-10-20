@@ -40,6 +40,8 @@ class Order : public AbstractOrder {
 
         std::shared_ptr<MenuItem> getMeal(std::string name);
 
+        std::vector<std::shared_ptr<MenuItem>> getMeals() const;
+
 };
 
 #endif

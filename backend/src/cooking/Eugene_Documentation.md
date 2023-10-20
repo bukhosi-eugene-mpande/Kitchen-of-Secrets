@@ -6,9 +6,9 @@
 
 - **Student Number:** 21573558
 - **My Responsibilities In The Project:** 🚀
-  1. **Designing the Kitchen System:** Led the design phase, defining system architecture, and user interface. 🔨
-  2. **Implementing the Kitchen System:** Developed the core functionalities and features of the kitchen system. 💻
-  3. **DevOps:** Managed the deployment, continuous integration, and infrastructure setup for the project. ⚙️
+  1. **Designing the Kitchen System:** I led the design phase, defined the system architecture, and designed the user interface. 🔨
+  2. **Implementing the Kitchen System:** I developed the core functionalities and features of the kitchen system. 💻
+  3. **DevOps:** I managed the deployment, continuous integration, and infrastructure setup for the project. ⚙️
 
 ## System Overview
 
@@ -50,12 +50,137 @@ List the key components and modules of the Kitchen system: 🧰
 ## System Interactions in the Restaurant 🏢
 
 1. **Accounting System:**
-   The kitchen interacts with the accounting system to maintain ingredient inventory. When ingredient shortages are detected, the kitchen notifies the accounting system to order more supplies. Additionally, any upgrades or modifications to the kitchen's level are communicated to the accounting system to ensure accurate financial records. 💰
+   The kitchen interacts with the accounting system to maintain ingredient inventory. When an order comes in, ingredients are requested. If shortages are detected, the system will buy more; if no shortages are found, the system will subtract from the inventory. Additionally, any upgrades or modifications to the kitchen's level are communicated to the accounting system to ensure accurate financial records. 💰
 
-2. **Ordering System:**
+   ### Ingredient Request System🍽️
+
+   ```cpp
+   #ifndef Inventory_H
+   #define Inventory_H
+
+   #include <unordered_map>
+   #include <vector>
+   #include <string>
+   #include <memory>
+
+   class Inventory {
+      private:
+      std::unordered_map<std::string,int> inventory;
+
+      public:
+
+         Inventory(std::unordered_map<std::string,int> inventory);
+
+         Inventory(const Inventory& other);
+
+         ~Inventory();
+
+         bool requestIngredients(std::unordered_map<std::string,int> ingredients);
+
+
+   };
+
+   #endif
+
+   bool Inventory::requestIngredients(std::unordered_map<std::string,int> ingredients) {
+      for (auto const& ingredient : ingredients) {
+         if (this->inventory[ingredient.first] < ingredient.second) {
+               return false;
+         }
+      }
+      for (auto const& ingredient : ingredients) {
+         this->inventory[ingredient.first] -= ingredient.second;
+      }
+      return true;
+   }
+   ```
+
+2. **Management:**
+   The kitchen interacts with management to ensure that orders are processed efficiently. The management should not implement anything but act as a facade for interaction between different sub-systems. 🚀
+
+   ### Management Facade 📋
+
+   ```cpp
+   #ifndef Management_H
+   #define Management_H
+
+   #include <unordered_map>
+   #include <vector>
+   #include <string>
+   #include <memory>
+
+   #include "Waiter.h"
+   #include "Kitchen.h"
+   #include "Inventory.h"
+
+
+   class Management {
+      private:
+         std::shared_ptr<Kitchen> kitchen;
+         std.shared_ptr<Inventory> inventory;
+
+      public:
+         Management();
+
+         ~Management();
+
+         void sendOrderToKitchen(std::shared_ptr<Order> order);
+
+         std::shared_ptr<Order> getOrderFromKitchen(std::shared_ptr<Waiter> waiter);
+
+         std::shared_ptr<Order> getCanceledOrderFromKitchen(std::shared_ptr<Waiter> waiter);
+
+         bool requestIngredients(std::unordered_map<std::string,int> ingredients);
+
+         void notifyWaiterOfCancellation(std::shared_ptr<Waiter> waiter);
+
+         void notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter);
+
+   };
+
+   #endif
+
+   #include "Management.h"
+
+   Management::Management() {
+      this->kitchen = std::make_shared<Kitchen>();
+      this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
+   }
+
+   Management::~Management() {
+   }
+
+   void Management::sendOrderToKitchen(std::shared_ptr<Order> order) {
+      this->kitchen->addOrder(order);
+   }
+
+   std::shared_ptr<Order> Management::getOrderFromKitchen(std::shared_ptr<Waiter> waiter) {
+      return this->kitchen->getPreparedOrder(waiter);
+   }
+
+   std::shared_ptr<Order> Management::getCanceledOrderFromKitchen(std::shared_ptr<Waiter> waiter) {
+      return this->kitchen->getCanceledOrder(waiter);
+   }
+
+   bool Management::requestIngredients(std::unordered_map<std::string,int> ingredients) {
+      return this->inventory->requestIngredients(ingredients);
+   }
+
+   void Management::notifyWaiterOfCancellation(std::shared_ptr<Waiter>
+
+ waiter) {
+      waiter->getCanceledOrderFromKitchen();
+   }
+
+   void Management::notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter) {
+      waiter->getOrderFromKitchen();
+   }
+   ```
+
+3. **Ordering System:**
    The ordering system facilitates the flow of orders within the restaurant. Customers place their orders with the waiter, who communicates these orders to the kitchen staff. In return, the kitchen notifies the waiter when an order is completed and ready for serving. This interaction ensures that orders are efficiently prepared and delivered to the customers in a timely manner. 📝
 
-> **Note:** The use of pseudocode here is for representation purposes only, please follow coding standards diligently. 💡
+> **Note:** The use of pseudocode here is for representation purposes only. Please follow coding standards diligently. 💡
 
 ## Order Creation Process 🍽️
 
@@ -97,7 +222,7 @@ unordered_map getOrder(Menu menu){
 }
 ```
 
-## Building the Order Items🍳
+## Building the Order Items 🍳
 
 You now have all the information needed to build the order items vector:
 
