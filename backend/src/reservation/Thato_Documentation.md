@@ -44,3 +44,4 @@
 ## Other UML Diagrams (activity, state, etc.)
 
 - If applicable, include other UML diagrams that provide insights into the behavior and interactions within your system. For example, you can include activity diagrams to illustrate the flow of reservation processes, or state diagrams to depict the states of tables in the system.
+
