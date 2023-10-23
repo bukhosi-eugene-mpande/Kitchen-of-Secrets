@@ -9,6 +9,7 @@ private:
     BillStrategy *billStrategy;
 
 public:
+    Billing(BillStrategy *billStrategy);
     void pay(double amount);
 };
 
