@@ -1,3 +1,4 @@
+*.o
 makefile
 .vscode
 .DS_STORE
