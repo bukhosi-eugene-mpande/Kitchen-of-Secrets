@@ -65,13 +65,13 @@ The Accounting System interacts with two other systems:
 ### UML Class Diagrams
 
 #### Billing System
-![Billing System UML Class Diagram](<Billing System.png>)
+![Billing System UML Class Diagram](<Billing/Billing System.png>)
 
 #### Tab System
-![Tab System UML Class Diagram](<image.png>)
+![Tab System UML Class Diagram](<Tab/Tab System.png>)
 
 #### Inventory System
-![Inventory System UML Class Diagram](<Inventory System.png>)
+![Inventory System UML Class Diagram](<Inventory/Inventory System.png>)
 
 ### Other UML Diagrams (activity, state, etc.)
 Coming soon...
