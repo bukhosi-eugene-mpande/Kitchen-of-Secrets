@@ -7,6 +7,7 @@ protected:
     double billAmount;
 
 public:
+    BillStrategy(double billAmount);
     virtual void pay(double amount) = 0;
 };
 

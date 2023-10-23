@@ -6,6 +6,7 @@
 class MultiBill : public BillStrategy
 {
 public:
+    MultiBill(double billAmount);
     void pay(double amount);
 };
 
