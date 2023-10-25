@@ -7,21 +7,17 @@
 #include <memory>
 
 #include "Kitchen.h"
-#include "Chef.h"
+#include "StationChef.h"
 
-class Cook : public Chef{
-    private:
-    std::string name;
+class Cook : public StationChef{
 
     public:
 
-        Cook(std::shared_ptr<Kitchen> management);
+        Cook(std::shared_ptr<Kitchen> kitchen);
 
         ~Cook();
 
         void prepareOrder(std::shared_ptr<Order> order);
-
-        void setNextChef(std::shared_ptr<Chef> nextChef);
 
 };
 

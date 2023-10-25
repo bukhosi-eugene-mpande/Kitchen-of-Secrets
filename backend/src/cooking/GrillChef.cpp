@@ -5,8 +5,7 @@
 #include "Meal.h"
 #include "Cook.h"
 
-GrillChef::GrillChef(std::shared_ptr<Kitchen> kitchen):Chef("Grill Chef",kitchen){
-}
+GrillChef::GrillChef(std::shared_ptr<Kitchen> kitchen):StationChef("Grill Chef",kitchen){}
 
 GrillChef::~GrillChef(){}
 
@@ -19,10 +18,6 @@ void GrillChef::prepareOrder(std::shared_ptr<Order> order){
                 orderItem->prepare();
             }
         }
-        this->nextChef->prepareOrder(order);
+        this->getNextChef()->prepareOrder(order);
     }
-}
-
-void GrillChef::setNextChef(std::shared_ptr<Chef> nextChef){
-    this->nextChef = nextChef;
 }

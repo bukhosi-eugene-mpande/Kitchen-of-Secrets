@@ -1,17 +1,19 @@
-![Team Banner](\\wsllocalhost\Ubuntu\home\eugene\Kitchen-of-Secrets\backend\src\additional_material\teambanner.png)
+# Kitchen Of Secrets
 
-## Table of Contents 📚 
+## COS 214 Project
+
+## Table of Contents 
 
 - [Overview](#overview)
 - [Documentation](#documentation)
 - [Technologies](#technologies)
 - [Team](#team)
 
-🌟 **Overview**
+ **Overview**
 
-🍽️ In this assignment, we're tasked with designing a restaurant simulator, a dynamic blend of activities in the customer floor 🏢 and the bustling kitchen 🍳. On the customer floor, our role is to manage seating, orders, and ensure customer satisfaction. This includes orchestrating the seating process, taking orders, and accommodating customer expectations. Meanwhile, in the kitchen, the chaos of food preparation unfolds. Different chefs handle various aspects, from cooking to plating. Additional features like inventory and accounting 📊 can be incorporated to enhance the experience.
+In this assignment, we're tasked with designing a restaurant simulator, a dynamic blend of activities in the customer floor and the bustling kitchen . On the customer floor, our role is to manage seating, orders, and ensure customer satisfaction. This includes orchestrating the seating process, taking orders, and accommodating customer expectations. Meanwhile, in the kitchen, the chaos of food preparation unfolds. Different chefs handle various aspects, from cooking to plating. Additional features like inventory and accounting  can be incorporated to enhance the experience.
 
-💻 **Technologies**
+ **Technologies**
 
 ## Technologies
 
@@ -65,7 +67,7 @@ Each position holds an important role in the overall function of the kitchen¹. 
 4. [What is the kitchen brigade system? - Le Cordon Bleu](https://www.cordonbleu.edu/news/what-is-the-kitchen-brigade-system/en).
 
 
-🌐 **Git Standards**
+**Git Standards**
 
 This document outlines the Git standards that we follow in this project.
 
@@ -83,25 +85,25 @@ This document outlines the Git standards that we follow in this project.
 * Commit messages should be wrapped to 72 characters or less.
 * Commit messages should not include references to pull requests or other issues.
 
-📖 **Documentation**
+ **Documentation**
 
 * Documentation should be written in Markdown and, in addition, use Doxygen.
 * Documentation should be clear and concise, explaining how to use the code.
 * Documentation should be kept up-to-date with the code.
 
-🔄 **Pull Requests**
+**Pull Requests**
 
 * Pull requests should be created for all merges to `main` and release.
 * Pull requests should be reviewed by at least 2 other developers before they are merged.
 * Pull requests should be merged into `main` when they are complete and approved.
 
-🧪 **Testing**
+ **Testing**
 
 * All new code should be unit tested.
 * Integration tests should be written to verify that different parts of the code work together correctly.
 * End-to-end tests should be written to verify the functionality of the entire system.
 
-🚀 **Deployment**
+**Deployment**
 
 * We use a continuous integration and continuous delivery (CI/CD) pipeline to deploy our code to production.
 * Our CI/CD pipeline includes unit tests, integration tests, and end-to-end tests.
@@ -120,10 +122,10 @@ In programming, consistency is key. Adhering to a set of coding standards can si
 - Constants should be all uppercase with underscores.
 
 ```cpp
-int employeeCount; // Good¹³[13]
-int e; // Bad¹⁴[14]
+int employeeCount; // Good
+int e; // Bad
 
-void calculateSalary(); // Good¹⁶[16]
+void calculateSalary(); // Good
 void calc_sal(); // Bad
 
 class Employee { // Good
@@ -133,7 +135,7 @@ class emp { // Bad
   ...
 };
 
-const int MAX_EMPLOYEES = 100; // Good¹⁷[17]
+const int MAX_EMPLOYEES = 100; // Good
 const int max = 100; // Bad
 ```
 
@@ -179,7 +181,9 @@ statement2;
 
 double result = calculateSalary(hours, rate); // Good (reasonable line length)
 
-double result = calculateSalary(hours, rate) + calculateBonus(hours, rate) - calculateTax(hours, rate); // Bad (too long line length)
+double result;
+result = calculateSalary(hours, rate) + calculateBonus(hours, rate) - calculateTax(hours, rate); 
+// Bad (too long line length)
 
 int sum = a + b; // Good (spaces around operator)
 int sum=a+b; // Bad (no spaces around operator)
@@ -192,7 +196,7 @@ void foo(int x,int y); // Bad (no space after comma)
 - Always check return values and handle errors appropriately.
 
 ```cpp
-if (ptr == nullptr) { // Good (check for null pointer)²⁶[26]
+if (ptr == nullptr) { // Good (check for null pointer)
   // Handle error...
 }
 

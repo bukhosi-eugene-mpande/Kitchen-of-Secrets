@@ -7,11 +7,9 @@
 #include <memory>
 
 #include "Kitchen.h"
-#include "Chef.h"
+#include "StationChef.h"
 
-class GrillChef : public Chef{
-    private:
-    std::string name;
+class GrillChef : public StationChef{
 
     public:
 
@@ -20,8 +18,6 @@ class GrillChef : public Chef{
         ~GrillChef();
 
         void prepareOrder(std::shared_ptr<Order> order);
-
-        void setNextChef(std::shared_ptr<Chef> nextChef);
 
 };
 
