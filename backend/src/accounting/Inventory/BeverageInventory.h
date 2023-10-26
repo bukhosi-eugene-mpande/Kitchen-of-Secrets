@@ -4,12 +4,14 @@
 #include <string>
 #include <unordered_map>
 
-class BeverageInventory
+#include "Inventory.h"
+
+class BeverageInventory : public Inventory
 {
 public:
     BeverageInventory();
 
-    void update();
+    void update(std::unordered_map<std::string, int> items);
 };
 
 #endif

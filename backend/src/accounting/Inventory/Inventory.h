@@ -10,7 +10,7 @@ protected:
     std::unordered_map<std::string, int> inventory;
 
 public:
-    virtual void update() = 0;
+    virtual void update(std::unordered_map<std::string, int> items) = 0;
 };
 
 #endif

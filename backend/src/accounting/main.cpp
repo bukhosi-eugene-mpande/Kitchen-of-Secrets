@@ -1,5 +1,32 @@
 #include <iostream>
 
+#include "Inventory/FoodInventory.h"
+#include "Inventory/BeverageInventory.h"
+
+int main()
+{
+    Inventory *foodInventory = new FoodInventory();
+    Inventory *beverageInventory = new BeverageInventory();
+
+    std::unordered_map<std::string, int> foodItems;
+    foodItems["Burger"] = 1;
+    foodItems["Fries"] = 2;
+    foodItems["Salad"] = 3;
+
+    std::unordered_map<std::string, int> beverageItems;
+    beverageItems["Soda"] = 1;
+    beverageItems["Tea"] = 2;
+    beverageItems["Coffee"] = 3;
+
+    foodInventory->update(foodItems);
+    beverageInventory->update(beverageItems);
+
+    return 0;
+}
+
+/*
+#include <iostream>
+
 #include "Tab/Tab.h"
 
 int main()
@@ -18,6 +45,7 @@ int main()
 
     return 0;
 }
+*/
 
 /*
 #include <iostream>
