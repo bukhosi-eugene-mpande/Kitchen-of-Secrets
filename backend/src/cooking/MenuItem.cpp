@@ -29,6 +29,10 @@ double MenuItem::getMealPrice() const{
     return this->mealPrice;
 }
 
+void MenuItem::prepare(){
+    this->isPrepared = true;
+}
+
 bool MenuItem::getIsPrepared() const{
     return this->isPrepared;
 }

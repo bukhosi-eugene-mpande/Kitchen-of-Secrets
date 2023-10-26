@@ -19,7 +19,6 @@ class Beverage : public MenuItem {
         double calculatePrice();
         std::unordered_map<std::string,int> calculateIngredients();
         std::shared_ptr<MenuItem> clone();
-        void prepare();
 };
 
 #endif

@@ -7,21 +7,17 @@
 #include <memory>
 
 #include "Kitchen.h"
-#include "Chef.h"
+#include "StationChef.h"
 
-class FryChef : public Chef{
-    private:
-    std::string name;
+class FryChef : public StationChef{
 
     public:
 
-        FryChef(std::shared_ptr<Kitchen> management);
+        FryChef(std::shared_ptr<Kitchen> Kitchen);
 
         ~FryChef();
 
-        void prepareOrder(std::shared_ptr<Order> order);
-
-        void setNextChef(std::shared_ptr<Chef> nextChef);
+        void setNextChef() override;
 
 };
 

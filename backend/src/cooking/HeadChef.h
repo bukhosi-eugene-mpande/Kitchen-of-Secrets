@@ -15,18 +15,19 @@ class HeadChef : public Chef{
 
     public:
 
-        HeadChef(std::shared_ptr<Kitchen> management);
+        HeadChef(std::shared_ptr<Kitchen> kitchen);
 
         ~HeadChef();
 
-        void prepareOrder(std::shared_ptr<Order> order);
+        std::string getName() const;
 
-        void setNextChef(std::shared_ptr<Chef> nextChef);
+        void setKitchen(std::shared_ptr<Kitchen> kitchen);
 
-        void cancelOrder(std::shared_ptr<Order> order);
+        std::shared_ptr<Kitchen> getKitchen() const;
 
-        void finishOrder(std::shared_ptr<Order> order);
+        void goOnRounds();
 
+        void handleComplaint();
 };
 
 #endif
