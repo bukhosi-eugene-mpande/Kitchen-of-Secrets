@@ -1,13 +1,27 @@
 #include "OverdueTab.h"
 
-void OverdueTab::closeTab()
+json OverdueTab::closeTab()
 {
+    return {
+        {"status", "error"},
+        {"message", "Tab is overdue"}};
 }
 
 double OverdueTab::getBillTotal()
 {
+    double total = 0.0;
+
+    for (double cost : orders)
+    {
+        total += cost;
+    }
+
+    return total;
 }
 
-void OverdueTab::addOrderCost(double cost)
+json OverdueTab::addOrderCost(double cost)
 {
+    return {
+        {"status", "error"},
+        {"message", "Tab is overdue"}};
 }

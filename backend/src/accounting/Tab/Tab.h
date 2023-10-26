@@ -10,9 +10,9 @@ private:
 
 public:
     Tab();
-    void closeTab();
+    json closeTab();
     double getBillTotal();
-    void addOrderCost(double cost);
+    json addOrderCost(double cost);
     void setState(TabState *state);
 };
 

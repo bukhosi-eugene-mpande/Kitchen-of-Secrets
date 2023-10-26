@@ -6,7 +6,7 @@ Tab::Tab()
     state = new OpenTab();
 }
 
-void Tab::closeTab()
+json Tab::closeTab()
 {
     state->closeTab();
 }
@@ -16,7 +16,7 @@ double Tab::getBillTotal()
     return state->getBillTotal();
 }
 
-void Tab::addOrderCost(double cost)
+json Tab::addOrderCost(double cost)
 {
     state->addOrderCost(cost);
 }

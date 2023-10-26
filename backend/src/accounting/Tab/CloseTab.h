@@ -4,15 +4,12 @@
 #include <vector>
 #include "TabState.h"
 
-class CloseTab
+class CloseTab : public TabState
 {
-private:
-    std::vector<double> orders;
-
 public:
-    void closeTab();
+    json closeTab();
     double getBillTotal();
-    void addOrderCost(double cost);
+    json addOrderCost(double cost);
 };
 
 #endif

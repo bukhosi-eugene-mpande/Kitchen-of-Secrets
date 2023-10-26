@@ -6,6 +6,8 @@ json CardBill::pay(double amount)
 {
     if (amount >= billAmount)
     {
+        billAmount -= amount;
+        
         return {
             {"status", "success"},
             {"message", "Card Payment successful"}};

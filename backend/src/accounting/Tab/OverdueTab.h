@@ -4,15 +4,12 @@
 #include <vector>
 #include "TabState.h"
 
-class OverdueTab
+class OverdueTab : public TabState
 {
-private:
-    double billTotal;
-
 public:
-    void closeTab();
+    json closeTab();
     double getBillTotal();
-    void addOrderCost(double cost);
+    json addOrderCost(double cost);
 };
 
 #endif
