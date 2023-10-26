@@ -1,9 +1,12 @@
 #include "OpenTab.h"
+#include "Tab.h"
 #include "CloseTab.h"
+
+OpenTab::OpenTab(Tab *tab) : TabState(tab) {}
 
 json OpenTab::closeTab()
 {
-    tab->setState(new CloseTab());
+    tab->setState(new CloseTab(tab));
 
     return {
         {"status", "success"},

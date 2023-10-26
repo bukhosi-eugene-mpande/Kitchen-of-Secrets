@@ -1,14 +1,15 @@
 #include "Tab.h"
 #include "OpenTab.h"
+#include "OverdueTab.h"
 
 Tab::Tab()
 {
-    state = new OpenTab();
+    state = new OpenTab(this);
 }
 
 json Tab::closeTab()
 {
-    state->closeTab();
+    return state->closeTab();
 }
 
 double Tab::getBillTotal()
@@ -18,11 +19,21 @@ double Tab::getBillTotal()
 
 json Tab::addOrderCost(double cost)
 {
-    state->addOrderCost(cost);
+    if (getBillTotal() > 1000)
+    {
+        setState(new OverdueTab(this));
+
+        return {
+            {"status", "error"},
+            {"message", "Tab is overdue"}};
+    }
+    else
+    {
+        return state->addOrderCost(cost);
+    }
 }
 
 void Tab::setState(TabState *newState)
 {
-    delete state;
     state = newState;
 }

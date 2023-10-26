@@ -1,5 +1,7 @@
 #include "OverdueTab.h"
 
+OverdueTab::OverdueTab(Tab *tab) : TabState(tab) {}
+
 json OverdueTab::closeTab()
 {
     return {

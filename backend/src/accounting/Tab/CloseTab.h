@@ -7,6 +7,8 @@
 class CloseTab : public TabState
 {
 public:
+    CloseTab(Tab *tab);
+    
     json closeTab();
     double getBillTotal();
     json addOrderCost(double cost);

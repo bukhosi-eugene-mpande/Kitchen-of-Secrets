@@ -7,6 +7,8 @@
 class OverdueTab : public TabState
 {
 public:
+    OverdueTab(Tab *tab);
+    
     json closeTab();
     double getBillTotal();
     json addOrderCost(double cost);

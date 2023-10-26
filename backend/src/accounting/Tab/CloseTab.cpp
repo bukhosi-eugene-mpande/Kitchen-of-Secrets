@@ -1,5 +1,7 @@
 #include "CloseTab.h"
 
+CloseTab::CloseTab(Tab *tab) : TabState(tab) {}
+
 json CloseTab::closeTab()
 {
     return {

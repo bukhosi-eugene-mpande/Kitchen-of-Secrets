@@ -1,3 +1,24 @@
+#include <iostream>
+
+#include "Tab/Tab.h"
+
+int main()
+{
+    Tab *tab = new Tab();
+
+    std::cout << tab->addOrderCost(10) << std::endl;
+    std::cout << tab->addOrderCost(20) << std::endl;
+    std::cout << tab->addOrderCost(30) << std::endl;
+
+    std::cout << tab->getBillTotal() << std::endl;
+
+    std::cout << tab->closeTab() << std::endl;
+
+    std::cout << tab->addOrderCost(40) << std::endl;
+
+    return 0;
+}
+
 /*
 #include <iostream>
 
@@ -17,14 +38,3 @@ int main()
     return 0;
 }
 */
-
-#include <iostream>
-
-#include "Tab/Tab.h"
-
-int main()
-{
-    
-    
-    return 0;
-}
