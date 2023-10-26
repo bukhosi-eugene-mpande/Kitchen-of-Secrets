@@ -20,7 +20,7 @@ int main()
 
     foodInventory->update(foodItems);
     beverageInventory->update(beverageItems);
-
+    
     return 0;
 }
 
