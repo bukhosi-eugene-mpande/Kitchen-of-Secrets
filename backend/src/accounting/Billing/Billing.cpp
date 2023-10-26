@@ -5,7 +5,7 @@ Billing::Billing(BillStrategy *billStrategy)
     this->billStrategy = billStrategy;
 }
 
-void Billing::pay(double amount)
+json Billing::pay(double amount)
 {
-    billStrategy->pay(amount);
+    return billStrategy->pay(amount);
 }

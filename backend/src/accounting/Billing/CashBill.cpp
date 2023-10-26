@@ -2,7 +2,18 @@
 
 CashBill::CashBill(double billAmount) : BillStrategy(billAmount) {}
 
-void CashBill::pay(double amount)
+json CashBill::pay(double amount)
 {
-    billAmount -= amount;
+    if (amount >= billAmount)
+    {
+        return {
+            {"status", "success"},
+            {"message", "Cash Payment successful"}};
+    }
+    else
+    {
+        return {
+            {"status", "error"},
+            {"message", "Cash Payment unsuccessful"}};
+    }
 }

@@ -1,6 +1,10 @@
 #ifndef BILLSTRATEGY_H
 #define BILLSTRATEGY_H
 
+#include "../json.hpp"
+
+using json = nlohmann::json;
+
 class BillStrategy
 {
 protected:
@@ -8,7 +12,7 @@ protected:
 
 public:
     BillStrategy(double billAmount);
-    virtual void pay(double amount) = 0;
+    virtual json pay(double amount) = 0;
 };
 
 #endif

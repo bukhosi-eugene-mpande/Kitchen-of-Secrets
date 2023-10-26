@@ -7,7 +7,7 @@ class CardBill : public BillStrategy
 {
 public:
     CardBill(double billAmount);
-    void pay(double amount);
+    json pay(double amount);
 };
 
 #endif

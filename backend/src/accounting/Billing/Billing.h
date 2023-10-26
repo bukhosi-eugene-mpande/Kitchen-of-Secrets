@@ -10,7 +10,7 @@ private:
 
 public:
     Billing(BillStrategy *billStrategy);
-    void pay(double amount);
+    json pay(double amount);
 };
 
 #endif

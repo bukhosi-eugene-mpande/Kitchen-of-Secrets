@@ -7,7 +7,7 @@ class MultiBill : public BillStrategy
 {
 public:
     MultiBill(double billAmount);
-    void pay(double amount);
+    json pay(double amount);
 };
 
 #endif
