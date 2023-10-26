@@ -24,9 +24,3 @@ std::shared_ptr<MenuItem> Beverage::clone() {
     return std::make_shared<Beverage>(*this);
 }
 
-void Beverage::prepare(){
-    /**
-     * @todo implement the prepare method
-     * 
-     */
-}

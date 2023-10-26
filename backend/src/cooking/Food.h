@@ -20,7 +20,6 @@ class Food : public MenuItem , AbstractOrder{
         double calculatePrice();
         std::unordered_map<std::string,int> calculateIngredients();
         std::shared_ptr<MenuItem> clone();
-        void prepare();
 };
 
 #endif

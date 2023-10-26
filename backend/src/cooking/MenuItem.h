@@ -54,7 +54,7 @@ class MenuItem {
          * 
          * This method simulates the process of preparing the menu item for serving.
          */
-        virtual void prepare() = 0;
+        void prepare();
 
         /**
          * @brief Gets the name of the menu item.
