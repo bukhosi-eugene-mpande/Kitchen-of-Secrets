@@ -17,7 +17,7 @@ class Cook : public StationChef{
 
         ~Cook();
 
-        void prepareOrder(std::shared_ptr<Order> order);
+        void setNextChef() override;
 
 };
 

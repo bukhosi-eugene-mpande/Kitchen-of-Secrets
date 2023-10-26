@@ -10,8 +10,8 @@
 #include "Chef.h"
 
 class StationChef : public Chef{
-    private:
-        std::shared_ptr<StationChef> nextStationChef;
+    protected:
+        std::shared_ptr<Chef> nextStationChef;
 
     public:
 
@@ -19,11 +19,11 @@ class StationChef : public Chef{
 
         ~StationChef();
 
-        virtual void prepareOrder(std::shared_ptr<Order> order) = 0;
+        void prepareOrder(std::shared_ptr<Order> order) override;
 
-        void setNextChef(std::shared_ptr<StationChef> nextStationChef);
+        virtual void setNextChef() = 0;
 
-        std::shared_ptr<StationChef> getNextChef() const;
+        std::shared_ptr<Chef> getNextChef() const;
         
 };
 

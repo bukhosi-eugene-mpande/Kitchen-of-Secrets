@@ -19,7 +19,7 @@ class Baker : public StationChef{
 
         ~Baker();
 
-        void prepareOrder(std::shared_ptr<Order> order);
+        void setNextChef() override;
         
 };
 
