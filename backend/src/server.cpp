@@ -8,11 +8,15 @@ int main()
     auto accounting = std::make_shared<Accounting>();
 
     CROW_ROUTE(app, "/close")([accounting](){
-        return crow::response(std::string(accounting->closeTab().dump()));
+        crow::response res(std::string(accounting->closeTab().dump()));
+        res.add_header("Content-Type", "application/json");
+        return res;
     });
 
     CROW_ROUTE(app, "/pay")([accounting](){
-        return crow::response(std::string(accounting->pay(35, "cash").dump()));
+        crow::response res(std::string(accounting->pay(35, "cash").dump()));
+        res.add_header("Content-Type", "application/json");
+        return res;
     });
 
     app.port(18080).multithreaded().run();

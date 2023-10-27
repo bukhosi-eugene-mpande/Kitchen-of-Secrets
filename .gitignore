@@ -1,6 +1,7 @@
 *.o
 main
 makefile
+server
 .vscode
 .DS_STORE
 bin
