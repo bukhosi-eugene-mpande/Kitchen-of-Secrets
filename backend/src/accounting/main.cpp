@@ -1,5 +1,24 @@
 #include <iostream>
 
+#include "Accounting.h"
+
+int main()
+{
+    std::cout << "Accounting Says Hi" << std::endl;
+
+    Accounting *accounting = new Accounting();
+
+    std::cout << accounting->closeTab() << std::endl;
+    std::cout << accounting->pay(35, "cash") << std::endl;
+
+    std::cout << "Accounting Says Bye" << std::endl;
+
+    return 0;
+}
+
+/*
+#include <iostream>
+
 #include "Inventory/FoodInventory.h"
 #include "Inventory/BeverageInventory.h"
 
@@ -20,9 +39,10 @@ int main()
 
     foodInventory->update(foodItems);
     beverageInventory->update(beverageItems);
-    
+
     return 0;
 }
+*/
 
 /*
 #include <iostream>
