@@ -19,6 +19,15 @@ function App() {
       secondary: {
         main: orange[600]
       }
+    },
+    components: {
+      MuiTabs: {
+        styleOverrides: {
+          flexContainer: {
+            justifyContent: 'center'
+          }
+        }
+      }
     }
   });
 
