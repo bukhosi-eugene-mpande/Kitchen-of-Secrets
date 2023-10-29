@@ -5,19 +5,20 @@
 #include <vector>
 
 #include "SatisfactionState.h"
-
+#include <memory>
 class Customer {
     private:
-        std::vector<Customer*> guests;
-        SatisfactionState* mood;
+        std::vector<std::shared_ptr<Customer>> guests;
+        std::shared_ptr<SatisfactionState> mood;
+        int customerId;
 
     public:
         Customer();
         ~Customer();
-        void addGuest(Customer* guest);
-        std::vector<Customer*> getGuests();
-        void removeGuest(Customer* guest);
-        void changeMood(SatisfactionState* state);
+        void addGuest(std::shared_ptr<Customer> guest);
+        std::vector<std::shared_ptr<Customer>> getGuests();
+        void removeGuest(std::shared_ptr<Customer> guest);
+        void changeMood(std::shared_ptr<SatisfactionState> mood);
         double calculateTip(double bill);
 
 };
