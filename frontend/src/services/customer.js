@@ -1,8 +1,14 @@
-const BASE_URL = 'http://localhost:8000/customer';
+const BASE_URL = 'http://localhost:8000';
 
-export async function fetchReservation() {
+export async function fetchReservation(details) {
   try {
-    const response = await fetch(`${BASE_URL}/reservation`);
+    const response = await fetch(`${BASE_URL}/reservation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(details)
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

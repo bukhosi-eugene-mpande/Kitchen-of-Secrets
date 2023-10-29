@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 
-import { Box, Button, MenuItem, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+  MenuItem,
+  TextField,
+  Typography
+} from '@mui/material';
+
+import { fetchReservation } from '../../services/customer';
 
 function Reservation() {
+  const [open, setOpen] = useState(false);
   const [seating, setSeatingPreference] = useState('indoor');
   const [numberOfPeople, setNumberOfPeople] = useState('1');
   const [time, setTime] = useState(
@@ -13,12 +27,20 @@ function Reservation() {
     })
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Time:', time);
-    console.log('Seating Preference:', seating);
-    console.log('Number of People:', numberOfPeople);
+    const details = { time, seating, numberOfPeople };
+
+    try {
+      const data = await fetchReservation(details);
+
+      if (data.available === 'yes') {
+        setOpen(true);
+      }
+    } catch (error) {
+      console.error('Error fetching subject data:', error);
+    }
   };
 
   return (
@@ -89,6 +111,18 @@ function Reservation() {
           Reserve
         </Button>
       </Box>
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>Reservation Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Your reservation has been confirmed. Please arrive on time.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>OK</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

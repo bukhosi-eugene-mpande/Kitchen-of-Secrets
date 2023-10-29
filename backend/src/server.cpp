@@ -1,9 +1,10 @@
 #include "crow.h"
 #include "accounting/Accounting.h"
+#include "crow/middlewares/cors.h"
 
 int main()
 {
-    crow::SimpleApp app;
+    crow::App<crow::CORSHandler> app;
 
     auto accounting = std::make_shared<Accounting>();
 
