@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { purple, orange } from '@mui/material/colors';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import Start from './pages/Start/Start';
 import Staff from './pages/Staff/Staff';
