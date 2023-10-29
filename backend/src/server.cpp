@@ -19,5 +19,16 @@ int main()
         return res;
     });
 
-    app.port(18080).multithreaded().run();
+    CROW_ROUTE(app, "/reservation").methods("POST"_method)([](const crow::request& req){
+
+        std:: cout << "Reservation Request: \n" + req.body << std::endl;
+
+        crow::response res("{\"available\": \"yes\"}");
+        res.add_header("Content-Type", "application/json");
+        res.code = 200;
+        
+        return res;
+    });
+
+    app.port(8000).multithreaded().run();
 }
