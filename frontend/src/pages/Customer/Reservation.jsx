@@ -27,7 +27,7 @@ function Reservation() {
     })
   );
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const details = { time, seating, numberOfPeople };
@@ -41,7 +41,7 @@ function Reservation() {
     } catch (error) {
       console.error('Error fetching subject data:', error);
     }
-  };
+  }
 
   return (
     <Box
