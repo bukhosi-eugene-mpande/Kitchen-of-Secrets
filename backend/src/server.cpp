@@ -31,5 +31,23 @@ int main()
         return res;
     });
 
+    CROW_ROUTE(app, "/ws").websocket()
+        .onopen([](crow::websocket::connection& conn) {
+            std::cout << "new websocket connection" << std::endl;
+        })
+
+        .onerror([](crow::websocket::connection& conn, const std::string& error_message){
+            std::cout << "error: " << error_message << std::endl;
+        })
+
+        .onclose([](crow::websocket::connection& conn) {
+            std::cout << "websocket connection closed" << std::endl;
+        })
+
+        .onmessage([](crow::websocket::connection& conn, const std::string& data) {
+            std::cout << "text message received: " << data << std::endl;
+            conn.send_text("Received message: " + data);
+        });
+
     app.port(8000).multithreaded().run();
 }
