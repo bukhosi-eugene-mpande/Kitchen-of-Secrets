@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import {
   Box,
   Button,
@@ -9,11 +10,12 @@ import {
 } from '@mui/material';
 
 function Reservations() {
-  const [reservations, setReservations] = useState([]);
   const [socket, setSocket] = useState(null);
+  const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
     const newSocket = new WebSocket('ws://localhost:8000/ws');
+
     setSocket(newSocket);
 
     return () => {
@@ -25,6 +27,7 @@ function Reservations() {
     if (socket) {
       socket.onmessage = (event) => {
         const newReservation = JSON.parse(event.data);
+
         setReservations((prevReservations) => [
           ...prevReservations,
           newReservation
@@ -42,9 +45,7 @@ function Reservations() {
       )
     );
 
-    if (socket) {
-      socket.send(JSON.stringify({ type: 'accept-res', available: 'yes' }));
-    }
+    socket.send(JSON.stringify({ type: 'accept-res', available: 'yes' }));
   };
 
   return (
@@ -74,6 +75,7 @@ function Reservations() {
             <ListItemText
               primary={`${reservation.name} - ${reservation.seating} at ${reservation.time} for ${reservation.guests} guests`}
             />
+            
             <Button
               variant='contained'
               disabled={reservation.accepted}
