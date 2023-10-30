@@ -9,8 +9,11 @@ int main()
 {
     crow::App<crow::CORSHandler> app;
 
-    std::mutex mtx;;
-    std::unordered_set<crow::websocket::connection*> users;
+    std::mutex mtx;
+
+    crow::websocket::connection* staff = nullptr;
+    crow::websocket::connection* customer = nullptr;
+
 
     auto accounting = std::make_shared<Accounting>();
 
@@ -40,30 +43,53 @@ int main()
     CROW_ROUTE(app, "/ws")
         .websocket()
         .onopen([&](crow::websocket::connection& conn){
-            CROW_LOG_INFO << "new websocket connection";
-            std::lock_guard<std::mutex> _(mtx);
-            users.insert(&conn);
-            })
 
-        .onclose([&](crow::websocket::connection& conn, const std::string& reason){
-            CROW_LOG_INFO << "websocket connection closed: " << reason;
             std::lock_guard<std::mutex> _(mtx);
-            users.erase(&conn);
-            })
+
+            if (staff == nullptr)
+            {
+                staff = &conn;
+                CROW_LOG_INFO << "Staff connected";
+            }
+            else if (customer == nullptr)
+            {
+                customer = &conn;
+                CROW_LOG_INFO << "Customer connected";
+            }
+            else
+            {
+                CROW_LOG_ERROR << "No more connections available";
+            }
+        })
+
+        .onclose([&](crow::websocket::connection& /*conn*/, const std::string& reason){
+            CROW_LOG_INFO << reason;
+        })
 
         .onerror([&](crow::websocket::connection& /*conn*/) {
-            std::cout << "websocket error" << std::endl;
-            CROW_LOG_INFO << "websocket error";
+            CROW_LOG_INFO << "Websocket Error!";
         })
 
         .onmessage([&](crow::websocket::connection& /*conn*/, const std::string& data, bool is_binary){
             std::lock_guard<std::mutex> _(mtx);
-            for(auto u:users)
-                if (is_binary)
-                    u->send_binary(data);
-                else
-                    u->send_text(data);
-            });
+
+            if (is_binary){
+                CROW_LOG_INFO << "Binary message received";
+            }
+            else {
+                json jsonData = json::parse(data);
+
+                if (jsonData["type"] == "make-res")
+                {
+                    staff->send_text(data);
+                }
+                else if(jsonData["type"] == "accept-res")
+                {
+                    customer->send_text(data);
+                }
+            }
+        }
+    );
 
     app.port(8000).multithreaded().run();
 }

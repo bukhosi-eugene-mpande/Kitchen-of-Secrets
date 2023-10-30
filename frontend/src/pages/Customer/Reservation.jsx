@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -12,13 +11,13 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-
-import { fetchReservation } from '../../services/customer';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function Reservation() {
   const [open, setOpen] = useState(false);
-  const [seating, setSeatingPreference] = useState('indoor');
-  const [numberOfPeople, setNumberOfPeople] = useState('1');
+  const [name, setName] = useState('Ashley');
+  const [seating, setSeatingPreference] = useState('Indoor');
+  const [guests, setNumberOfGuests] = useState('1');
   const [time, setTime] = useState(
     new Date().toLocaleTimeString('en-US', {
       hour: 'numeric',
@@ -26,22 +25,48 @@ function Reservation() {
       hour12: false
     })
   );
+  const [loading, setLoading] = useState(false);
+  const [socket, setSocket] = useState(null);
 
-  async function handleSubmit(e) {
+  useEffect(() => {
+    const newSocket = new WebSocket('ws://localhost:8000/ws');
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.close(1000, 'Component unmounted');
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        if (data.available === 'yes') {
+          setOpen(true);
+          setLoading(false);
+        }
+      };
+    }
+  }, [socket]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const details = { time, seating, numberOfPeople };
+    setLoading(true);
 
-    try {
-      const data = await fetchReservation(details);
+    const details = {
+      name,
+      time,
+      seating,
+      guests
+    };
 
-      if (data.available === 'yes') {
-        setOpen(true);
-      }
-    } catch (error) {
-      console.error('Error fetching subject data:', error);
+    if (socket) {
+      socket.send(JSON.stringify({ type: 'make-res', ...details }));
     }
-  }
+
+    console.log('Clicked');
+  };
 
   return (
     <Box
@@ -74,6 +99,17 @@ function Reservation() {
         <TextField
           required
           fullWidth
+          type='text'
+          value={name}
+          sx={{ m: 3 }}
+          label='Name'
+          onChange={(e) => setName(e.target.value)}
+          helperText='Please enter your name'
+        />
+
+        <TextField
+          required
+          fullWidth
           type='time'
           value={time}
           sx={{ m: 3 }}
@@ -92,8 +128,8 @@ function Reservation() {
           onChange={(e) => setSeatingPreference(e.target.value)}
           helperText='Please select where you would like to eat'
         >
-          <MenuItem value='indoor'>Indoor</MenuItem>
-          <MenuItem value='outdoor'>Outdoor</MenuItem>
+          <MenuItem value='Indoor'>Indoor</MenuItem>
+          <MenuItem value='Outdoor'>Outdoor</MenuItem>
         </TextField>
 
         <TextField
@@ -101,15 +137,21 @@ function Reservation() {
           fullWidth
           type='number'
           sx={{ m: 3 }}
-          value={numberOfPeople}
-          label='Number of People'
-          onChange={(e) => setNumberOfPeople(e.target.value)}
-          helperText='Please enter the number of people to reserve for'
+          value={guests}
+          label='Number of Guests'
+          onChange={(e) => setNumberOfGuests(e.target.value)}
+          helperText='Please enter the number of guests to reserve for'
         />
 
-        <Button size='large' type='submit' variant='contained' color='primary'>
+        <LoadingButton
+          size='large'
+          type='submit'
+          variant='contained'
+          color='primary'
+          loading={loading}
+        >
           Reserve
-        </Button>
+        </LoadingButton>
       </Box>
 
       <Dialog open={open} onClose={() => setOpen(false)}>
