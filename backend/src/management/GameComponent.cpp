@@ -1,7 +1,7 @@
 #include "GameComponent.h"
 
-GameComponent::GameComponent(std::unique_ptr<Engine> engine) {
-    this->engine = std::move(engine);
+GameComponent::GameComponent(Engine* engine) {
+    this->engine = engine;
 }
 
 void GameComponent::changed(std::string message) {

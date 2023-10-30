@@ -13,21 +13,21 @@ class GameComponent
 {
     protected:
         /**
-         * @brief `std::unique_ptr<Engine> engine` is declaring a member variable named `engine` of type 
-         * `std::unique_ptr<Engine>`.
+         * @brief `Engine* engine` is declaring a member variable named `engine` of type 
+         * `Engine*`.
          */
-        std::unique_ptr<Engine> engine;
+        Engine* engine;
     public:
 
         /**
-         * @brief The line `GameComponent(std::unique_ptr<Engine> engine);` is declaring a constructor for 
-         * the `GameComponent` class that takes a single parameter of type `std::unique_ptr<Engine>`. This 
+         * @brief The line `GameComponent(Engine* engine);` is declaring a constructor for 
+         * the `GameComponent` class that takes a single parameter of type `Engine*`. This 
          * constructor is used to create a new `GameComponent` object and initialize its `engine` member 
-         * variable with the provided `std::unique_ptr<Engine>`.
+         * variable with the provided `Engine*`.
          * 
          * @param engine 
          */
-        GameComponent(std::unique_ptr<Engine> engine);
+        GameComponent(Engine* engine);
 
         /**
          * @brief The line `virtual void changed(std::string message);` is declaring a virtual member 

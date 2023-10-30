@@ -1,30 +1,45 @@
 #include "PlayerInteraction.h"
 
-void PlayerInteraction::paymentCommand()
-{
-
+PlayerInteraction::PlayerInteraction(Engine*, AccountingSystem* accountingSystem, KitchenSystem* cookingSystem, CustomerCareSystem* customerCareSystem, OrderSystem* orderingSystem, ReservationSystem* reservationSystem) : GameComponent(engine) {
+    this->accountingSystem = accountingSystem;
+    this->cookingSystem = cookingSystem;
+    this->customerCareSystem = customerCareSystem;
+    this->orderingSystem = orderingSystem;
+    this->reservationSystem = reservationSystem;
 }
 
-void PlayerInteraction::updateInventoryCommand()
-{
+PlayerInteraction::~PlayerInteraction() {}
+
+void PlayerInteraction::payment(Customer* customer) {
+    if (customer->wantsToOpenTab() && customer->openTab == false) {
+        accountingSystem->openTab();
+        accountingSystem->addOrderCost();
+    }
+    else if (customer->openTab()) {
+        accountingSystem->addOrderCost();
+    }
+    else if (customer->wantsToBeBilled()) {
+        accountingSystem->billCustomer();
+    }
 }
 
-void PlayerInteraction::takeOrderCommand()
-{
+void PlayerInteraction::updateInventory() {
+    accountingSystem->buyInventory();
 }
 
-void PlayerInteraction::orderUpCommand()
+void PlayerInteraction::takeOrder()
 {
+    orderingSystem->takeOrder();
+    orderingSystem->giveOrderToChef();
 }
 
-void PlayerInteraction::seatCustomerCommand()
+void PlayerInteraction::orderUp()
 {
+    cookingSystem->giveFoodToWaiter();
+    orderingSystem->giveFoodToCustomer();
 }
 
-void PlayerInteraction::sendNotification()
-{
+void PlayerInteraction::seatCustomers(std::vector<Customer*> customers) {
+    reservationSystem->getReceptionist()->showCustomerToTable();
 }
 
-void PlayerInteraction::receiveNotification(std::string message)
-{
-}

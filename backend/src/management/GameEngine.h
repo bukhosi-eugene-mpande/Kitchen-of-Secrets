@@ -6,19 +6,19 @@
 class GameEngine : public Engine {
     private:
         /**
-         * @brief  `std::vector<std::unique_ptr<GameComponent>> gameComponents;` is declaring a private 
-         * member variable `gameComponents` of type `std::vector<std::unique_ptr<GameComponent>>`.
+         * @brief  `std::vector<GameComponent*> gameComponents;` is declaring a private 
+         * member variable `gameComponents` of type `std::vector<GameComponent*>`.
          */
-        std::vector<std::unique_ptr<GameComponent>> gameComponents;
+        std::vector<GameComponent*> gameComponents;
     public:
         /**
          * @brief The `GameEngine` constructor is taking a parameter `gameComponents` of type 
-         * `std::vector<std::unique_ptr<GameComponent>>`. This parameter is used to initialize the private 
+         * `std::vector<GameComponent*>`. This parameter is used to initialize the private 
          * member variable `gameComponents` of the `GameEngine` class.
          * 
          * @param gameComponents 
          */
-        GameEngine(std::vector<std::unique_ptr<GameComponent>> gameComponents);
+        GameEngine(std::vector<GameComponent*> gameComponents);
 
         /**
          * @brief Destroy the Game Engine object
@@ -27,14 +27,14 @@ class GameEngine : public Engine {
         ~GameEngine();
 
         /**
-         * @brief The `virtual void notify(std::unique_ptr<GameComponent> sender, std::string message);` 
+         * @brief The `virtual void notify(GameComponent* sender, std::string message);` 
          * function is declaring a virtual member function named `notify` that takes two parameters: 
-         * `sender` of type `std::unique_ptr<GameComponent>` and `message` of type `std::string`.
+         * `sender` of type `GameComponent*` and `message` of type `std::string`.
          * 
          * @param sender 
          * @param message 
          */
-        virtual void notify(std::unique_ptr<GameComponent> sender, std::string message);
+        virtual void notify(GameComponent* sender, std::string message);
 
         /**
          * @brief The `void reactOnGameComponent(int index)` function is a member function of the 

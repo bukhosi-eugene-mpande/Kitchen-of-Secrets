@@ -39,7 +39,7 @@ class Engine
          * @param sender 
          * @param message 
          */
-        virtual void notify(std::unique_ptr<GameComponent> sender, std::string message) = 0;
+        virtual void notify(GameComponent*sender, std::string message) = 0;
 };
 
 #endif

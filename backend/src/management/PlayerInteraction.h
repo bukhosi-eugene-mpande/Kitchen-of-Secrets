@@ -3,25 +3,31 @@
 
 #include <vector>
 #include <queue>
+#include <memory>
 
-#include "Engine.h"
+#include "AccountingSystem.h"
+#include "CustomerCareSystem.h"
+#include "GameComponent.h"
+#include "KitchenSystem.h"
+#include "OrderSystem.h"
+#include "ReservationSystem.h"
 
 class PlayerInteraction : public GameComponent {
     private:
-        Accounting* accountingSubsystem;
-        Kitchen* cookingSubsystem;
-        Customer* customerCareSubsystem;
-        Order* orderingSubsystem;
-        Reservation* reservationSubsystem;
+        AccountingSystem* accountingSystem;
+        KitchenSystem* cookingSystem;
+        CustomerCareSystem* customerCareSystem;
+        OrderSystem* orderingSystem;
+        ReservationSystem* reservationSystem;
 
     public:
-        PlayerInteraction();
+        PlayerInteraction(Engine* engine, AccountingSystem* accountingSystem, KitchenSystem* cookingSystem, CustomerCareSystem* customerCareSystem, OrderSystem* orderingSystem, ReservationSystem* reservationSystem);
         ~PlayerInteraction();
-        void payment();
+        void payment(Customer* customer);
         void updateInventory();
         void takeOrder();
         void orderUp();
-        void seatCustomer();
+        void seatCustomers(std::vector<Customer*>);
 };
 
 #endif
