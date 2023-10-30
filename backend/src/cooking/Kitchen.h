@@ -8,6 +8,8 @@
 
 #include "Order.h"
 #include "Meal.h"
+#include "DeputyHeadChef.h"
+#include "HeadChef.h"
 
 class Waiter;
 class Management;
@@ -15,7 +17,8 @@ class Management;
 class Kitchen {
     private:
     std::unordered_map<std::string,std::shared_ptr<Meal>> AvailableMeals;
-    std::vector<std::shared_ptr<Order>> unPreparedOrders;
+    std::shared_ptr<HeadChef> headChef;
+    std::shared_ptr<DeputyHeadChef> deputyHeadChef;
     std::vector<std::shared_ptr<Order>> preparedOrders;
     std::vector<std::shared_ptr<Order>> canceledOrders; 
     int numMeals;
@@ -23,7 +26,7 @@ class Kitchen {
 
     public:
 
-        Kitchen();
+        Kitchen(std::shared_ptr<Management> management,std::shared_ptr<HeadChef> headChef,std::shared_ptr<DeputyHeadChef> deputyHeadChef,std::vector<std::shared_ptr<Meal>> meals);
 
         Kitchen(const Kitchen& other);
 
@@ -31,11 +34,11 @@ class Kitchen {
 
         std::string getName() const;
 
-        bool addMeal(std::shared_ptr<Meal> meal);
+        void addMeal(std::shared_ptr<Meal> meal);
 
         void addOrder(std::shared_ptr<Order> order);
 
-        bool removeMeal(std::string name);
+        void removeMeal(std::string name);
 
         std::shared_ptr<Order> getPreparedOrder(std::shared_ptr<Waiter> waiter);
 
@@ -46,8 +49,6 @@ class Kitchen {
         double getPrice(std::string name);
 
         std::unordered_map<int,std::string> getMenu();
-
-        void prepareOrder();
 
         std::shared_ptr<Management> getManagement() const;
 
