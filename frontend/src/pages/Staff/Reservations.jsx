@@ -24,10 +24,9 @@ function Reservations() {
   }, []);
 
   useEffect(() => {
-    if (socket) {
+    if (socket){
       socket.onmessage = (event) => {
         const newReservation = JSON.parse(event.data);
-
         setReservations((prevReservations) => [
           ...prevReservations,
           newReservation
@@ -36,7 +35,7 @@ function Reservations() {
     }
   }, [socket]);
 
-  const handleAccept = (name) => {
+  function handleAccept(name) {
     setReservations((prevReservations) =>
       prevReservations.map((reservation) =>
         reservation.name === name
@@ -45,8 +44,10 @@ function Reservations() {
       )
     );
 
-    socket.send(JSON.stringify({ type: 'accept-res', available: 'yes' }));
-  };
+    if (socket) {
+      socket.send(JSON.stringify({ type: 'accept-res', available: 'yes' }));
+    }
+  }
 
   return (
     <Box
@@ -74,8 +75,9 @@ function Reservations() {
           >
             <ListItemText
               primary={`${reservation.name} - ${reservation.seating} at ${reservation.time} for ${reservation.guests} guests`}
+              secondary={reservation.accepted ? 'Accepted' : 'Pending'}
             />
-            
+
             <Button
               variant='contained'
               disabled={reservation.accepted}

@@ -35,6 +35,7 @@ function Reservation() {
 
   useEffect(() => {
     const newSocket = new WebSocket('ws://localhost:8000/ws');
+
     setSocket(newSocket);
 
     return () => {
@@ -54,7 +55,7 @@ function Reservation() {
     }
   }, [socket]);
 
-  function handleSubmit(e) {
+  function handleSubmit (e) {
     e.preventDefault();
 
     setLoading(true);
@@ -62,12 +63,14 @@ function Reservation() {
     const details = {
       name,
       time,
-      seating,
-      guests
+      guests,
+      seating
     };
 
-    socket.send(JSON.stringify({ type: 'make-res', ...details }));
-  }
+    if (socket) {
+      socket.send(JSON.stringify({ type: 'make-res', ...details }));
+    }
+  };
 
   return (
     <Box
@@ -147,9 +150,9 @@ function Reservation() {
         <LoadingButton
           size='large'
           type='submit'
-          variant='contained'
           color='primary'
           loading={loading}
+          variant='contained'
         >
           Reserve
         </LoadingButton>

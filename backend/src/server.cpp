@@ -64,6 +64,9 @@ int main()
 
         .onclose([&](crow::websocket::connection& /*conn*/, const std::string& reason){
             CROW_LOG_INFO << reason;
+            
+            staff = nullptr;
+            customer = nullptr;
         })
 
         .onerror([&](crow::websocket::connection& /*conn*/) {
