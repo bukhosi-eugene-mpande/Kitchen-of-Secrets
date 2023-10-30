@@ -8,6 +8,7 @@ import Start from './pages/Start/Start';
 import Staff from './pages/Staff/Staff';
 import Customer from './pages/Customer/Customer';
 import NotFound from './pages/NotFound/NotFound';
+import ChatRoom from './pages/Customer/Test';
 
 function App() {
   const theme = createTheme({
@@ -40,6 +41,7 @@ function App() {
           <Route path='*' element={<NotFound />} />
           <Route index path='/staff' element={<Staff />} />
           <Route index path='/customer' element={<Customer />} />
+          <Route index path='/chatroom' element={<ChatRoom />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
