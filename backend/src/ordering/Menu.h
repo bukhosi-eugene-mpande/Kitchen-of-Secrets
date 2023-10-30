@@ -12,11 +12,11 @@ class Menu{
         std::vector<std::string> items;
     
     public:
-        Menu(int, std::string);
+        Menu(std::string name, std::vector<std::string> items);
         std::string getName();
         void setdName(std::string name);
         std::vector<std::string> getitems();
-        void setItems(std::vector<std::string> items);
+        //void setItems(std::vector<std::string> items);
         virtual void displayMenu()=0;
         virtual std::vector<std::string> getItems()=0;
 };
