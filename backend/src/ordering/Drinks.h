@@ -2,9 +2,10 @@
 #define DRINKS_H
 #include <iostream>
 #include "Menu.h"
-
-class Drinks: publuc Menu{
-    protected:
+#include<vector>
+class Drinks: public Menu{
+    public:
+        std::vector<std::string> getItems() override;
         void displayMenu();
 };
 #endif

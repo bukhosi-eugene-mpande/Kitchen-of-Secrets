@@ -2,10 +2,10 @@
 #define MENUFACTORY_H
 #include <iostream>
 #include "Menu.h"
+
 class MenuFactory{
     private:
-        Menu* createDrinkMenu();
-        Menu* createFoodMenu();
+        virtual Menu* createMenu()=0;
 
 };
 #endif

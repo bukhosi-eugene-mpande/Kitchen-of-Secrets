@@ -5,6 +5,6 @@
 
 class DrinksMenuFcatory: public MenuFactory{
     protected:
-        Menu* #createDrinksMenu();
+        Menu* createMenu() override;
 };
 #endif

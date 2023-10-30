@@ -3,8 +3,9 @@
 #include <iostream>
 #include "Menu.h"
 
-class Food: publuc Menu{
-    protected:
+class Food: public Menu{
+    public:
+        std::vector<std::string> getItems() override;
         void displayMenu();
 };
 #endif
