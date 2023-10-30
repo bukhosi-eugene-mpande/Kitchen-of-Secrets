@@ -31,3 +31,21 @@ std::unordered_map<std::string,int> Meal::getIngredients() const {
 double Meal::getPrice() const {
     return this->price;
 }
+
+void Meal::setName(std::string name) {
+    this->name = name;
+}
+
+void Meal::setChef(std::string chef) {
+    this->chef = chef;
+}
+
+void Meal::setIngredients(std::unordered_map<std::string,int> ingredients) {
+    this->ingredients = ingredients;
+}
+
+void Meal::setPrice(double price) {
+    this->price = price;
+}
+
+

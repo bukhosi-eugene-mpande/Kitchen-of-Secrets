@@ -1,5 +1,6 @@
 #include "Order.h"
 #include "MenuItem.h"
+#include "Waiter.h"
 
 Order::Order(int tableNumber, std::vector<std::shared_ptr<MenuItem>> meals, std::shared_ptr<Waiter> waiter) {
     this->tableNumber = tableNumber;

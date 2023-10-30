@@ -6,11 +6,10 @@
 #include <string>
 #include <memory>
 
-#include "Order.h"
-#include "Meal.h"
-#include "DeputyHeadChef.h"
-#include "HeadChef.h"
-
+class Order;
+class Meal;
+class DeputyHeadChef;
+class HeadChef;
 class Waiter;
 class Management;
 
@@ -61,6 +60,10 @@ class Kitchen {
         void notifyWaiterOfCanceledOrder(std::shared_ptr<Order> order);
 
         std::unordered_map<std::string,std::shared_ptr<Meal>> getAvailableMeals() const;
+
+        std::shared_ptr<HeadChef> getHeadChef() const;
+
+        std::shared_ptr<DeputyHeadChef> getDeputyHeadChef() const;
 
 };
 

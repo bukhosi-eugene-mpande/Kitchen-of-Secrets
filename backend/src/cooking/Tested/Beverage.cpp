@@ -8,9 +8,7 @@ Beverage::Beverage(const Beverage& other) : MenuItem(other) {
     this->isAlcoholic = other.isAlcoholic;
 }
 
-Beverage::~Beverage() {
-
-}
+Beverage::~Beverage() { }
 
 double Beverage::calculatePrice() {
     return this->mealPrice;
@@ -22,5 +20,9 @@ std::unordered_map<std::string,int> Beverage::calculateIngredients() {
 
 std::shared_ptr<MenuItem> Beverage::clone() {
     return std::make_shared<Beverage>(*this);
+}
+
+bool Beverage::getIsAlcoholic() const {
+    return this->isAlcoholic;
 }
 

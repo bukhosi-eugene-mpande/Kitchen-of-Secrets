@@ -1,6 +1,10 @@
 #include "Kitchen.h"
 #include "DeputyHeadChef.h"
 #include "Management.h"
+#include "Order.h"
+#include "Meal.h"
+#include "DeputyHeadChef.h"
+#include "HeadChef.h"
 
 
 Kitchen::Kitchen(std::shared_ptr<Management> management,std::shared_ptr<HeadChef> headChef,std::shared_ptr<DeputyHeadChef> deputyHeadChef,std::vector<std::shared_ptr<Meal>> meals)

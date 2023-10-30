@@ -10,8 +10,8 @@ class MenuItem;
 
 class AbstractOrder {
     protected:
-        std::unordered_map<std::string,int> ingredients; /**< A map of ingredient names to their quantities */
-        double price; /**< The price of the menu item */
+        std::unordered_map<std::string,int> ingredients; 
+        double price; 
         std::vector<std::shared_ptr<MenuItem>> meals;
 
     public:
