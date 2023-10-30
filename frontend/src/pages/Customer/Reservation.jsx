@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
+
 import {
   Box,
   Button,
   Dialog,
+  MenuItem,
+  TextField,
+  Typography,
   DialogTitle,
   DialogContent,
   DialogActions,
-  DialogContentText,
-  MenuItem,
-  TextField,
-  Typography
+  DialogContentText
 } from '@mui/material';
+
 import LoadingButton from '@mui/lab/LoadingButton';
 
 function Reservation() {
+  const [socket, setSocket] = useState(null);
+
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [name, setName] = useState('Ashley');
-  const [seating, setSeatingPreference] = useState('Indoor');
+  const [seating, setSeating] = useState('Indoor');
   const [guests, setNumberOfGuests] = useState('1');
+
   const [time, setTime] = useState(
     new Date().toLocaleTimeString('en-US', {
       hour: 'numeric',
@@ -25,8 +32,6 @@ function Reservation() {
       hour12: false
     })
   );
-  const [loading, setLoading] = useState(false);
-  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     const newSocket = new WebSocket('ws://localhost:8000/ws');
@@ -49,7 +54,7 @@ function Reservation() {
     }
   }, [socket]);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
 
     setLoading(true);
@@ -61,12 +66,8 @@ function Reservation() {
       guests
     };
 
-    if (socket) {
-      socket.send(JSON.stringify({ type: 'make-res', ...details }));
-    }
-
-    console.log('Clicked');
-  };
+    socket.send(JSON.stringify({ type: 'make-res', ...details }));
+  }
 
   return (
     <Box
@@ -125,7 +126,7 @@ function Reservation() {
           label='Area'
           sx={{ m: 3 }}
           value={seating}
-          onChange={(e) => setSeatingPreference(e.target.value)}
+          onChange={(e) => setSeating(e.target.value)}
           helperText='Please select where you would like to eat'
         >
           <MenuItem value='Indoor'>Indoor</MenuItem>
