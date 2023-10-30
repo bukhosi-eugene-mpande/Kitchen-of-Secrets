@@ -2,11 +2,11 @@
 #define DRINKS_H
 #include <iostream>
 #include "Menu.h"
-#include<vector>
+#include<map>
 class Drinks: public Menu{
     public:
         Drinks();
-        void setItems(std::vector<std::string> items) override;
+        void setItems(std::map<std::string, double> items) override;
         void displayMenu();
 };
 #endif

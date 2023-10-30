@@ -6,7 +6,7 @@
 class Food: public Menu{
     public:
         Food();
-        void setItems(std::vector<std::string> items) override;
+        void setItems(std::map<std::string, double> items) override;
         void displayMenu();
 };
 #endif

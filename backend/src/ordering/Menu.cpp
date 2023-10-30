@@ -1,9 +1,8 @@
 #include "Menu.h"
 
-Menu::Menu(std::string name, std::vector<std::string> items)
+Menu::Menu(std::string name)
 {
     this->name=name;
-    this->items=items;
 }
 
 std::string Menu::getName()
@@ -16,7 +15,7 @@ void Menu::setName(std::string name)
     this->name=name;
 }
 
-std::vector<std::string> Menu::getItems()
+std::map<std::string, double>  Menu::getItems()
 {
     return items;
 }
