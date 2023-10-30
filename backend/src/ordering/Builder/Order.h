@@ -9,13 +9,6 @@ class Order
 {
     public:
         std::map<std::string, double> items;
-        void listItems() const
-        {
-            std::cout<<"Your complete order is: "<<std::endl;
-            for(const auto& item:items)
-            {
-                std::cout<<item.first<< " :R"<<item.second<<std::endl;
-            }
-        }
+        void listItems() const;
 };
 #endif
