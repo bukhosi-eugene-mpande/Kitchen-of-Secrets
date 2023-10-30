@@ -4,7 +4,7 @@
 #include "Menu.h"
 
 class MenuFactory{
-    private:
+    public:
         virtual Menu* createMenu()=0;
 
 };

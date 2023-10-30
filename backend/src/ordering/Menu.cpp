@@ -11,9 +11,14 @@ std::string Menu::getName()
     return name;
 }
 
-void Menu::setdName(std::string name)
+void Menu::setName(std::string name)
 {
     this->name=name;
+}
+
+std::vector<std::string> Menu::getItems()
+{
+    return items;
 }
 
 

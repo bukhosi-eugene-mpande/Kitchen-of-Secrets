@@ -4,9 +4,9 @@ Drinks::Drinks() :Menu("", std::vector<std::string>())
 {
     std::cout<<"New Drinks Menu created."<<std::endl;
 }
-std::vector<std::string> Drinks::getItems()
+void Drinks::setItems(std::vector<std::string> items)
 {
-    return {"Spider Blood", "Ghost Blood", "Venom", "Bloody Mary", "Pumpkin Latter", "Witch's Brew", "Zombie Cocktail", "Poisedon", "Invisible Killer", "Scary Mocktail"};
+    this->items= {"Spider Blood", "Ghost Blood", "Venom", "Bloody Mary", "Pumpkin Latter", "Witch's Brew", "Zombie Cocktail", "Poisedon", "Invisible Killer", "Scary Mocktail"};
 }
 
 void Drinks::displayMenu()

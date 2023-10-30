@@ -3,8 +3,8 @@
 #include<iostream>
 #include "MenuFactory.h"
 
-class FoodMenuFcatory: public MenuFactory{
-    protected:
+class FoodMenuFactory: public MenuFactory{
+    public:
         Menu* createMenu() override;
 };
 #endif

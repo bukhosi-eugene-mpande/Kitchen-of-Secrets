@@ -1,7 +1,7 @@
 #include "FoodMenuFactory.h"
 #include "Food.h"
 
-Menu* FoodMenuFcatory::createMenu()
+Menu* FoodMenuFactory::createMenu()
 {
     return new Food();
 }
