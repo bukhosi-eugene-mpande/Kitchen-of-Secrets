@@ -12,7 +12,7 @@ void Drinks::setItems(std::map<std::string, double>items)
         {"Ghost Blood", 3.99},
         {"Venom", 5.99},
         {"Bloody Mary", 6.99},
-        {"Pumpkin Latter", 4.49},
+        {"Pumpkin Latte", 4.49},
         {"Witch's Brew", 5.49},
         {"Zombie Cocktail", 6.49},
         {"Poisedon", 7.99},
@@ -26,6 +26,6 @@ void Drinks::displayMenu()
     std::cout << "Drinks Menu:\n";
         for (const auto& item : getItems())
         {
-            std::cout << "- " << item.first << ": $" << item.second << '\n';
+            std::cout << "- " << item.first << ": R" << item.second << '\n';
 }
 }

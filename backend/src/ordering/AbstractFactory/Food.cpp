@@ -15,6 +15,6 @@ void Food::displayMenu()
     std::cout << "Food Menu:\n";
         for (const auto& item : getItems())
         {
-            std::cout << "- " << item.first << ": $" << item.second << '\n';
+            std::cout << "- " << item.first << ": R" << item.second << '\n';
         }
 }

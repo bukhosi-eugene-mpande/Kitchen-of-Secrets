@@ -1,10 +1,11 @@
 #include "Waiter.h"
 //#include "Management.h"
 
-// Waiter::Waiter(Management* management)
-// {
-//     this->management=management;
-// }
+Waiter::Waiter(Management* management, Customer* customer)
+{
+    this->management=management;
+    this->customer=customer;
+}
 
 void Waiter::setBuilder(OrderBuilder* builder)
 {
@@ -13,24 +14,37 @@ void Waiter::setBuilder(OrderBuilder* builder)
 
 void Waiter::takeOrder()
 {
+    //this function send paymentType to manager
+    management->sendPaymentType(customer->getPaymentOfChoice());
+
+    //here we are building the order
     builder->addDrink();
     builder->addFood();
     Order* order= builder->build();
-    std::cout<<"Sending the order to management"<<std::endl;
+    std::cout<<"---Sending this the order to management: ---"<<std::endl;
     order->listItems();
 
-    //management->sendOrder(order);
+    //here we send order to management
+    management->sendOrder(order);
 
+    //cleanup
     delete order;
 }
 
-void Waiter::serveOrder()
+void Waiter::serveOrder(Customer* customer)
 {
-    // Order* order = management->receiveOrder();
-    // std::cout << "Received order from management:\n";
-    // order->listItems();
+    //we take order from management
+    Order* order = management->receiveOrder();
+    std::cout << "---Received order from management & Serves to client: ---\n";
 
-    // delete order;
+    //we list the order to make sure its correct
+    order->listItems();
+    
+    //the customer eats their  food
+    customer->eatFood(order);
+
+    //cleanup
+    delete order;
 }
 void Waiter::accept(Visitor* visitor)
 {
