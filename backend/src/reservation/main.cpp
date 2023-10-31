@@ -9,48 +9,29 @@
 #include "GeneralSection.h"
 
 int main() {
-    // Engine engine;
+    Engine engine;
 
-    // Create a receptionist to manage reservations and tables
+    // Create a Receptionist.
     Receptionist receptionist(&engine);
 
-    // Create tables for the restaurant
-    PrivateTable privateTable1(&engine, 1);
-    PrivateTable privateTable2(&engine, 2);
-    GeneralTable generalTable1(&engine, 3);
-    GeneralTable generalTable2(&engine, 4);
+    // Create a ReservationSystem with ID 1, starting time 1, and 4 customers.
+    receptionist.createReservation(1, 1, 4);
 
-    // Create seating sections
-    PrivateSection privateSection;
-    GeneralSection generalSection;
+    // Create a PrivateSection with an initial seat value.
+    PrivateSection privateSection(2);
 
-    // Assign tables to sections
-    privateSection.addTable(&privateTable1);
-    privateSection.addTable(&privateTable2);
-    generalSection.addTable(&generalTable1);
-    generalSection.addTable(&generalTable2);
-
-    // Create reservations
-    receptionist.createReservation(1, 18, 4);
-    receptionist.createReservation(2, 19, 2);
-
-    // Simulate customers being shown to tables
+    // Show customers to tables based on reservations.
     receptionist.showCustomerToTable();
 
-    // Simulate customers placing orders
-    privateTable1.placeTable(1, 1);
-    privateTable1.addReservation(ReservationSystem::getReservation(0));
-    privateTable1.receiveNotification("Customer is ready to order.");
+    // Combine and separate tables in the PrivateSection.
+    std::vector<PrivateTable*> privateTables = privateSection.getPrivateTables();
+    privateTables[0]->combineTables(privateTables[0], privateTables[1]); // Example: Combine tables with ID 0 and 1.
+    privateSection.seperateTables(privateTables[2]);   // Example: Remove a table with ID 2.
 
-    generalTable1.placeTable(2, 2);
-    generalTable1.addReservation(ReservationSystem::getReservation(1));
-    generalTable1.receiveNotification("Customer is ready to order.");
+    // Access the privateTables vector and print table information.
+    for (PrivateTable* table : privateTables) {
+        std::cout << "Table ID: " << table->getTableID() << ", Seat: " << table->getSeat() << std::endl;
+    }
 
-    // Simulate combining tables
-    privateSection.combineTables(1);
-
-    // Simulate separating tables
-    privateSection.separateTables(1, 3);
-    
     return 0;
 }

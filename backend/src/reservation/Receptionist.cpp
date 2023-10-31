@@ -3,7 +3,8 @@
 
 #include "Receptionist.h"
 
-Receptionist::Receptionist(Engine* engine)  {}
+Receptionist::Receptionist()  {}
+// Receptionist::Receptionist(Engine* engine)  {}
 
 Receptionist::~Receptionist() {}
 
@@ -12,17 +13,20 @@ void Receptionist::createReservation(int reservationID, int startTime, int numbe
 }
 
 void Receptionist::showCustomerToTable() {
+    PrivateSection privateT;
+    GeneralSection genT;
+    
     std::vector<ReservationSystem*> reservations = reservation->getReservations();
     for (ReservationSystem* reservation : reservations) {
         int numberOfCustomers = reservation->getNumberOfCustomers();
         Table* assignedTable = nullptr;
-        if (numberOfCustomers <= PRIVATE_TABLE_CAPACITY && !privateTables.empty()) {
-            assignedTable = privateTables.back();
-            privateTables.pop_back();
+        if (numberOfCustomers <= PRIVATE_TABLE_CAPACITY && !privateT.getPrivateTables().empty()) {
+            assignedTable = privateT.getPrivateTables().back();
+            privateT.getPrivateTables().pop_back();
         }
-        else if (!generalTables.empty()) {
-            assignedTable = generalTables.back();
-            generalTables.pop_back();
+        else if (!genT.getGeneralTables().empty()) {
+            assignedTable = genT.getGeneralTables().back();
+            genT.getGeneralTables().pop_back();
         }
 
         if (assignedTable) {

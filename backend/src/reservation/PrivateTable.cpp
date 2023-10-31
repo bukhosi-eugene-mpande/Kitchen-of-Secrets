@@ -3,7 +3,11 @@
 
 #include "PrivateTable.h"
 
-PrivateTable::PrivateTable(Engine* engine, int tableID, int seat) : Table(engine, tableID, seat) {}
+PrivateTable::PrivateTable(int tableID, int seat) : Table(tableID, seat) {}
+
+// PrivateTable::PrivateTable(Engine* engine, int tableID, int seat) : Table(engine, tableID, seat) {}
+
+PrivateTable::PrivateTable(){}
 
 PrivateTable::~PrivateTable(){}
 
@@ -12,6 +16,11 @@ void PrivateTable::addReservation(ReservationSystem* reservation, int seat)
     this->seat = seat;
     this->reservation = reservation;
     isOccupied = true;
+}
+
+int PrivateTable::getSeat()
+{
+    return this->seat;
 }
 
 void PrivateTable::setSeat(int seat)

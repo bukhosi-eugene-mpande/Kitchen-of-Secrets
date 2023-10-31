@@ -19,7 +19,9 @@ protected:
     ReservationSystem* reservation;
     
 public:
-    Table(Engine* engine, int tableID, int seat);
+    Table(int tableID, int seat);
+    // Table(Engine* engine, int tableID, int seat);
+    Table();
     ~Table();
     int getTableID();
     void setTableID(int tableID);

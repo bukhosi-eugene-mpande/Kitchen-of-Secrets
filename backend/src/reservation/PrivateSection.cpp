@@ -12,16 +12,14 @@ PrivateSection::PrivateSection(int seat) : SeatingPlan() {
     }
 }
 
-// PrivateSection::PrivateSection(){
-//     seat = 2;
-// }
+PrivateSection::PrivateSection(){}
 
 PrivateSection::~PrivateSection(){}
 
-void PrivateSection::seatCustomers(Customer *customer)
-{
-    this->customer = customer;
-}
+// void PrivateSection::seatCustomers(Customer *customer)
+// {
+//     this->customer = customer;
+// }
 
 void PrivateSection::combineTables(int tableID1, int tableID2) //id 1 == deletes table , id2 == table to be combined
 {
@@ -50,6 +48,10 @@ void PrivateSection::seperateTables(int tableID)
     PrivateTable* newTable2 = new PrivateTable(engine,newid2, seat);
     privateTables.push_back(newTable);
     privateTables.push_back(newTable2);
+}
+
+std::vector<PrivateTable*> PrivateSection::getPrivateTables() {
+    return privateTables;
 }
 
 #endif

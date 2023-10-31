@@ -1,9 +1,11 @@
-#ifdef GENERALTABLE_CPP
+#ifndef GENERALTABLE_CPP
 #define GENERALTABLE_CPP
 
 #include "GeneralTable.h"
 
-GeneralTable::PrivateTable(Engine* engine, int tableI, int seat) : Table(engine, tableID) {}
+GeneralTable::GeneralTable(int tableI, int seat) : Table(tableID, seat) {}
+
+// GeneralTable::GeneralTable(Engine* engine, int tableI, int seat) : Table(engine, tableID, seat) {}
 
 GeneralTable::~GeneralTable(){}
 
@@ -13,14 +15,24 @@ void GeneralTable::addReservation(ReservationSystem* reservation, int seat){
     isOccupied = true;
 }
 
-void GeneralTable::sendNotification()
+int GeneralTable::getSeat()
 {
-    engine->notify();
+    return this->seat;
 }
 
-void GeneralTable::receiveNotification(std::string message)
+// void GeneralTable::sendNotification()
+// {
+//     engine->notify();
+// }
+
+// void GeneralTable::receiveNotification(std::string message)
+// {
+//     engine->receive(message);
+// }
+
+void GeneralTable::setSeat(int seat)
 {
-    engine->receive(message);
+    this->seat = seat;
 }
 
 

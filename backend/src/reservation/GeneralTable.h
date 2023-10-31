@@ -7,11 +7,14 @@
 class GeneralTable : public Table {
     int seat;
  public:
-    GeneralTable(Engine* engine, int tableID, int seat);
+    GeneralTable(int tableID, int seat);
+    // GeneralTable(Engine* engine, int tableID, int seat);
     ~GeneralTable();
     void addReservation(ReservationSystem* reservation, int seat);
-    void sendNotification();
-    void receiveNotification(std::string message);
+    // void sendNotification();
+    // void receiveNotification(std::string message);
+    void setSeat(int seat);
+    int getSeat();
 };
 
 #endif

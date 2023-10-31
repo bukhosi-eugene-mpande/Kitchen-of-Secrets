@@ -14,9 +14,9 @@ public:
     SeatingPlan();
     ~SeatingPlan();
     virtual void addReservation(ReservationSystem* reservation);
-    virtual void seatCustomers() = 0;
-    virtual void combineTables() = 0;
-    virtual void seperateTables(Table* table1, Table* table2) = 0;
+    // virtual void seatCustomers(Customer* customer) = 0;
+    virtual void combineTables(int tableID1, int tableID2) = 0;
+    virtual void seperateTables(int tableID) = 0;
 };
 
 #endif
