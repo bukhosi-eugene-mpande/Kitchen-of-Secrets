@@ -6,13 +6,13 @@
 // #include "Customer.h"
 
 class PrivateSection : public SeatingPlan {
-    int seat;
     Customer* customer;
     std::vector<PrivateTable*> privateTables;
     Engine* engine;
     int PRIVATE_TABLE_CAPACITY = 4;
 
  public: 
+    int seat;
     PrivateSection(int seat);
     // PrivateSection();
     ~PrivateSection();

@@ -14,14 +14,14 @@ void PrivateTable::addReservation(ReservationSystem* reservation, int seat)
     isOccupied = true;
 }
 
-void PrivateTable::sendNotification()
-{
-    // engine->notify();
-}
+// void PrivateTable::sendNotification()
+// {
+//     engine->notify();
+// }
 
-void PrivateTable::receiveNotification(std::string message)
-{
-    // engine->receive(message);
-}
+// void PrivateTable::receiveNotification(std::string message)
+// {
+//     engine->receive(message);
+// }
 
 #endif

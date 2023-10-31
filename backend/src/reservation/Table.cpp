@@ -3,7 +3,7 @@
 
 #include "Table.h"
 
-Table::Table(Engine* engine, int tableID, int seat) : GameComponent(engine) {
+Table::Table(Engine* engine, int tableID, int seat) {
     isOccupied = false;
     this->tableID = tableID;
     this->seat = seat;

@@ -8,7 +8,7 @@
 #include "ReservationSystem.h"
 #include "Table.h"
 
-class Receptionist : public GameComponent {
+class Receptionist  {
     private:
         int PRIVATE_TABLE_CAPACITY = 4;
         int GENERAL_TABLE_CAPACITY = 4;

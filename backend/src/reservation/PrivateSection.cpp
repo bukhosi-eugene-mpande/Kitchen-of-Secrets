@@ -29,14 +29,14 @@ void PrivateSection::combineTables(int tableID1, int tableID2) //id 1 == deletes
     // Modify table creation to include the updated seat value.
     // PrivateTable* newTable = new PrivateTable(engine, tableID2, seat);
     // newTable->setTableID(tableID1);
-    privateTables[tableID2]->seat = seat;
+    this->privateTables[tableID2].seat = seat;
 }
 
 void PrivateSection::seperateTables(int tableID)
 {
     seat /= 2;
     // Modify table creation to include the updated seat value.
-    PrivateTable* newTable = new PrivateTable(engine, tableID, seat);
+    // PrivateTable* newTable = new PrivateTable(engine, tableID, seat);
     privateTables.push_back(newTable);
 }
 

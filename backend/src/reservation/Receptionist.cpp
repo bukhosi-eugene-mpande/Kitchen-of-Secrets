@@ -3,7 +3,7 @@
 
 #include "Receptionist.h"
 
-Receptionist::Receptionist(Engine* engine) : GameComponent(engine) {}
+Receptionist::Receptionist(Engine* engine)  {}
 
 Receptionist::~Receptionist() {}
 
@@ -26,7 +26,7 @@ void Receptionist::showCustomerToTable() {
         }
 
         if (assignedTable) {
-            assignedTable->addReservation(reservation);
+            assignedTable->addReservation(reservation, numberOfCustomers);
             std::cout << "Assigned reservation #" << reservation->getReservationID() << " to table #" << assignedTable->getTableID() << std::endl;
         } else {
             std::cout << "No available tables for reservation #" << reservation->getReservationID() << std::endl;

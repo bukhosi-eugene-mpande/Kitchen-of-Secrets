@@ -9,7 +9,7 @@
 
 using namespace std; 
 
-class Table : public GameComponent {
+class Table {
 protected:
     int tableID;
     int xCoord;
@@ -23,12 +23,12 @@ public:
     ~Table();
     int getTableID();
     void setTableID(int tableID);
-    virtual void addReservation(ReservationSystem* reservation) = 0;
-    virtual void placeTable(int xCoord, int yCoord);
-    virtual bool getIsOccupied();
-    virtual void setIsOccupied(bool isOccupied);
-    virtual void sendNotification() = 0;
-    virtual void receiveNotification(std::string message) = 0;
+    virtual void addReservation(ReservationSystem* reservation, int seat) = 0;
+    void placeTable(int xCoord, int yCoord);
+    bool getIsOccupied();
+    void setIsOccupied(bool isOccupied);
+    // virtual void sendNotification() = 0;
+    // virtual void receiveNotification(std::string message) = 0;
 };
 
 #endif
