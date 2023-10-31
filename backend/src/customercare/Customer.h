@@ -2,6 +2,7 @@
 #define CUSTOMER_H
 
 #include "SatisfactionState.h"
+#include "CustomerCareSystem.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -9,7 +10,7 @@
 
 
 
-class Customer
+class Customer: public CustomerCareSystem
 {
 private:
     SatisfactionState *Mood;
