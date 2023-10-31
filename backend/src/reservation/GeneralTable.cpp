@@ -1,9 +1,8 @@
-#ifndef GENERALTABLE_CPP
-#define GENERALTABLE_CPP
-
 #include "GeneralTable.h"
 
-GeneralTable::GeneralTable(int tableI, int seat) : Table(tableID, seat) {}
+GeneralTable::GeneralTable(int tableID, int seat) : Table(tableID, seat) {
+    this->tableID = tableID;
+}
 
 // GeneralTable::GeneralTable(Engine* engine, int tableI, int seat) : Table(engine, tableID, seat) {}
 
@@ -39,6 +38,3 @@ void GeneralTable::setSeat(int seat)
 {
     this->seat = seat;
 }
-
-
-#endif

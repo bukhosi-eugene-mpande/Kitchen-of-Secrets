@@ -1,6 +1,3 @@
-#ifndef RESERVATION_CPP
-#define RESERVATION_CPP
-
 #include "ReservationSystem.h"
 
 ReservationSystem::ReservationSystem(int reservationID, int startTime, int numberOfCustomers)
@@ -67,5 +64,3 @@ void ReservationSystem::setNumberOfCustomers(int numberOfCustomers)
 }
 
 
-
-#endif

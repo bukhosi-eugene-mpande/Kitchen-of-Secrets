@@ -5,9 +5,9 @@
 // #include "Engine.h"
 
 class PrivateTable : public Table {
- private: 
-    int seat;
-    int tableID;
+//  private: 
+//    //  int seat;
+//    //  int tableID;
  public:
     PrivateTable(int tableID, int seat);
    //  PrivateTable(Engine* engine, int tableID, int seat);

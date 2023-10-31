@@ -1,9 +1,8 @@
-#ifndef PRIVATETABLE_CPP
-#define PRIVATETABLE_CPP
-
 #include "PrivateTable.h"
 
-PrivateTable::PrivateTable(int tableID, int seat) : Table(tableID, seat) {}
+PrivateTable::PrivateTable(int tableID, int seat) : Table(tableID, seat) {
+    this->tableID = tableID;
+}
 
 // PrivateTable::PrivateTable(Engine* engine, int tableID, int seat) : Table(engine, tableID, seat) {}
 
@@ -42,5 +41,3 @@ void PrivateTable::setSeat(int seat)
 // {
 //     engine->receive(message);
 // }
-
-#endif

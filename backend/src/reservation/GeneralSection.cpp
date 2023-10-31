@@ -1,6 +1,3 @@
-#ifndef GENERALSECTION_CPP
-#define GENERALSECTION_CPP
-
 #include "GeneralSection.h"
 
 GeneralSection::GeneralSection(int seat) : SeatingPlan() {
@@ -54,5 +51,3 @@ void GeneralSection::seperateTables(int tableID)
 std::vector<GeneralTable*> GeneralSection::getGeneralTables() {
     return generalTables;
 }
-
-#endif

@@ -98,3 +98,5 @@ OBSERVER PATTERN TEMP UML:
 - Observer Interface (Observer): Define an Observer interface that declares an update() method. This method will be called when a change in the seating plan occurs, and it will allow observers to react to those changes.
 - Concrete Observers (Waiter, Manager, Customer): Create concrete observer classes for entities that need to be notified. For example, you can have Waiter, Manager, and Customer classes that implement the Observer interface and define how they respond to seating plan changes.
 - Registration and Notification: In the subject (SeatingPlanSubject) classes, provide methods for observers to register and unregister themselves. When changes occur, such as table assignments, call the notifyObservers() method to inform all registered observers.
+
+

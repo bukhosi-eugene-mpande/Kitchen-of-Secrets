@@ -7,7 +7,7 @@
 // #include "GameComponent.h"
 #include "ReservationSystem.h"
 
-class ReservationSystem;
+// class ReservationSystem;
 
 using namespace std; 
 

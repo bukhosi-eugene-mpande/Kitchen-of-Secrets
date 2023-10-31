@@ -4,19 +4,17 @@
 #include <vector>
 
 #include "Table.h"
-#include "ReservationSystem.h"
-
-class ReservationSystem;
+// #include "ReservationSystem.h"
 
 using namespace std;
 
 class SeatingPlan {
-    Table* table;
+    // Table* table;
 
 public:
     SeatingPlan();
     ~SeatingPlan();
-    virtual void addReservation(ReservationSystem* reservation);
+    // virtual void addReservation(ReservationSystem* reservation, int seat) = 0;
     // virtual void seatCustomers(Customer* customer) = 0;
     virtual void combineTables(int tableID1, int tableID2) = 0;
     virtual void seperateTables(int tableID) = 0;

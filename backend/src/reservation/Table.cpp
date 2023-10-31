@@ -1,6 +1,3 @@
-#ifndef TABLE_CPP
-#define TABLE_CPP
-
 #include "Table.h"
 
 Table::Table(int tableID, int seat) {
@@ -43,5 +40,3 @@ bool Table::getIsOccupied() {
 void Table::setIsOccupied(bool isOccupied) {
     this->isOccupied = isOccupied;
 }
-
-#endif

@@ -2,11 +2,11 @@
 #define RESERVATION_H
 
 #include <vector>
-#include "Receptionist.h"
+// #include "Receptionist.h"
 
 class ReservationSystem {
     private:
-        std::vector<ReservationSystem*> reservations;
+        std::vector<ReservationSystem*> reservations = std::vector<ReservationSystem*>();
         int reservationID;
         int startTime;
         int numberOfCustomers;

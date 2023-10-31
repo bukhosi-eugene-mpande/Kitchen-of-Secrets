@@ -1,6 +1,3 @@
-#ifndef PRIVATESECTION_CPP
-#define PRIVATESECTION_CPP
-
 #include "PrivateSection.h"
 
 PrivateSection::PrivateSection(int seat) : SeatingPlan() {
@@ -10,6 +7,7 @@ PrivateSection::PrivateSection(int seat) : SeatingPlan() {
         // PrivateTable* newTable = new PrivateTable(engine, i, seat); // Initialize tables with the seat value.
         PrivateTable* newTable = new PrivateTable(i, seat); // Initialize tables with the seat value.
         privateTables.push_back(newTable);
+        // std::cout<<"PrivateTable ID: "<<newTable->getTableID()<<std::endl;
     }
 }
 
@@ -56,5 +54,3 @@ void PrivateSection::seperateTables(int tableID)
 std::vector<PrivateTable*> PrivateSection::getPrivateTables() {
     return privateTables;
 }
-
-#endif

@@ -5,8 +5,8 @@
 // #include "Engine.h"
 
 class GeneralTable : public Table {
-    int seat;
-    int tableID;
+    // int seat;
+    // int tableID;
  public:
     GeneralTable(int tableID, int seat);
     // GeneralTable(Engine* engine, int tableID, int seat);
