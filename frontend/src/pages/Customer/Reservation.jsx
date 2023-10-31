@@ -72,8 +72,6 @@ function Reservation() {
     }
   }
 
-  console.log('Render');
-
   return (
     <Box
       sx={{

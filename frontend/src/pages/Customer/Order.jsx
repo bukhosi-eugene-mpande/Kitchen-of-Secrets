@@ -14,6 +14,7 @@ function Order() {
 
   function removeFromOrder(index) {
     const newOrder = [...order];
+
     newOrder.splice(index, 1);
     setOrder(newOrder);
   }
@@ -22,6 +23,7 @@ function Order() {
     <Box
       sx={{
         display: 'flex',
+        textAlign: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'center'
@@ -33,8 +35,8 @@ function Order() {
 
       <Box
         sx={{
+          width: '100%',
           display: 'flex',
-          alignItems: 'center',
           justifyContent: 'center'
         }}
       >
