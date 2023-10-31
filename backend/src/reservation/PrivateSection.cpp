@@ -7,7 +7,6 @@ PrivateSection::PrivateSection(int seat) : SeatingPlan() {
         // PrivateTable* newTable = new PrivateTable(engine, i, seat); // Initialize tables with the seat value.
         PrivateTable* newTable = new PrivateTable(i, seat); // Initialize tables with the seat value.
         privateTables.push_back(newTable);
-        // std::cout<<"PrivateTable ID: "<<newTable->getTableID()<<std::endl;
     }
 }
 

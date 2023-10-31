@@ -25,26 +25,24 @@ int main() {
     // // Create a GeneralSection.
     GeneralSection generalSection(4);
 
-    
-
     // // Show customers to tables based on reservations.
     receptionist.showCustomerToTable(privateSection, generalSection);
 
     // Access the privateTables vector and print table information.
-    for (PrivateTable* table : privateSection.getPrivateTables()) {
-        std::cout << "Private Table ID: " << table->getTableID() << ", Seat: " << table->getSeat() << std::endl;
-    }
+    // for (PrivateTable* table : privateSection.getPrivateTables()) {
+    //     std::cout << "Private Table ID: " << table->getTableID() << ", Seat: " << table->getSeat() << std::endl;
+    // }
     
     // // Combine and separate tables in the PrivateSection.
     // // std::vector<PrivateTable*> privateTables = privateSection.getPrivateTables();
     // // privateTables.combineTables(0, 1); // Example: Combine tables with ID 0 and 1.
-    // privateSection.combineTables(0, 1); // Example: Combine tables with ID 0 and 1.
-    // privateSection.seperateTables(2);   // Example: Remove a table with ID 2.
+    privateSection.combineTables(0, 1); // Example: Combine tables with ID 0 and 1.
+    privateSection.seperateTables(2);   // Example: Remove a table with ID 2.
 
-    // // Access the privateTables vector and print updated table information.
-    // for (PrivateTable* table : privateSection.getPrivateTables()) {
-    //     std::cout << "Private Table ID: " << table->getTableID() << ", Seat: " << table->getSeat() << std::endl;
-    // }
+    // Access the privateTables vector and print updated table information.
+    for (PrivateTable* table : privateSection.getPrivateTables()) {
+        std::cout << "Private Table ID: " << table->getTableID() << ", Seat: " << table->getSeat() << std::endl;
+    }
 
     return 0;
 }

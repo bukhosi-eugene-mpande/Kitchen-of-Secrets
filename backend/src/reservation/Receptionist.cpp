@@ -19,19 +19,20 @@ void Receptionist::showCustomerToTable(PrivateSection& privateT, GeneralSection&
         if (numberOfCustomers <= PRIVATE_TABLE_CAPACITY && !privateT.getPrivateTables().empty()) {
             assignedTable = privateT.getPrivateTables().back();
             privateT.getPrivateTables().pop_back();
+            if (assignedTable) {
+                if(numberOfCustomers > 2)
+                assignedTable->addReservation(res, numberOfCustomers);
+                std::cout << assignedTable->getTableID() << std::endl;
+                // std::cout << "Assigned reservation #" << res->getReservationID() << " to table #" << assignedTable->getTableID() << std::endl;
+            } else {
+                std::cout << "No available tables for reservation #" << res->getReservationID() << std::endl;
+            }
         }
         else if (!genT.getGeneralTables().empty()) {
             assignedTable = genT.getGeneralTables().back();
             genT.getGeneralTables().pop_back();
         }
 
-        if (assignedTable) {
-            assignedTable->addReservation(res, numberOfCustomers);
-            std::cout << assignedTable->getTableID() << std::endl;
-            // std::cout << "Assigned reservation #" << res->getReservationID() << " to table #" << assignedTable->getTableID() << std::endl;
-        } else {
-            std::cout << "No available tables for reservation #" << res->getReservationID() << std::endl;
-        }
     }
 }
 
