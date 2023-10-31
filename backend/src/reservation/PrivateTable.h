@@ -2,14 +2,15 @@
 #define PRIVATETABLE_H
 
 #include "Table.h"
+#include "Engine.h"
 
 class PrivateTable : public Table {
  public:
-    PrivateTable(int tableID);
+    PrivateTable(Engine* engine, int tableID);
     ~PrivateTable();
     void addReservation();
-    void markTableOccupied();
-    bool isTableAvailable();
+    void sendNotification();
+    void receiveNotification(std::string message);
 };
 
 #endif

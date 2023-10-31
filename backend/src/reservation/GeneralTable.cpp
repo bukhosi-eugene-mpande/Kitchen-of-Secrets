@@ -1,19 +1,26 @@
 #ifdef GENERALTABLE_CPP
 #define GENERALTABLE_CPP
+
 #include "GeneralTable.h"
 
-
-GeneralTable::GeneralTable(int tableID) : Table(tableID){}
+GeneralTable::PrivateTable(Engine* engine, int tableID) : Table(engine, tableID) {}
 
 GeneralTable::~GeneralTable(){}
 
-void GeneralTable::addReservation(){}
-
-void GeneralTable::markTableOccupied(){}
-
-bool GeneralTable::isTableAvailable()
-{
-    return false;
+void GeneralTable::addReservation(){
+    this->reservation = reservation;
+    isOccupied = true;
 }
+
+void GeneralTable::sendNotification()
+{
+    // engine->notify();
+}
+
+void GeneralTable::receiveNotification(std::string message)
+{
+    //engine->receive(message);
+}
+
 
 #endif

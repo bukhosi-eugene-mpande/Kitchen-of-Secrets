@@ -9,21 +9,11 @@ SeatingPlan::~SeatingPlan(){}
 
 void SeatingPlan::addReservation()
 {
-    if (table->isTableAvailable()) {
-        table->markTableOccupied();
+    if (table->getIsOccupied()) {
+        table->setIsOccupied(true);
     } else {
         std::cout << "Table is not available." << std::endl;
     }
-}
-
-void SeatingPlan::markTableOccupied()
-{
-    table->markTableOccupied();
-}
-
-bool SeatingPlan::isTableAvailable()
-{
-    return table->isTableAvailable();
 }
 
 #endif

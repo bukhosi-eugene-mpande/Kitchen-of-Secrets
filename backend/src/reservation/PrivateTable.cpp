@@ -3,23 +3,24 @@
 
 #include "PrivateTable.h"
 
-PrivateTable::PrivateTable(int tableID) : Table(tableID) {}
+PrivateTable::PrivateTable(Engine* engine, int tableID) : Table(engine, tableID) {}
 
 PrivateTable::~PrivateTable(){}
 
 void PrivateTable::addReservation()
 {
-
+    this->reservation = reservation;
+    isOccupied = true;
 }
 
-void PrivateTable::markTableOccupied()
+void PrivateTable::sendNotification()
 {
-    
+    // engine->notify(engine->getCustomer());
 }
 
-bool PrivateTable::isTableAvailable()
+void PrivateTable::receiveNotification(std::string message)
 {
-    return false;
+    // engine->receive(message);
 }
 
 #endif

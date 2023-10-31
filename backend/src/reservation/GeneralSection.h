@@ -2,14 +2,18 @@
 #define GENERALSECTION_H
 
 #include "SeatingPlan.h"
+// #include "Customer.h"
 
 class GeneralSection : public SeatingPlan {
+    int seat;
+    Customer* customer;
+    int capacity;
  public: 
     GeneralSection();
     ~GeneralSection();
-    void addReservation();
-    void markTableOccupied();
-    bool isTableAvailable();
+    virtual void seatCustomers(Customer* customer);
+    virtual void combineTables();
+    virtual void seperateTables(Table* table1, Table* table2);
 };
 
 #endif

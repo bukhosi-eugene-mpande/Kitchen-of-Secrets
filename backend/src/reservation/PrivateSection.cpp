@@ -3,24 +3,25 @@
 
 #include "PrivateSection.h"
 
-PrivateSection::PrivateSection() : SeatingPlan() {}
+PrivateSection::PrivateSection() : SeatingPlan() {
+    seat = 2;
+}
 
 PrivateSection::~PrivateSection(){}
 
-//bridge design pattern -- do these below get implemented?
-void PrivateSection::addReservation()
+void PrivateSection::seatCustomers(Customer *customer)
 {
-
+    this->customer = customer;
 }
 
-void PrivateSection::markTableOccupied()
+void PrivateSection::combineTables()
 {
-
+    
 }
 
-bool PrivateSection::isTableAvailable()
+void PrivateSection::seperateTables(Table *table1, Table *table2)
 {
-    return false;
+
 }
 
 #endif

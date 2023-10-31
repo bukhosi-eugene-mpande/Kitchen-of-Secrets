@@ -14,8 +14,9 @@ public:
     SeatingPlan();
     ~SeatingPlan();
     virtual void addReservation();
-    virtual void markTableOccupied();
-    virtual bool isTableAvailable();
+    virtual void seatCustomers() = 0;
+    virtual void combineTables() = 0;
+    virtual void seperateTables(Table* table1, Table* table2) = 0;
 };
 
 #endif

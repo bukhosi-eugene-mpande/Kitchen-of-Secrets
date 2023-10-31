@@ -2,14 +2,15 @@
 #define GENERALTABLE_H
 
 #include "Table.h"
+#include "Engine.h"
 
 class GeneralTable : public Table {
  public:
-    GeneralTable(int tableID);
+    GeneralTable(Engine* engine, int tableID);
     ~GeneralTable();
     void addReservation();
-    void markTableOccupied();
-    bool isTableAvailable();
+    void sendNotification();
+    void receiveNotification(std::string message);
 };
 
 #endif
