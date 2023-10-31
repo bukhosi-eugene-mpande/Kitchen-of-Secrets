@@ -8,7 +8,7 @@ void Neutral::HelpMe(Customer *Mood, std::string complaints){
 }
 
 void Neutral::timeLaps(Customer *Mood,std::string complaints){
-    Mood->addComplaints(complaints);
+    Mood->getComplaints()->push_back(complaints);
     Mood->setMood(new VeryUnhappy());
 }
 
