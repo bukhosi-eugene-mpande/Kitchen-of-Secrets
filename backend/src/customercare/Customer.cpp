@@ -2,61 +2,41 @@
 #include "Happy.h"
 
 Customer::Customer(){
-    this->Mood = new Happy();
-    complaints = new std::vector<std::string>();
-    this->totalBill= 0;
+    this->Mood = std::make_shared<Happy>();
+    this->isMainGuest = false;
+    this->totalBill = 0;
 }
 
 Customer::~Customer(){
-    delete Mood;
-    delete complaints;
 }
 
-void Customer::setTotalBill(int totalBill){
- this->totalBill=totalBill;
+std::shared_ptr<SatisfactionState> Customer::getMood(){
+    return this->Mood;
 }
 
-int Customer::getTotalBill(){
-    return this->totalBill;
+void Customer::setMood(std::shared_ptr<SatisfactionState> Mood){
+    this->Mood = Mood;
 }
 
-void Customer::setMood(SatisfactionState* Mood){
-notify();
-this->Mood=Mood;
+double Customer::getBill(double Bill){
+    return this->Mood->calculateBill(Bill);
 }
 
-SatisfactionState *Customer::getMood(){
-return this->Mood;
+void Customer::setIsMainGuest(bool isMainGuest){
+    this->isMainGuest = isMainGuest;
 }
 
-void Customer::helpMe(){
-    Mood->HelpMe(this,"waiting too long");
+bool Customer::getIsMainGuest(){
+    return this->isMainGuest;
 }
 
-void Customer::timeLaps(){
-    Mood->timeLaps(this,"waiting too long");
-}
-int Customer::getBill(int Bill){
- return Mood->getBill(Bill);
+void Customer::addGuest(Customer guest){
+    this->guests.push_back(guest);
 }
 
-std::vector<std::string> *Customer::getComplaints(){
-return this->complaints;
+std::vector<Customer> Customer::getGuests(){
+    return this->guests;
 }
 
 
 
-string Customer::toString(){
-    std::stringstream ss;
-
-    ss << "State: " << Mood->getStateName() << std::endl;
-
-   
-    ss << "complaints:" << std::endl;
-    for (const auto &complaints : *complaints)
-    {
-        ss << complaints << std::endl;
-    }
-
-    return ss.str();
-}

@@ -1,35 +1,33 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "CustomerCareSystem.h"
+#include "CustomerTemplate.h"
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 class SatisfactionState;
 
-class Customer: public CustomerCareSystem
-{
-private:
-    SatisfactionState *Mood;
-    std::vector<std::string> *complaints;
-    int totalBill;
-public:
-    Customer();
-    ~Customer();
-    SatisfactionState* getMood();
-    void setTotalBill(int totalBill);
-    int getTotalBill();
-    void setMood(SatisfactionState* Mood);
-    void helpMe();
-    void timeLaps();
-    int getBill(int Bill);
-    std::vector<std::string> *getComplaints();
-    void sendNotification();
-    void receiveNotification();
-    void checkOut();
-    void cancelOrder();
-   string toString();
+class Customer: public CustomerTemplate{
+    private:
+        std::shared_ptr<SatisfactionState> Mood;
+        std::vector<Customer> guests;
+        bool isMainGuest;
+        double totalBill;
+
+    public:
+        Customer();
+        ~Customer();
+        std::shared_ptr<SatisfactionState> getMood();
+        void setMood(std::shared_ptr<SatisfactionState> Mood);
+        double getBill(double Bill);
+        void setIsMainGuest(bool isMainGuest);
+        bool getIsMainGuest();
+        void addGuest(Customer guest);
+        std::vector<Customer> getGuests();
+        
+
 };
 #endif

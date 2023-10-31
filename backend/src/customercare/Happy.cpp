@@ -1,15 +1,14 @@
 #include "Happy.h"
 #include "Neutral.h"
 
-void Happy::HelpMe(Customer *Mood, std::string complaints){
+Happy::Happy(std::shared_ptr<Customer> customer) : SatisfactionState("Happy", customer, 0.0, 0.2){
+
 }
-void Happy::timeLaps(Customer *Mood,std::string complaints){
-    Mood->getComplaints()->push_back(complaints);
-    Mood->setMood(new Neutral());
+
+void Happy::console(){
+    this->customer->setMood(std::make_shared<Neutral>(this->customer));
 }
-int Happy::getBill(int totalBill){
-    return 0.10 * totalBill;
-}
-std::string Happy::getStateName(){
-    return "Happy";
+
+void Happy::anger(){
+    this->customer->setMood(std::make_shared<Neutral>(this->customer));
 }

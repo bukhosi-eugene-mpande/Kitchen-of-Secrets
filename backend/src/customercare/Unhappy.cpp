@@ -2,25 +2,14 @@
 #include "VeryUnhappy.h"
 #include "Neutral.h"
 
-
-void Unhappy::HelpMe(Customer *Mood, std::string complaints){
-    std::vector<std::string> *complaint = Mood->getComplaints();
-    auto it = std::find(complaint->begin(), complaint->end(), complaints);
-    if (it != complaint->end())
-    {
-        complaint->erase(it);
-    }
-    Mood->setMood(new Neutral());
+Unhappy::Unhappy(std::shared_ptr<Customer> customer) : SatisfactionState("Unhappy", customer, 0.2, 0.0){
 
 }
 
-void Unhappy::timeLaps(Customer *Mood, std::string complaints){
-    Mood->getComplaints()->clear();
-    Mood->setMood(new VeryUnhappy());
+void Unhappy::console(){
+    this->customer->setMood(std::make_shared<Neutral>(this->customer));
 }
-int Unhappy::getBill(int totalBill){
-    return 0;
-}
-std::string Unhappy::getStateName(){
-    return "Unhappy";
+
+void Unhappy::anger(){
+    this->customer->setMood(std::make_shared<VeryUnhappy>(this->customer));
 }
