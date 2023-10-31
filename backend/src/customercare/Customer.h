@@ -1,14 +1,13 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "SatisfactionState.h"
 #include "CustomerCareSystem.h"
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
 
-
+class SatisfactionState;
 
 class Customer: public CustomerCareSystem
 {
@@ -23,7 +22,6 @@ public:
     void setTotalBill(int totalBill);
     int getTotalBill();
     void setMood(SatisfactionState* Mood);
-    SatisfactionState *getMood();
     void helpMe();
     void timeLaps();
     int getBill(int Bill);

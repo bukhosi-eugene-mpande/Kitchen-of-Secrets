@@ -21,8 +21,8 @@ int Customer::getTotalBill(){
 }
 
 void Customer::setMood(SatisfactionState* Mood){
+notify();
 this->Mood=Mood;
- notify();
 }
 
 SatisfactionState *Customer::getMood(){

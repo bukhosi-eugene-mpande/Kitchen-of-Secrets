@@ -1,6 +1,6 @@
 #include "Neutral.h"
 #include "Happy.h"
-#include "VeryUnhappy.h"
+#include "Unhappy.h"
 
 void Neutral::HelpMe(Customer *Mood, std::string complaints){
     Mood->getComplaints()->clear();
@@ -9,7 +9,7 @@ void Neutral::HelpMe(Customer *Mood, std::string complaints){
 
 void Neutral::timeLaps(Customer *Mood,std::string complaints){
     Mood->getComplaints()->push_back(complaints);
-    Mood->setMood(new VeryUnhappy());
+    Mood->setMood(new Unhappy());
 }
 
 int Neutral::getBill(int totalBill){

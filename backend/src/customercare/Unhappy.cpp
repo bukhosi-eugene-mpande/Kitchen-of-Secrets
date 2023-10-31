@@ -16,12 +16,11 @@ void Unhappy::HelpMe(Customer *Mood, std::string complaints){
 
 void Unhappy::timeLaps(Customer *Mood, std::string complaints){
     Mood->getComplaints()->clear();
-    Mood->cancelOrder();
     Mood->setMood(new VeryUnhappy());
 }
 int Unhappy::getBill(int totalBill){
     return 0;
 }
 std::string Unhappy::getStateName(){
-    return "Leaving";
+    return "Unhappy";
 }
