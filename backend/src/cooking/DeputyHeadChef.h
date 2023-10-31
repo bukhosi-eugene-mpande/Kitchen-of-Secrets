@@ -11,10 +11,10 @@
 
 class Management;
 
-class DeputyHeadChef : public Chef {
+class DeputyHeadChef : public StationChef {
     private: 
-        std::shared_ptr<Chef> nextChef;
         Management* management;
+        bool flag;
         
     public:
 
@@ -22,16 +22,14 @@ class DeputyHeadChef : public Chef {
 
         ~DeputyHeadChef();
 
-        void prepareOrder(std::shared_ptr<Order> order);
+        void prepareOrder(std::shared_ptr<Order> order) override;
 
-        void setNextChef();
+        void setNextChef() override;
 
         void cancelOrder(std::shared_ptr<Order> order);
 
         void finishOrder(std::shared_ptr<Order> order);
-
-        std::shared_ptr<Chef> getNextChef() const;
-
+        
         Kitchen* getKitchen() const;
 
         void setManagement();

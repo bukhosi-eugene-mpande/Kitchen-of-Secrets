@@ -18,10 +18,3 @@ void Chef::setKitchen(Kitchen* kitchen){
 Kitchen* Chef::getKitchen() const{
     return this->kitchen;
 }
-
-void Chef::prepareOrder(std::shared_ptr<Order> order){
-    /**
-     * @todo implement this function
-     * 
-     */
-}

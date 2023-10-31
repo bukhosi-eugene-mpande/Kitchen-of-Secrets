@@ -45,6 +45,8 @@ class Kitchen {
 
         std::unordered_map<std::string,int> getIngredients(std::string name);
 
+        std::string getChefName(std::string Meal);
+
         double getPrice(std::string name);
 
         std::unordered_map<int,std::string> getMenu();
@@ -65,11 +67,15 @@ class Kitchen {
 
         std::shared_ptr<DeputyHeadChef> getDeputyHeadChef() const;
 
-        std::shared_ptr<Kitchen> shared_from_this();
+        std::vector<std::string> generateListOfResposibilties(std::string chefName);
 
         void createHeadChef();
 
         void createDeputyHeadChef();
+
+        std::vector<std::shared_ptr<Order>> getPreparedOrders() const;
+
+        std::vector<std::shared_ptr<Order>> getCanceledOrders() const;
         
 };
 

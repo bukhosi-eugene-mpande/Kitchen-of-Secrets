@@ -22,3 +22,7 @@ std::shared_ptr<Order> Waiter::getOrderFromKitchen() {
      */
     return nullptr;
 }
+
+int Waiter::getId() {
+    return this->id;
+}

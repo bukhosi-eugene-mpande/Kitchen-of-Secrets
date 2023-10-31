@@ -11,7 +11,7 @@
 
 class StationChef : public Chef{
     protected:
-        std::shared_ptr<Chef> nextStationChef;
+        std::shared_ptr<StationChef> nextStationChef;
 
     public:
 
@@ -19,11 +19,13 @@ class StationChef : public Chef{
 
         ~StationChef();
 
-        void prepareOrder(std::shared_ptr<Order> order) override;
+        virtual void prepareOrder(std::shared_ptr<Order> order) = 0;
 
         virtual void setNextChef() = 0;
 
-        std::shared_ptr<Chef> getNextChef() const;
+        std::shared_ptr<StationChef> getNextChef() const;
+
+        void setNextChefAgain(std::shared_ptr<StationChef> nextChef);
         
 };
 

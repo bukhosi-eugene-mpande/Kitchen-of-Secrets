@@ -25,8 +25,6 @@ class Chef {
 
         Kitchen* getKitchen() const;
 
-        virtual void prepareOrder(std::shared_ptr<Order> order);
-
 };
 
 #endif

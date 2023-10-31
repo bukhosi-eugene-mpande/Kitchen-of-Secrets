@@ -17,6 +17,8 @@ class GrillChef : public StationChef{
 
         ~GrillChef();
 
+        void prepareOrder(std::shared_ptr<Order> order) override;
+
         void setNextChef() override;
 
 };

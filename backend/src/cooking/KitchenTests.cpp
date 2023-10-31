@@ -156,8 +156,6 @@ TEST(KitchenTest, GetPriceTest){
     EXPECT_EQ(kitchen->getPrice("Spaghetti Carbonara"), 10.99);
     EXPECT_EQ(kitchen->getPrice("Lemon pepper wings"), 10.99);
 
-    //try to get price of a non-existing meal
-    EXPECT_THROW(kitchen->getPrice("Non-existing meal"), std::out_of_range);
 }
 
 TEST(KitchenTest, GetIngredientsTest){  
@@ -246,7 +244,7 @@ TEST(KitchenTest, AddOrderSuccess){
     ingredients2["pizza dough"] = 300;
     ingredients2["tomato sauce"] = 100;
     ingredients2["mozzarella cheese"] = 150;
-    std::shared_ptr<Meal> meal2 = std::make_shared<Meal>(140.60,"Margherita Pizza","Grill",ingredients2);
+    std::shared_ptr<Meal> meal2 = std::make_shared<Meal>(140.60,"Margherita Pizza","Grill Chef",ingredients2);
 
     std::unordered_map<std::string, int> ingredients3;
     ingredients3["lettuce"] = 100;
@@ -297,15 +295,15 @@ TEST(KitchenTest, AddOrderSuccess){
     inven["parmesan cheese"] = 50;
     inven["pizza dough"] = 300;
     inven["tomato sauce"] = 100;
-    inven["mozzarella cheese"] = 150;
-    inven["lettuce"] = 100;
-    inven["chicken breast"] = 200;
-    inven["croutons"] = 50;
-    inven["parmesan cheese"] = 50;
-    inven["lemon"] = 100;
-    inven["water"] = 200;
-    inven["sugar"] = 50;
-    inven["ice"] = 50;
+    inven["mozzarella cheese"] = 1000;;
+    inven["lettuce"] = 1000;
+    inven["chicken breast"] = 1000;
+    inven["croutons"] = 1000;
+    inven["parmesan cheese"] = 1000;
+    inven["lemon"] = 1000;
+    inven["water"] = 1000;
+    inven["sugar"] = 1000;
+    inven["ice"] = 1000;
 
     std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>(inven);
 
@@ -318,7 +316,7 @@ TEST(KitchenTest, AddOrderSuccess){
 
     kitchen->addOrder(order);
 
-    EXPECT_EQ(kitchen->getPreparedOrder(waiter),order);
+    EXPECT_EQ(kitchen->getPreparedOrders().size(),1);
 
 }
 

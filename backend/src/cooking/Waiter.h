@@ -19,6 +19,8 @@ class Waiter {
         std::shared_ptr<Order> getCanceledOrderFromKitchen();
 
         std::shared_ptr<Order> getOrderFromKitchen();
+
+        int getId();
 };
 
 #endif

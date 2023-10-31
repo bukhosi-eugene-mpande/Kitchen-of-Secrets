@@ -4,7 +4,7 @@
 #include "Order.h"
 #include "Meal.h"
 #include "HeadChef.h"
-
+#include <iostream>
 
 Kitchen::Kitchen(Management* management,std::vector<std::shared_ptr<Meal>> meals) : management(management)
 {
@@ -43,10 +43,15 @@ void Kitchen::removeMeal(std::string name)
     this->AvailableMeals.erase(name);
 }
 
+std::string Kitchen::getChefName(std::string Meal)
+{
+    return this->AvailableMeals[Meal]->getChef();
+}
+
 std::shared_ptr<Order> Kitchen::getPreparedOrder(std::shared_ptr<Waiter> waiter)
 {
     for (auto order : this->preparedOrders) {
-        if (order->getWaiter() == waiter) {
+        if (order->getWaiter().get()->getId() == waiter.get()->getId()) {
             return order;
         }
     }
@@ -100,13 +105,13 @@ void Kitchen::finishOrder(std::shared_ptr<Order> order)
 }
 
 void Kitchen::createHeadChef(){
-    if(this->headChef != nullptr){
+    if(this->headChef == nullptr){
         this->headChef = std::make_shared<HeadChef>(this, this->management);
     }
 }
 
 void Kitchen::createDeputyHeadChef(){
-    if(this->deputyHeadChef != nullptr){
+    if(this->deputyHeadChef == nullptr){
         this->deputyHeadChef = std::make_shared<DeputyHeadChef>(this);
     }
 }
@@ -121,4 +126,24 @@ std::shared_ptr<HeadChef> Kitchen::getHeadChef() const{
 
 std::shared_ptr<DeputyHeadChef> Kitchen::getDeputyHeadChef() const{
     return this->deputyHeadChef;
+}
+
+std::vector<std::shared_ptr<Order>> Kitchen::getPreparedOrders() const{
+    return this->preparedOrders;
+}
+
+std::vector<std::shared_ptr<Order>> Kitchen::getCanceledOrders() const{
+    return this->canceledOrders;
+}
+
+std::vector<std::string> Kitchen::generateListOfResposibilties(std::string chefName){
+    std::vector<std::string> responsibilities;
+
+    for(auto meal : this->AvailableMeals){
+        if(meal.second.get()->getChef() == chefName){
+            responsibilities.push_back(meal.second.get()->getName());
+        }
+    }
+
+    return responsibilities;
 }

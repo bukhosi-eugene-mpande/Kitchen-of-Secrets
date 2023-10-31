@@ -17,6 +17,8 @@ class FryChef : public StationChef{
 
         ~FryChef();
 
+        void prepareOrder(std::shared_ptr<Order> order) override;
+
         void setNextChef() override;
 
 };
