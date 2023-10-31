@@ -4,6 +4,9 @@
 #include <vector>
 
 #include "Table.h"
+#include "ReservationSystem.h"
+
+class ReservationSystem;
 
 using namespace std;
 

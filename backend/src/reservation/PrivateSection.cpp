@@ -7,7 +7,8 @@ PrivateSection::PrivateSection(int seat) : SeatingPlan() {
     seat = 2;
     // this->seat = seat;
     for (int i = 0; i < PRIVATE_TABLE_CAPACITY; ++i) {
-        PrivateTable* newTable = new PrivateTable(engine, i, seat); // Initialize tables with the seat value.
+        // PrivateTable* newTable = new PrivateTable(engine, i, seat); // Initialize tables with the seat value.
+        PrivateTable* newTable = new PrivateTable(i, seat); // Initialize tables with the seat value.
         privateTables.push_back(newTable);
     }
 }
@@ -44,8 +45,10 @@ void PrivateSection::seperateTables(int tableID)
     }
     int newid1 = privateTables.size() + 1;
     int newid2 = privateTables.size() + 2;
-    PrivateTable* newTable = new PrivateTable(engine,newid1, seat); 
-    PrivateTable* newTable2 = new PrivateTable(engine,newid2, seat);
+    // PrivateTable* newTable = new PrivateTable(engine,newid1, seat); 
+    // PrivateTable* newTable2 = new PrivateTable(engine,newid2, seat);
+    PrivateTable* newTable = new PrivateTable(newid1, seat); 
+    PrivateTable* newTable2 = new PrivateTable(newid2, seat);
     privateTables.push_back(newTable);
     privateTables.push_back(newTable2);
 }

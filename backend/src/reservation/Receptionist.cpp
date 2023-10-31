@@ -12,9 +12,9 @@ void Receptionist::createReservation(int reservationID, int startTime, int numbe
     ReservationSystem* newReservation = new ReservationSystem(reservationID, startTime, numberOfCustomers);
 }
 
-void Receptionist::showCustomerToTable() {
-    PrivateSection privateT;
-    GeneralSection genT;
+void Receptionist::showCustomerToTable(PrivateSection& privateT, GeneralSection& genT) {
+    // PrivateSection privateT;
+    // GeneralSection genT;
     
     std::vector<ReservationSystem*> reservations = reservation->getReservations();
     for (ReservationSystem* reservation : reservations) {

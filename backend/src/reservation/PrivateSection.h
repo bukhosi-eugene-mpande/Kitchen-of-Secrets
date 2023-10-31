@@ -9,7 +9,7 @@
 class PrivateSection : public SeatingPlan {
     // Customer* customer;
     std::vector<PrivateTable*> privateTables;
-    Engine* engine;
+    // Engine* engine;
     int PRIVATE_TABLE_CAPACITY = 3;
 
  public: 

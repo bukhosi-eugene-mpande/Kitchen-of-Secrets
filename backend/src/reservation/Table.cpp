@@ -15,6 +15,10 @@ Table::Table(int tableID, int seat) {
 //     this->seat = seat;
 // }
 
+Table::Table()
+{
+}
+
 Table::~Table() {}
 
 int Table::getTableID()
@@ -27,10 +31,10 @@ void Table::setTableID(int tableID)
     this->tableID = tableID;
 }
 
-void Table::placeTable(int xCoord, int yCoord) {
-    this->xCoord = xCoord;
-    this->yCoord = yCoord;
-}
+// void Table::placeTable(int xCoord, int yCoord) {
+//     this->xCoord = xCoord;
+//     this->yCoord = yCoord;
+// }
 
 bool Table::getIsOccupied() {
     return isOccupied;

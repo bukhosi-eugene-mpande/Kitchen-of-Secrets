@@ -23,6 +23,11 @@ int PrivateTable::getSeat()
     return this->seat;
 }
 
+int PrivateTable::getTableID()
+{
+    return this->tableID;
+}
+
 void PrivateTable::setSeat(int seat)
 {
     this->seat = seat;

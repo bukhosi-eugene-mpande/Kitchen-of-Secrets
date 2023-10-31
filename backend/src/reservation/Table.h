@@ -7,13 +7,13 @@
 // #include "GameComponent.h"
 #include "ReservationSystem.h"
 
+class ReservationSystem;
+
 using namespace std; 
 
 class Table {
 protected:
     int tableID;
-    int xCoord;
-    int yCoord;
     bool isOccupied;
     int seat;
     ReservationSystem* reservation;
@@ -26,7 +26,7 @@ public:
     int getTableID();
     void setTableID(int tableID);
     virtual void addReservation(ReservationSystem* reservation, int seat) = 0;
-    void placeTable(int xCoord, int yCoord);
+    // void placeTable(int xCoord, int yCoord);
     bool getIsOccupied();
     void setIsOccupied(bool isOccupied);
     // virtual void sendNotification() = 0;

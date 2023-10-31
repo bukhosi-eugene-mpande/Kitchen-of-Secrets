@@ -20,6 +20,11 @@ int GeneralTable::getSeat()
     return this->seat;
 }
 
+int GeneralTable::getTableID()
+{
+    return this->tableID;
+}
+
 // void GeneralTable::sendNotification()
 // {
 //     engine->notify();
