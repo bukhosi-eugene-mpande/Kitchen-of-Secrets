@@ -26,18 +26,30 @@ void PrivateSection::seatCustomers(Customer *customer)
 void PrivateSection::combineTables(int tableID1, int tableID2) //id 1 == deletes table , id2 == table to be combined
 {
     seat *= 2;
-    // Modify table creation to include the updated seat value.
-    // PrivateTable* newTable = new PrivateTable(engine, tableID2, seat);
-    // newTable->setTableID(tableID1);
-    this->privateTables[tableID2].seat = seat;
+    for(int i = 0; i < privateTables.size(); i++){
+        if(privateTables[i]->getTableID() == tableID1){
+            privateTables[i]->setSeat(seat);
+        }
+        if(privateTables[i]->getTableID() == tableID2){
+            privateTables.erase(privateTables.begin() + i);
+        }
+    }
 }
 
 void PrivateSection::seperateTables(int tableID)
 {
     seat /= 2;
-    // Modify table creation to include the updated seat value.
-    // PrivateTable* newTable = new PrivateTable(engine, tableID, seat);
+    for(int i = 0; i < privateTables.size(); i++){
+        if(privateTables[i]->getTableID() == tableID){
+            privateTables.erase(privateTables.begin() + i);
+        }
+    }
+    int newid1 = privateTables.size() + 1;
+    int newid2 = privateTables.size() + 2;
+    PrivateTable* newTable = new PrivateTable(engine,newid1, seat); 
+    PrivateTable* newTable2 = new PrivateTable(engine,newid2, seat);
     privateTables.push_back(newTable);
+    privateTables.push_back(newTable2);
 }
 
 #endif

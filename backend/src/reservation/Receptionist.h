@@ -4,9 +4,11 @@
 #include <memory>
 
 // #include "Customer.h"
-#include "GameComponent.h"
+// #include "GameComponent.h"
 #include "ReservationSystem.h"
 #include "Table.h"
+
+class Engine;
 
 class Receptionist  {
     private:

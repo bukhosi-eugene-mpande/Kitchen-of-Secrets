@@ -4,6 +4,7 @@
 #include "SeatingPlan.h"
 #include "PrivateTable.h"
 // #include "Customer.h"
+class Customer;
 
 class PrivateSection : public SeatingPlan {
     Customer* customer;

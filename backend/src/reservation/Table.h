@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 
-#include "GameComponent.h"
+// #include "GameComponent.h"
 #include "ReservationSystem.h"
 
 using namespace std; 

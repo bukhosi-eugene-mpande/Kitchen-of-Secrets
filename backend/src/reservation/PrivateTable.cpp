@@ -14,6 +14,11 @@ void PrivateTable::addReservation(ReservationSystem* reservation, int seat)
     isOccupied = true;
 }
 
+void PrivateTable::setSeat(int seat)
+{
+    this->seat = seat;
+}
+
 // void PrivateTable::sendNotification()
 // {
 //     engine->notify();
