@@ -4,3 +4,4 @@ makefile
 bin
 obj
 build
+*.o
