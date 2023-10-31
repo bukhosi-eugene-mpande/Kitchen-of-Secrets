@@ -15,10 +15,11 @@ protected:
     int xCoord;
     int yCoord;
     bool isOccupied;
+    int seat;
     ReservationSystem* reservation;
     
 public:
-    Table(Engine* engine, int tableID);
+    Table(Engine* engine, int tableID, int seat);
     ~Table();
     int getTableID();
     void setTableID(int tableID);

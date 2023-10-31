@@ -8,12 +8,17 @@
 class PrivateSection : public SeatingPlan {
     int seat;
     Customer* customer;
+    std::vector<PrivateTable*> privateTables;
+    Engine* engine;
+    int PRIVATE_TABLE_CAPACITY = 4;
+
  public: 
-    PrivateSection();
+    PrivateSection(int seat);
+    // PrivateSection();
     ~PrivateSection();
     void seatCustomers(Customer* customer);
-    void combineTables(int tableID);
-    void seperateTables(Table* table1, Table* table2);
+    void combineTables(int tableID1, int tableID2);
+    void seperateTables(int tableID);
 };
 
 #endif

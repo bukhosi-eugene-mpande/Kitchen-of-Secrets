@@ -3,9 +3,18 @@
 
 #include "PrivateSection.h"
 
-PrivateSection::PrivateSection() : SeatingPlan() {
+PrivateSection::PrivateSection(int seat) : SeatingPlan() {
     seat = 2;
+    // this->seat = seat;
+    for (int i = 0; i < PRIVATE_TABLE_CAPACITY; ++i) {
+        PrivateTable* newTable = new PrivateTable(engine, i, seat); // Initialize tables with the seat value.
+        privateTables.push_back(newTable);
+    }
 }
+
+// PrivateSection::PrivateSection(){
+//     seat = 2;
+// }
 
 PrivateSection::~PrivateSection(){}
 
@@ -14,40 +23,20 @@ void PrivateSection::seatCustomers(Customer *customer)
     this->customer = customer;
 }
 
-//these functions below have problems. how can i refer to the table in the vector? should i make another table vector? :(
-void PrivateSection::combineTables(int tableID)
+void PrivateSection::combineTables(int tableID1, int tableID2) //id 1 == deletes table , id2 == table to be combined
 {
-    for (std::iterator* it = privateTables.begin(); it != privateTables.end(); ++it) {
-        if ((*it)->getTableID() == tableID) {
-            delete *it;
-            privateTables.erase(it);
-            break;
-        }
-    }
-
-    // Increase the initial table capacity to double the initial amount.
     seat *= 2;
-
-    // Create a new table with the updated capacity.
-    PrivateTable* newTable = new PrivateTable(engine, tableID);
-    privateTables.push_back(newTable);
+    // Modify table creation to include the updated seat value.
+    // PrivateTable* newTable = new PrivateTable(engine, tableID2, seat);
+    // newTable->setTableID(tableID1);
+    privateTables[tableID2]->seat = seat;
 }
 
-void PrivateSection::seperateTables(Table *table1, Table *table2)
+void PrivateSection::seperateTables(int tableID)
 {
-    for (auto it = privateTables.begin(); it != privateTables.end(); ++it) {
-        if ((*it)->getTableID() == tableID) {
-            delete *it;
-            privateTables.erase(it);
-            break;
-        }
-    }
-
-    // Decrease the initial table capacity to half the initial amount.
     seat /= 2;
-
-    // Create a new table with the updated capacity.
-    PrivateTable* newTable = new PrivateTable(engine, tableID);
+    // Modify table creation to include the updated seat value.
+    PrivateTable* newTable = new PrivateTable(engine, tableID, seat);
     privateTables.push_back(newTable);
 }
 

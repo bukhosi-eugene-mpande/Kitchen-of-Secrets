@@ -8,6 +8,8 @@ class GeneralSection : public SeatingPlan {
     int seat;
     Customer* customer;
     int capacity;
+    std::vector<Table*> privateTables;
+
  public: 
     GeneralSection();
     ~GeneralSection();

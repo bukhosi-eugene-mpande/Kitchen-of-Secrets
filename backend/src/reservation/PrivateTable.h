@@ -5,10 +5,12 @@
 #include "Engine.h"
 
 class PrivateTable : public Table {
+ protected: 
+    int seat;
  public:
-    PrivateTable(Engine* engine, int tableID);
+    PrivateTable(Engine* engine, int tableID, int seat);
     ~PrivateTable();
-    void addReservation(ReservationSystem* reservation);
+    void addReservation(ReservationSystem* reservation, int seat);
     void sendNotification();
     void receiveNotification(std::string message);
 };

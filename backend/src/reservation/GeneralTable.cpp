@@ -3,11 +3,12 @@
 
 #include "GeneralTable.h"
 
-GeneralTable::PrivateTable(Engine* engine, int tableID) : Table(engine, tableID) {}
+GeneralTable::PrivateTable(Engine* engine, int tableI, int seat) : Table(engine, tableID) {}
 
 GeneralTable::~GeneralTable(){}
 
-void GeneralTable::addReservation(ReservationSystem* reservation){
+void GeneralTable::addReservation(ReservationSystem* reservation, int seat){
+    this->seat = seat;
     this->reservation = reservation;
     isOccupied = true;
 }
