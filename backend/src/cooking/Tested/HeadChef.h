@@ -7,23 +7,23 @@
 #include <memory>
 
 #include "Kitchen.h"
+#include "Management.h"
 #include "Chef.h"
 
 class HeadChef : public Chef{
     private:
-    std::string name;
+        std::string name;
+        Management* management;
 
     public:
 
-        HeadChef(std::shared_ptr<Kitchen> kitchen);
+        HeadChef(Kitchen* kitchen,Management* management);
 
         ~HeadChef();
 
         std::string getName() const;
 
-        void setKitchen(std::shared_ptr<Kitchen> kitchen);
-
-        std::shared_ptr<Kitchen> getKitchen() const;
+        Kitchen* getKitchen() const;
 
         void goOnRounds();
 

@@ -3,15 +3,15 @@
 #include "Management.h"
 #include "Order.h"
 #include "Meal.h"
-#include "DeputyHeadChef.h"
 #include "HeadChef.h"
 
 
-Kitchen::Kitchen(std::shared_ptr<Management> management,std::shared_ptr<HeadChef> headChef,std::shared_ptr<DeputyHeadChef> deputyHeadChef,std::vector<std::shared_ptr<Meal>> meals)
+Kitchen::Kitchen(Management* management,std::vector<std::shared_ptr<Meal>> meals) : management(management)
 {
+    this->deputyHeadChef = nullptr;
+    this->headChef = nullptr;
     this->management = management;
-    this->headChef = headChef;
-    this->deputyHeadChef = deputyHeadChef;
+
     for (auto meal : meals) {
         this->AvailableMeals[meal->getName()] = meal;
     }
@@ -22,6 +22,7 @@ Kitchen::~Kitchen()
     
 }
 
+
 void Kitchen::addMeal(std::shared_ptr<Meal> meal)
 {
     this->AvailableMeals[meal->getName()] = meal;
@@ -29,7 +30,12 @@ void Kitchen::addMeal(std::shared_ptr<Meal> meal)
 
 void Kitchen::addOrder(std::shared_ptr<Order> order)
 {
-    this->deputyHeadChef->prepareOrder(order);
+    if(this->deputyHeadChef != nullptr){
+        this->deputyHeadChef->prepareOrder(order);
+    }else{
+        this->createDeputyHeadChef();
+        this->deputyHeadChef->prepareOrder(order);
+    }
 }
 
 void Kitchen::removeMeal(std::string name)
@@ -78,7 +84,7 @@ std::unordered_map<int,std::string> Kitchen::getMenu()
     return menu;
 }
 
-std::shared_ptr<Management> Kitchen::getManagement() const
+Management* Kitchen::getManagement() const
 {
     return this->management;
 }
@@ -93,3 +99,18 @@ void Kitchen::finishOrder(std::shared_ptr<Order> order)
     this->preparedOrders.push_back(order);
 }
 
+void Kitchen::createHeadChef(){
+    if(this->headChef != nullptr){
+        this->headChef = std::make_shared<HeadChef>(this, this->management);
+    }
+}
+
+void Kitchen::createDeputyHeadChef(){
+    if(this->deputyHeadChef != nullptr){
+        this->deputyHeadChef = std::make_shared<DeputyHeadChef>(this);
+    }
+}
+
+std::unordered_map<std::string,std::shared_ptr<Meal>> Kitchen::getAvailableMeals() const{
+    return this->AvailableMeals;
+}

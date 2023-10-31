@@ -1,7 +1,6 @@
 #include "Management.h"
 
 Management::Management() {
-    this->kitchen = std::make_shared<Kitchen>();
     this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
 }
 
@@ -30,4 +29,8 @@ void Management::notifyWaiterOfCancellation(std::shared_ptr<Waiter> waiter) {
 
 void Management::notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter) {
     waiter->getOrderFromKitchen();
+}
+
+void Management::setKitchen(std::shared_ptr<Kitchen> kitchen) {
+    this->kitchen = kitchen;
 }

@@ -89,3 +89,6 @@ std::shared_ptr<MenuItem> Order::getMeal(std::string name) {
     return nullptr;
 }
 
+std::vector<std::shared_ptr<MenuItem>> Order::getMeals() const {
+    return this->meals;
+}

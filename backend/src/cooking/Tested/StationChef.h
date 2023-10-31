@@ -15,7 +15,7 @@ class StationChef : public Chef{
 
     public:
 
-        StationChef(std::string name,std::shared_ptr<Kitchen> kitchen);
+        StationChef(std::string name,Kitchen* kitchen);
 
         ~StationChef();
 

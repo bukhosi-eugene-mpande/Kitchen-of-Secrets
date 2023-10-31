@@ -10,20 +10,20 @@
 
 class Chef {
     protected:
-    std::shared_ptr<Kitchen> kitchen;
-    std::string name;
+        Kitchen* kitchen;
+        std::string name;
 
     public:
 
-        Chef(std::string name,std::shared_ptr<Kitchen> kitchen);
+        Chef(std::string name,Kitchen* kitchen);
 
         ~Chef();
 
         std::string getName() const;
 
-        void setKitchen(std::shared_ptr<Kitchen> kitchen);
+        void setKitchen(Kitchen* kitchen);
 
-        std::shared_ptr<Kitchen> getKitchen() const;
+        Kitchen* getKitchen() const;
 
         virtual void prepareOrder(std::shared_ptr<Order> order);
 

@@ -13,7 +13,7 @@ class Cook : public StationChef{
 
     public:
 
-        Cook(std::shared_ptr<Kitchen> kitchen);
+        Cook(Kitchen* Kitchen);
 
         ~Cook();
 

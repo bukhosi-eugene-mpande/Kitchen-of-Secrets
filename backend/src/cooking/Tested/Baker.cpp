@@ -1,7 +1,7 @@
 #include "Baker.h"
 #include "DeputyHeadChef.h"
 
-Baker::Baker(std::shared_ptr<Kitchen> kitchen) : StationChef("Baker",kitchen){}
+Baker::Baker(Kitchen* Kitchen) : StationChef("Baker",kitchen){}
 
 Baker::~Baker(){}
 

@@ -27,6 +27,8 @@ class Management {
 
         std::shared_ptr<Order> getCanceledOrderFromKitchen(std::shared_ptr<Waiter> waiter);
 
+        void setKitchen(std::shared_ptr<Kitchen> kitchen);
+
         bool requestIngredients(std::unordered_map<std::string,int> ingredients);
 
         void notifyWaiterOfCancellation(std::shared_ptr<Waiter> waiter);

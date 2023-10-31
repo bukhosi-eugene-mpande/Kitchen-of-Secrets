@@ -13,7 +13,7 @@ class FryChef : public StationChef{
 
     public:
 
-        FryChef(std::shared_ptr<Kitchen> Kitchen);
+        FryChef(Kitchen* Kitchen);
 
         ~FryChef();
 

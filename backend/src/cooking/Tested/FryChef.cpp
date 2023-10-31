@@ -1,7 +1,7 @@
 #include "FryChef.h"
 #include "GrillChef.h"
 
-FryChef::FryChef(std::shared_ptr<Kitchen> kitchen) : StationChef("Fry Chef",kitchen){}
+FryChef::FryChef(Kitchen* Kitchen) : StationChef("Fry Chef",kitchen){}
 
 FryChef::~FryChef(){}
 

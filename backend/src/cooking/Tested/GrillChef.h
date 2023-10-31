@@ -13,7 +13,7 @@ class GrillChef : public StationChef{
 
     public:
 
-        GrillChef(std::shared_ptr<Kitchen> management);
+        GrillChef(Kitchen* kitchen);
 
         ~GrillChef();
 

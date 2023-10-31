@@ -3,10 +3,13 @@
 #include "Order.h"
 #include "MenuItem.h"
 #include "Management.h"
+#include "Meal.h"
 
-DeputyHeadChef::DeputyHeadChef(std::shared_ptr<Kitchen> kitchen,std::shared_ptr<Management> management) : Chef("Deputy Head Chef",kitchen){
-    this->management = management;
+DeputyHeadChef::DeputyHeadChef(Kitchen* kitchen) : Chef("Deputy Head Chef",kitchen){
+    this->nextChef = nullptr;
+    this->management = nullptr;
 }
+
 
 DeputyHeadChef::~DeputyHeadChef(){} 
 
@@ -23,6 +26,9 @@ void DeputyHeadChef::finishOrder(std::shared_ptr<Order> order){
 }
 
 void DeputyHeadChef::prepareOrder(std::shared_ptr<Order> order){
+    if(management==nullptr){
+        this->setManagement();
+    }
     if(order!=nullptr){
         if(order->IsFinished()){
             this->finishOrder(order);
@@ -42,4 +48,16 @@ void DeputyHeadChef::prepareOrder(std::shared_ptr<Order> order){
             return;
         }
     }
+}
+
+std::shared_ptr<Chef> DeputyHeadChef::getNextChef() const{
+    return this->nextChef;
+}
+
+Kitchen* DeputyHeadChef::getKitchen() const{
+    return this->kitchen;
+}
+
+void DeputyHeadChef::setManagement(){
+    this->management = this->getKitchen()->getManagement();
 }

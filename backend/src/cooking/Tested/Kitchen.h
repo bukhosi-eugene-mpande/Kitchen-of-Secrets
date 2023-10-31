@@ -21,11 +21,11 @@ class Kitchen {
     std::vector<std::shared_ptr<Order>> preparedOrders;
     std::vector<std::shared_ptr<Order>> canceledOrders; 
     int numMeals;
-    std::shared_ptr<Management> management;
+    Management* management;
 
     public:
 
-        Kitchen(std::shared_ptr<Management> management,std::shared_ptr<HeadChef> headChef,std::shared_ptr<DeputyHeadChef> deputyHeadChef,std::vector<std::shared_ptr<Meal>> meals);
+        Kitchen(Management* management,std::vector<std::shared_ptr<Meal>> meals);
 
         Kitchen(const Kitchen& other);
 
@@ -49,7 +49,7 @@ class Kitchen {
 
         std::unordered_map<int,std::string> getMenu();
 
-        std::shared_ptr<Management> getManagement() const;
+        Management* getManagement() const;
 
         void cancelOrder(std::shared_ptr<Order> order);
 
@@ -64,6 +64,12 @@ class Kitchen {
         std::shared_ptr<HeadChef> getHeadChef() const;
 
         std::shared_ptr<DeputyHeadChef> getDeputyHeadChef() const;
+
+        std::shared_ptr<Kitchen> shared_from_this();
+
+        void createHeadChef();
+
+        void createDeputyHeadChef();
 
 };
 

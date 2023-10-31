@@ -1,10 +1,7 @@
 #include <gtest/gtest.h>
 #include <memory>
-#include "Kitchen.h"
-#include "Kitchen.cpp"
 
-#include "Meal.h"
-#include "Meal.cpp"
+#include "include_all.cpp"
 
 TEST(KitchenTest,ConstructorTest){  
     std::unordered_map<std::string, int> ingredients1 = {{"basil", 1}, {"pine nuts", 2}, {"garlic", 3}};
@@ -20,24 +17,12 @@ TEST(KitchenTest,ConstructorTest){
     std::vector <std::shared_ptr<Meal>> meals = {meal1, meal2, meal3};
 
     //shared_ptr<Management> management
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    Management* management = new Management();
     
-    //shared_ptr<HeadChef> headChef
-    std::shared_ptr<HeadChef> headChef = std::make_shared<HeadChef>(management);
-
-    //shared_ptr<DeputyHeadChef> deputyHeadChef
-    std::shared_ptr<DeputyHeadChef> deputyHeadChef = std::make_shared<DeputyHeadChef>(management);
-
     //kitchen
-    Kitchen kitchen(management, headChef, deputyHeadChef, meals);
-
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management, meals);
+    
     //check magament
-    EXPECT_EQ(kitchen.getManagement(), management);
-
-    //check headChef
-    EXPECT_EQ(kitchen.getHeadChef(), headChef);
-
-    //check deputyHeadChef
-    EXPECT_EQ(kitchen.getDeputyHeadChef(), deputyHeadChef);
+    EXPECT_EQ(kitchen->getManagement(), management);
 
 }

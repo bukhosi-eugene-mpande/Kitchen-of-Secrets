@@ -14,11 +14,11 @@ class Management;
 class DeputyHeadChef : public Chef {
     private: 
         std::shared_ptr<Chef> nextChef;
-        std::shared_ptr<Management> management;
-
+        Management* management;
+        
     public:
 
-        DeputyHeadChef(std::shared_ptr<Kitchen> kitchen,std::shared_ptr<Management> management);
+        DeputyHeadChef(Kitchen* kitchen);
 
         ~DeputyHeadChef();
 
@@ -31,6 +31,10 @@ class DeputyHeadChef : public Chef {
         void finishOrder(std::shared_ptr<Order> order);
 
         std::shared_ptr<Chef> getNextChef() const;
+
+        Kitchen* getKitchen() const;
+
+        void setManagement();
 
 };
 
