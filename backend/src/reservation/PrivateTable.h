@@ -8,7 +8,7 @@ class PrivateTable : public Table {
  public:
     PrivateTable(Engine* engine, int tableID);
     ~PrivateTable();
-    void addReservation();
+    void addReservation(ReservationSystem* reservation);
     void sendNotification();
     void receiveNotification(std::string message);
 };

@@ -22,7 +22,7 @@ public:
     ~Table();
     int getTableID();
     void setTableID(int tableID);
-    virtual void addReservation() = 0;
+    virtual void addReservation(ReservationSystem* reservation) = 0;
     virtual void placeTable(int xCoord, int yCoord);
     virtual bool getIsOccupied();
     virtual void setIsOccupied(bool isOccupied);

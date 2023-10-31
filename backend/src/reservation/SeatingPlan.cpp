@@ -7,7 +7,7 @@ SeatingPlan::SeatingPlan(){}
 
 SeatingPlan::~SeatingPlan(){}
 
-void SeatingPlan::addReservation()
+void SeatingPlan::addReservation(ReservationSystem* reservation)
 {
     if (table->getIsOccupied()) {
         table->setIsOccupied(true);

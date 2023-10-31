@@ -8,7 +8,7 @@ class GeneralTable : public Table {
  public:
     GeneralTable(Engine* engine, int tableID);
     ~GeneralTable();
-    void addReservation();
+    void addReservation(ReservationSystem* reservation);
     void sendNotification();
     void receiveNotification(std::string message);
 };

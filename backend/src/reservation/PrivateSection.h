@@ -2,6 +2,7 @@
 #define PRIVATESECTION_H
 
 #include "SeatingPlan.h"
+#include "PrivateTable.h"
 // #include "Customer.h"
 
 class PrivateSection : public SeatingPlan {
@@ -11,7 +12,7 @@ class PrivateSection : public SeatingPlan {
     PrivateSection();
     ~PrivateSection();
     void seatCustomers(Customer* customer);
-    void combineTables();
+    void combineTables(int tableID);
     void seperateTables(Table* table1, Table* table2);
 };
 

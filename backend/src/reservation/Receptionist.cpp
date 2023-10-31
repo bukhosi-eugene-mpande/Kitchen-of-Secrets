@@ -26,12 +26,17 @@ void Receptionist::showCustomerToTable() {
         }
 
         if (assignedTable) {
-            assignedTable->assignReservation(reservation);
+            assignedTable->addReservation(reservation);
             std::cout << "Assigned reservation #" << reservation->getReservationID() << " to table #" << assignedTable->getTableID() << std::endl;
         } else {
             std::cout << "No available tables for reservation #" << reservation->getReservationID() << std::endl;
         }
     }
+}
+
+ReservationSystem *Receptionist::getReservation()
+{
+    return reservation;
 }
 
 #endif

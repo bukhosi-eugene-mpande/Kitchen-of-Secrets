@@ -13,7 +13,7 @@ class SeatingPlan {
 public:
     SeatingPlan();
     ~SeatingPlan();
-    virtual void addReservation();
+    virtual void addReservation(ReservationSystem* reservation);
     virtual void seatCustomers() = 0;
     virtual void combineTables() = 0;
     virtual void seperateTables(Table* table1, Table* table2) = 0;

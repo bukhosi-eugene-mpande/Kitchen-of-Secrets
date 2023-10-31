@@ -7,19 +7,19 @@ GeneralTable::PrivateTable(Engine* engine, int tableID) : Table(engine, tableID)
 
 GeneralTable::~GeneralTable(){}
 
-void GeneralTable::addReservation(){
+void GeneralTable::addReservation(ReservationSystem* reservation){
     this->reservation = reservation;
     isOccupied = true;
 }
 
 void GeneralTable::sendNotification()
 {
-    // engine->notify();
+    engine->notify();
 }
 
 void GeneralTable::receiveNotification(std::string message)
 {
-    //engine->receive(message);
+    engine->receive(message);
 }
 
 

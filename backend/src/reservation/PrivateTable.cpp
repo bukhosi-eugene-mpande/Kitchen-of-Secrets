@@ -7,7 +7,7 @@ PrivateTable::PrivateTable(Engine* engine, int tableID) : Table(engine, tableID)
 
 PrivateTable::~PrivateTable(){}
 
-void PrivateTable::addReservation()
+void PrivateTable::addReservation(ReservationSystem* reservation)
 {
     this->reservation = reservation;
     isOccupied = true;
@@ -15,7 +15,7 @@ void PrivateTable::addReservation()
 
 void PrivateTable::sendNotification()
 {
-    // engine->notify(engine->getCustomer());
+    // engine->notify();
 }
 
 void PrivateTable::receiveNotification(std::string message)
