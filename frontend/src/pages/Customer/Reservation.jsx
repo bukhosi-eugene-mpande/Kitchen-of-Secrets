@@ -55,7 +55,7 @@ function Reservation() {
     }
   }, [socket]);
 
-  function handleSubmit (e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     setLoading(true);
@@ -70,7 +70,9 @@ function Reservation() {
     if (socket) {
       socket.send(JSON.stringify({ type: 'make-res', ...details }));
     }
-  };
+  }
+
+  console.log('Render');
 
   return (
     <Box
