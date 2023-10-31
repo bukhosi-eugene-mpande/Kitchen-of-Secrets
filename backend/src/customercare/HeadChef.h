@@ -3,19 +3,16 @@
 
 #include <vector>
 #include <string>
+#include "SatisfactionState.h"
+#include "Customer.h"
 
-
-class HeadChef{
+class HeadChef: public CustomerObserver{
     private:
     std::string name;
-
+    Customer* customer;
     public:
+    void updateCustomerMood();
 
-        HeadChef();
-
-        ~HeadChef();
-
-        void cancelOrder();
 
 };
 
