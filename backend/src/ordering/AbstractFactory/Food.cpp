@@ -2,8 +2,8 @@
 
 Food::Food():Menu("")
 {
-    std::cout<<"New Food Menu created."<<std::endl;
-
+    std::cout<<"-----------------New Food Menu created.--------------"<<std::endl;
+    std::cout<<std::endl;
 }
 void Food::setItems(std::map<std::string, double> items)
 {

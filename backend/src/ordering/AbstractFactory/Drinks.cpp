@@ -2,7 +2,8 @@
 
 Drinks::Drinks() :Menu("")
 {
-    std::cout<<"New Drinks Menu created."<<std::endl;
+    std::cout<<"-----------------New Drinks Menu created.--------------"<<std::endl;
+    std::cout<<std::endl;
 }
 void Drinks::setItems(std::map<std::string, double>items)
 {
