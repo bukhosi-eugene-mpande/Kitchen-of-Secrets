@@ -316,7 +316,7 @@ TEST(KitchenTest, AddOrderSuccess){
 
     kitchen->addOrder(order);
 
-    EXPECT_EQ(kitchen->getPreparedOrders().size(),1);
+    EXPECT_EQ(kitchen->getPreparedOrder(waiter),order);
 
 }
 

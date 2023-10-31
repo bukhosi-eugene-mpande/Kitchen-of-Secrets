@@ -30,13 +30,12 @@ void DeputyHeadChef::prepareOrder(std::shared_ptr<Order> order){
         this->setManagement();
     }
     if(order!=nullptr){
-        if(order->IsFinished() && this->flag){
+        if(order->IsFinished()){
             this->finishOrder(order);
             return;
         }
         std::unordered_map<std::string,int> ingredients = order->calculateIngredients();
         if(this->management->requestIngredients(ingredients)){
-            this->flag = true;
             for(int i = 0; i < order->getMeals().size(); i++){
                 if(this->kitchen->getChefName(order->getMeals()[i]->getName())==this->getName()){
                     order->getMeals()[i]->prepare();
