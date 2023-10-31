@@ -114,3 +114,11 @@ void Kitchen::createDeputyHeadChef(){
 std::unordered_map<std::string,std::shared_ptr<Meal>> Kitchen::getAvailableMeals() const{
     return this->AvailableMeals;
 }
+
+std::shared_ptr<HeadChef> Kitchen::getHeadChef() const{
+    return this->headChef;
+}
+
+std::shared_ptr<DeputyHeadChef> Kitchen::getDeputyHeadChef() const{
+    return this->deputyHeadChef;
+}

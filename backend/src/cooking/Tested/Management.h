@@ -35,6 +35,8 @@ class Management {
 
         void notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter);
 
+        void setInventory(std::shared_ptr<Inventory> inventory);
+
 };
 
 #endif

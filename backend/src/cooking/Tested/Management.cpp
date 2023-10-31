@@ -34,3 +34,7 @@ void Management::notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter) {
 void Management::setKitchen(std::shared_ptr<Kitchen> kitchen) {
     this->kitchen = kitchen;
 }
+
+void Management::setInventory(std::shared_ptr<Inventory> inventory){
+    this->inventory = inventory;
+}

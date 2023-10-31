@@ -70,7 +70,7 @@ class Kitchen {
         void createHeadChef();
 
         void createDeputyHeadChef();
-
+        
 };
 
 #endif
