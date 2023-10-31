@@ -7,10 +7,9 @@ using namespace std;
 class VeryUnhappy : public SatisfactionState
 {
 public:
-    VeryUnhappy();
-    ~VeryUnhappy();
-    void HelpMe();
-    void setMood(SatisfactionState *contract);
+    void HelpMe(Customer *Mood, std::string complaints);
+    void timeLaps(Customer *Mood,std::string complaints);
+    int getBill(int totalBill);
     std::string getStateName();
 };
 #endif
