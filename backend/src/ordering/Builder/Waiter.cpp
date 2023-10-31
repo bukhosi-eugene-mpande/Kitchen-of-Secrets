@@ -19,6 +19,7 @@ void Waiter::takeOrder()
 
     //here we are building the order
     builder->addDrink();
+    
     builder->addFood();
     Order* order= builder->build();
     std::cout<<"---Sending this the order to management: ---"<<std::endl;
@@ -39,11 +40,9 @@ void Waiter::serveOrder(Customer* customer)
 
     //we list the order to make sure its correct
     order->listItems();
-    
-    //the customer eats their  food
-    customer->eatFood(order);
 
-    //cleanup
+    //the customer eats their  food
+    customer->eatFood();
     delete order;
 }
 void Waiter::accept(Visitor* visitor)

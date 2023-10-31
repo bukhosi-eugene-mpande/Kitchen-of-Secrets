@@ -10,6 +10,7 @@ class HalloweenOrderBuilder: public OrderBuilder{
         FoodMenuFactory foodMenuFactory;
 
     public:
+        HalloweenOrderBuilder();
         void addDrink() override;
         void addFood() override;
 };

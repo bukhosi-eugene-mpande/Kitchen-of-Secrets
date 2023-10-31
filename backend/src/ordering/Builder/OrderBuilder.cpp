@@ -16,3 +16,10 @@ Order* OrderBuilder::build()
     this->order= new Order();
     return result;
 }
+/*
+    1. request Menu from Kitchen via Management
+    2. turn it into an unordered_map
+    3. When customer leaves, tell management to tell reservations to set table to null
+    4. When order is canceled, waiter kicks out customer
+    5. 
+*/
