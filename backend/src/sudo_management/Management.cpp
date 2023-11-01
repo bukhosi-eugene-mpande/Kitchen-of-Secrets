@@ -1,5 +1,10 @@
 #include "Management.h"
 
+#include "../ordering/Waiter.h"
+#include "../cooking/Kitchen.h"
+#include "../sudo_accounting/Inventory.h"
+#include "../reservation/ReservationSystem.h"
+
 Management::Management() {
     this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
     this->reservationSystem = std::make_shared<ReservationSystem>();

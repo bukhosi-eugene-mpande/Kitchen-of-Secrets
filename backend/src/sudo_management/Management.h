@@ -6,11 +6,10 @@
 #include <string>
 #include <memory>
 
-#include "../ordering/Waiter.h"
-#include "../cooking/Kitchen.h"
-#include "../sudo_accounting/Inventory.h"
-#include "../reservation/ReservationSystem.h"
-
+class Waiter;
+class Kitchen;
+class Inventory;
+class ReservationSystem;
 
 class Management {
     private:
