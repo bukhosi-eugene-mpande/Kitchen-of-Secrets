@@ -49,13 +49,16 @@ This document outlines the requirements for the backend API that the frontend wi
   "privatetables": [
     {
       "table_id": 1,
-      "table_name": "table_name",
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     },
     {
       "table_id": 2,
-      "table_name": "table_name",
+      "table_status": "table_status",
+      "table_capacity": "table_capacity"
+    },
+    {
+      "table_id": 3,
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     }
@@ -63,18 +66,69 @@ This document outlines the requirements for the backend API that the frontend wi
   "generaltables" :[
     {
       "table_id": 1,
-      "table_name": "table_name",
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     },
     {
       "table_id": 2,
-      "table_name": "table_name",
+      "table_status": "table_status",
+      "table_capacity": "table_capacity"
+    },
+    {
+      "table_id": 3,
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     }
   ],
-  "Balance": "user123"
+  "do_rounds": [
+    {
+      "waiter_id": "waiter_id",
+      "table_type" : "table_type",
+      "table_to_check" : "table_id",
+      "customer_status": "customer_status" //im referring to what emotion they have.
+    },
+    {
+      "waiter_id": "waiter_id",
+      "table_type" : "table_type",
+      "table_to_check" : "table_id",
+      "customer_status": "customer_status"
+    },
+    {
+      "waiter_id": "waiter_id",
+      "table_type" : "table_type",
+      "table_to_check" : "table_id",
+      "customer_status": "customer_status"
+    }
+  ],
+  "buy_ingredients":[
+    {
+      "ingredient_id": 1,
+      "ingredient_name": "ingredient_name",
+      "price" : 19.99
+    },
+    {
+      "ingredient_id": 1,
+      "ingredient_name": "ingredient_name",
+      "price" : 22.50
+    },
+    {
+      "ingredient_id": 1,
+      "ingredient_name": "ingredient_name",
+      "price" : 30.99
+    },
+    {
+      "ingredient_id": 1,
+      "ingredient_name": "ingredient_name",
+      "price" : 45.00
+    }
+  ],
+  "send_waiter": {
+    "waiter_id": "waiter_id",
+    "table_type" : "table_type",
+    "table_to_check" : "table_id",
+    "customer_status": "customer_status"
+  },
+  "Balance": "user123" 
 
 }
 ```
@@ -97,6 +151,20 @@ This document outlines the requirements for the backend API that the frontend wi
     "item_id": 2,
     "name": "Item 2",
     "price": 29.99
+  }
+]
+```
+
+### 4. Customer Page
+
+- **Endpoint:** `/Ordering`
+- **Method:** GET
+**Response:**
+
+```json
+[
+  {
+
   }
 ]
 ```
