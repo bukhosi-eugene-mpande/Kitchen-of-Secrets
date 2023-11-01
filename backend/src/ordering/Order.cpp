@@ -71,7 +71,7 @@ void Order::addMeal(std::shared_ptr<MenuItem> meal) {
 }
 
 bool Order::removeMeal(std::shared_ptr<MenuItem> meal) {
-    for (int i = 0; i < meals.size(); i++) {
+    for (int i = 0; i < (int) meals.size(); i++) {
         if (meals[i]->getName() == meal->getName()) {
             meals.erase(meals.begin() + i);
             return true;
