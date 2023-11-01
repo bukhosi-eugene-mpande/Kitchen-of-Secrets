@@ -1,5 +1,6 @@
 #include "Section.h"
-
+#include "Table.h"
+#include "../customercare/Customer.h"
 
 Section::Section(std::string name,int capacity){
     this->name = name;

@@ -1,4 +1,7 @@
 #include "ReservationSystem.h"
+#include "PrivateSection.h"
+#include "GeneralSection.h"
+#include "Host.h"
 
 ReservationSystem::ReservationSystem() {
     this->privateSection = std::make_shared<PrivateSection>("Private", 10);
@@ -30,4 +33,7 @@ std::vector<std::shared_ptr<Customer>> ReservationSystem::getCustomers() {
     return customers;
 }
 
+void ReservationSystem::clearOutTable(std::shared_ptr<Table> table) {
+    table->clear();
+}
 

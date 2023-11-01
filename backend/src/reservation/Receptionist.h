@@ -5,10 +5,10 @@
 #include <iostream>
 #include <memory> 
 
-#include "Reservation.h"
-#include "../customercare/Customer.h"
-#include "Host.h"
-#include "ReservationSystem.h"
+class ReservationSystem;
+class Reservation;
+class Customer;
+class Host;
 
 class Receptionist  {
     private:

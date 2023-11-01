@@ -5,8 +5,8 @@
 #include <vector>
 #include <memory>
 
-#include "Table.h"
-#include "../customercare/Customer.h"
+class Table;
+class Customer;
 
 class Section{
 

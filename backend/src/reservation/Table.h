@@ -49,6 +49,7 @@ class Table{
         void setCustomers(std::vector<std::shared_ptr<Customer>> customers);
         void addCustomer(std::shared_ptr<Customer> customer);
         void removeCustomer(std::shared_ptr<Customer> customer);
+        void clear();
 };
 
 #endif

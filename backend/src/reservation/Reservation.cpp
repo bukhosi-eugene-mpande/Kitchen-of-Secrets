@@ -1,4 +1,6 @@
 #include "Reservation.h"
+#include "../customercare/Customer.h"
+#include "Table.h"
 
 Reservation::Reservation(std::shared_ptr<Customer> Customer,std::shared_ptr<Table> table) : customer(Customer), table(table) {
 

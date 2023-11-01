@@ -5,9 +5,9 @@
 #include <memory> 
 #include <iostream>
 
-#include "PrivateSection.h"
-#include "GeneralSection.h"
-#include "Host.h"
+class PrivateSection;
+class GeneralSection;
+class Host;
 
 class ReservationSystem {
     private:
@@ -20,6 +20,7 @@ class ReservationSystem {
         std::shared_ptr<PrivateSection> getPrivateSection();
         std::shared_ptr<GeneralSection> getGeneralSection();
         std::vector<std::shared_ptr<Customer>> getCustomers();
+        void clearOutTable(std::shared_ptr<Table> table);
         
 };
 

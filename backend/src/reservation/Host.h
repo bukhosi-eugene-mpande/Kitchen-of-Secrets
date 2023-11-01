@@ -5,10 +5,10 @@
 #include <vector>
 #include <memory>
 
-#include "Table.h"
-#include "Section.h"
-#include "Reservation.h"
-#include "../customercare/Customer.h"
+class Table;
+class Section;
+class Reservation;
+class Customer;
 
 class Host {
     private:

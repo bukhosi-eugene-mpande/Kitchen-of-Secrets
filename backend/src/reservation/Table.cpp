@@ -109,3 +109,13 @@ void Table::removeCustomer(std::shared_ptr<Customer> customer){
         this->customers.erase(it);
     }
 }
+
+void Table::clear(){
+    this->customers.clear();
+    this->isOccupied = false;
+    this->isReserved = false;
+    this->markedForSlit = false;
+    this->markedForMerge = false;
+    this->merged = false;
+    this->split = false;
+}

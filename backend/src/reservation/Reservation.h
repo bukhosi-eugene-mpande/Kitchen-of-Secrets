@@ -5,8 +5,8 @@
 #include <vector>
 #include <memory>
 
-#include "../customercare/Customer.h"
-#include "Table.h"
+class Customer;
+class Table;
 
 class Reservation {
     std::shared_ptr<Customer> customer;
