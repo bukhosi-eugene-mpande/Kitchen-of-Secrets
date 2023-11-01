@@ -4,15 +4,15 @@
 #include "SeatingPlan.h"
 #include "GeneralTable.h"
 // #include "Customer.h"
-// class Customer;
+// #include "Engine.h"
 
 class GeneralSection : public SeatingPlan {
     int seat;
-    // Customer* customer;
+    // Customer* customer; //from chenoa's system
+    // Engine* engine; //from josh's system
     int capacity;
-    std::vector<GeneralTable*> generalTables;
-    // Engine* engine;
-    int GENERAL_TABLE_CAPACITY = 3;
+    std::vector<std::shared_ptr<GeneralTable>> generalTables;
+    const int GENERAL_TABLE_CAPACITY = 3;
 
  public: 
     GeneralSection(int seat);
@@ -21,7 +21,7 @@ class GeneralSection : public SeatingPlan {
     // void seatCustomers(Customer* customer);
     void combineTables(int tableID1, int tableID2);
     void seperateTables(int tableID);
-    std::vector<GeneralTable*> getGeneralTables();
+    std::vector<std::shared_ptr<GeneralTable>> getGeneralTables();
 };
 
 #endif

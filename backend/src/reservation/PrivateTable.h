@@ -5,15 +5,13 @@
 // #include "Engine.h"
 
 class PrivateTable : public Table {
-//  private: 
-//    //  int seat;
-//    //  int tableID;
+
  public:
     PrivateTable(int tableID, int seat);
    //  PrivateTable(Engine* engine, int tableID, int seat);
     PrivateTable();
     ~PrivateTable();
-    void addReservation(ReservationSystem* reservation, int seat);
+    void addReservation(std::shared_ptr<ReservationSystem> reservation, int seat);
     void setSeat(int seat);
    int getSeat();
    int getTableID();

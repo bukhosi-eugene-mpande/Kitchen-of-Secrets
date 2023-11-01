@@ -2,6 +2,7 @@
 #define SEATPLAN_H
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "Table.h"
 // #include "ReservationSystem.h"

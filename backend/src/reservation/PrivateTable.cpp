@@ -1,7 +1,7 @@
 #include "PrivateTable.h"
 
 PrivateTable::PrivateTable(int tableID, int seat) : Table(tableID, seat) {
-    this->tableID = tableID;
+    // this->tableID = tableID;
 }
 
 // PrivateTable::PrivateTable(Engine* engine, int tableID, int seat) : Table(engine, tableID, seat) {}
@@ -10,9 +10,9 @@ PrivateTable::PrivateTable(){}
 
 PrivateTable::~PrivateTable(){}
 
-void PrivateTable::addReservation(ReservationSystem* reservation, int seat)
+void PrivateTable::addReservation(std::shared_ptr<ReservationSystem> reservation, int seat)
 {
-    this->seat = seat;
+    // this->seat = seat;
     this->reservation = reservation;
     isOccupied = true;
 }
@@ -27,9 +27,9 @@ int PrivateTable::getTableID()
     return this->tableID;
 }
 
-void PrivateTable::setSeat(int seat)
+void PrivateTable::setSeat(int seatv)
 {
-    this->seat = seat;
+    seat = seatv;
 }
 
 // void PrivateTable::sendNotification()

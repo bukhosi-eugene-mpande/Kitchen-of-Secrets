@@ -16,16 +16,16 @@ protected:
     int tableID;
     bool isOccupied;
     int seat;
-    ReservationSystem* reservation;
-    
+    std::shared_ptr<ReservationSystem> reservation;
+
 public:
     Table(int tableID, int seat);
-    // Table(Engine* engine, int tableID, int seat);
+    // Table(Engine* engine, int tableID, int seat); //FOR JOSH'S SYSTEM
     Table();
     ~Table();
     int getTableID();
     void setTableID(int tableID);
-    virtual void addReservation(ReservationSystem* reservation, int seat) = 0;
+    virtual void addReservation(std::shared_ptr<ReservationSystem> reservation, int seat) = 0;
     // void placeTable(int xCoord, int yCoord);
     bool getIsOccupied();
     void setIsOccupied(bool isOccupied);

@@ -6,24 +6,24 @@ Receptionist::Receptionist()  {}
 Receptionist::~Receptionist() {}
 
 void Receptionist::createReservation(int reservationID, int startTime, int numberOfCustomers) {
-    reservation = new ReservationSystem(reservationID, startTime, numberOfCustomers);
+    reservation = std::make_shared<ReservationSystem>(reservationID, startTime, numberOfCustomers);
+    reservation->initializeAndPush();
 }
 
 void Receptionist::showCustomerToTable(PrivateSection& privateT, GeneralSection& genT) {
-    std::vector<ReservationSystem*> reservations = reservation->getReservations();
-    
-    for (ReservationSystem* res : reservations) {
+    std::vector<std::shared_ptr<ReservationSystem>> reservations = reservation->getReservations();
+
+    for (std::shared_ptr<ReservationSystem>& res : reservations) {
         int numberOfCustomers = res->getNumberOfCustomers();
-        Table* assignedTable = nullptr;
+        std::shared_ptr<Table> assignedTable = nullptr;
 
         if (numberOfCustomers <= PRIVATE_TABLE_CAPACITY && !privateT.getPrivateTables().empty()) {
             assignedTable = privateT.getPrivateTables().back();
             privateT.getPrivateTables().pop_back();
             if (assignedTable) {
-                if(numberOfCustomers > 2)
-                assignedTable->addReservation(res, numberOfCustomers);
+                if (numberOfCustomers > 2)
+                    assignedTable->addReservation(res, numberOfCustomers);
                 std::cout << assignedTable->getTableID() << std::endl;
-                // std::cout << "Assigned reservation #" << res->getReservationID() << " to table #" << assignedTable->getTableID() << std::endl;
             } else {
                 std::cout << "No available tables for reservation #" << res->getReservationID() << std::endl;
             }
@@ -32,12 +32,11 @@ void Receptionist::showCustomerToTable(PrivateSection& privateT, GeneralSection&
             assignedTable = genT.getGeneralTables().back();
             genT.getGeneralTables().pop_back();
         }
-
     }
 }
 
 
-ReservationSystem *Receptionist::getReservation()
+std::shared_ptr<ReservationSystem> Receptionist::getReservation()
 {
     return reservation;
 }

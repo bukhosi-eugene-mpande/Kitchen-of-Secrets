@@ -11,7 +11,7 @@ class GeneralTable : public Table {
     GeneralTable(int tableID, int seat);
     // GeneralTable(Engine* engine, int tableID, int seat);
     ~GeneralTable();
-    void addReservation(ReservationSystem* reservation, int seat);
+    void addReservation(std::shared_ptr<ReservationSystem> reservation, int seat);
     // void sendNotification();
     // void receiveNotification(std::string message);
     void setSeat(int seat);

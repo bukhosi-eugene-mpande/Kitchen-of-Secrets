@@ -1,14 +1,14 @@
 #include "GeneralTable.h"
 
 GeneralTable::GeneralTable(int tableID, int seat) : Table(tableID, seat) {
-    this->tableID = tableID;
+    // this->tableID = tableID;
 }
 
 // GeneralTable::GeneralTable(Engine* engine, int tableI, int seat) : Table(engine, tableID, seat) {}
 
 GeneralTable::~GeneralTable(){}
 
-void GeneralTable::addReservation(ReservationSystem* reservation, int seat){
+void GeneralTable::addReservation(std::shared_ptr<ReservationSystem> reservation, int seat){
     this->seat = seat;
     this->reservation = reservation;
     isOccupied = true;
