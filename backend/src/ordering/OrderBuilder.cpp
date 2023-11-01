@@ -1,25 +1,26 @@
 #include "OrderBuilder.h"
 
-OrderBuilder::OrderBuilder()
-{
-    this->order= new Order();
+OrderBuilder::OrderBuilder() {
+    this->order = nullptr;
 }
 
-OrderBuilder::~OrderBuilder()
-{
-    delete order;
+OrderBuilder::~OrderBuilder() {
+
 }
 
-Order* OrderBuilder::build()
-{
-    Order* result= this->order;
-    this->order= new Order();
-    return result;
+void OrderBuilder::setTableNumber(int tableNumber) {
+    this->tableNumber = tableNumber;
 }
-/*
-    1. request Menu from Kitchen via Management
-    2. turn it into an unordered_map
-    3. When customer leaves, tell management to tell reservations to set table to null
-    4. When order is canceled, waiter kicks out customer
-    5. 
-*/
+
+void OrderBuilder::setWaiter(std::shared_ptr<Waiter> waiter) {
+    this->waiter = waiter;
+}
+
+void OrderBuilder::addMeal(std::shared_ptr<MenuItem> meal) {
+    this->meals.push_back(meal);
+}
+
+std::shared_ptr<Order> OrderBuilder::getOrder() {
+    this->order = std::make_shared<Order>(this->tableNumber, this->meals, this->waiter);
+    return this->order;
+}

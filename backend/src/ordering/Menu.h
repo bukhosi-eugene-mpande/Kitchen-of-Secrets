@@ -1,23 +1,20 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef Menu_H
+#define Menu_H
+
 #include <iostream>
-//#include "Kitchen.h"
-#include <map>
 #include <string>
+#include <vector>
+#include <map>  
+#include <unordered_map>
+
+#include "Order.h"
+#include "Menu.h"
 
 class Menu{
-    protected:
-        //Kitchen* kitchen;
-        std::string name;
-        std::map<std::string, double> items;
-    
+    private:
+
     public:
-        Menu(std::string name);
-        std::string getName();
-        void setName(std::string name);
-        //std::vector<std::string> getitems();
-        virtual void setItems(std::map<std::string, double> items)=0;
-        virtual void displayMenu()=0;
-        std::map<std::string, double> getItems();
+        Menu();
+        ~Menu();    
 };
 #endif

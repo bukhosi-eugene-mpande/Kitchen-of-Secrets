@@ -1,23 +1,35 @@
 #ifndef WAITER_H
 #define WAITER_H
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>  
+#include <unordered_map>
+#include <memory>
+
+#include "../cooking/Order.h"
+#include "../cooking/MenuItem.h"
+#include "Menu.h"
 #include "OrderBuilder.h"
-#include "Element.h"
-#include "Visitor.h"
-#include "Management.h"
-#include "Customer.h" 
-//this is the Director of the Design Patterns
+
 class Waiter{
     private:
-        OrderBuilder* builder;
-        Management* management;
-        Customer* customer;
+        std::vector<std::shared_ptr<Order>> orders;
+        std::shared_ptr<OrderBuilder> orderBuilder;
+        std::shared_ptr<Menu> menu;
     public:
-        Waiter(Management* management, Customer* customer);
-        void setBuilder(OrderBuilder* builder);
+        Waiter();
+        ~Waiter();
         void takeOrder();
-        void serveOrder(Customer* customer);
-        void accept(Visitor* visitor);
-        //Order* giveOrder();
-        
+        void serveOrder();
+        double billOrder();
+        void sendOrdersToKitchen();
+        void giveOrderToCustomer();
+        std::shared_ptr<MenuItem> createFoodItem();
+        std::shared_ptr<MenuItem> createDrinkItem();
+        std::shared_ptr<Menu> createMenu();
+        void buildOrder();
+
 };
 #endif

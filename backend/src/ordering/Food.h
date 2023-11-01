@@ -1,12 +1,18 @@
-#ifndef FOOD_H
-#define FOOD_H
-#include <iostream>
-#include "Menu.h"
+#ifndef Food_H
+#define Food_H
 
-class Food: public Menu{
+#include "MenuItem.h"
+#include "AbstractOrder.h"
+
+class Food : public MenuItem , AbstractOrder{
+
     public:
-        Food();
-        void setItems(std::map<std::string, double> items) override;
-        void displayMenu();
+        Food(double price,std::string name, std::unordered_map<std::string,int> ingredients);
+        ~Food();
+        Food(const Food& other);
+        double calculatePrice();
+        std::unordered_map<std::string,int> calculateIngredients();
+        std::shared_ptr<MenuItem> clone() override;
 };
+
 #endif

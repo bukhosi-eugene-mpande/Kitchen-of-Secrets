@@ -7,8 +7,10 @@
 #include <iostream>
 #include <sstream>
 #include <memory>
+#include <unordered_map>
 
 class SatisfactionState;
+class Waiter;
 
 class Customer: public CustomerTemplate{
     private:
@@ -16,6 +18,7 @@ class Customer: public CustomerTemplate{
         std::vector<Customer> guests;
         bool isMainGuest;
         double totalBill;
+        int tableNumber;
 
     public:
         Customer();
@@ -27,6 +30,9 @@ class Customer: public CustomerTemplate{
         bool getIsMainGuest();
         void addGuest(Customer guest);
         std::vector<Customer> getGuests();
+        void setTableNumber(int tableNumber);
+        std::unordered_map<std::string,int> chooseBeverages(std::shared_ptr<Waiter> waiter);
+        std::unordered_map<std::string,int> chooseDishes(std::shared_ptr<Waiter> waiter);
         
 
 };
