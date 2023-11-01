@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
-import { CalendarToday, Restaurant, Payments } from '@mui/icons-material';
 
+import {
+  Payments,
+  MenuBook,
+  Restaurant,
+  CalendarToday
+} from '@mui/icons-material';
+
+import Eat from './Eat';
 import Order from './Order';
 import Payment from './Payment';
 import Reservation from './Reservation';
@@ -10,21 +17,18 @@ import Panel from '../../components/Panel';
 
 function Customer() {
   console.log('Render Customer');
-
+  const socket = useRef(null);
   const [value, setValue] = useState(0);
-  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = new WebSocket('ws://localhost:8000/ws');
+    socket.current = new WebSocket('ws://localhost:8000/ws');
 
-    setSocket(newSocket);
-
-    newSocket.onopen = () => {
-      newSocket.send('Customer');
+    socket.current.onopen = () => {
+      socket.current.send('Customer');
     };
 
     return () => {
-      newSocket.close(1000, 'Component unmounted');
+      socket.current.close(1000, 'Component unmounted');
     };
   }, []);
 
@@ -46,13 +50,14 @@ function Customer() {
             label='Reservation'
             sx={{ width: '100%' }}
           />
-          <Tab icon={<Restaurant />} label='Order' sx={{ width: '100%' }} />
+          <Tab icon={<MenuBook />} label='Order' sx={{ width: '100%' }} />
+          <Tab icon={<Restaurant />} label='Eat' sx={{ width: '100%' }} />
           <Tab icon={<Payments />} label='Payment' sx={{ width: '100%' }} />
         </Tabs>
       </Box>
 
       <Panel value={value} index={0}>
-        <Reservation socket={socket} />
+        <Reservation socket={socket.current} />
       </Panel>
 
       <Panel value={value} index={1}>
@@ -60,6 +65,10 @@ function Customer() {
       </Panel>
 
       <Panel value={value} index={2}>
+        <Eat />
+      </Panel>
+
+      <Panel value={value} index={3}>
         <Payment />
       </Panel>
     </Box>
