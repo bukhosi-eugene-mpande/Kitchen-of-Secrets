@@ -13,6 +13,7 @@ function Reservations({ socket }) {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
+    console.log('Reservations useEffect');
     if (socket) {
       socket.onmessage = (event) => {
         const newReservation = JSON.parse(event.data);
@@ -34,7 +35,9 @@ function Reservations({ socket }) {
     );
 
     if (socket) {
-      socket.send(JSON.stringify({ type: 'accept-res', available: 'yes' }));
+      socket.send(
+        JSON.stringify({ type: 'accept-res', available: 'yes' })
+      );
     }
   }
 

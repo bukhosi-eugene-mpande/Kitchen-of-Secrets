@@ -41,19 +41,15 @@ int main()
 
     CROW_ROUTE(app, "/ws")
         .websocket()
-        .onopen([&](crow::websocket::connection& /*conn*/){
+        .onopen([&](crow::websocket::connection& conn){
 
             std::lock_guard<std::mutex> _(mtx);
 
-            CROW_LOG_INFO << "New Connection";
+            CROW_LOG_INFO << "New Connection: " + conn.get_remote_ip();
         })
 
-        .onclose([&](crow::websocket::connection& /*conn*/, const std::string& reason){
-            CROW_LOG_INFO << reason;
-        })
-
-        .onerror([&](crow::websocket::connection& /*conn*/) {
-            CROW_LOG_INFO << "Websocket Error!";
+        .onclose([&](crow::websocket::connection& conn, const std::string& reason){
+            CROW_LOG_INFO << "Connection: " + conn.get_remote_ip() + "closed because " + reason;
         })
 
         .onmessage([&](crow::websocket::connection& conn, const std::string& data, bool is_binary){
@@ -63,15 +59,15 @@ int main()
             {
                 CROW_LOG_INFO << "Binary message received";
             }
-            else if (data == "Customer")
+            else if (customer == nullptr && data == "Customer")
             {
-                customer = nullptr;
                 customer = &conn;
+                CROW_LOG_INFO << "Customer connected";
             }
-            else if (data == "Staff")
+            else if (staff == nullptr && data == "Staff")
             {
-                staff = nullptr;
                 staff = &conn;
+                CROW_LOG_INFO << "Staff connected";
             }
             else
             {
@@ -80,10 +76,12 @@ int main()
                 if (jsonData["type"] == "make-res")
                 {
                     staff->send_text(data);
+                    CROW_LOG_INFO << "Make Reservation Request: \n" + data;
                 }
                 else if(jsonData["type"] == "accept-res")
                 {
                     customer->send_text(data);
+                    CROW_LOG_INFO << "Accept Reservation Request: \n" + data;
                 }
             }
         }

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
 
@@ -17,18 +17,22 @@ import Panel from '../../components/Panel';
 
 function Customer() {
   console.log('Render Customer');
-  const socket = useRef(null);
+  const [socket, setSocket] = useState(null);
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    socket.current = new WebSocket('ws://localhost:8000/ws');
+    const newSocket = new WebSocket('ws://localhost:8000/ws');
 
-    socket.current.onopen = () => {
-      socket.current.send('Customer');
+    newSocket.onopen = () => {
+      newSocket.send('Customer');
     };
 
+    setSocket(newSocket);
+
     return () => {
-      socket.current.close(1000, 'Component unmounted');
+      if (newSocket) {
+        newSocket.close(1000, 'Component unmounted');
+      }
     };
   }, []);
 
@@ -57,7 +61,7 @@ function Customer() {
       </Box>
 
       <Panel value={value} index={0}>
-        <Reservation socket={socket.current} />
+        <Reservation socket={socket} />
       </Panel>
 
       <Panel value={value} index={1}>
