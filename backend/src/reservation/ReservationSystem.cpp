@@ -1,64 +1,33 @@
 #include "ReservationSystem.h"
 
-ReservationSystem::ReservationSystem(int reservationID, int startTime, int numberOfCustomers)
-    : reservationID(reservationID), startTime(startTime), numberOfCustomers(numberOfCustomers) 
-{}
- 
-void ReservationSystem::initializeAndPush()
-{
-    reservations.push_back(shared_from_this());
+ReservationSystem::ReservationSystem() {
+    this->privateSection = std::make_shared<PrivateSection>("Private", 10);
+    this->generalSection = std::make_shared<GeneralSection>("General", 10);
 }
 
-ReservationSystem::~ReservationSystem() {}
+ReservationSystem::~ReservationSystem() {
 
-std::shared_ptr<ReservationSystem> ReservationSystem::getReservation(int index) {
-    return reservations[index];
 }
 
-void ReservationSystem::setReservation(std::shared_ptr<ReservationSystem> reservation) {
-    reservations.push_back(reservation);
+std::shared_ptr<PrivateSection> ReservationSystem::getPrivateSection() {
+    return this->privateSection;
 }
 
-std::vector<std::shared_ptr<ReservationSystem>> ReservationSystem::getReservations() {
-    return reservations;
+std::shared_ptr<GeneralSection> ReservationSystem::getGeneralSection() {
+    return this->generalSection;
 }
 
-// Receptionist* ReservationSystem::getReceptionist() {
-//     return receptionist;
-// }
-
-// void ReservationSystem::setReceptionist(Receptionist* receptionist) {
-//     this->receptionist = receptionist;
-// }
-
-int ReservationSystem::getReservationID()
-{
-    return reservationID;
-}
-
-void ReservationSystem::setReservationID(int reservationID)
-{
-    this->reservationID = reservationID;
-}
-
-int ReservationSystem::getStartTime()
-{
-    return startTime;
-}
-
-void ReservationSystem::setStartTime(int startTime)
-{
-    this->startTime = startTime;
-}
-
-int ReservationSystem::getNumberOfCustomers()
-{
-    return numberOfCustomers;
-}
-
-void ReservationSystem::setNumberOfCustomers(int numberOfCustomers)
-{
-    this->numberOfCustomers = numberOfCustomers;
+std::vector<std::shared_ptr<Customer>> ReservationSystem::getCustomers() {
+    std::vector<std::shared_ptr<Customer>> customers;
+    std::vector<std::shared_ptr<Customer>> privateSectionCustomers = this->privateSection->getAllCustomers();
+    for (int i = 0; i < privateSectionCustomers.size(); i++) {
+        customers.push_back(privateSectionCustomers[i]);
+    }
+    std::vector<std::shared_ptr<Customer>> generalSectionCustomers = this->generalSection->getAllCustomers();
+    for (int i = 0; i < generalSectionCustomers.size(); i++) {
+        customers.push_back(generalSectionCustomers[i]);
+    }
+    return customers;
 }
 
 

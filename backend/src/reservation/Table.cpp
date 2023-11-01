@@ -1,42 +1,111 @@
 #include "Table.h"
 
-Table::Table(int tableID, int seat) {
-    isOccupied = false;
-    this->tableID = tableID;
-    this->seat = seat;
+int Table::tableCount = 0;
+
+Table::Table(std::string section, int tableSize){
+    this->section = section;
+    this->tableId = ++tableCount;
+    this->tableSize = tableSize;
+    this->isOccupied = false;
+    this->isReserved = false;
+    this->markedForSlit = false;
+    this->markedForMerge = false;
+    this->merged = false;
+    this->split = false;
 }
 
-// Table::Table(Engine* engine, int tableID, int seat) {
-//     isOccupied = false;
-//     this->tableID = tableID;
-//     this->seat = seat;
-// }
-
-Table::Table()
-{
+Table::~Table(){
+    tableCount--;
 }
 
-Table::~Table() {}
-
-int Table::getTableID()
-{
-    return tableID;
+int Table::getTableId(){
+    return this->tableId;
 }
 
-void Table::setTableID(int tableID)
-{
-    this->tableID = tableID;
+int Table::getTableSize(){
+    return this->tableSize;
 }
 
-// void Table::placeTable(int xCoord, int yCoord) {
-//     this->xCoord = xCoord;
-//     this->yCoord = yCoord;
-// }
-
-bool Table::getIsOccupied() {
-    return isOccupied;
+bool Table::getIsOccupied(){
+    return this->isOccupied;
 }
 
-void Table::setIsOccupied(bool isOccupied) {
+bool Table::getIsReserved(){
+    return this->isReserved;
+}
+
+bool Table::getMarkedForSplit(){
+    return this->markedForSlit;
+}
+
+
+bool Table::getMarkedForMerge(){
+    return this->markedForMerge;
+}
+
+std::vector<std::shared_ptr<Customer>> Table::getCustomers(){
+    return this->customers;
+}
+
+std::string Table::getSection(){
+    return this->section;
+}
+
+bool Table::getMerged(){
+    return this->merged;
+}
+
+bool Table::getSplit(){
+    return this->split;
+}
+
+void Table::setMerged(bool merged){
+    this->merged = merged;
+}
+
+void Table::setSplit(bool split){
+    this->split = split;
+}
+
+void Table::setSection(std::string section){
+    this->section = section;
+}
+
+void Table::setTableId(int tableId){
+    this->tableId = tableId;
+}
+
+void Table::setTableSize(int tableSize){
+    this->tableSize = tableSize;
+}
+
+void Table::setIsOccupied(bool isOccupied){
     this->isOccupied = isOccupied;
+}
+
+void Table::setIsReserved(bool isReserved){
+    this->isReserved = isReserved;
+}
+
+void Table::setMarkedForSplit(bool markedForSplit){
+    this->markedForSlit = markedForSplit;
+}
+
+void Table::setMarkedForMerge(bool markedForMerge){
+    this->markedForMerge = markedForMerge;
+}
+
+void Table::setCustomers(std::vector<std::shared_ptr<Customer>> customers){
+    this->customers = customers;
+}
+
+void Table::addCustomer(std::shared_ptr<Customer> customer){
+    this->customers.push_back(customer);
+}
+
+void Table::removeCustomer(std::shared_ptr<Customer> customer){
+    auto it = std::find(this->customers.begin(), this->customers.end(), customer);
+    if (it != this->customers.end()) {
+        this->customers.erase(it);
+    }
 }
