@@ -6,15 +6,17 @@
 #include <string>
 #include <memory>
 
-#include "Waiter.h"
-#include "Kitchen.h"
-#include "Inventory.h"
+#include "../ordering/Waiter.h"
+#include "../cooking/Kitchen.h"
+#include "../sudo_accounting/Inventory.h"
+#include "../reservation/ReservationSystem.h"
 
 
 class Management {
     private:
         std::shared_ptr<Kitchen> kitchen;
         std::shared_ptr<Inventory> inventory;
+        std::shared_ptr<ReservationSystem> reservationSystem;
 
     public:
         Management();
@@ -36,6 +38,10 @@ class Management {
         void notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter);
 
         void setInventory(std::shared_ptr<Inventory> inventory);
+
+        void notifyPlayerOfChangeInMood();
+
+        void clearOutTable(std::shared_ptr<Table> table);
 
 };
 

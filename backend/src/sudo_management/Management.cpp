@@ -2,6 +2,7 @@
 
 Management::Management() {
     this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
+    this->reservationSystem = std::make_shared<ReservationSystem>();
 }
 
 Management::~Management() {
@@ -37,4 +38,12 @@ void Management::setKitchen(std::shared_ptr<Kitchen> kitchen) {
 
 void Management::setInventory(std::shared_ptr<Inventory> inventory){
     this->inventory = inventory;
+}
+
+void Management::notifyPlayerOfChangeInMood() {
+    // TODO - implement a function in the ui that will display a message to the player
+}
+
+void Management::clearOutTable(std::shared_ptr<Table> table) {
+    this->reservationSystem->clearOutTable(table);
 }
