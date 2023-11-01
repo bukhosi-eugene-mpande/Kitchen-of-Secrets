@@ -1,9 +1,10 @@
 #include "DeputyHeadChef.h"
 #include "FryChef.h"
-#include "Order.h"
-#include "MenuItem.h"
-#include "Management.h"
 #include "Meal.h"
+
+#include "../ordering/Order.h"
+#include "../ordering/MenuItem.h"
+#include "../sudo_management/Management.h"
 
 DeputyHeadChef::DeputyHeadChef(Kitchen* kitchen) : StationChef("Deputy Head Chef",kitchen){
     this->management = nullptr;
@@ -36,7 +37,7 @@ void DeputyHeadChef::prepareOrder(std::shared_ptr<Order> order){
         }
         std::unordered_map<std::string,int> ingredients = order->calculateIngredients();
         if(this->management->requestIngredients(ingredients)){
-            for(int i = 0; i < order->getMeals().size(); i++){
+            for(int i = 0; i < (int) order->getMeals().size(); i++){
                 if(this->kitchen->getChefName(order->getMeals()[i]->getName())==this->getName()){
                     order->getMeals()[i]->prepare();
                 }

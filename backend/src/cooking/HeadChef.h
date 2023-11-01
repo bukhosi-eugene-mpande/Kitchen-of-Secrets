@@ -7,7 +7,7 @@
 #include <memory>
 
 #include "Kitchen.h"
-#include "Management.h"
+#include "../sudo_management/Management.h"
 #include "Chef.h"
 
 class HeadChef : public Chef{

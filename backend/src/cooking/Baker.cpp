@@ -1,15 +1,16 @@
 #include "Baker.h"
 #include "DeputyHeadChef.h"
-#include "Order.h"
 #include "Meal.h"
-#include "MenuItem.h"
+
+#include "../ordering/Order.h"
+#include "../ordering/MenuItem.h"
 
 Baker::Baker(Kitchen* Kitchen) : StationChef("Baker",kitchen){}
 
 Baker::~Baker(){}
 
 void Baker::prepareOrder(std::shared_ptr<Order> order){
-    for(int i = 0; i < order->getMeals().size(); i++){
+    for(int i = 0; i < (int) order->getMeals().size(); i++){
         if(this->kitchen->getChefName(order->getMeals()[i]->getName())==this->getName()){
             order->getMeals()[i]->prepare();
         }

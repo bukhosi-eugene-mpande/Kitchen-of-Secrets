@@ -1,8 +1,9 @@
 #include "FryChef.h"
 #include "GrillChef.h"
-#include "Order.h"
 #include "Meal.h"
-#include "MenuItem.h"
+
+#include "../ordering/Order.h"
+#include "../ordering/MenuItem.h"
 
 FryChef::FryChef(Kitchen* Kitchen) : StationChef("Fry Chef",kitchen){
 }
@@ -11,7 +12,7 @@ FryChef::~FryChef(){}
 
 void FryChef::prepareOrder(std::shared_ptr<Order> order){
     if(order!=nullptr){
-        for(int i = 0; i < order->getMeals().size(); i++){
+        for(int i = 0; i < (int) order->getMeals().size(); i++){
             if(this->kitchen->getChefName(order->getMeals()[i]->getName())==this->getName()){
                 order->getMeals()[i]->prepare();
             }
