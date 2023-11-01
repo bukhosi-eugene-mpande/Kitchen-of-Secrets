@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
 import { CalendarToday, Restaurant, Payments } from '@mui/icons-material';
@@ -8,6 +8,21 @@ import Panel from '../../components/Panel';
 
 function Staff() {
   const [value, setValue] = useState(0);
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = new WebSocket('ws://localhost:8000/ws');
+
+    setSocket(newSocket);
+
+    newSocket.onopen = () => {
+      newSocket.send('Staff');
+    };
+
+    return () => {
+      newSocket.close(1000, 'Staff disconnected');
+    };
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -33,14 +48,12 @@ function Staff() {
       </Box>
 
       <Panel value={value} index={0}>
-        <Reservations />
+        <Reservations socket={socket} />
       </Panel>
 
-      <Panel value={value} index={1}>
-      </Panel>
+      <Panel value={value} index={1}></Panel>
 
-      <Panel value={value} index={2}>
-      </Panel>
+      <Panel value={value} index={2}></Panel>
     </Box>
   );
 }

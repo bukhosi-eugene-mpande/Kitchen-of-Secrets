@@ -40,6 +40,7 @@ function OrderList({ order, removeFromOrder }) {
       <Box
         sx={{
           p: 2,
+          mt: 2,
           width: '100%',
           border: '2px solid',
           borderRadius: '4px',

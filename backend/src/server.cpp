@@ -14,7 +14,6 @@ int main()
     crow::websocket::connection* staff = nullptr;
     crow::websocket::connection* customer = nullptr;
 
-
     auto accounting = std::make_shared<Accounting>();
 
     CROW_ROUTE(app, "/close")([accounting](){
@@ -42,44 +41,40 @@ int main()
 
     CROW_ROUTE(app, "/ws")
         .websocket()
-        .onopen([&](crow::websocket::connection& conn){
+        .onopen([&](crow::websocket::connection& /*conn*/){
 
             std::lock_guard<std::mutex> _(mtx);
 
-            if (staff == nullptr)
-            {
-                staff = &conn;
-                CROW_LOG_INFO << "Staff connected";
-            }
-            else if (customer == nullptr)
-            {
-                customer = &conn;
-                CROW_LOG_INFO << "Customer connected";
-            }
-            else
-            {
-                CROW_LOG_ERROR << "No more connections available";
-            }
+            CROW_LOG_INFO << "New Connection";
         })
 
         .onclose([&](crow::websocket::connection& /*conn*/, const std::string& reason){
             CROW_LOG_INFO << reason;
-            
-            staff = nullptr;
-            customer = nullptr;
         })
 
         .onerror([&](crow::websocket::connection& /*conn*/) {
             CROW_LOG_INFO << "Websocket Error!";
         })
 
-        .onmessage([&](crow::websocket::connection& /*conn*/, const std::string& data, bool is_binary){
+        .onmessage([&](crow::websocket::connection& conn, const std::string& data, bool is_binary){
             std::lock_guard<std::mutex> _(mtx);
 
-            if (is_binary){
+            if (is_binary)
+            {
                 CROW_LOG_INFO << "Binary message received";
             }
-            else {
+            else if (data == "Customer")
+            {
+                customer = nullptr;
+                customer = &conn;
+            }
+            else if (data == "Staff")
+            {
+                staff = nullptr;
+                staff = &conn;
+            }
+            else
+            {
                 json jsonData = json::parse(data);
 
                 if (jsonData["type"] == "make-res")

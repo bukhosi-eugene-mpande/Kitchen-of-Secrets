@@ -9,22 +9,11 @@ import {
   ListItemText
 } from '@mui/material';
 
-function Reservations() {
-  const [socket, setSocket] = useState(null);
+function Reservations({ socket }) {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    const newSocket = new WebSocket('ws://localhost:8000/ws');
-
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.close(1000, 'Staff disconnected');
-    };
-  }, []);
-
-  useEffect(() => {
-    if (socket){
+    if (socket) {
       socket.onmessage = (event) => {
         const newReservation = JSON.parse(event.data);
         setReservations((prevReservations) => [

@@ -15,9 +15,7 @@ import {
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function Reservation() {
-  const [socket, setSocket] = useState(null);
-
+function Reservation({ socket }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -32,16 +30,6 @@ function Reservation() {
       hour12: false
     })
   );
-
-  useEffect(() => {
-    const newSocket = new WebSocket('ws://localhost:8000/ws');
-
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.close(1000, 'Component unmounted');
-    };
-  }, []);
 
   useEffect(() => {
     if (socket) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
 import { CalendarToday, Restaurant, Payments } from '@mui/icons-material';
@@ -9,7 +9,24 @@ import Reservation from './Reservation';
 import Panel from '../../components/Panel';
 
 function Customer() {
+  console.log('Render Customer');
+
   const [value, setValue] = useState(0);
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = new WebSocket('ws://localhost:8000/ws');
+
+    setSocket(newSocket);
+
+    newSocket.onopen = () => {
+      newSocket.send('Customer');
+    };
+
+    return () => {
+      newSocket.close(1000, 'Component unmounted');
+    };
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -35,7 +52,7 @@ function Customer() {
       </Box>
 
       <Panel value={value} index={0}>
-        <Reservation />
+        <Reservation socket={socket} />
       </Panel>
 
       <Panel value={value} index={1}>
