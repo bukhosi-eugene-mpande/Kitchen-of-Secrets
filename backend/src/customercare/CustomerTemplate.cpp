@@ -6,7 +6,7 @@
 #include "../sudo_management/Management.h"
 
 CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management>) : name(name){
-    this->Mood = std::make_shared<Happy>();
+    this->Mood = std::make_shared<Happy>(this);
     this->readyToOrder = false;
     this->totalBill = 0;
     this->management = management;
@@ -59,4 +59,33 @@ void CustomerTemplate::notifyManagement(){
 void CustomerTemplate::leave(){
     this->management->clearOutTable(this->reservation->getTable());
 }
+
+std::string CustomerTemplate::getName(){
+    return this->name;
+}
+
+bool CustomerTemplate::IsReadyToOrder(){
+    return this->readyToOrder;
+}
+
+std::shared_ptr<Reservation> CustomerTemplate::getReservation(){
+    return this->reservation;
+}
+
+void CustomerTemplate::setReservation(std::shared_ptr<Reservation> reservation){
+    this->reservation = reservation;
+}
+
+std::shared_ptr<Management> CustomerTemplate::getManagement(){
+    return this->management;
+}
+
+void CustomerTemplate::setManagement(std::shared_ptr<Management> management){
+    this->management = management;
+}
+
+std::shared_ptr<CustomerTemplate> CustomerTemplate::this_to_shared(){
+    return std::shared_ptr<CustomerTemplate>(this);
+}
+
 

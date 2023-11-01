@@ -1,7 +1,7 @@
 #include "Happy.h"
 #include "Neutral.h"
 
-Happy::Happy(std::shared_ptr<CustomerTemplate> customer) : SatisfactionState("Happy", customer, 0.0, 0.2){
+Happy::Happy(CustomerTemplate* customer) : SatisfactionState("Happy", customer, 0.0, 0.2){
 
 }
 

@@ -6,7 +6,7 @@
 #include <algorithm>
 class Unhappy : public SatisfactionState{
     public:
-        Unhappy(std::shared_ptr<CustomerTemplate> customer);
+        Unhappy(CustomerTemplate* customer);
         void console();
         void anger();
 

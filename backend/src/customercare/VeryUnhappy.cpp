@@ -1,6 +1,6 @@
 #include "VeryUnhappy.h"
 
-VeryUnhappy::VeryUnhappy(std::shared_ptr<CustomerTemplate> customer) : SatisfactionState("VeryUnhappy", customer, 0.3, 0.0){
+VeryUnhappy::VeryUnhappy(CustomerTemplate* customer) : SatisfactionState("VeryUnhappy", customer, 0.3, 0.0){
     this->customer->leave();
 }
 

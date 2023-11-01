@@ -7,7 +7,7 @@
 
 class VeryUnhappy : public SatisfactionState{
     public:
-        VeryUnhappy(std::shared_ptr<CustomerTemplate> customer);
+        VeryUnhappy(CustomerTemplate* customer);
         void console();
         void anger();
 };

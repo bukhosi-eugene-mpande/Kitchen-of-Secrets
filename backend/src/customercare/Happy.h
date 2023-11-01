@@ -6,7 +6,7 @@
 #include "SatisfactionState.h"
 class Happy : public SatisfactionState{
     public:
-        Happy(std::shared_ptr<CustomerTemplate> customer);
+        Happy(CustomerTemplate* customer);
         void console();
         void anger();
 };

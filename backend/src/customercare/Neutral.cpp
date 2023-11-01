@@ -2,7 +2,7 @@
 #include "Happy.h"
 #include "Unhappy.h"
 
-Neutral::Neutral(std::shared_ptr<CustomerTemplate> customer) : SatisfactionState("Neutral", customer, 0.0, 0.0){
+Neutral::Neutral(CustomerTemplate* customer) : SatisfactionState("Neutral", customer, 0.0, 0.0){
 
 }
 

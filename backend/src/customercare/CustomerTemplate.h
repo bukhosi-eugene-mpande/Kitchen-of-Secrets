@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <sstream>
 #include <memory>
+#include <unordered_map>
 
 class SatisfactionState;
 class Reservation;
@@ -33,9 +33,11 @@ class CustomerTemplate{
 
         void setMood(std::shared_ptr<SatisfactionState> Mood);
 
-        std::shared_ptr<SatisfactionState> getMood();
-
         std::unordered_map<std::string,int> getOrder();
+
+        std::string getName();
+
+        bool IsReadyToOrder();
 
         void setOrder(std::unordered_map<std::string,int> order);
 
@@ -50,6 +52,16 @@ class CustomerTemplate{
         void notifyManagement();
 
         void leave();
+
+        std::shared_ptr<Reservation> getReservation();
+
+        void setReservation(std::shared_ptr<Reservation> reservation);
+
+        std::shared_ptr<Management> getManagement();
+
+        void setManagement(std::shared_ptr<Management> management);
+
+        std::shared_ptr<CustomerTemplate> this_to_shared();
 
 };
 #endif
