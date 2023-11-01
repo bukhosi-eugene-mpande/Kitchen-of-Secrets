@@ -7,7 +7,7 @@
 #include "SatisfactionState.h"
 class Neutral : public SatisfactionState{
     public:
-        Neutral(std::shared_ptr<Customer> customer);
+        Neutral(std::shared_ptr<CustomerTemplate> customer);
         void console();
         void anger();
 };

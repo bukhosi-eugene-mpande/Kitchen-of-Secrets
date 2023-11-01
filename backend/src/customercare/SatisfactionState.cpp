@@ -1,6 +1,6 @@
 #include "SatisfactionState.h"
 
-SatisfactionState::SatisfactionState(std::string stateName, std::shared_ptr<Customer> customer, double discount, double tip){
+SatisfactionState::SatisfactionState(std::string stateName,std::shared_ptr<CustomerTemplate> customer, double discount, double tip){
     this->stateName = stateName;
     this->customer = customer;
     this->discount = discount;
