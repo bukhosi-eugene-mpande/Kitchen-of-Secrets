@@ -4,7 +4,6 @@
 #include "../../src/customercare/CustomerNPC.cpp"
 #include "../../src/customercare/CustomerTemplate.h"
 #include "../../src/customercare/CustomerTemplate.cpp"
-#include "../../src/customercare/CustomerTemplateTests.cpp"
 #include "../../src/customercare/Happy.h"
 #include "../../src/customercare/Happy.cpp"
 #include "../../src/customercare/Neutral.h"
