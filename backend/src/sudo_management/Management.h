@@ -46,6 +46,8 @@ class Management {
 
         void requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section);
 
+        void requestToBeSeated(std::shared_ptr<CustomerTemplate> customer);
+
 };
 
 #endif

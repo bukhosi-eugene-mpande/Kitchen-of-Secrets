@@ -9,13 +9,13 @@ class Customer;
 class Table;
 
 class Reservation {
-    std::shared_ptr<Customer> customer;
+    std::shared_ptr<CustomerTemplate> customer;
     std::shared_ptr<Table> table;
 
     public:
-        Reservation(std::shared_ptr<Customer> Customer,std::shared_ptr<Table> table);
+        Reservation(std::shared_ptr<CustomerTemplate> Customer,std::shared_ptr<Table> table);
         ~Reservation();
-        std::shared_ptr<Customer> getCustomer();
+        std::shared_ptr<CustomerTemplate> getCustomer();
         std::shared_ptr<Table> getTable();
 
 };

@@ -101,3 +101,28 @@ std::vector<std::shared_ptr<CustomerTemplate>> CustomerTemplate::getGuests(){
     return this->guests;
 }
 
+bool CustomerTemplate::getHasGuests(){
+    return this->hasGuests;
+}
+
+void CustomerTemplate::setHasGuests(bool hasGuests){
+    this->hasGuests = hasGuests;
+}
+
+bool CustomerTemplate::getIsMain(){
+    return this->isMain;
+}
+
+void CustomerTemplate::setIsMain(bool isMain){
+    this->isMain = isMain;
+}
+
+int CustomerTemplate::getNumGuests(){
+    return this->numGuests;
+}
+
+std::string CustomerTemplate::getDesiredSection(){
+    return this->DesiredSection = DesiredSection;
+}
+
+

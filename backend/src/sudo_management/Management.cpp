@@ -60,3 +60,7 @@ void Management::clearOutTable(std::shared_ptr<Table> table) {
 void Management::requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section) {
     this->receptionist->requestReservation(customer,section);
 }
+
+void Management::requestToBeSeated(std::shared_ptr<CustomerTemplate> customer) {
+    this->receptionist->requestToBeSeated(customer);
+}

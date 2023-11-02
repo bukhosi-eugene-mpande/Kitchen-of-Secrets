@@ -19,7 +19,7 @@ class ReservationSystem {
         ~ReservationSystem();
         std::shared_ptr<Section> getPrivateSection();
         std::shared_ptr<Section> getGeneralSection();
-        std::vector<std::shared_ptr<Customer>> getCustomers();
+        std::vector<std::shared_ptr<CustomerTemplate>>  getCustomers();
         void clearOutTable(std::shared_ptr<Table> table);
         
 };

@@ -19,7 +19,7 @@ class Receptionist  {
         ~Receptionist();
         void requestToBeSeated(std::shared_ptr<CustomerTemplate> customer);
         void requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section);
-        std::shared_ptr<Host> createHost(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<Customer> customer);
+        std::shared_ptr<Host> createHost(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<CustomerTemplate> customer);
         std::shared_ptr<Reservation> createReservation(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
 };
 

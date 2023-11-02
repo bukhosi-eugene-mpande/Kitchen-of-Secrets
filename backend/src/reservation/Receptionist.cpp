@@ -43,7 +43,7 @@ void Receptionist::requestReservation(std::shared_ptr<CustomerTemplate> customer
     customer->setReservation(reservation);
 }
 
-std::shared_ptr<Host> Receptionist::createHost(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<Customer> customer) {
+std::shared_ptr<Host> Receptionist::createHost(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<CustomerTemplate> customer) {
     std::shared_ptr<Host> host = std::make_shared<Host>(section,reservation,customer);
     return host;
 }
@@ -53,3 +53,18 @@ std::shared_ptr<Reservation> Receptionist::createReservation(std::shared_ptr<Cus
     return reservation;
 }
 
+void Receptionist::requestToBeSeated(std::shared_ptr<CustomerTemplate> customer) {
+    std::shared_ptr<Reservation> reservation = customer->getReservation();
+    if(reservation==nullptr){
+        return;
+    }else{
+        std::shared_ptr<Section> section;
+        if(customer->getDesiredSection()=="Private Section"){
+            section = this->reservationSystem->getPrivateSection();
+        }else{
+            section = this->reservationSystem->getGeneralSection();
+        }
+        std::shared_ptr<Host> host = this->createHost(section,reservation,customer);
+        host->seatCustomer();
+    }
+}
