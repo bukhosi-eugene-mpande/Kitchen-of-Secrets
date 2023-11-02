@@ -39,35 +39,12 @@ This document outlines the requirements for the backend API that the frontend wi
 
 ### 2. Manager page
 
+- **_These are the button return values:_**
+
 - **Endpoint:** `/manager`
 - **Method:** GET
 
-**Response:**
-
-Button return values:
-
-``` json
-  do rounds
-  {
-  rounds:true
-  ingredients: false
-  waiter: false
-  }
-
-  buy ingredients
-  {
-  rounds:false
-  ingredients: true
-  waiter: false
-  }
-
-  send waiter
-  {
-  rounds:false
-  ingredients: false
-  waiter: true
-  }
-```
+**Request:**
 
 ```json
 {
@@ -107,58 +84,63 @@ Button return values:
   ],
   "do_rounds": [
     {
-      "waiter_id": "waiter_id",
-      "table_type" : "table_type",
-      "table_to_check" : "table_id",
-      "customer_status": "customer_status" //im referring to what emotion they have.
-    },
-    {
-      "waiter_id": "waiter_id",
-      "table_type" : "table_type",
-      "table_to_check" : "table_id",
-      "customer_status": "customer_status"
-    },
-    {
-      "waiter_id": "waiter_id",
-      "table_type" : "table_type",
-      "table_to_check" : "table_id",
-      "customer_status": "customer_status"
+      "rounds":true,
+      "ingredients": false,
+      "waiter": false
     }
   ],
   "buy_ingredients":[
     {
-      "ingredient_id": 1,
-      "ingredient_name": "ingredient_name",
-      "price" : 19.99
-    },
-    {
-      "ingredient_id": 1,
-      "ingredient_name": "ingredient_name",
-      "price" : 22.50
-    },
-    {
-      "ingredient_id": 1,
-      "ingredient_name": "ingredient_name",
-      "price" : 30.99
-    },
-    {
-      "ingredient_id": 1,
-      "ingredient_name": "ingredient_name",
-      "price" : 45.00
+      "rounds":false,
+      "ingredients": true,
+      "waiter": false
     }
   ],
-  "send_waiter": {
-    "waiter_id": "waiter_id",
-    "table_type" : "table_type",
-    "table_to_check" : "table_id",
-    "customer_status": "customer_status"
-  },
+  "send_waiter": [
+    {
+      "rounds":false,
+      "ingredients": false,
+      "waiter": true
+    }
+  ],
   "Balance": "user123" 
 
 }
 ```
 
-### 3. Ordering
+### 3. Customer Page
+
+- **Endpoint:** `/Ordering`
+- **Method:** GET
+**Response:**
+
+```json
+[
+  {
+    "table":[
+      {
+        "table_id": "table_id",
+        "table_status": "table_status",
+        "table_capacity": "table_capacity"
+      }
+    ],
+    "send_order":[
+      {
+        "send_order":true,
+        "pay_order":false
+      }
+    ],
+    "pay_order":[
+      {
+        "send_order":false,
+        "pay_order":true
+      }
+    ]
+  }
+]
+```
+
+### 4. Ordering
 
 - **Endpoint:** `/Ordering`
 - **Method:** GET
@@ -179,18 +161,3 @@ Button return values:
   }
 ]
 ```
-
-### 4. Customer Page
-
-- **Endpoint:** `/Ordering`
-- **Method:** GET
-**Response:**
-
-```json
-[
-  {
-
-  }
-]
-```
-
