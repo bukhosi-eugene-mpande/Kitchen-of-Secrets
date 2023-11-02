@@ -20,13 +20,13 @@ std::shared_ptr<Section> ReservationSystem::getGeneralSection() {
     return this->generalSection;
 }
 
-std::vector<std::shared_ptr<Customer>> ReservationSystem::getCustomers() {
-    std::vector<std::shared_ptr<Customer>> customers;
-    std::vector<std::shared_ptr<Customer>> privateSectionCustomers = this->privateSection->getAllCustomers();
+std::vector<std::shared_ptr<CustomerTemplate>> ReservationSystem::getCustomers() {
+    std::vector<std::shared_ptr<CustomerTemplate>> customers;
+    std::vector<std::shared_ptr<CustomerTemplate>> privateSectionCustomers = this->privateSection->getAllCustomers();
     for (int i = 0; i < (int) privateSectionCustomers.size(); i++) {
         customers.push_back(privateSectionCustomers[i]);
     }
-    std::vector<std::shared_ptr<Customer>> generalSectionCustomers = this->generalSection->getAllCustomers();
+    std::vector<std::shared_ptr<CustomerTemplate>> generalSectionCustomers = this->generalSection->getAllCustomers();
     for (int i = 0; i < (int) generalSectionCustomers.size(); i++) {
         customers.push_back(generalSectionCustomers[i]);
     }

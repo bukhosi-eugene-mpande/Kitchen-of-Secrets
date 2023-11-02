@@ -2,7 +2,7 @@
 #include "../customercare/Customer.h"
 #include "Table.h"
 
-Reservation::Reservation(std::shared_ptr<Customer> Customer,std::shared_ptr<Table> table) : customer(Customer), table(table) {
+Reservation::Reservation(std::shared_ptr<CustomerTemplate> Customer,std::shared_ptr<Table> table) : customer(Customer), table(table) {
 
 }
 
@@ -10,7 +10,7 @@ Reservation::~Reservation() {
 
 }
 
-std::shared_ptr<Customer> Reservation::getCustomer() {
+std::shared_ptr<CustomerTemplate> Reservation::getCustomer() {
     return this->customer;
 }
 

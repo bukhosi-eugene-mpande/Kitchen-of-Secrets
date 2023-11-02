@@ -84,6 +84,10 @@ class CustomerTemplate{
 
         std::vector<std::shared_ptr<CustomerTemplate>> getGuests();
 
+        std::string getDesiredSection();
+
+        void requestToBeSeated();
+
 
 
 };

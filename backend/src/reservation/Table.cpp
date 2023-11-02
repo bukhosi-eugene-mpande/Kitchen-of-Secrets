@@ -125,9 +125,8 @@ void Table::sitCustomer(std::shared_ptr<CustomerTemplate> customer){
     if(customer->getHasGuests()){
         for(int i=0;i<(int)customer->getGuests().size();i++){
             std::shared_ptr<CustomerTemplate> guest = customer->getGuests().at(i);
-            // this->customers.push_back();
+            this->customers.push_back(guest);
         }
-        
     }
     this->isOccupied = true;
 }

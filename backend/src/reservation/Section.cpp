@@ -31,8 +31,8 @@ void Section::removeTable(std::shared_ptr<Table> Table) {
     }
 }
 
-std::vector<std::shared_ptr<Customer>> Section::getAllCustomers() {
-    std::vector<std::shared_ptr<Customer>> customers;
+std::vector<std::shared_ptr<CustomerTemplate>> Section::getAllCustomers() {
+    std::vector<std::shared_ptr<CustomerTemplate>> customers;
     for (int i = 0; i < (int) this->tables.size(); i++) {
         for (int j = 0; j < (int) this->tables[i]->getCustomers().size(); j++) {
             customers.push_back(this->tables[i]->getCustomers()[j]);

@@ -4,7 +4,7 @@
 #include "Reservation.h"
 #include "../customercare/Customer.h"
 
-Host::Host(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<Customer> customer) {
+Host::Host(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<CustomerTemplate> customer) {
     this->section = section;
     this->reservation = reservation;
     this->customer = customer;
@@ -31,11 +31,11 @@ void Host::setReservation(std::shared_ptr<Reservation> reservation) {
     this->reservation = reservation;
 }
 
-std::shared_ptr<Customer> Host::getCustomer() {
+std::shared_ptr<CustomerTemplate> Host::getCustomer() {
     return this->customer;
 }
 
-void Host::setCustomer(std::shared_ptr<Customer> customer) {
+void Host::setCustomer(std::shared_ptr<CustomerTemplate> customer) {
     this->customer = customer;
 }
 

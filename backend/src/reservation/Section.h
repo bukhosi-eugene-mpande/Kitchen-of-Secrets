@@ -28,7 +28,7 @@ class Section{
 
         void removeTable(std::shared_ptr<Table> Table);
         
-        std::vector<std::shared_ptr<Customer>> getAllCustomers();
+        std::vector<std::shared_ptr<CustomerTemplate>> getAllCustomers();
 
         void mergeTables(int tableId1, int tableId2);
 
