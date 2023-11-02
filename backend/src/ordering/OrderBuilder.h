@@ -19,7 +19,7 @@ class OrderBuilder{
         void setWaiter(std::shared_ptr<Waiter> waiter);
         void addMeal(std::shared_ptr<MenuItem> meal);
         std::shared_ptr<Order> getOrder();
-        void reset();
+        void reset();// implement
 
 };
 #endif
