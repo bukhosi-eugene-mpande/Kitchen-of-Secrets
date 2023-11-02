@@ -36,6 +36,31 @@ TEST(CustomerTest, MoodChange) {
 
     customer->anger();
     EXPECT_EQ(customer->getMood()->getStateName(), "Unhappy");
+
+    customer->console();
+    EXPECT_EQ(customer->getMood()->getStateName(), "Neutral");
+
+    customer->anger();
+    EXPECT_EQ(customer->getMood()->getStateName(), "Unhappy");
+    
+}
+
+TEST(CustomerTest, ReservationTest) {
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+    Customer*  customer1 = new Customer(management);
+    Customer*  customer2 = new Customer(management);
+
+    customer1->setManagement(management);
+    customer2->setDesiredSection("General Section");
+    customer1->requestReservation();
+
+    customer2->setManagement(management);
+    customer2->setDesiredSection("Private Section");
+    customer2->requestReservation();
+
+    EXPECT_NE(customer1->getReservation(), nullptr);
+
+    EXPECT_NE(customer2->getReservation(), nullptr);
     
 }
 
