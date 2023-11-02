@@ -1,6 +1,6 @@
 #include "Billing.h"
 
-Billing::Billing(BillStrategy *billStrategy)
+Billing::Billing(std::shared_ptr<Engine> engine, std::shared_ptr<BillStrategy> billStrategy) : GameComponent(engine)
 {
     this->billStrategy = billStrategy;
 }

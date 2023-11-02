@@ -1,15 +1,17 @@
 #ifndef HAPPY_H
 #define HAPPY_H
 
-using namespace std;
-#include <string>
 #include "SatisfactionState.h"
-class Happy : public SatisfactionState
-{
-public:
-    void HelpMe(Customer *Mood, std::string complaints);
-    void timeLaps(Customer *Mood,std::string complaints);
-    int getBill(int totalBill);
-    std::string getStateName();
+
+#include <string>
+
+class Happy : public SatisfactionState {
+    public:
+        Happy();
+        ~Happy();
+        void helpMe(std::shared_ptr<Customer> mood, std::string complaints);
+        void timeLaps(std::shared_ptr<Customer> mood, std::string complaints);
+        double getTip();
+        std::string getStateName();
 };
 #endif

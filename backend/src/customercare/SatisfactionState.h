@@ -1,15 +1,17 @@
-#ifndef SATISFACTIONSTATE_H
-#define SATISFACTIONSTATE_H
+#ifndef SATISFACTION_STATE_H
+#define SATISFACTION_STATE_H
 
-using namespace std;
-#include <string>
 #include "Customer.h"
-class SatisfactionState
-{
-public:
-    virtual void HelpMe(Customer *Mood,std::string complaints)=0;
-    virtual void timeLaps(Customer *Mood,std::string complaints)=0;
-    virtual int getBill(int totalBill)=0;
-    virtual std::string getStateName() = 0;
+
+#include <string>
+
+class SatisfactionState {
+    public:
+        SatisfactionState();
+        virtual ~SatisfactionState();
+        virtual void HelpMe(std::shared_ptr<Customer> mood, std::string complaints) = 0;
+        virtual void timeLaps(std::shared_ptr<Customer> mood, std::string complaints) = 0;
+        virtual double getTip() = 0;
+        virtual std::string getStateName() = 0;
 };
 #endif

@@ -10,7 +10,7 @@ public:
     OverdueTab(Tab *tab);
     
     json closeTab();
-    double getBillTotal();
+    double getTabTotal();
     json addOrderCost(double cost);
 };
 

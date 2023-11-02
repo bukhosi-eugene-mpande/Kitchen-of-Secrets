@@ -1,16 +1,16 @@
 #include "HeadChef.h"
 
-HeadChef::HeadChef(Kitchen* kitchen,Management* management) : Chef("Head Chef",kitchen){ 
+HeadChef::HeadChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name, std::shared_ptr<Management> management) : Chef(engine, kitchen, name) {
     this->management = management;
 }
 
-HeadChef::~HeadChef(){}
+HeadChef::~HeadChef() {}
 
 std::string HeadChef::getName() const{
     return this->name;
 }
 
-Kitchen* HeadChef::getKitchen() const{
+std::shared_ptr<Kitchen> HeadChef::getKitchen() const {
     return this->kitchen;
 }
 

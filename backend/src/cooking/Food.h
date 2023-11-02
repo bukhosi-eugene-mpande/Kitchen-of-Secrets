@@ -1,13 +1,12 @@
-#ifndef Food_H
-#define Food_H
+#ifndef FOOD_H
+#define FOOD_H
 
 #include "MenuItem.h"
 #include "AbstractOrder.h"
 
-class Food : public MenuItem , AbstractOrder{
-
+class Food : public MenuItem , AbstractOrder {
     public:
-        Food(double price,std::string name, std::unordered_map<std::string,int> ingredients);
+        Food(std::shared_ptr<Engine> engine, double price,std::string name, std::unordered_map<std::string,int> ingredients);
         ~Food();
         Food(const Food& other);
         double calculatePrice();

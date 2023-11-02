@@ -4,9 +4,9 @@
 #include "Meal.h"
 #include "MenuItem.h"
 
-Cook::Cook(Kitchen* Kitchen) : StationChef("Cook",kitchen){}
+Cook::Cook(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen) : StationChef(engine, kitchen, "Cook") {}
 
-Cook::~Cook(){}
+Cook::~Cook() {}
 
 void Cook::prepareOrder(std::shared_ptr<Order> order){
     for(int i = 0; i < order->getMeals().size(); i++){

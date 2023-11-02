@@ -2,14 +2,15 @@
 #define BILLING_H
 
 #include "BillStrategy.h"
+#include "backend/src/management/GameComponent.h"
 
-class Billing
+class Billing : public GameComponent
 {
 private:
-    BillStrategy *billStrategy;
+    std::shared_ptr<BillStrategy> billStrategy;
 
 public:
-    Billing(BillStrategy *billStrategy);
+    Billing(std::shared_ptr<Engine> engine, std::shared_ptr<BillStrategy> billStrategy);
     json pay(double amount);
 };
 

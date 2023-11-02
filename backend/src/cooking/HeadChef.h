@@ -1,5 +1,5 @@
-#ifndef HeadChef_H
-#define HeadChef_H
+#ifndef HEAD_CHEF_H
+#define HEAD_CHEF_H
 
 #include <unordered_map>
 #include <vector>
@@ -10,23 +10,16 @@
 #include "Management.h"
 #include "Chef.h"
 
-class HeadChef : public Chef{
+class HeadChef : public Chef {
     private:
         std::string name;
-        Management* management;
-
+        std::shared_ptr<Management> management;
     public:
-
-        HeadChef(Kitchen* kitchen,Management* management);
-
+        HeadChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name, std::shared_ptr<Management> management);
         ~HeadChef();
-
         std::string getName() const;
-
-        Kitchen* getKitchen() const;
-
+        std::shared_ptr<Kitchen> getKitchen() const;
         void goOnRounds();
-
         void handleComplaint();
 };
 

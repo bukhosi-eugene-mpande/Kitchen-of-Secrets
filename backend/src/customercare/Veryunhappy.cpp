@@ -1,15 +1,18 @@
 #include "VeryUnhappy.h"
+#include "Veryunhappy.h"
 
-void VeryUnhappy::HelpMe(Customer *Mood ,std::string complaints)
-{
+VeryUnhappy::VeryUnhappy() : SatisfactionState() {}
+
+VeryUnhappy::~VeryUnhappy() {}
+
+void VeryUnhappy::helpMe(std::shared_ptr<Customer> mood, std::string complaints) {}
+
+void VeryUnhappy::timeLaps(std::shared_ptr<Customer> mood, std::string complaints) {}
+
+double VeryUnhappy::getTip() {
+    return 0.00;
 }
-void VeryUnhappy::timeLaps(Customer *Mood, std::string complaints)
-{
-}
-int VeryUnhappy::getBill(int totalBill)
-{
-}
-std::string VeryUnhappy::getStateName()
-{
-    return "Customer left";
+
+std::string VeryUnhappy::getStateName() {
+    return "Very Unhappy (Customer Leaves Resturant)";
 }

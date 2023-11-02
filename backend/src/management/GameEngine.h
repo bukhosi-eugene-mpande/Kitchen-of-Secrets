@@ -3,56 +3,70 @@
 
 #include "Engine.h"
 
+// accounting
+#include "backend/src/accounting/Billing/Billing.h"
+#include "backend/src/accounting/Billing/CardBill.h"
+#include "backend/src/accounting/Billing/CashBill.h"
+#include "backend/src/accounting/Billing/MultiBill.h"
+#include "backend/src/accounting/Tab/Tab.h"
+#include "backend/src/accounting/Tab/OpenTab.h"
+#include "backend/src/accounting/Tab/CloseTab.h"
+#include "backend/src/accounting/Tab/OverdueTab.h"
+#include "backend/src/accounting/Inventory/FoodInventory.h"
+#include "backend/src/accounting/Inventory/BeverageInventory.h"
+
+//cooking
+#include "backend/src/cooking/Baker.h"
+#include "backend/src/cooking/Cook.h"
+#include "backend/src/cooking/GrillChef.h"
+#include "backend/src/cooking/FryChef.h"
+#include "backend/src/cooking/HeadChef.h"
+#include "backend/src/cooking/Kitchen.h"
+#include "backend/src/cooking/Food.h"
+#include "backend/src/cooking/Beverage.h"
+#include "backend/src/cooking/Order.h"
+
 class GameEngine : public Engine {
     private:
-<<<<<<< HEAD
-        /**
-         * @brief  `std::vector<GameComponent*> gameComponents;` is declaring a private 
-         * member variable `gameComponents` of type `std::vector<GameComponent*>`.
-         */
-        std::vector<GameComponent*> gameComponents;
+        // accounting
+        std::shared_ptr<Tab> tab;
+        std::shared_ptr<Billing> billing;
+        std::shared_ptr<FoodInventory> foodInventory;
+        std::shared_ptr<BeverageInventory> beverageInventory;
+
+        // cooking
+        std::shared_ptr<Baker> baker;
+        std::shared_ptr<Cook> cook;
+        std::shared_ptr<GrillChef> grillChef;
+        std::shared_ptr<FryChef> fryChef;
+        std::shared_ptr<HeadChef> headChef;
+        std::shared_ptr<Kitchen> kitchen;
+        std::shared_ptr<Food> food;
+        std::shared_ptr<Beverage> beverage;
+        std::shared_ptr<Order> order;
+
+        // customer
+        std::shared_ptr<GameComponent> customer;
+        
+
+        // ordering
+        std::shared_ptr<GameComponent> drinks;
+        std::shared_ptr<GameComponent> food;
+        std::shared_ptr<GameComponent> menu;
+
+        // reservation
+        std::shared_ptr<GameComponent> table;
+        std::shared_ptr<GameComponent> reservationSystem;
+        std::shared_ptr<GameComponent> receptionist;
+
+    protected:
+        virtual void createGameComponents();
     public:
-        /**
-         * @brief The `GameEngine` constructor is taking a parameter `gameComponents` of type 
-         * `std::vector<GameComponent*>`. This parameter is used to initialize the private 
-         * member variable `gameComponents` of the `GameEngine` class.
-         * 
-         * @param gameComponents 
-         */
-        GameEngine(std::vector<GameComponent*> gameComponents);
-
-        /**
-         * @brief Destroy the Game Engine object
-         * 
-         */
+    
+        GameEngine();
         ~GameEngine();
-
-        /**
-         * @brief The `virtual void notify(GameComponent* sender, std::string message);` 
-         * function is declaring a virtual member function named `notify` that takes two parameters: 
-         * `sender` of type `GameComponent*` and `message` of type `std::string`.
-         * 
-         * @param sender 
-         * @param message 
-         */
-        virtual void notify(GameComponent* sender, std::string message);
-
-        /**
-         * @brief The `void reactOnGameComponent(int index)` function is a member function of the 
-         * `GameEngine` class. It takes an integer parameter `index`. This function is responsible for 
-         * reacting to a game component at the specified index. The specific implementation of this 
-         * function is not provided in the code snippet, so it is unclear what actions it performs.
-         * 
-         * @param index 
-         */
+        virtual void notify(std::shared_ptr<GameComponent> sender, std::string message);
         void reactOnGameComponent(int index);
-=======
-        std::vector<GameComponent*> gameComponent;
-    public:
-        GameEngine(std::vector<GameComponent*> GameComponent);
-        ~GameEngine();
-        virtual void notify(GameComponent* sender, std::string message);
->>>>>>> accounting
 };
 
 #endif

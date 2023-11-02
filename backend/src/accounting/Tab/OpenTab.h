@@ -6,10 +6,10 @@
 class OpenTab : public TabState
 {
 public:
-    OpenTab(Tab *tab);
+    OpenTab(std::shared_ptr<Tab> tab);
     
     json closeTab();
-    double getBillTotal();
+    double getTabTotal();
     json addOrderCost(double cost);
 };
 

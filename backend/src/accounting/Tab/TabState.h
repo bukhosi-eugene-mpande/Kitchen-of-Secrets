@@ -11,14 +11,14 @@ class Tab;
 class TabState
 {
 protected:
-    Tab *tab;
+    std::shared_ptr<Tab> tab;
     std::vector<double> orders;
 
 public:
-    TabState(Tab *tab);
+    TabState(std::shared_ptr<Tab> tab);
 
     virtual json closeTab() = 0;
-    virtual double getBillTotal() = 0;
+    virtual double getTabTotal() = 0;
     virtual json addOrderCost(double cost) = 0;
 };
 

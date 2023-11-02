@@ -4,10 +4,9 @@
 #include "Meal.h"
 #include "MenuItem.h"
 
-FryChef::FryChef(Kitchen* Kitchen) : StationChef("Fry Chef",kitchen){
-}
+FryChef::FryChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen) : StationChef(engine, kitchen, "Fry Chef") {}
 
-FryChef::~FryChef(){}
+FryChef::~FryChef() {}
 
 void FryChef::prepareOrder(std::shared_ptr<Order> order){
     if(order!=nullptr){

@@ -7,10 +7,10 @@
 class CloseTab : public TabState
 {
 public:
-    CloseTab(Tab *tab);
+    CloseTab(std::shared_ptr<Tab> tab);
     
     json closeTab();
-    double getBillTotal();
+    double getTabTotal();
     json addOrderCost(double cost);
 };
 

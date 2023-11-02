@@ -1,15 +1,18 @@
-#ifndef VERYUNHAPPY_H
-#define VERYUNHAPPY_H
+#ifndef VERY_UNHAPPY_H
+#define VERY_UNHAPPY_H
 
-using namespace std;
-#include <string>
 #include "SatisfactionState.h"
+
+#include <string>
+
 class VeryUnhappy : public SatisfactionState
 {
-public:
-    void HelpMe(Customer *Mood, std::string complaints);
-    void timeLaps(Customer *Mood,std::string complaints);
-    int getBill(int totalBill);
-    std::string getStateName();
+    public:
+        VeryUnhappy();
+        ~VeryUnhappy();
+        void helpMe(std::shared_ptr<Customer> mood, std::string complaints);
+        void timeLaps(std::shared_ptr<Customer> mood, std::string complaints);
+        double getTip();
+        std::string getStateName();
 };
 #endif

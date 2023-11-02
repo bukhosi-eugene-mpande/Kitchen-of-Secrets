@@ -1,57 +1,32 @@
 #ifndef PLAYER_INTERACTION_H
 #define PLAYER_INTERACTION_H
 
+#include "backend/src/accounting/AccountingSystem.h"
+#include "backend/src/customercare/Customer.h"
+#include "backend/src/customercare/CustomerCareSystem.h"
+#include "GameComponent.h"
+
+
 #include <vector>
 #include <queue>
-<<<<<<< HEAD
 #include <memory>
-
-#include "AccountingSystem.h"
-#include "CustomerCareSystem.h"
-#include "GameComponent.h"
-#include "KitchenSystem.h"
-#include "OrderSystem.h"
-#include "ReservationSystem.h"
 
 class PlayerInteraction : public GameComponent {
     private:
-        AccountingSystem* accountingSystem;
-        KitchenSystem* cookingSystem;
-        CustomerCareSystem* customerCareSystem;
-        OrderSystem* orderingSystem;
-        ReservationSystem* reservationSystem;
-
+        std::shared_ptr<AccountingSystem> accountingSystem;
+        std::shared_ptr<CustomerCareSystem> customerCareSystem;
     public:
-        PlayerInteraction(Engine* engine, AccountingSystem* accountingSystem, KitchenSystem* cookingSystem, CustomerCareSystem* customerCareSystem, OrderSystem* orderingSystem, ReservationSystem* reservationSystem);
+        PlayerInteraction(std::shared_ptr<Engine> engine, std::shared_ptr<AccountingSystem> accountingSystem, std::shared_ptr<CustomerCareSystem> customerCareSystem;);
         ~PlayerInteraction();
-        void payment(Customer* customer);
+        void cardPayment(std::shared_ptr<Customer> customer);
+        void cashPayment(std::shared_ptr<Customer> customer);
+        void multiplePayments(std::vector<std::shared_ptr<Customer>> customers);
+        void addToTab(std::vector<std::shared_ptr<Customer>> customers);
+        void closeTab(std::vector<std::shared_ptr<Customer>> customers);
         void updateInventory();
         void takeOrder();
         void orderUp();
         void seatCustomers(std::vector<Customer*>);
-=======
-
-#include "Command.h"
-#include "Engine.h"
-
-class PlayerInteraction {
-    private:
-        std::vector<Command*> commands;
-        std::vector<Command*> ordersQueue;
-    public:
-        PlayerInteraction(Engine* engine);
-        void addCommandToVector(Command* command);
-        void removeCommandFromVector(int index);
-        void tabButtonPushed();
-        void inventoryButtonPushed();
-        void billingSystemButtonPushed();
-        void waiterRoundsButtonPushed();
-        void reservationsButtonPushed();
-        void customerHappinessButtonPushed();
-        void waiterTakesOrderButtonPushed();
-        void waiterGivesOrderToCookButtonPused();
-        void buildDishButtonPushed();
->>>>>>> accounting
 };
 
 #endif

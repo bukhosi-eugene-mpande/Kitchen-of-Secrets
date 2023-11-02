@@ -2,23 +2,21 @@
 #include "MenuItem.h"
 #include "Waiter.h"
 
-Order::Order(int tableNumber, std::vector<std::shared_ptr<MenuItem>> meals, std::shared_ptr<Waiter> waiter) {
+Order::Order(std::shared_ptr<Engine> engine, int tableNumber, std::vector<std::shared_ptr<MenuItem>> meals, std::shared_ptr<Waiter> waiter) : AbstractOrder(engine) {
     this->tableNumber = tableNumber;
     this->meals = meals;
     this->waiter = waiter;
     this->isCancelled = false;
 }
 
-Order::Order(const Order& other) {
+Order::Order(const Order &other) {
     this->tableNumber = other.tableNumber;
     this->meals = other.meals;
     this->waiter = other.waiter;
     this->isCancelled = other.isCancelled;
 }
 
-Order::~Order() {
-
-}
+Order::~Order() {}
 
 double Order::calculatePrice() {
     double price = 0;

@@ -1,5 +1,7 @@
-#ifndef AbstractOrder_H
-#define AbstractOrder_H
+#ifndef ABSTRACT_ORDER_H
+#define ABSTRACT_ORDER_H
+
+#include "GameComponent.h"
 
 #include <unordered_map>
 #include <string>
@@ -8,28 +10,19 @@
 
 class MenuItem;
 
-class AbstractOrder {
+class AbstractOrder : public GameComponent {
     protected:
         std::unordered_map<std::string,int> ingredients; 
         double price; 
         std::vector<std::shared_ptr<MenuItem>> meals;
-
     public:
-
-        AbstractOrder();
-
+        AbstractOrder(std::shared_ptr<Engine> engine);
         virtual ~AbstractOrder();
-
         virtual double calculatePrice() = 0;
-
         virtual std::unordered_map<std::string,int> calculateIngredients() = 0;
-
         std::unordered_map<std::string,int> getIngredients() const;
-
         double getPrice() const;
-
         bool IsFinished();
-        
 };
 
 #endif

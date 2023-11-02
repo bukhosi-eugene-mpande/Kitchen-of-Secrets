@@ -1,13 +1,11 @@
 #include "AbstractOrder.h"
 #include "MenuItem.h"
 
-AbstractOrder::AbstractOrder() {
+AbstractOrder::AbstractOrder(std::shared_ptr<Engine> engine) : GameComponent(engine) {
     this->price = 0;
 }
 
-AbstractOrder::~AbstractOrder() {
-
-}
+AbstractOrder::~AbstractOrder() {}
 
 std::unordered_map<std::string,int> AbstractOrder::getIngredients() const {
     return this->ingredients;

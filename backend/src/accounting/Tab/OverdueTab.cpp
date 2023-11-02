@@ -9,7 +9,7 @@ json OverdueTab::closeTab()
         {"message", "Tab is overdue"}};
 }
 
-double OverdueTab::getBillTotal()
+double OverdueTab::getTabTotal()
 {
     double total = 0.0;
 

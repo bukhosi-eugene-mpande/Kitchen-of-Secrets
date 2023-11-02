@@ -1,19 +1,21 @@
-#ifndef CUSTOMERCARESYSTEM_H
-#define CUSTOMERCARESYSTEM_H
+#ifndef CUSTOMER_CARE_SYSTEM_H
+#define CUSTOMER_CARE_SYSTEM_H
+
 #include "CustomerObserver.h"
+
 #include <string>
 #include <vector>
 #include <algorithm>
-class CustomerObserver;
-using namespace std;
-class CustomerCareSystem
-{
-private:
-    std::vector<CustomerObserver*> CustomerObserverList;
+#include <memory>
 
-public:
-    void attach(CustomerObserver *CustomerObserver);
-    void detach(CustomerObserver *CustomerObserver);
-    void notify();
+class CustomerObserver;
+
+class CustomerCareSystem {
+    private:
+        std::vector<std::shared_ptr<CustomerObserver>> customerObserverList;
+    public:
+        void attach(std::shared_ptr<CustomerObserver> customerObserver);
+        void detach(std::shared_ptr<CustomerObserver> customerObserver);
+        void notify();
 };
 #endif

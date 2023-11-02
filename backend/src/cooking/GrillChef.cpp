@@ -4,9 +4,9 @@
 #include "Meal.h"
 #include "MenuItem.h"
 
-GrillChef::GrillChef(Kitchen* kitchen):StationChef("Grill Chef",kitchen){}
+GrillChef::GrillChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen) : StationChef(engine, kitchen, "Grill Chef") {}
 
-GrillChef::~GrillChef(){}
+GrillChef::~GrillChef() {}
 
 void GrillChef::prepareOrder(std::shared_ptr<Order> order){
     if(order!=nullptr){

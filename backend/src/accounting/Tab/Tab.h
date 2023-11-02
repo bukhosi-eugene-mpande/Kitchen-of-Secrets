@@ -2,18 +2,20 @@
 #define TAB_H
 
 #include "TabState.h"
+#include "backend/src/management/GameComponent.h"
 
-class Tab
+class Tab : GameComponent
 {
 private:
-    TabState *state;
+    std::shared_ptr<TabState> state;
 
 public:
-    Tab();
+    Tab(std::shared_ptr<Engine> engine);
     json closeTab();
-    double getBillTotal();
+    double getTabTotal();
     json addOrderCost(double cost);
-    void setState(TabState *state);
+    void setState(std::shared_ptr<TabState> state);
+    
 };
 
 #endif

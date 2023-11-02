@@ -1,20 +1,20 @@
 #include "Chef.h"
 
-Chef::Chef(std::string name, Kitchen* kitchen){
-    this->name = name;
+Chef::Chef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name) : GameComponent(engine) {
     this->kitchen = kitchen;
+    this->name = name;
 }
 
-Chef::~Chef(){}
+Chef::~Chef() {}
 
 std::string Chef::getName() const{
     return this->name;
 }
 
-void Chef::setKitchen(Kitchen* kitchen){
+void Chef::setKitchen(std::shared_ptr<Kitchen> kitchen) {
     this->kitchen = kitchen;
 }
 
-Kitchen* Chef::getKitchen() const{
+std::shared_ptr<Kitchen> Chef::getKitchen() const{
     return this->kitchen;
 }

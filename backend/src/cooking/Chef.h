@@ -1,30 +1,24 @@
-#ifndef Chef_H
-#define Chef_H
+#ifndef CHEF_H
+#define CHEF_H
 
 #include <unordered_map>
 #include <vector>
 #include <string>
 #include <memory>
 
+#include "GameComponent.h"
 #include "Kitchen.h"
 
-class Chef {
+class Chef : public GameComponent {
     protected:
-        Kitchen* kitchen;
+        std::shared_ptr<Kitchen> kitchen;
         std::string name;
-
     public:
-
-        Chef(std::string name,Kitchen* kitchen);
-
+        Chef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name);
         ~Chef();
-
         std::string getName() const;
-
-        void setKitchen(Kitchen* kitchen);
-
-        Kitchen* getKitchen() const;
-
+        void setKitchen(std::shared_ptr<Kitchen> kitchen);
+        std::shared_ptr<Kitchen> getKitchen() const;
 };
 
 #endif

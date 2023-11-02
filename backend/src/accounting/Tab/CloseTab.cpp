@@ -1,6 +1,6 @@
 #include "CloseTab.h"
 
-CloseTab::CloseTab(Tab *tab) : TabState(tab) {}
+CloseTab::CloseTab(std::shared_ptr<Tab> tab) : TabState(tab) {}
 
 json CloseTab::closeTab()
 {
@@ -9,7 +9,7 @@ json CloseTab::closeTab()
         {"message", "Tab is closed"}};
 }
 
-double CloseTab::getBillTotal()
+double CloseTab::getTabTotal()
 {
     double total = 0.0;
 

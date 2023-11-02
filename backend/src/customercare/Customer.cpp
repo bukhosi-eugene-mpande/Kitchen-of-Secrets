@@ -1,57 +1,89 @@
 #include "Customer.h"
 #include "Happy.h"
 
-Customer::Customer(){
-    this->Mood = new Happy();
-    complaints = new std::vector<std::string>();
-    this->totalBill= 0;
+Customer::Customer(std::shared_ptr<Engine> engine) : GameComponent(engine) {
+    mood = std::make_shared<Happy>();
+    complaints = std::make_shared<std::vector<std::string>>();
+    totalBill = 0.00;
+    totalTab = 0.00;
 }
 
-Customer::~Customer(){
-    delete Mood;
-    delete complaints;
+Customer::~Customer() {}
+
+std::shared_ptr<SatisfactionState> Customer::getMood(){
+    return mood;
 }
 
-void Customer::setTotalBill(int totalBill){
- this->totalBill=totalBill;
+void Customer::setMood(std::shared_ptr<SatisfactionState> mood){
+    notify();
+    this->mood = mood;
 }
 
-int Customer::getTotalBill(){
-    return this->totalBill;
+std::shared_ptr<std::vector<std::string>> Customer::getComplaints(){
+    return this->complaints;
 }
 
-void Customer::setMood(SatisfactionState* Mood){
-notify();
-this->Mood=Mood;
+void Customer::setComplaints(std::shared_ptr<std::vector<std::string>> complaints) {
+    this->complaints = complaints;
 }
 
-SatisfactionState *Customer::getMood(){
-return this->Mood;
+std::shared_ptr<Billing> Customer::getBill() {
+    return bill;
+}
+
+void Customer::setBill(std::shared_ptr<Billing> bill) {
+    this->bill = bill;
+}
+
+std::shared_ptr<Tab> Customer::getTab() {
+    return tab;
+}
+
+void Customer::setTab(std::shared_ptr<Tab> tab) {
+    this->tab = tab;
+}
+
+double Customer::getTip() {
+    return mood->getTip();
+}
+
+void Customer::setTotalBill(double totalBill) {
+    this->totalBill = totalBill + getTip();
+}
+
+double Customer::getTotalBill(){
+    return totalBill;
+}
+
+double Customer::getTotalTab() {
+    return tab->getTabTotal();
+}
+
+void Customer::setTotalTab(double tabAmount){
+    tab->addOrderCost(tabAmount);
+}
+
+void Customer::closeTab() {
+    tab->closeTab();
+}
+
+void Customer::makePayment() {
+    bill->pay(totalBill);
 }
 
 void Customer::helpMe(){
-    Mood->HelpMe(this,"waiting too long");
+    mood->HelpMe(this, "waiting too long");
 }
 
 void Customer::timeLaps(){
-    Mood->timeLaps(this,"waiting too long");
+    mood->timeLaps(this, "waiting too long");
 }
-int Customer::getBill(int Bill){
- return Mood->getBill(Bill);
-}
-
-std::vector<std::string> *Customer::getComplaints(){
-return this->complaints;
-}
-
-
 
 string Customer::toString(){
     std::stringstream ss;
 
-    ss << "State: " << Mood->getStateName() << std::endl;
+    ss << "State: " << mood->getStateName() << std::endl;
 
-   
     ss << "complaints:" << std::endl;
     for (const auto &complaints : *complaints)
     {

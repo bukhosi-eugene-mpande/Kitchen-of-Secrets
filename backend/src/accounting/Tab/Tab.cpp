@@ -2,9 +2,9 @@
 #include "OpenTab.h"
 #include "OverdueTab.h"
 
-Tab::Tab()
+Tab::Tab(std::shared_ptr<Engine> engine) : GameComponent(engine)
 {
-    state = new OpenTab(this);
+    state = std::make_shared<OpenTab>(this);
 }
 
 json Tab::closeTab()
@@ -21,7 +21,7 @@ json Tab::addOrderCost(double cost)
 {
     if (getBillTotal() > 1000)
     {
-        setState(new OverdueTab(this));
+        setState(std::make_shared<OpenTab>(this));
 
         return {
             {"status", "error"},
@@ -33,7 +33,7 @@ json Tab::addOrderCost(double cost)
     }
 }
 
-void Tab::setState(TabState *newState)
+void Tab::setState(std::shared_ptr<TabState> state)
 {
-    state = newState;
+    this->state = state;
 }

@@ -3,9 +3,10 @@
 #include "MenuItem.h"
 #include "Meal.h"
 
-StationChef::StationChef(std::string name,Kitchen* kitchen) : Chef(name,kitchen){}
 
-StationChef::~StationChef(){}
+StationChef::StationChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name) : Chef(engine, kitchen, name) {}
+
+StationChef::~StationChef() {}
 
 std::shared_ptr<StationChef> StationChef::getNextChef() const{
     return this->nextStationChef;

@@ -1,6 +1,5 @@
 #include "TabState.h"
 
-TabState::TabState(Tab *tab)
-{
+TabState::TabState(std::shared_ptr<Tab> tab) {
     this->tab = tab;
 }

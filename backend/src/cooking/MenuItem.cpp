@@ -1,17 +1,15 @@
 #include "MenuItem.h"
 
-MenuItem::MenuItem(double price,std::string name,std::unordered_map<std::string,int> ingredients) {
+MenuItem::~MenuItem() {}
+
+MenuItem::MenuItem(std::shared_ptr<Engine> engine, double price, std::string name, std::unordered_map<std::string, int> ingredients) : GameComponent(engine) {
     this->name = name;
     this->mealIngredients = ingredients;
     this->mealPrice = price;
     this->isPrepared = false;
 }
 
-MenuItem::~MenuItem(){
-
-}
-
-MenuItem::MenuItem(const MenuItem& other) {
+MenuItem::MenuItem(const MenuItem &other) {
     this->name = other.name;
     this->mealIngredients = other.getMealIngredients() ;
     this->mealPrice = other.getMealPrice();

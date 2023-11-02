@@ -2,18 +2,18 @@
 #include "Tab.h"
 #include "CloseTab.h"
 
-OpenTab::OpenTab(Tab *tab) : TabState(tab) {}
+OpenTab::OpenTab(std::shared_ptr<Tab> tab) : TabState(tab) {}
 
 json OpenTab::closeTab()
 {
-    tab->setState(new CloseTab(tab));
+    tab->setState(std::make_shared<CloseTab>(tab));
 
     return {
         {"status", "success"},
         {"message", "Tab closed successfully"}};
 }
 
-double OpenTab::getBillTotal()
+double OpenTab::getTabTotal()
 {
     double total = 0.0;
 

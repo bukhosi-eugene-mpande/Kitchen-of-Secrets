@@ -1,6 +1,6 @@
 #include "Food.h"
 
-Food::Food(double price,std::string name, std::unordered_map<std::string,int> ingredients) : MenuItem(price,name,ingredients) {}
+Food::Food(std::shared_ptr<Engine> engine, double price, std::string name, std::unordered_map<std::string, int> ingredients) : MenuItem(engine, price, name, ingredients) {}
 
 Food::~Food() {}
 
