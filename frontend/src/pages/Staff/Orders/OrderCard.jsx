@@ -4,7 +4,7 @@ import { Box, Card, CardContent, CardActions, Typography } from '@mui/material';
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function OrderCard({ order, type }) {
+function OrderCard({ order, type, onClick }) {
   return (
     <Box sx={{ m: 2 }}>
       <Card variant='outlined' sx={{ width: 200 }}>
@@ -20,6 +20,7 @@ function OrderCard({ order, type }) {
           <LoadingButton
             size='small'
             variant='contained'
+            onClick={() => onClick(order)}
             loading={type === 'Cooking' ? true : false}
             disabled={type === 'Completed' ? true : false}
           >
