@@ -1,7 +1,8 @@
-makefile
 .vscode
 .DS_STORE
 bin
 obj
 build
 *.o
+*.out
+out
