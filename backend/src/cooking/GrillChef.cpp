@@ -5,7 +5,9 @@
 #include "../ordering/Order.h"
 #include "../ordering/MenuItem.h"
 
-GrillChef::GrillChef(Kitchen* kitchen):StationChef("Grill Chef",kitchen){}
+GrillChef::GrillChef(Kitchen* kitchen):StationChef("Grill Chef",kitchen){
+    this->kitchen=kitchen;
+}
 
 GrillChef::~GrillChef(){}
 

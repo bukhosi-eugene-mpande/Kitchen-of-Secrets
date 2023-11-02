@@ -5,7 +5,9 @@
 #include "../ordering/Order.h"
 #include "../ordering/MenuItem.h"
 
-Baker::Baker(Kitchen* Kitchen) : StationChef("Baker",kitchen){}
+Baker::Baker(Kitchen* Kitchen) : StationChef("Baker",kitchen){
+    this->kitchen=kitchen;
+}
 
 Baker::~Baker(){}
 

@@ -5,7 +5,7 @@
 #include "../ordering/Waiter.h"
 #include "../sudo_management/Management.h"
 
-CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management>) : name(name){
+CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> management) : name(name){
     this->Mood = std::make_shared<Happy>(this);
     this->readyToOrder = false;
     this->totalBill = 0;
@@ -125,4 +125,7 @@ std::string CustomerTemplate::getDesiredSection(){
     return this->DesiredSection = DesiredSection;
 }
 
+void CustomerTemplate::setDesiredSection(std::string DesiredSection){
+    this->DesiredSection = DesiredSection;
+}
 
