@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 
 import {
-  Payments,
   MenuBook,
-  Restaurant,
+  PointOfSale,
+  DinnerDining,
   CalendarToday
 } from '@mui/icons-material';
 
@@ -55,8 +55,8 @@ function Customer() {
             sx={{ width: '100%' }}
           />
           <Tab icon={<MenuBook />} label='Order' sx={{ width: '100%' }} />
-          <Tab icon={<Restaurant />} label='Eat' sx={{ width: '100%' }} />
-          <Tab icon={<Payments />} label='Payment' sx={{ width: '100%' }} />
+          <Tab icon={<DinnerDining />} label='Eat' sx={{ width: '100%' }} />
+          <Tab icon={<PointOfSale />} label='Payment' sx={{ width: '100%' }} />
         </Tabs>
       </Box>
 

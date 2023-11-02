@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
-import { CalendarToday, Restaurant, Payments } from '@mui/icons-material';
+import {
+  PointOfSale,
+  MenuBook,
+  RestaurantMenu,
+  CalendarToday
+} from '@mui/icons-material';
 
+import Orders from './Orders/Orders';
 import Reservations from './Reservations';
 import Panel from '../../components/Panel';
 
@@ -42,11 +48,16 @@ function Staff() {
         <Tabs value={value} onChange={handleChange}>
           <Tab
             icon={<CalendarToday />}
-            label='Reservation'
+            label='Reservations'
             sx={{ width: '100%' }}
           />
-          <Tab icon={<Restaurant />} label='Order' sx={{ width: '100%' }} />
-          <Tab icon={<Payments />} label='Payment' sx={{ width: '100%' }} />
+          <Tab icon={<MenuBook />} label='Orders' sx={{ width: '100%' }} />
+          <Tab icon={<RestaurantMenu />} label='Cook' sx={{ width: '100%' }} />
+          <Tab
+            icon={<PointOfSale />}
+            label='Accounting'
+            sx={{ width: '100%' }}
+          />
         </Tabs>
       </Box>
 
@@ -54,7 +65,9 @@ function Staff() {
         <Reservations socket={socket} />
       </Panel>
 
-      <Panel value={value} index={1}></Panel>
+      <Panel value={value} index={1}>
+        <Orders />
+      </Panel>
 
       <Panel value={value} index={2}></Panel>
     </Box>
