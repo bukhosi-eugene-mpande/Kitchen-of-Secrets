@@ -6,10 +6,10 @@
 
 CustomerNPC::CustomerNPC(std::shared_ptr<Management> management) : CustomerTemplate("NPC",management){}
 
-CustomerNPC::CustomerNPC(std::shared_ptr<Management> management,bool hasGuests,std::string DisiredSection) : CustomerTemplate("NPC",management){
+CustomerNPC::CustomerNPC(std::shared_ptr<Management> management,bool hasGuests,std::string DesiredSection) : CustomerTemplate("NPC",management){
     this->hasGuests = hasGuests;
     this->DesiredSection = DesiredSection;
-    if(DisiredSection == "Private Section"){
+    if(DesiredSection == "Private Section"){
         int numGuests = this->generateRandomAmmountOfGuests(1,10);
         for(int i = 0; i < numGuests; i++){
             std::shared_ptr<CustomerNPC> guest = std::make_shared<CustomerNPC>(management);

@@ -122,10 +122,13 @@ int CustomerTemplate::getNumGuests(){
 }
 
 std::string CustomerTemplate::getDesiredSection(){
-    return this->DesiredSection = DesiredSection;
+    return this->DesiredSection;
 }
 
 void CustomerTemplate::setDesiredSection(std::string DesiredSection){
     this->DesiredSection = DesiredSection;
 }
 
+void CustomerTemplate::requestToBeSeated(){
+    this->management->requestToBeSeated(this->this_to_shared());
+}
