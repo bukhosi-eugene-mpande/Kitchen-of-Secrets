@@ -44,6 +44,7 @@ void Host::seatCustomer() {
         if(this->section->getTables()[i]==reservation->getTable()){
             std::shared_ptr<Table> table = this->section->getTables()[i];
             table->sitCustomer(customer);
+            break;
         }
     }
 }

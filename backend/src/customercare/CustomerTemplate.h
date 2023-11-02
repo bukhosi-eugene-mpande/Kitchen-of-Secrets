@@ -14,7 +14,7 @@ class Management;
 
 class CustomerTemplate{
     protected:
-        std::vector<CustomerTemplate> guests;
+        std::vector<std::shared_ptr<CustomerTemplate>> guests;
         std::shared_ptr<Reservation> reservation;
         std::shared_ptr<Management> management;
         std::string name;
@@ -80,9 +80,9 @@ class CustomerTemplate{
 
         void requestReservation();
 
-        void addGuest(CustomerTemplate guest);
+        void addGuest(std::shared_ptr<CustomerTemplate> guest);
 
-        std::vector<CustomerTemplate> getGuests();
+        std::vector<std::shared_ptr<CustomerTemplate>> getGuests();
 
 
 

@@ -43,7 +43,7 @@ bool Table::getMarkedForMerge(){
     return this->markedForMerge;
 }
 
-std::vector<std::shared_ptr<Customer>> Table::getCustomers(){
+std::vector<std::shared_ptr<CustomerTemplate>> Table::getCustomers(){
     return this->customers;
 }
 
@@ -95,15 +95,15 @@ void Table::setMarkedForMerge(bool markedForMerge){
     this->markedForMerge = markedForMerge;
 }
 
-void Table::setCustomers(std::vector<std::shared_ptr<Customer>> customers){
+void Table::setCustomers(std::vector<std::shared_ptr<CustomerTemplate>> customers){
     this->customers = customers;
 }
 
-void Table::addCustomer(std::shared_ptr<Customer> customer){
+void Table::addCustomer(std::shared_ptr<CustomerTemplate> customer){
     this->customers.push_back(customer);
 }
 
-void Table::removeCustomer(std::shared_ptr<Customer> customer){
+void Table::removeCustomer(std::shared_ptr<CustomerTemplate> customer){
     auto it = std::find(this->customers.begin(), this->customers.end(), customer);
     if (it != this->customers.end()) {
         this->customers.erase(it);
@@ -120,11 +120,12 @@ void Table::clear(){
     this->split = false;
 }
 
-void Table::sitCustomer(std::shared_ptr<Customer> customer){
+void Table::sitCustomer(std::shared_ptr<CustomerTemplate> customer){
     this->customers.push_back(customer);
     if(customer->getHasGuests()){
-        for(int i=0;i<(int)customer->getGuest().size();i++){
-            this->customers.push_back(customer->getGuest()[i]);
+        for(int i=0;i<(int)customer->getGuests().size();i++){
+            std::shared_ptr<CustomerTemplate> guest = customer->getGuests().at(i);
+            // this->customers.push_back();
         }
         
     }

@@ -17,7 +17,7 @@ class Table{
         bool isReserved;
         bool markedForSlit;
         bool markedForMerge;
-        std::vector<std::shared_ptr<Customer>> customers;
+        std::vector<std::shared_ptr<CustomerTemplate>> customers;
         bool merged;
         bool split;
         
@@ -35,7 +35,7 @@ class Table{
         bool getMarkedForMerge();
         bool getMerged();
         bool getSplit();
-        std::vector<std::shared_ptr<Customer>> getCustomers();
+        std::vector<std::shared_ptr<CustomerTemplate>> getCustomers();
         std::string getSection();
         void setMerged(bool merged);
         void setSplit(bool split);
@@ -46,11 +46,11 @@ class Table{
         void setIsReserved(bool isReserved);
         void setMarkedForSplit(bool markedForSplit);
         void setMarkedForMerge(bool markedForMerge);
-        void setCustomers(std::vector<std::shared_ptr<Customer>> customers);
-        void addCustomer(std::shared_ptr<Customer> customer);
-        void removeCustomer(std::shared_ptr<Customer> customer);
+        void setCustomers(std::vector<std::shared_ptr<CustomerTemplate>> customers);
+        void addCustomer(std::shared_ptr<CustomerTemplate> customer);
+        void removeCustomer(std::shared_ptr<CustomerTemplate> customer);
         void clear();
-        void sitCustomer(std::shared_ptr<Customer> customer);
+        void sitCustomer(std::shared_ptr<CustomerTemplate> customer);
 };
 
 #endif

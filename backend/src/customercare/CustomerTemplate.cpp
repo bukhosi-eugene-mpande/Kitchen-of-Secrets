@@ -93,5 +93,11 @@ void CustomerTemplate::requestReservation(){
     this->management->requestReservation(this->this_to_shared(),this->DesiredSection);
 }
 
+void CustomerTemplate::addGuest(std::shared_ptr<CustomerTemplate> guest){
+    this->guests.push_back(guest);
+}
 
+std::vector<std::shared_ptr<CustomerTemplate>> CustomerTemplate::getGuests(){
+    return this->guests;
+}
 
