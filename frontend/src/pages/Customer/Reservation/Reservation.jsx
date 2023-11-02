@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
+import { CustomerContext } from '../Customer';
 
 import {
   Box,
@@ -15,7 +17,9 @@ import {
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function Reservation({ socket }) {
+function Reservation() {
+  const { socket, changeTab } = useContext(CustomerContext);
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -58,6 +62,11 @@ function Reservation({ socket }) {
     if (socket) {
       socket.send(JSON.stringify({ type: 'make-res', ...details }));
     }
+  }
+
+  function handleOKClick() {
+    setOpen(false);
+    changeTab(null, 1);
   }
 
   return (
@@ -146,7 +155,7 @@ function Reservation({ socket }) {
         </LoadingButton>
       </Box>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open}>
         <DialogTitle>Reservation Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -154,7 +163,7 @@ function Reservation({ socket }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)}>OK</Button>
+          <Button onClick={handleOKClick}>OK</Button>
         </DialogActions>
       </Dialog>
     </Box>

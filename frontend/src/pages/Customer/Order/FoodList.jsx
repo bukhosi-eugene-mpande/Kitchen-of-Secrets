@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { OrderContext } from './Order';
+
 import {
   Box,
   List,
@@ -9,13 +12,15 @@ import {
   ListItemText
 } from '@mui/material';
 
-function BeverageList({ addToOrder }) {
-  const beverages = [
-    { name: 'Coke', price: 2 },
-    { name: 'Water', price: 1 },
-    { name: 'Juice', price: 3 },
-    { name: 'Coffee', price: 4 },
-    { name: 'Tea', price: 2 }
+function FoodList() {
+  const { addToOrder } = useContext(OrderContext);
+
+  const food = [
+    { name: 'Pizza', price: 10 },
+    { name: 'Burger', price: 15 },
+    { name: 'Pasta', price: 12 },
+    { name: 'Salad', price: 8 },
+    { name: 'Soup', price: 7 }
   ];
 
   return (
@@ -30,13 +35,13 @@ function BeverageList({ addToOrder }) {
       }}
     >
       <Typography variant='h4' sx={{ m: 2 }}>
-        Beverages
+        Food
       </Typography>
 
       <Divider />
 
       <List>
-        {beverages.map((item, index) => (
+        {food.map((item, index) => (
           <ListItem key={index}>
             <ListItemText primary={`${item.name} - R${item.price}`} />
             <Button variant='contained' onClick={() => addToOrder(item)}>
@@ -49,4 +54,4 @@ function BeverageList({ addToOrder }) {
   );
 }
 
-export default BeverageList;
+export default FoodList;

@@ -4,7 +4,7 @@ import OrderCard from './OrderCard';
 
 import { Box, Typography } from '@mui/material';
 
-function OrderList({ type, orders, onCook }) {
+function OrderList({ type, orders }) {
   return (
     <Box
       sx={{
@@ -20,7 +20,7 @@ function OrderList({ type, orders, onCook }) {
 
       <Box sx={{ display: 'flex', overflow: 'scroll' }}>
         {orders.map((order) => (
-          <OrderCard order={order} type={type} onClick={onCook} />
+          <OrderCard order={order} type={type} />
         ))}
       </Box>
     </Box>

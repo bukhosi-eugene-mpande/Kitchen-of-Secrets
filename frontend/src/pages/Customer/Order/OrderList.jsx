@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
+import { OrderContext } from './Order';
+import { CustomerContext } from '../Customer';
+
 import {
   Box,
   List,
@@ -10,15 +14,20 @@ import {
 } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function OrderList({ order, removeFromOrder }) {
+function OrderList() {
   const [loading, setLoading] = useState(false);
+  const { socket } = useContext(CustomerContext);
+  const { order, removeFromOrder } = useContext(OrderContext);
+
+  const totalPrice = order.reduce((total, item) => total + item.price, 0);
 
   function handleOrderClick() {
     setLoading(true);
-    console.log(order);
-  }
 
-  const totalPrice = order.reduce((total, item) => total + item.price, 0);
+    if (socket) {
+      socket.send(JSON.stringify({ type: 'make-order', ...order }));
+    }
+  }
 
   return (
     <Box

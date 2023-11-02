@@ -5,7 +5,7 @@ import { Box, Divider, Typography } from '@mui/material';
 import FoodList from './FoodList';
 import BeverageList from './BeverageList';
 
-function Menu({ addToOrder }) {
+function Menu() {
   return (
     <Box
       sx={{
@@ -29,8 +29,8 @@ function Menu({ addToOrder }) {
           justifyContent: 'center'
         }}
       >
-        <FoodList addToOrder={addToOrder} />
-        <BeverageList addToOrder={addToOrder} />
+        <FoodList />
+        <BeverageList />
       </Box>
     </Box>
   );

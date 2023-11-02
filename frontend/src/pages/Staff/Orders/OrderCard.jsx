@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import OrdersContext from './Orders';
 
 import { Box, Card, CardContent, CardActions, Typography } from '@mui/material';
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function OrderCard({ order, type, onClick }) {
+function OrderCard({ order, type }) {
+  const { handleCookClick } = useContext(OrdersContext);
+
   return (
     <Box sx={{ m: 2 }}>
       <Card variant='outlined' sx={{ width: 200 }}>
@@ -20,7 +24,7 @@ function OrderCard({ order, type, onClick }) {
           <LoadingButton
             size='small'
             variant='contained'
-            onClick={() => onClick(order)}
+            onClick={() => handleCookClick(order)}
             loading={type === 'Cooking' ? true : false}
             disabled={type === 'Completed' ? true : false}
           >

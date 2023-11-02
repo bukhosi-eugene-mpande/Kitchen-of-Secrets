@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
 
@@ -9,73 +9,80 @@ import {
   CalendarToday
 } from '@mui/icons-material';
 
-import Eat from './Eat';
-import Order from './Order';
-import Payment from './Payment';
-import Reservation from './Reservation';
+import Eat from './Eat/Eat';
+import Order from './Order/Order';
+import Payment from './Payment/Payment';
 import Panel from '../../components/Panel';
+import Reservation from './Reservation/Reservation';
+
+export const CustomerContext = createContext();
 
 function Customer() {
-  console.log('Render Customer');
-  const [socket, setSocket] = useState(null);
   const [value, setValue] = useState(0);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = new WebSocket('ws://localhost:8000/ws');
+    const ws = new WebSocket('ws://localhost:8000/ws');
 
-    newSocket.onopen = () => {
-      newSocket.send('Customer');
+    ws.onopen = () => {
+      ws.send('Customer');
     };
 
-    setSocket(newSocket);
+    setSocket(ws);
 
     return () => {
-      if (newSocket) {
-        newSocket.close(1000, 'Component unmounted');
+      if (ws) {
+        ws.close(1000, 'Component unmounted');
       }
     };
   }, []);
 
-  const handleChange = (event, newValue) => {
+  const changeTab = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box>
-      <Box
-        sx={{
-          borderBottom: 1,
-          borderColor: 'divider'
-        }}
-      >
-        <Tabs value={value} onChange={handleChange}>
-          <Tab
-            icon={<CalendarToday />}
-            label='Reservation'
-            sx={{ width: '100%' }}
-          />
-          <Tab icon={<MenuBook />} label='Order' sx={{ width: '100%' }} />
-          <Tab icon={<DinnerDining />} label='Eat' sx={{ width: '100%' }} />
-          <Tab icon={<PointOfSale />} label='Payment' sx={{ width: '100%' }} />
-        </Tabs>
+    <CustomerContext.Provider value={{ socket, changeTab }}>
+      <Box>
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider'
+          }}
+        >
+          <Tabs value={value} onChange={changeTab}>
+            <Tab
+              icon={<CalendarToday />}
+              label='Reservation'
+              sx={{ width: '100%' }}
+            />
+            <Tab icon={<MenuBook />} label='Order' sx={{ width: '100%' }} />
+            <Tab icon={<DinnerDining />} label='Eat' sx={{ width: '100%' }} />
+            <Tab
+              icon={<PointOfSale />}
+              label='Payment'
+              sx={{ width: '100%' }}
+            />
+          </Tabs>
+        </Box>
+
+        <Panel value={value} index={0}>
+          <Reservation socket={socket} />
+        </Panel>
+
+        <Panel value={value} index={1}>
+          <Order />
+        </Panel>
+
+        <Panel value={value} index={2}>
+          <Eat />
+        </Panel>
+
+        <Panel value={value} index={3}>
+          <Payment />
+        </Panel>
       </Box>
-
-      <Panel value={value} index={0}>
-        <Reservation socket={socket} />
-      </Panel>
-
-      <Panel value={value} index={1}>
-        <Order />
-      </Panel>
-
-      <Panel value={value} index={2}>
-        <Eat />
-      </Panel>
-
-      <Panel value={value} index={3}>
-        <Payment />
-      </Panel>
-    </Box>
+    </CustomerContext.Provider>
   );
 }
 
