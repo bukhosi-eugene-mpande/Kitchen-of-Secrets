@@ -44,6 +44,31 @@ This document outlines the requirements for the backend API that the frontend wi
 
 **Response:**
 
+Button return values:
+
+``` json
+  do rounds
+  {
+  rounds:true
+  ingredients: false
+  waiter: false
+  }
+
+  buy ingredients
+  {
+  rounds:false
+  ingredients: true
+  waiter: false
+  }
+
+  send waiter
+  {
+  rounds:false
+  ingredients: false
+  waiter: true
+  }
+```
+
 ```json
 {
   "privatetables": [
@@ -168,3 +193,4 @@ This document outlines the requirements for the backend API that the frontend wi
   }
 ]
 ```
+
