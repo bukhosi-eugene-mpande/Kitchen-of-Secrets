@@ -10,6 +10,7 @@ CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management>)
     this->readyToOrder = false;
     this->totalBill = 0;
     this->management = management;
+    this->reservation = nullptr;
 }
 
 CustomerTemplate::~CustomerTemplate(){
@@ -87,5 +88,10 @@ void CustomerTemplate::setManagement(std::shared_ptr<Management> management){
 std::shared_ptr<CustomerTemplate> CustomerTemplate::this_to_shared(){
     return std::shared_ptr<CustomerTemplate>(this);
 }
+
+void CustomerTemplate::requestReservation(){
+    this->management->requestReservation(this->this_to_shared(),this->DesiredSection);
+}
+
 
 

@@ -4,10 +4,14 @@
 #include "../cooking/Kitchen.h"
 #include "../sudo_accounting/Inventory.h"
 #include "../reservation/ReservationSystem.h"
+#include "../reservation/Table.h"
+#include "../reservation/Receptionist.h"
 
 Management::Management() {
     this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
     this->reservationSystem = std::make_shared<ReservationSystem>();
+    this->receptionist = std::make_shared<Receptionist>(this->reservationSystem);
+
 }
 
 Management::~Management() {
@@ -51,4 +55,8 @@ void Management::notifyPlayerOfChangeInMood() {
 
 void Management::clearOutTable(std::shared_ptr<Table> table) {
     this->reservationSystem->clearOutTable(table);
+}
+
+void Management::requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section) {
+    this->receptionist->requestReservation(customer,section);
 }

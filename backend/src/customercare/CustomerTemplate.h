@@ -13,14 +13,19 @@ class Waiter;
 class Management;
 
 class CustomerTemplate{
-    private:
+    protected:
+        std::vector<CustomerTemplate> guests;
         std::shared_ptr<Reservation> reservation;
         std::shared_ptr<Management> management;
         std::string name;
         std::shared_ptr<SatisfactionState> Mood;
         std::unordered_map<std::string,int> order;
+        std::string DesiredSection;
+        int numGuests;
         double totalBill;
         bool readyToOrder;
+        bool hasGuests;
+        bool isMain;
 
     public:
         CustomerTemplate(std::string name, std::shared_ptr<Management> management);
@@ -62,6 +67,24 @@ class CustomerTemplate{
         void setManagement(std::shared_ptr<Management> management);
 
         std::shared_ptr<CustomerTemplate> this_to_shared();
+
+        bool getHasGuests();
+
+        void setHasGuests(bool hasGuests);
+
+        bool getIsMain();
+
+        void setIsMain(bool isMain);
+
+        int getNumGuests();
+
+        void requestReservation();
+
+        void addGuest(CustomerTemplate guest);
+
+        std::vector<CustomerTemplate> getGuests();
+
+
 
 };
 #endif

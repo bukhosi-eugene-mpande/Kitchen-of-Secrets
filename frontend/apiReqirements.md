@@ -79,6 +79,31 @@ This document outlines the requirements for the backend API that the frontend wi
 }
 ```
 
+Button return values:
+
+``` json
+  do rounds
+  {
+  rounds:true
+  ingredients: false
+  waiter: false
+  }
+
+  buy ingredients
+  {
+  rounds:false
+  ingredients: true
+  waiter: false
+  }
+
+  send waiter
+  {
+  rounds:false
+  ingredients: false
+  waiter: true
+  }
+```
+
 ### 3. Ordering
 
 - **Endpoint:** `/Ordering`
@@ -100,3 +125,8 @@ This document outlines the requirements for the backend API that the frontend wi
   }
 ]
 ```
+
+Main manager page:
+
+
+

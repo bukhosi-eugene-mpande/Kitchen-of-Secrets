@@ -18,6 +18,7 @@ class Host {
     public:
         Host(std::shared_ptr<Section> section, std::shared_ptr<Reservation> reservation, std::shared_ptr<Customer> customer);
         ~Host();
+        void seatCustomer();
         std::shared_ptr<Section> getSection();
         void setSection(std::shared_ptr<Section> section);
         std::shared_ptr<Reservation> getReservation();

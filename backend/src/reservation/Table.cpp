@@ -119,3 +119,14 @@ void Table::clear(){
     this->merged = false;
     this->split = false;
 }
+
+void Table::sitCustomer(std::shared_ptr<Customer> customer){
+    this->customers.push_back(customer);
+    if(customer->getHasGuests()){
+        for(int i=0;i<(int)customer->getGuest().size();i++){
+            this->customers.push_back(customer->getGuest()[i]);
+        }
+        
+    }
+    this->isOccupied = true;
+}

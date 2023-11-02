@@ -10,12 +10,14 @@ class Waiter;
 class Kitchen;
 class Inventory;
 class ReservationSystem;
+class Receptionist;
 
 class Management {
     private:
         std::shared_ptr<Kitchen> kitchen;
         std::shared_ptr<Inventory> inventory;
         std::shared_ptr<ReservationSystem> reservationSystem;
+        std::shared_ptr<Receptionist> receptionist;
 
     public:
         Management();
@@ -41,6 +43,8 @@ class Management {
         void notifyPlayerOfChangeInMood();
 
         void clearOutTable(std::shared_ptr<Table> table);
+
+        void requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section);
 
 };
 

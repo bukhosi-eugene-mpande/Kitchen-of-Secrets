@@ -12,20 +12,22 @@ class Menu;
 
 class CustomerNPC: public CustomerTemplate{
     private:
-        std::vector<CustomerNPC> guests;
+        
+        
 
     public:
         CustomerNPC(std::shared_ptr<Management> management);
 
+        CustomerNPC(std::shared_ptr<Management> management,bool hasGuests,std::string section);
+
         ~CustomerNPC();
 
-        void addGuest(CustomerNPC guest);
-
-        std::vector<CustomerNPC> getGuests();
 
         std::unordered_map<std::string,int> generateBeverageOrder(Menu menu);
 
         std::unordered_map<std::string,int> generateFoodOrder(Menu menu);
+
+        int generateRandomAmmountOfGuests(int min, int max);
         
 };
 

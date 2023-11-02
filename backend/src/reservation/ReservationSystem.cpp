@@ -12,11 +12,11 @@ ReservationSystem::~ReservationSystem() {
 
 }
 
-std::shared_ptr<PrivateSection> ReservationSystem::getPrivateSection() {
+std::shared_ptr<Section> ReservationSystem::getPrivateSection() {
     return this->privateSection;
 }
 
-std::shared_ptr<GeneralSection> ReservationSystem::getGeneralSection() {
+std::shared_ptr<Section> ReservationSystem::getGeneralSection() {
     return this->generalSection;
 }
 

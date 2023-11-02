@@ -50,6 +50,7 @@ class Table{
         void addCustomer(std::shared_ptr<Customer> customer);
         void removeCustomer(std::shared_ptr<Customer> customer);
         void clear();
+        void sitCustomer(std::shared_ptr<Customer> customer);
 };
 
 #endif
