@@ -8,6 +8,7 @@
 
 class GameComponent;
 
+<<<<<<< HEAD
 /**
  * @brief 
  * 
@@ -40,6 +41,15 @@ class Engine
          * @param message 
          */
         virtual void notify(GameComponent*sender, std::string message) = 0;
+=======
+class Engine
+{
+    public:
+        virtual ~Engine() {}
+        virtual void notify(GameComponent* sender, std::string message) = 0;
+    protected:
+        Engine() {}
+>>>>>>> accounting
 };
 
 #endif

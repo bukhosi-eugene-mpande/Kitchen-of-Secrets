@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "GameEngine.h"
 
 GameEngine::GameEngine(std::vector<GameComponent*> gameComponents) {
@@ -12,3 +13,6 @@ void GameEngine::notify(GameComponent* sender, std::string message) {
 
 void GameEngine::reactOnGameComponent(int index) {
 }
+=======
+#include "GameEngine.h"
+>>>>>>> accounting

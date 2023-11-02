@@ -1,17 +1,24 @@
 #ifndef GAME_COMPONENT_H
 #define GAME_COMPONENT_H
 
+<<<<<<< HEAD
 #include "Engine.h"
 
 #include <string>
 #include <iostream>
 #include <memory>
+=======
+#include <string>
+#include <iostream>
+#include "Engine.h"
+>>>>>>> accounting
 
 class Engine;
 
 class GameComponent 
 {
     protected:
+<<<<<<< HEAD
         /**
          * @brief `Engine* engine` is declaring a member variable named `engine` of type 
          * `Engine*`.
@@ -52,6 +59,13 @@ class GameComponent
          * 
          * @param message 
          */
+=======
+        Engine* engine;
+    public:
+        GameComponent(Engine* engine) {this->engine = engine;}
+        virtual void changed(std::string message) {engine->notify(this, message);}
+        virtual void sendNotification() = 0;
+>>>>>>> accounting
         virtual void receiveNotification(std::string message) = 0;
 };
 

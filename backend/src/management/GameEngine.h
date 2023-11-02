@@ -5,6 +5,7 @@
 
 class GameEngine : public Engine {
     private:
+<<<<<<< HEAD
         /**
          * @brief  `std::vector<GameComponent*> gameComponents;` is declaring a private 
          * member variable `gameComponents` of type `std::vector<GameComponent*>`.
@@ -45,6 +46,13 @@ class GameEngine : public Engine {
          * @param index 
          */
         void reactOnGameComponent(int index);
+=======
+        std::vector<GameComponent*> gameComponent;
+    public:
+        GameEngine(std::vector<GameComponent*> GameComponent);
+        ~GameEngine();
+        virtual void notify(GameComponent* sender, std::string message);
+>>>>>>> accounting
 };
 
 #endif
