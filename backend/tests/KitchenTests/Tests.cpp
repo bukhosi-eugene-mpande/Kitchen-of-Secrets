@@ -45,3 +45,22 @@ TEST(DrinksTest, DrinksConstructorTest) {
     EXPECT_TRUE(drink2->getIsAlcoholic());   
 
 }
+
+TEST(KitchenTest,ConstructorTest){  
+    //shared_ptr<Management> management
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+
+    //kitchen
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
+    
+    //check magament
+    EXPECT_EQ(kitchen->getManagement(), management.get());
+    EXPECT_NE(kitchen->getManagement(), nullptr);
+    EXPECT_NE(kitchen->getHeadChef(),nullptr);
+    EXPECT_NE(kitchen->getDeputyHeadChef(),nullptr);
+    EXPECT_EQ(kitchen->getMenu().size(),25);
+    EXPECT_EQ(kitchen->getDrinksMenu().size(),10);
+    EXPECT_EQ(kitchen->getCuisineMenu().size(),15);
+
+}
+
