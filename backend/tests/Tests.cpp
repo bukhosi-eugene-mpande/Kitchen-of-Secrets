@@ -168,7 +168,7 @@ TEST(CustomerTest, SeatingTest) {
 
 }
 
-TEST(CustomerTest,Leave){
+TEST(CustomerTest,LeaveTests){
     std::shared_ptr<Management> management = std::make_shared<Management>();
     Customer*  customer1 = new Customer(management);
     Customer*  customer2 = new Customer(management);
@@ -280,5 +280,63 @@ TEST(CustomerTest,Leave){
 
     EXPECT_EQ(management->getPrivateSection()->getAllCustomers().size(), 0);
     EXPECT_EQ(management->getGeneralSection()->getAllCustomers().size(), 0);
+
+}
+
+TEST(CustomerTest,MergeAndSplitTests){
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+
+    CustomerNPC* customer3 = new CustomerNPC(management,true,"General Section");
+    CustomerNPC* customer4 = new CustomerNPC(management,true,"Private Section");
+
+    customer3->setNumGuests(7);
+
+    customer4->setNumGuests(7);
+
+    customer3->setManagement(management);
+    customer3->requestReservation();
+
+    customer4->setManagement(management);
+    customer4->requestReservation();
+
+    EXPECT_NE(customer3->getReservation(), nullptr);
+
+    EXPECT_NE(customer4->getReservation(), nullptr);
+
+    EXPECT_TRUE(customer3->getReservation()->getTable()->getMarkedForMerge());
+
+    EXPECT_TRUE(customer4->getReservation()->getTable()->getMarkedForMerge());
+
+    customer3->requestToBeSeated();
+
+    customer4->requestToBeSeated();
+
+    customer3->leave();
+
+    customer4->leave();
+
+    std::shared_ptr<Section> privateSection = management->getPrivateSection();
+
+    std::shared_ptr<Section> generalSection = management->getPrivateSection();
+
+    bool flag = false;
+
+    for(int i=0;i<(int)privateSection->getTables().size();i++){
+        if(privateSection->getTables()[i]->getMerged()){
+            flag = true;
+        }
+    }
+
+    EXPECT_FALSE(flag);
+
+    flag = false;
+
+    for(int i=0;i<(int)generalSection->getTables().size();i++){
+        if(generalSection->getTables()[i]->getMerged()){
+            flag = true;
+        }
+    }
+
+    EXPECT_FALSE(flag);
 
 }
