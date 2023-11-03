@@ -38,6 +38,26 @@ void ReservationSystem::clearOutTable(std::shared_ptr<Table> table) {
     for(int i = 0; i < (int) table->getCustomers().size(); i++) {
         garbage.push_back(table->getCustomers()[i]);
     }
-    table->clear();
+    bool flag = table->getMerged();
+    if(flag){
+
+        std::shared_ptr<Section> section;
+        if(table->getSection()=="Private"){
+            section = this->privateSection;
+        }else{
+            section = this->generalSection;
+        }
+        
+        std::vector<std::shared_ptr<Table>> tables = section->splitTable(table);
+
+        for(int i = 0; i < (int) tables.size(); i++) {
+            tables[i]->clear();
+            tables[i]->setMerged(false);
+        }
+
+    }else{
+        table->clear();
+    }
+
 }
 

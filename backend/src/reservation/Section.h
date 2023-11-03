@@ -30,9 +30,9 @@ class Section{
         
         std::vector<std::shared_ptr<CustomerTemplate>> getAllCustomers();
 
-        void mergeTables(int tableId1, int tableId2);
+        std::shared_ptr<Table> mergeTables(int tableId1, int tableId2);
 
-        void splitTable(int tableId);
+        std::vector<std::shared_ptr<Table>> splitTable(std::shared_ptr<Table> table);
 
 };
 
