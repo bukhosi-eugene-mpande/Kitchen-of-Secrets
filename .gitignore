@@ -4,8 +4,10 @@ makefile
 server
 .vscode
 .DS_STORE
+node_modules
 bin
 obj
+
 Documentation/.DS_STORE
 # accounting ingonores
 src/accounting/makefile
