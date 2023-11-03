@@ -1,17 +1,13 @@
 import React, { useState, useEffect, createContext } from 'react';
-
-import { Box, Tab, Tabs } from '@mui/material';
-
-
+import { Box, Tab, Tabs, CircularProgress } from '@mui/material';
 import {
   MenuBook,
   PointOfSale,
   CalendarToday,
   RestaurantMenu
 } from '@mui/icons-material';
-
 import Orders from './Orders/Orders';
-import Reservations from './Reservations';
+import Reservations from './Reservations/Reservations';
 import Panel from '../../components/Panel';
 
 export const StaffContext = createContext();
@@ -26,7 +22,7 @@ function Staff() {
     ws.onopen = () => {
       ws.send('Staff');
     };
-
+    
     setSocket(ws);
 
     return () => {
@@ -36,12 +32,16 @@ function Staff() {
     };
   }, []);
 
-  const handleChange = (event, newValue) => {
+  const changeTab = (event, newValue) => {
     setValue(newValue);
   };
 
+  if (!socket) {
+    return <CircularProgress />;
+  }
+
   return (
-    <StaffContext.Provider value={{ value, socket }}>
+    <StaffContext.Provider value={{ changeTab }}>
       <Box>
         <Box
           sx={{
@@ -49,7 +49,7 @@ function Staff() {
             borderColor: 'divider'
           }}
         >
-          <Tabs value={value} onChange={handleChange}>
+          <Tabs value={value} onChange={changeTab}>
             <Tab
               icon={<CalendarToday />}
               label='Reservations'

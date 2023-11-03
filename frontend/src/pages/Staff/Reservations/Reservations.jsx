@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-
-import { StaffContext } from './Staff';
+import React, { useState, useEffect } from 'react';
 
 import {
   Box,
@@ -11,21 +9,29 @@ import {
   ListItemText
 } from '@mui/material';
 
-function Reservations() {
-  const { socket } = useContext(StaffContext);
+function Reservations({ socket }) {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
     if (socket) {
-      socket.onmessage = (event) => {
-        const newReservation = JSON.parse(event.data);
-        setReservations((prevReservations) => [
-          ...prevReservations,
-          newReservation
-        ]);
-      };
+      socket.addEventListener('message', addReservation);
     }
+
+    return () => {
+      if (socket) {
+        socket.removeEventListener('message', addReservation);
+      }
+    };
   }, [socket]);
+
+  const addReservation = (event) => {
+    console.log(event);
+    const newReservation = JSON.parse(event.data);
+    setReservations((prevReservations) => [
+      ...prevReservations,
+      newReservation
+    ]);
+  };
 
   function handleAccept(name) {
     setReservations((prevReservations) =>

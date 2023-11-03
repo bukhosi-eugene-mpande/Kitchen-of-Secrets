@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 
 import { OrderContext } from './Order';
-import { CustomerContext } from '../Customer';
 
 import {
   Box,
@@ -12,11 +11,11 @@ import {
   Typography,
   ListItemText
 } from '@mui/material';
+
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function OrderList() {
+function OrderList({socket}) {
   const [loading, setLoading] = useState(false);
-  const { socket } = useContext(CustomerContext);
   const { order, removeFromOrder } = useContext(OrderContext);
 
   const totalPrice = order.reduce((total, item) => total + item.price, 0);

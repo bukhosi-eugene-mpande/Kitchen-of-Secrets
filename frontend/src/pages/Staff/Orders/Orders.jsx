@@ -1,6 +1,4 @@
-import React, { useState, createContext, useEffect, useContext } from 'react';
-
-import StaffContext from '../Staff';
+import React, { useState, createContext, useEffect } from 'react';
 
 import { Box, Typography } from '@mui/material';
 
@@ -8,12 +6,10 @@ import OrderList from './OrderList';
 
 export const OrdersContext = createContext();
 
-function Orders() {
+function Orders({ socket }) {
   const [newOrders, setNewOrders] = useState([]);
   const [cookingOrders, setCookingOrders] = useState([]);
   const [completedOrders, setCompletedOrders] = useState([]);
-
-  const { socket } = useContext(StaffContext);
 
   useEffect(() => {
     if (socket) {
@@ -52,9 +48,9 @@ function Orders() {
           Orders
         </Typography>
 
-        <OrderList type='New' order={newOrders} />
-        <OrderList type='Cooking' order={cookingOrders} />
-        <OrderList type='Completed' order={completedOrders} />
+        <OrderList type='New' orders={newOrders} />
+        <OrderList type='Cooking' orders={cookingOrders} />
+        <OrderList type='Completed' orders={completedOrders} />
       </Box>
     </OrdersContext.Provider>
   );

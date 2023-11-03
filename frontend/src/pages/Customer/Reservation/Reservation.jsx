@@ -17,8 +17,8 @@ import {
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function Reservation() {
-  const { socket, changeTab } = useContext(CustomerContext);
+function Reservation({ socket }) {
+  const { changeTab } = useContext(CustomerContext);
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -61,6 +61,8 @@ function Reservation() {
 
     if (socket) {
       socket.send(JSON.stringify({ type: 'make-res', ...details }));
+    } else {
+      console.log('Socket not found');
     }
   }
 

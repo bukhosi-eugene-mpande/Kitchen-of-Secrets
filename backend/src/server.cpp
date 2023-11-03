@@ -49,7 +49,7 @@ int main()
         })
 
         .onclose([&](crow::websocket::connection& conn, const std::string& reason){
-            CROW_LOG_INFO << "Connection: " + conn.get_remote_ip() + "closed because " + reason;
+            CROW_LOG_INFO << "Connection: " + conn.get_remote_ip() + " closed because " + reason;
         })
 
         .onmessage([&](crow::websocket::connection& conn, const std::string& data, bool is_binary){
@@ -76,12 +76,22 @@ int main()
                 if (jsonData["type"] == "make-res")
                 {
                     staff->send_text(data);
-                    CROW_LOG_INFO << "Make Reservation Request: \n" + data;
+                    CROW_LOG_INFO << "Reservation request sent to staff";
                 }
                 else if(jsonData["type"] == "accept-res")
                 {
                     customer->send_text(data);
-                    CROW_LOG_INFO << "Accept Reservation Request: \n" + data;
+                    CROW_LOG_INFO << "Reservation accepted by staff";
+                }
+                else if(jsonData["type"] == "make-order")
+                {
+                    staff->send_text(data);
+                    CROW_LOG_INFO << "Order request sent to staff";
+                }
+                else if(jsonData["type"] == "cook-order")
+                {
+                    customer->send_text(data);
+                    CROW_LOG_INFO << "Order accepted by staff";
                 }
             }
         }

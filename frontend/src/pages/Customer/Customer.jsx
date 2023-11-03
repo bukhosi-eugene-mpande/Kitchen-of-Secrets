@@ -32,7 +32,7 @@ function Customer() {
 
     return () => {
       if (ws) {
-        ws.close(1000, 'Component unmounted');
+        ws.close(1000, 'Customer disconnected');
       }
     };
   }, []);
@@ -42,7 +42,7 @@ function Customer() {
   };
 
   return (
-    <CustomerContext.Provider value={{ socket, changeTab }}>
+    <CustomerContext.Provider value={{ changeTab }}>
       <Box>
         <Box
           sx={{
@@ -71,7 +71,7 @@ function Customer() {
         </Panel>
 
         <Panel value={value} index={1}>
-          <Order />
+          <Order socket={socket}/>
         </Panel>
 
         <Panel value={value} index={2}>

@@ -18,10 +18,10 @@ import OrderList from './OrderList';
 
 export const OrderContext = createContext();
 
-function Order() {
+function Order({socket}) {
   const [order, setOrder] = useState([]);
   const [open, setOpen] = useState(false);
-  const { socket, changeTab } = useContext(CustomerContext);
+  const { changeTab } = useContext(CustomerContext);
 
   useEffect(() => {
     if (socket) {
@@ -72,7 +72,7 @@ function Order() {
           }}
         >
           <Menu />
-          <OrderList />
+          <OrderList socket={socket} />
         </Box>
         <Dialog open={open}>
           <DialogTitle>Order Received</DialogTitle>
