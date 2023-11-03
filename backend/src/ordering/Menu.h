@@ -28,6 +28,6 @@ class Menu{
         std::string getitemName();
         void setItemName(std::string);
         int getNumOfItems();
-        void setnumOfItems(int numOfItems);
+        void setNumOfItems(int numOfItems);
 };
 #endif
