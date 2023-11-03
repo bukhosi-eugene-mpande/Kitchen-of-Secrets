@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
-import { CalendarToday, Restaurant, Payments } from '@mui/icons-material';
+import { CalendarToday, Restaurant, Payments, TableRestaurant } from '@mui/icons-material';
 
 import Order from './Order';
 import Payment from './Payment';
@@ -32,7 +32,7 @@ function Customer() {
           />
           <Tab icon={<Restaurant />} label='Order' sx={{ width: '100%' }} />
           <Tab icon={<Payments />} label='Payment' sx={{ width: '100%' }} />
-          <Tab icon={<Table />} label='Table' sx={{ width: '100%' }} /> {/*should this be labeled Table or Restaurant ? if customer can only see their table*/}
+          <Tab icon={<TableRestaurant />} label='Table' sx={{ width: '100%' }} /> {/*should this be labeled Table or Restaurant ? if customer can only see their table*/}
         </Tabs>
       </Box>
 
