@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "./includes/customercare_all.cpp"
-#include "./includes/reservation_all.cpp"
-#include "./includes/inventory_all.cpp"
-#include "./includes/ordering_all.cpp"
-#include "./includes/cooking_all.cpp"
-#include "./includes/management_all.cpp"
+#include "../includes/customercare_all.cpp"
+#include "../includes/reservation_all.cpp"
+#include "../includes/inventory_all.cpp"
+#include "../includes/ordering_all.cpp"
+#include "../includes/cooking_all.cpp"
+#include "../includes/management_all.cpp"
 
 TEST(CustomerTest, ConstructorTest) {
     std::shared_ptr<Management> management = std::make_shared<Management>();

@@ -18,4 +18,8 @@
 #include "../../src/cooking/Meal.cpp"
 #include "../../src/cooking/StationChef.h"
 #include "../../src/cooking/StationChef.cpp"
+#include "../../src/cooking/Cuisine.h"
+#include "../../src/cooking/Cuisine.cpp"
+#include "../../src/cooking/Drink.h"
+#include "../../src/cooking/Drink.cpp"
 
