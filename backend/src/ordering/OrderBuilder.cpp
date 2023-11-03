@@ -24,3 +24,11 @@ std::shared_ptr<Order> OrderBuilder::getOrder() {
     this->order = std::make_shared<Order>(this->tableNumber, this->meals, this->waiter);
     return this->order;
 }
+
+void OrderBuilder::reset()
+{
+    this->order=nullptr;
+    this->waiter=nullptr;
+    //this->meals=nullptr;
+    this->tableNumber=-1;
+}

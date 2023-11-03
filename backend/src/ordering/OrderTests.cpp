@@ -374,4 +374,3 @@ TEST(OrderTests, GetMealTest){
     // Check the meal
     EXPECT_EQ(NotThereMeal, nullptr);
 }
-
