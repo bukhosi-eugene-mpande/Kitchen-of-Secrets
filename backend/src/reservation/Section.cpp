@@ -41,7 +41,7 @@ std::vector<std::shared_ptr<CustomerTemplate>> Section::getAllCustomers() {
     return customers;
 }
 
-void Section::mergeTables(int tableId1, int tableId2) {
+std::shared_ptr<Table> Section::mergeTables(int tableId1, int tableId2) {
     std::shared_ptr<Table> table1;
     std::shared_ptr<Table> table2;
     for (int i = 0; i < (int) this->tables.size(); i++) {
@@ -58,31 +58,34 @@ void Section::mergeTables(int tableId1, int tableId2) {
             table1->setMarkedForMerge(false);
             table1->setMerged(true);
             this->removeTable(table2);
+            return table1;
         }
     }
+    return nullptr;
 }
 
-void Section::splitTable(int tableId) {
-    std::shared_ptr<Table> table;
-    for (int i = 0; i < (int) this->tables.size(); i++) {
-        if (this->tables[i]->getTableId() == tableId) {
-            table = this->tables[i];
-        }
+std::vector<std::shared_ptr<Table>> Section::splitTable(std::shared_ptr<Table> table) {
+    std::vector<std::shared_ptr<Table>> tables;
+
+    this->removeTable(table);
+
+    std::shared_ptr<Table> newTable1;
+    std::shared_ptr<Table> newTable2;
+
+    if(this->name == "Private Section"){
+        newTable1 = std::make_shared<PrivateTable>();
+        newTable2 = std::make_shared<PrivateTable>();
+    }else{
+        newTable1 = std::make_shared<GeneralTable>();
+        newTable2 = std::make_shared<GeneralTable>();
     }
-    if(table != nullptr) {
-        if(table->getMarkedForSplit()){
-            std::shared_ptr<Table> newTable;
-            if(this->name == "Private Section"){
-                newTable = std::make_shared<PrivateTable>();
-            }else{
-                newTable = std::make_shared<GeneralTable>();
-            }
-            newTable->setTableSize(table->getTableSize() / 2);
-            table->setTableSize(table->getTableSize() / 2);
-            newTable->setMarkedForSplit(false);
-            newTable->setSplit(true);
-            this->addTable(newTable);
-        }
-    }
+
+    this->addTable(newTable1);
+    this->addTable(newTable2);
+
+    tables.push_back(newTable1);
+    tables.push_back(newTable2);
+
+    return tables;
 }
 

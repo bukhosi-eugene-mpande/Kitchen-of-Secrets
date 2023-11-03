@@ -78,6 +78,8 @@ class CustomerTemplate{
 
         int getNumGuests();
 
+        void setNumGuests(int numGuests);
+
         void requestReservation();
 
         void addGuest(std::shared_ptr<CustomerTemplate> guest);
