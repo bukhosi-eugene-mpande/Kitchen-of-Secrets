@@ -58,6 +58,7 @@ void CustomerTemplate::notifyManagement(){
 }
 
 void CustomerTemplate::leave(){
+    this->guests.clear();
     this->management->clearOutTable(this->reservation->getTable());
 }
 
