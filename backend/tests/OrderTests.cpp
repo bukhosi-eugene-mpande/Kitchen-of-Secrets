@@ -58,3 +58,25 @@ TEST(OrderTest, CalculateIngredientsTest)
     std::unordered_map<std::string, int> expectedIngredients = {{"flour", 4}, {"sugar", 2}};
     EXPECT_EQ(order.calculateIngredients(), expectedIngredients);
 }
+
+TEST(OrderTest, AddMealTest)
+{
+    // Create instances of ConcreteMenuItem
+    std::unordered_map<std::string, int> ingredients1 = {{"flour", 2}, {"sugar", 1}};
+    std::unordered_map<std::string, int> ingredients2 = {{"flour", 2}, {"sugar", 1}};
+
+    std::shared_ptr<MenuItem> meal1 = std::make_shared<ConcreteMenuItem>(10.99, "Pancakes", ingredients1);
+    std::shared_ptr<MenuItem> meal2 = std::make_shared<ConcreteMenuItem>(8.50, "Waffles", ingredients2);
+
+    // Create an Order with the first meal
+    std::vector<std::shared_ptr<MenuItem>> meals = {meal1};
+    Order order(2, meals, std::make_shared<Waiter>());
+
+    // Add the second meal to the order
+    order.addMeal(meal2);
+
+    // Check if the order now contains both meals
+    EXPECT_EQ(order.getMeals().size(), 2);
+    EXPECT_EQ(order.getMeals()[0]->getName(), "Pancakes");
+    EXPECT_EQ(order.getMeals()[1]->getName(), "Waffles");
+}
