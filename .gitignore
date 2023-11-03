@@ -29,6 +29,11 @@ src/frontend/makefile
 src/frontend/.vscode
 src/frontend/.DS_STORE
 src/frontend/main.cpp
+src/frontend/node_modules
+src/frontend/build
+src/frontend/out
+src/frontend/*.out
+src/frontend/*.o
 # logic ingonores
 src/logic/makefile
 src/logic/.vscode
@@ -49,3 +54,5 @@ src/tests/makefile
 src/tests/.vscode
 src/tests/.DS_STORE
 src/tests/main.cpp
+
+
