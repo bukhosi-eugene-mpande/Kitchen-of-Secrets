@@ -18,8 +18,8 @@ int main()
      HeadChef *chef = new HeadChef();
      Waiter *waiter = new Waiter();
 
-    
     tester->attach(chef);
+
     table2->attach(chef);
     table3->attach(chef);
     table4->attach(chef);
@@ -47,7 +47,7 @@ int main()
     cout<<"\n"<<tester->toString();
 
 
-    // When a customer is in the "VeryUnhappy" state, the chef should intervene
+
     if (tester->getMood()->getStateName() == "Customer left")
     {
         std::vector<Customer *> tables = {table2, table3, table4, table5, table6};
@@ -63,7 +63,6 @@ int main()
         }
     }
 
-    // Simulate further state changes if necessary
 
     delete tester;
     delete table2;

@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "SatisfactionState.h"
+#include "CustomerObserver.h"
 #include "Customer.h"
 
 class HeadChef: public CustomerObserver{
@@ -12,8 +13,6 @@ class HeadChef: public CustomerObserver{
     Customer* customer;
     public:
     void updateCustomerMood();
-
-
 };
 
 #endif
