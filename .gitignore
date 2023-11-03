@@ -1,7 +1,56 @@
-.vscode
-node_modules
-build
-out
-*.out
 *.o
+main
+makefile
+server
+.vscode
+.DS_STORE
+node_modules
+bin
+obj
 
+Documentation/.DS_STORE
+# accounting ingonores
+src/accounting/makefile
+src/accounting/.vscode
+src/accounting/.DS_STORE
+src/accounting/main.cpp
+# backend ingonores
+src/backend/makefile
+src/backend/.vscode
+src/backend/.DS_STORE
+src/backend/main.cpp
+# cooking ingonores
+src/cooking/makefile
+src/cooking/.vscode
+src/cooking/.DS_STORE
+src/cooking/main.cpp
+# customercare ingonores
+src/customercare/makefile
+src/customercare/.vscode
+src/customercare/.DS_STORE
+src/customercare/main.cpp
+# frontend ingonores
+src/frontend/makefile
+src/frontend/.vscode
+src/frontend/.DS_STORE
+src/frontend/main.cpp
+# logic ingonores
+src/logic/makefile
+src/logic/.vscode
+src/logic/.DS_STORE
+src/logic/main.cpp
+# ordering ingonores
+src/ordering/makefile
+src/ordering/.vscode
+src/ordering/.DS_STORE
+src/ordering/main.cpp
+# reservation ingonores
+src/reservation/makefile
+src/reservation/.vscode
+src/reservation/.DS_STORE
+src/reservation/main.cpp
+# tests ingonores
+src/tests/makefile
+src/tests/.vscode
+src/tests/.DS_STORE
+src/tests/main.cpp
