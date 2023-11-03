@@ -1,6 +1,11 @@
 #include "HeadChef.h"
 
+<<<<<<< HEAD
 HeadChef::HeadChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name, std::shared_ptr<Management> management) : Chef(engine, kitchen, name) {
+=======
+HeadChef::HeadChef(Kitchen* kitchen,Management* management) : Chef("Head Chef",kitchen){ 
+    this->kitchen=kitchen;
+>>>>>>> kitchen-Intergration
     this->management = management;
 }
 

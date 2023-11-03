@@ -56,15 +56,20 @@ std::vector<std::shared_ptr<Order>> Tab::getOrderedItems() {
     return orderedItems;
 }
 
-void Tab::sendEvent() {}
+void Tab::sendEvent() {
+    std::string event1 = "Customer Has Opened A Tab.";
+    std::string event2 = "Customer Has Closed Their Tab. Transaction Complete.";
+    engine->notify(shared_from_this(), event1);
+    engine->notify(shared_from_this(), event2);
+}
 
 void Tab::receiveEvent(std::string event)
 {
-    if (event == "Add Order Cost") {
+    if (event == "Add Order Cost.") {
         double cost = calculateOrderCost(orderedItems);
         addOrderCost(cost);
     }
-    if (event == "Close Tab") {
+    if (event == "Close Tab.") {
         closeTab();
     }
 }

@@ -8,8 +8,6 @@
 #include <algorithm>
 #include <memory>
 
-class CustomerObserver;
-
 class CustomerCareSystem {
     private:
         std::vector<std::shared_ptr<CustomerObserver>> customerObserverList;

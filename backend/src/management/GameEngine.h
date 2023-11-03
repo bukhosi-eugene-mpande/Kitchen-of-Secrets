@@ -3,6 +3,7 @@
 
 #include "Engine.h"
 
+/*
 // accounting
 #include "backend/src/accounting/Billing/Billing.h"
 #include "backend/src/accounting/Billing/CardBill.h"
@@ -25,7 +26,7 @@
 #include "backend/src/cooking/Food.h"
 #include "backend/src/cooking/Beverage.h"
 #include "backend/src/cooking/Order.h"
-/*
+
 class GameEngine : public Engine {
     private:
         // accounting
@@ -75,5 +76,6 @@ class GameEngine : public Engine {
         virtual void notify(std::shared_ptr<GameComponent> sender, std::string event);
         virtual void registerComponent(std::shared_ptr<GameComponent> component) = 0;
         virtual void unregisterComponent(std::shared_ptr<GameComponent> component) = 0;
-}
+};
+
 #endif

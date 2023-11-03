@@ -11,14 +11,14 @@
 
 class Chef : public GameComponent {
     protected:
-        std::shared_ptr<Kitchen> kitchen;
+        Kitchen *kitchen;
         std::string name;
     public:
-        Chef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name);
+        Chef(std::shared_ptr<Engine> engine, Kitchen *kitchen, std::string name);
         ~Chef();
         std::string getName() const;
-        void setKitchen(std::shared_ptr<Kitchen> kitchen);
-        std::shared_ptr<Kitchen> getKitchen() const;
+        void setKitchen(Kitchen *kitchen);
+        Kitchen* getKitchen() const;
         virtual void sendEvent() = 0;
         virtual void receiveEvent(std::string event) = 0;
 };

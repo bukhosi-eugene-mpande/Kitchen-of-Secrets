@@ -1,18 +1,15 @@
-#ifndef NEUTRAL_H
-#define NEUTRAL_H
+#ifndef Neutral_H
+#define Neutral_H
 
-#include "SatisfactionState.h"
-
+#include <memory>
 #include <string>
 #include <algorithm>
-
-class Neutral : public SatisfactionState {
+#include "SatisfactionState.h"
+class Neutral : public SatisfactionState{
     public:
-        Neutral();
-        ~Neutral();
-        void helpMe(std::shared_ptr<Customer> mood, std::string complaints);
-        void timeLaps(std::shared_ptr<Customer> mood, std::string complaints);
-        double getTip();
-        std::string getStateName();
+        Neutral(CustomerTemplate* customer);
+        void console();
+        void anger();
 };
+
 #endif
