@@ -9,25 +9,38 @@ import {
   ListItemText
 } from '@mui/material';
 
-function Reservations({ socket }) {
+function Reservations() {
+  const [socket, setSocket] = useState(null);
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    if (socket) {
-      socket.addEventListener('message', addReservation);
-    }
+    const ws = new WebSocket('ws://localhost:8000/ws');
+
+    ws.onopen = () => {
+      ws.send('S-Reservations');
+    };
+
+    setSocket(ws);
 
     return () => {
-      if (socket) {
-        socket.removeEventListener('message', addReservation);
+      if (ws) {
+        ws.close(1000, 'S-Reservations disconnected');
       }
     };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.onmessage = addReservation;
+
+      return () => {
+        socket.onmessage = null;
+      };
+    }
   }, [socket]);
 
   const addReservation = (event) => {
     const { type, data } = JSON.parse(event.data);
-
-    console.log('Oh No');
 
     if (type === 'make-res') {
       setReservations((prevReservations) => [...prevReservations, data]);

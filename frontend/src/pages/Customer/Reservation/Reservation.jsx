@@ -17,8 +17,10 @@ import {
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function Reservation({ socket }) {
+function Reservation() {
   const { changeTab } = useContext(CustomerContext);
+
+  const [socket, setSocket] = useState(null);
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -36,11 +38,27 @@ function Reservation({ socket }) {
   );
 
   useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000/ws');
+
+    ws.onopen = () => {
+      ws.send('C-Reservation');
+    };
+
+    setSocket(ws);
+
+    return () => {
+      if (ws) {
+        ws.close(1000, 'C-Reservation disconnected');
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (socket) {
-      socket.addEventListener('message', handleAccept);
+      socket.onmessage = handleAccept;
 
       return () => {
-        socket.removeEventListener('message', handleAccept);
+        socket.onmessage = null;
       };
     }
   }, [socket]);

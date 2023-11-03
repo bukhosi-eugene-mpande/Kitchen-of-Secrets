@@ -1,30 +1,30 @@
-import React, { useContext } from 'react';
-
-import OrdersContext from './Orders';
-
-import { Box, Card, CardContent, CardActions, Typography } from '@mui/material';
+import React from 'react';
 
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Box, Card, CardContent, CardActions, Typography } from '@mui/material';
 
-function OrderCard({ order, type }) {
-  const { handleCookClick } = useContext(OrdersContext);
-
+function OrderCard({ order, type, cookOrder }) {
+  console.log(order);
   return (
     <Box sx={{ m: 2 }}>
       <Card variant='outlined' sx={{ width: 200 }}>
         <CardContent>
           <Typography variant='h5' component='div'>
-            {order.title}
+            Order
           </Typography>
-          <Typography variant='body2'>{order.foodItems}</Typography>
-          <Typography variant='body2'>{order.drink}</Typography>
+          
+          {order.map((item, index) => (
+            <Typography key={index} variant='body2'>
+              {item.name}
+            </Typography>
+          ))}
         </CardContent>
 
         <CardActions>
           <LoadingButton
             size='small'
             variant='contained'
-            onClick={() => handleCookClick(order)}
+            onClick={() => cookOrder(order)}
             loading={type === 'Cooking' ? true : false}
             disabled={type === 'Completed' ? true : false}
           >

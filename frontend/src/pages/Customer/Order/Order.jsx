@@ -18,17 +18,34 @@ import OrderList from './OrderList';
 
 export const OrderContext = createContext();
 
-function Order({ socket }) {
+function Order() {
   const [order, setOrder] = useState([]);
   const [open, setOpen] = useState(false);
+  const [socket, setSocket] = useState(null);
   const { changeTab } = useContext(CustomerContext);
 
   useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000/ws');
+
+    ws.onopen = () => {
+      ws.send('C-Order');
+    };
+
+    setSocket(ws);
+
+    return () => {
+      if (ws) {
+        ws.close(1000, 'C-Order left');
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (socket) {
-      socket.addEventListener('message', handleReceived);
+      socket.onmessage = handleReceived;
 
       return () => {
-        socket.removeEventListener('message', handleReceived);
+        socket.onmessage = null;
       };
     }
   }, [socket]);
@@ -45,7 +62,7 @@ function Order({ socket }) {
 
   const handleReceived = (event) => {
     const { type, data } = JSON.parse(event.data);
-    if (type === 'receive-order') {
+    if (type === 'cook-order') {
       if (data.received === 'yes') {
         setOpen(true);
       }

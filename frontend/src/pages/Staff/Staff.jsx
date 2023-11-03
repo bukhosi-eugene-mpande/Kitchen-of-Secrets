@@ -1,5 +1,5 @@
-import React, { useState, useEffect, createContext } from 'react';
-import { Box, Tab, Tabs, CircularProgress } from '@mui/material';
+import React, { useState, createContext } from 'react';
+import { Box, Tab, Tabs } from '@mui/material';
 import {
   MenuBook,
   PointOfSale,
@@ -14,31 +14,10 @@ export const StaffContext = createContext();
 
 function Staff() {
   const [value, setValue] = useState(0);
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8000/ws');
-
-    ws.onopen = () => {
-      ws.send('Staff');
-    };
-
-    setSocket(ws);
-
-    return () => {
-      if (ws) {
-        ws.close(1000, 'Staff disconnected');
-      }
-    };
-  }, []);
 
   const changeTab = (event, newValue) => {
     setValue(newValue);
   };
-
-  if (!socket) {
-    return <CircularProgress />;
-  }
 
   return (
     <StaffContext.Provider value={{ changeTab }}>
@@ -70,11 +49,11 @@ function Staff() {
         </Box>
 
         <Panel value={value} index={0}>
-          <Reservations socket={socket} />
+          <Reservations />
         </Panel>
 
         <Panel value={value} index={1}>
-          <Orders socket={socket} />
+          <Orders />
         </Panel>
 
         <Panel value={value} index={2}></Panel>

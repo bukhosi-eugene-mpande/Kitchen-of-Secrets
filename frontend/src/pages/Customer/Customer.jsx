@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 
 import { Box, Tab, Tabs } from '@mui/material';
 
@@ -19,23 +19,6 @@ export const CustomerContext = createContext();
 
 function Customer() {
   const [value, setValue] = useState(0);
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8000/ws');
-
-    ws.onopen = () => {
-      ws.send('Customer');
-    };
-
-    setSocket(ws);
-
-    return () => {
-      if (ws) {
-        ws.close(1000, 'Customer disconnected');
-      }
-    };
-  }, []);
 
   const changeTab = (event, newValue) => {
     setValue(newValue);
@@ -67,11 +50,11 @@ function Customer() {
         </Box>
 
         <Panel value={value} index={0}>
-          <Reservation socket={socket} />
+          <Reservation />
         </Panel>
 
         <Panel value={value} index={1}>
-          <Order socket={socket}/>
+          <Order />
         </Panel>
 
         <Panel value={value} index={2}>
