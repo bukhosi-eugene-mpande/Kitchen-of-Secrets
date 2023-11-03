@@ -6,3 +6,4 @@ build
 *.o
 *.out
 out
+.idea
