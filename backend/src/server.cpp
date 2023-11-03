@@ -13,7 +13,7 @@ int main()
         return res;
     });
 
-    CROW_ROUTE(app, "/pay")([accounting](){
+    CROW_ROUTE(app, "/payy")([accounting](){
         crow::response res(std::string(accounting->pay(35, "cash").dump()));
         res.add_header("Content-Type", "application/json");
         return res;
