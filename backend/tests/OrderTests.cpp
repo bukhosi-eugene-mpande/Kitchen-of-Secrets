@@ -80,3 +80,29 @@ TEST(OrderTest, AddMealTest)
     EXPECT_EQ(order.getMeals()[0]->getName(), "Pancakes");
     EXPECT_EQ(order.getMeals()[1]->getName(), "Waffles");
 }
+
+TEST(OrderTest, RemoveMealTest) {
+    // Create instances of ConcreteMenuItem
+    std::unordered_map<std::string, int> ingredients1 = {{"flour", 2}, {"sugar", 1}};
+    std::unordered_map<std::string, int> ingredients2 = {{"flour", 2}, {"sugar", 1}};
+
+    std::shared_ptr<MenuItem> meal1 = std::make_shared<ConcreteMenuItem>(10.99, "Pancakes", ingredients1);
+    std::shared_ptr<MenuItem> meal2 = std::make_shared<ConcreteMenuItem>(8.50, "Waffles", ingredients2);
+
+    // Create an Order with both meals
+    std::vector<std::shared_ptr<MenuItem>> meals = {meal1, meal2};
+    Order order(2, meals, std::make_shared<Waiter>());
+
+    // Remove the first meal from the order
+    bool removed = order.removeMeal(meal1);
+
+    // Check if the meal was successfully removed and the order now contains only one meal
+    EXPECT_TRUE(removed);
+    EXPECT_EQ(order.getMeals().size(), 1);
+    EXPECT_EQ(order.getMeals()[0]->getName(), "Waffles");
+// Try to remove a non-existent meal and ensure it returns false
+    std::unordered_map<std::string, int> noIngredients={{}};
+    std::shared_ptr<MenuItem> nonExistentMeal = std::make_shared<ConcreteMenuItem>(5.0, "Burger", noIngredients);
+    removed = order.removeMeal(nonExistentMeal);
+    EXPECT_FALSE(removed);
+}
