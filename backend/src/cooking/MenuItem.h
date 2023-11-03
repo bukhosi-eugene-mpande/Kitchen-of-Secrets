@@ -23,6 +23,8 @@ class MenuItem : public GameComponent {
         std::unordered_map<std::string,int> getMealIngredients() const;
         double getMealPrice() const;
         bool getIsPrepared() const;
+        virtual void sendEvent();
+        virtual void receiveEvent(std::string event);
 };
 
 #endif

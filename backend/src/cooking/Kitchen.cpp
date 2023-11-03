@@ -119,6 +119,26 @@ std::vector<std::shared_ptr<Order>> Kitchen::getCanceledOrders() const{
     return this->canceledOrders;
 }
 
+void Kitchen::sendEvent() {}
+
+void Kitchen::receiveEvent(std::string event) {
+    if (event == "Add Meal") {
+        addMeal(getMeal());
+    }
+    if (event == "Add Order") {
+        addOrder(getOrder());
+    }
+    if (event == "Remove Meal") {
+        removeMeal(getMeal());
+    }
+    if (event == "Get Prepared Order") {
+        getPreparedOrder();
+    }
+    if (event == "Get Cancelled Order") {
+        getCanceledOrder();
+    }
+ }
+
 std::vector<std::string> Kitchen::generateListOfResposibilties(std::string chefName){
     std::vector<std::string> responsibilities;
 

@@ -12,14 +12,19 @@ json Tab::closeTab()
     return state->closeTab();
 }
 
-double Tab::getBillTotal()
+double Tab::getTabTotal()
 {
-    return state->getBillTotal();
+    return 0.0;
+}
+
+double Tab::getTabTotal()
+{
+    return state->getTabTotal();
 }
 
 json Tab::addOrderCost(double cost)
 {
-    if (getBillTotal() > 1000)
+    if (getTabTotal() > 1000)
     {
         setState(std::make_shared<OpenTab>(this));
 
@@ -36,4 +41,30 @@ json Tab::addOrderCost(double cost)
 void Tab::setState(std::shared_ptr<TabState> state)
 {
     this->state = state;
+}
+
+double Tab::calculateOrderCost(const std::vector<std::shared_ptr<Order>> orderedItems)
+{
+    double orderCost = 0.00;
+    for (std::shared_ptr<Order> order : orderedItems) {
+        orderCost += order->getPrice();
+    }
+    return orderCost;
+}
+
+std::vector<std::shared_ptr<Order>> Tab::getOrderedItems() {
+    return orderedItems;
+}
+
+void Tab::sendEvent() {}
+
+void Tab::receiveEvent(std::string event)
+{
+    if (event == "Add Order Cost") {
+        double cost = calculateOrderCost(orderedItems);
+        addOrderCost(cost);
+    }
+    if (event == "Close Tab") {
+        closeTab();
+    }
 }

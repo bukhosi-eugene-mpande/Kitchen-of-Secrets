@@ -23,3 +23,7 @@ bool AbstractOrder::IsFinished() {
     }
     return true;
 }
+
+void AbstractOrder::sendEvent() {}
+
+void AbstractOrder::receiveEvent(std::string event) {}

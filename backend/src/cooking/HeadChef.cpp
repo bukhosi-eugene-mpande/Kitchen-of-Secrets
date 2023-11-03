@@ -27,3 +27,14 @@ void HeadChef::handleComplaint(){
      * 
      */
 }
+
+void HeadChef::sendEvent() {}
+
+void HeadChef::receiveEvent(std::string event) {
+    if (event == "Go On Rounds") {
+        goOnRounds();
+    }
+    if (event == "Handle Complaint") {
+        handleComplaint();
+    }
+}

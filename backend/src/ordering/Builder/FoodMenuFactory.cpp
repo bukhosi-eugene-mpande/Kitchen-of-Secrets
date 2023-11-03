@@ -1,7 +1,10 @@
 #include "FoodMenuFactory.h"
 #include "Food.h"
 
-Menu* FoodMenuFactory::createMenu()
-{
-    return new Food();
+std::shared_ptr<Menu> FoodMenuFactory::createMenu() {
+    return std::make_shared<Food>();
 }
+
+FoodMenuFactory::FoodMenuFactory(std::shared_ptr<Engine> engine) : MenuFactory(engine) {}
+
+FoodMenuFactory::~FoodMenuFactory() {}

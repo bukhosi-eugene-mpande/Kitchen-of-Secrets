@@ -25,14 +25,12 @@
 #include "backend/src/cooking/Food.h"
 #include "backend/src/cooking/Beverage.h"
 #include "backend/src/cooking/Order.h"
-
+/*
 class GameEngine : public Engine {
     private:
         // accounting
         std::shared_ptr<Tab> tab;
         std::shared_ptr<Billing> billing;
-        std::shared_ptr<FoodInventory> foodInventory;
-        std::shared_ptr<BeverageInventory> beverageInventory;
 
         // cooking
         std::shared_ptr<Baker> baker;
@@ -68,5 +66,14 @@ class GameEngine : public Engine {
         virtual void notify(std::shared_ptr<GameComponent> sender, std::string message);
         void reactOnGameComponent(int index);
 };
+*/
 
+class GameEngine : public Engine {
+    private:
+        std::vector<std::shared_ptr<GameComponent>> components;
+    public:
+        virtual void notify(std::shared_ptr<GameComponent> sender, std::string event);
+        virtual void registerComponent(std::shared_ptr<GameComponent> component) = 0;
+        virtual void unregisterComponent(std::shared_ptr<GameComponent> component) = 0;
+}
 #endif

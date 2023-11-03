@@ -11,7 +11,23 @@ Inventory::Inventory(const Inventory& other) {
 Inventory::~Inventory() {
 }
 
-bool Inventory::requestIngredients(std::unordered_map<std::string,int> ingredients) {
+double Inventory::getTotalCost()
+{
+    return totalCost;
+}
+
+void Inventory::calculateTotalCost(std::unordered_map<std::string, int> ingredients) {
+    totalCost = 0.0;
+    for (const auto& ingredient : ingredients) {
+        // You might have a price associated with each ingredient.
+        // This is just an example; you need to adapt it to your data structure.
+        double ingredientPrice = getIngredientPrice(ingredient.first);
+        totalCost += ingredientPrice * ingredient.second;
+    }
+}
+
+bool Inventory::requestIngredients(std::unordered_map<std::string, int> ingredients) {
+    calculateTotalCost(ingredients);
     for (auto const& ingredient : ingredients) {
         if (this->inventory[ingredient.first] < ingredient.second) {
             return false;

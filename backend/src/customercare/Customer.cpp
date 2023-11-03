@@ -20,7 +20,7 @@ void Customer::setMood(std::shared_ptr<SatisfactionState> mood){
 }
 
 std::shared_ptr<std::vector<std::string>> Customer::getComplaints(){
-    return this->complaints;
+    return complaints;
 }
 
 void Customer::setComplaints(std::shared_ptr<std::vector<std::string>> complaints) {
@@ -72,14 +72,28 @@ void Customer::makePayment() {
 }
 
 void Customer::helpMe(){
-    mood->HelpMe(this, "waiting too long");
+    mood->helpMe(this, "waiting too long");
 }
 
 void Customer::timeLaps(){
     mood->timeLaps(this, "waiting too long");
 }
 
-string Customer::toString(){
+void Customer::sendEvent() {
+}
+
+void Customer::receiveEvent(std::string event)
+{
+    if (event == "Order Served") {
+        if (getMood() == Neutral) {
+            setMood(Happy);
+        } else if (getMood() = Unhappy) {
+            setMood(Unhappy);
+        }
+    }
+}
+
+std::string Customer::toString(){
     std::stringstream ss;
 
     ss << "State: " << mood->getStateName() << std::endl;

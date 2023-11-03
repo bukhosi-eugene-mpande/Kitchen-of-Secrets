@@ -23,6 +23,8 @@ class AbstractOrder : public GameComponent {
         std::unordered_map<std::string,int> getIngredients() const;
         double getPrice() const;
         bool IsFinished();
+        virtual void sendEvent();
+        virtual virtual void receiveEvent(std::string event);
 };
 
 #endif

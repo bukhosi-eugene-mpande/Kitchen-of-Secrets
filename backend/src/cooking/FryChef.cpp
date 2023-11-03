@@ -25,3 +25,12 @@ void FryChef::setNextChef(){
     this->nextStationChef = std::make_shared<GrillChef>(this->getKitchen());
 }
 
+void Baker::sendEvent() {
+}
+
+void Baker::receiveEvent(std::string event) {
+    if (event == "Prepare Order") {
+        prepareOrder(getOrder());
+    }
+}
+

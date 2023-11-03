@@ -22,3 +22,12 @@ void Baker::prepareOrder(std::shared_ptr<Order> order){
 void Baker::setNextChef(){
     this->nextStationChef = std::make_shared<DeputyHeadChef>(this->getKitchen());
 }
+
+void Baker::sendEvent() {
+}
+
+void Baker::receiveEvent(std::string event) {
+    if (event == "Prepare Order") {
+        prepareOrder(getOrder());
+    }
+}

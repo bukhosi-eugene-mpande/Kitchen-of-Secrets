@@ -1,10 +1,10 @@
-#ifndef DRINKSMENUFACTORY_H
-#define DRINKSMENUFACTORY_H
-#include<iostream>
+#ifndef DRINKS_MENU_FACTORY_H
+#define DRINKS_MENU_FACTORY_H
 #include "MenuFactory.h"
+#include<iostream>
 
-class DrinksMenuFactory: public MenuFactory{
+class DrinksMenuFactory: public MenuFactory {
     public:
-        Menu* createMenu() override;
+        std::shared_ptr<Menu> createMenu() override;
 };
 #endif

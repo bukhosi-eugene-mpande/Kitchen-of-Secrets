@@ -5,6 +5,7 @@ HalloweenOrderBuilder::HalloweenOrderBuilder(){
     std::cout<<"this is called"<<std::endl;
 }
 
+HalloweenOrderBuilder::~HalloweenOrderBuilder() {}
 
 /// @brief this was the addDrink which adds to the order that Ive been failing to debug @Eugene
 //so I will have to crape everything off

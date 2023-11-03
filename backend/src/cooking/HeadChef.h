@@ -21,6 +21,8 @@ class HeadChef : public Chef {
         std::shared_ptr<Kitchen> getKitchen() const;
         void goOnRounds();
         void handleComplaint();
+        virtual void sendEvent();
+        virtual void receiveEvent(std::string event);
 };
 
 #endif

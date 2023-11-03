@@ -1,5 +1,6 @@
 #include "GameEngine.h"
 
+/*
 void GameEngine::createGameComponents() {
     tab = std::make_shared<Tab>(this);
     billing = std::make_shared<Billing>(this);
@@ -15,11 +16,31 @@ void GameEngine::createGameComponents() {
     beverage = std::make_shared<Beverage>();
     order = std::make_shared<Order>();
 }
-
+*/
 GameEngine::GameEngine() : Engine() {}
 
 GameEngine::~GameEngine() {}
 
+void GameEngine::notify(std::shared_ptr<GameComponent> sender, std::string message) {
+    for (std::shared_ptr<GameComponent> component : components) {
+        if (component != sender) {
+            component->receiveEvent(event);
+        }
+    }
+}
+
+void GameEngine::registerComponent(std::shared_ptr<GameComponent> component) {
+    components.push_back(component);
+}
+
+void GameEngine::unregisterComponent(std::shared_ptr<GameComponent> component) {
+   auto it = std::find(components.begin(), components.end(), component);
+    if (it != components.end()) {
+        components.erase(it);
+    }
+}
+
+/*
 void GameEngine::notify(std::shared_ptr<GameComponent> sender, std::string message) {
     std::shared_ptr<GameComponent> gameComponent;
     if (gameComponent == billing) {
@@ -106,7 +127,7 @@ void GameEngine::notify(std::shared_ptr<GameComponent> sender, std::string messa
         }
     } else if 
 }
-
+*/
 
 
 void GameEngine::reactOnGameComponent(int index) {

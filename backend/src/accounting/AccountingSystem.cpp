@@ -62,10 +62,10 @@ void AccountingSystem::setBilling(std::shared_ptr<Billing> billing) {
     this->billing = billing;
 }
 
-std::shared_ptr<Inventory> AccountingSystem::getInventory() {
-    return inventory;
-}
+// std::shared_ptr<Inventory> AccountingSystem::getInventory() {
+//     return inventory;
+// }
 
-void AccountingSystem::setInventory(std::shared_ptr<Inventory> inventory) {
-    this->inventory = inventory;
-}
+// void AccountingSystem::setInventory(std::shared_ptr<Inventory> inventory) {
+//     this->inventory = inventory;
+// }

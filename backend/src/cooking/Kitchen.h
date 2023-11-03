@@ -49,6 +49,8 @@ class Kitchen : public GameComponent {
         void createDeputyHeadChef();
         std::vector<std::shared_ptr<Order>> getPreparedOrders() const;
         std::vector<std::shared_ptr<Order>> getCanceledOrders() const;
+        virtual void sendEvent();
+        virtual void receiveEvent(std::string event);
 };
 
 #endif

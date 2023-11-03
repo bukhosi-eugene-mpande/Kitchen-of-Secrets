@@ -19,6 +19,8 @@ class Chef : public GameComponent {
         std::string getName() const;
         void setKitchen(std::shared_ptr<Kitchen> kitchen);
         std::shared_ptr<Kitchen> getKitchen() const;
+        virtual void sendEvent() = 0;
+        virtual void receiveEvent(std::string event) = 0;
 };
 
 #endif

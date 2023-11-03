@@ -41,7 +41,8 @@ class Customer: public CustomerCareSystem, public GameComponent {
         void makePayment();
         void helpMe();
         void timeLaps();
-        void sendNotification();
+        virtual void sendEvent();
+        virtual void receiveEvent(std::string event);
         void receiveNotification();
         void checkOut();
         void cancelOrder();

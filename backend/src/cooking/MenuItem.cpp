@@ -34,3 +34,11 @@ void MenuItem::prepare(){
 bool MenuItem::getIsPrepared() const{
     return this->isPrepared;
 }
+
+void MenuItem::sendEvent() {}
+
+void MenuItem::receiveEvent(std::string event) {
+    if (event == "Calculate Price") {
+        getMealPrice();
+    } 
+}

@@ -1,6 +1,6 @@
 #include "Food.h"
 
-Food::Food():Menu("")
+Food::Food() : Menu("")
 {
     //std::cout<<"-----------------New Food Menu created.--------------"<<std::endl;
     std::cout<<std::endl;

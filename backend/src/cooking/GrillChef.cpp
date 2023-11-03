@@ -24,3 +24,12 @@ void GrillChef::prepareOrder(std::shared_ptr<Order> order){
 void GrillChef::setNextChef(){
     this->nextStationChef = std::make_shared<Cook>(this->getKitchen());
 }
+
+void Baker::sendEvent() {
+}
+
+void Baker::receiveEvent(std::string event) {
+    if (event == "Prepare Order") {
+        prepareOrder(getOrder());
+    }
+}

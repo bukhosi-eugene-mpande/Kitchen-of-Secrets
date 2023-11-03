@@ -1,5 +1,5 @@
-#ifndef Inventory_H
-#define Inventory_H
+#ifndef INVENTORY_H
+#define INVENTORY_H
 
 #include <unordered_map>
 #include <vector>
@@ -8,21 +8,16 @@
 
 class Inventory {
     private:
-    std::unordered_map<std::string,int> inventory;
-
+        std::unordered_map<std::string, int> inventory;
+        double totalCost;
     public:
-
-        Inventory(std::unordered_map<std::string,int> inventory);
-
+        Inventory(std::unordered_map<std::string, int> inventory);
         Inventory(const Inventory& other);
-
         ~Inventory();
-
+        double getTotalCost();
+        void calculateTotalCost(std::unordered_map<std::string,int> ingredients);
         bool requestIngredients(std::unordered_map<std::string,int> ingredients);
-
         std::unordered_map<std::string,int> getInventory() const;
-
-
 };
 
 #endif

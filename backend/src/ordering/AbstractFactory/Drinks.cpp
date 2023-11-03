@@ -1,12 +1,10 @@
 #include "Drinks.h"
 
-Drinks::Drinks() :Menu("")
-{
+Drinks::Drinks() :Menu("") {
     std::cout<<"-----------------New Drinks Menu created.--------------"<<std::endl;
     std::cout<<std::endl;
 }
-void Drinks::setItems(std::map<std::string, double>items)
-{
+void Drinks::setItems(std::map<std::string, double>items) {
     this->items= this->items = {
         {"Spider Blood", 4.99},
         {"Ghost Blood", 3.99},
@@ -21,8 +19,7 @@ void Drinks::setItems(std::map<std::string, double>items)
     };
 }
 
-void Drinks::displayMenu()
-{
+void Drinks::displayMenu() {
     std::cout << "Drinks Menu:\n";
         for (const auto& item : getItems())
         {
