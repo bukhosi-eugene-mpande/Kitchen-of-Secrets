@@ -1,22 +1,18 @@
-#ifndef GENERALTABLE_H
-#define GENERALTABLE_H
+#ifndef GeneralTable_H
+#define GeneralTable_H
+
+#include <string>
+#include <vector>
+#include <memory>
 
 #include "Table.h"
-// #include "Engine.h"
 
-class GeneralTable : public Table {
-    // int seat;
-    // int tableID;
- public:
-    GeneralTable(int tableID, int seat);
-    // GeneralTable(Engine* engine, int tableID, int seat);
-    ~GeneralTable();
-    void addReservation(std::shared_ptr<ReservationSystem> reservation, int seat);
-    // void sendNotification();
-    // void receiveNotification(std::string message);
-    void setSeat(int seat);
-    int getSeat();
-    int getTableID();
+class GeneralTable : public Table{
+
+    public:
+        GeneralTable();
+        ~GeneralTable();
+
 };
 
 #endif

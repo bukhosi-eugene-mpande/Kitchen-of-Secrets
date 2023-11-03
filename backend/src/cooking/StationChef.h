@@ -13,7 +13,7 @@ class StationChef : public Chef{
     protected:
         std::shared_ptr<StationChef> nextStationChef;
     public:
-        StationChef(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen, std::string name);
+        StationChef(std::shared_ptr<Engine> engine, Kitchen* kitchen, std::string name);
         ~StationChef();
         virtual void prepareOrder(std::shared_ptr<Order> order) = 0;
         virtual void setNextChef() = 0;

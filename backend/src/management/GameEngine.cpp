@@ -21,7 +21,7 @@ GameEngine::GameEngine() : Engine() {}
 
 GameEngine::~GameEngine() {}
 
-void GameEngine::notify(std::shared_ptr<GameComponent> sender, std::string message) {
+void GameEngine::notify(std::shared_ptr<GameComponent> sender, std::string event) {
     for (std::shared_ptr<GameComponent> component : components) {
         if (component != sender) {
             component->receiveEvent(event);
@@ -127,8 +127,8 @@ void GameEngine::notify(std::shared_ptr<GameComponent> sender, std::string messa
         }
     } else if 
 }
-*/
 
 
 void GameEngine::reactOnGameComponent(int index) {
 }
+*/

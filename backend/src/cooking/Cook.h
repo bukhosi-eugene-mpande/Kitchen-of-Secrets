@@ -11,7 +11,7 @@
 
 class Cook : public StationChef { 
     public:
-        Cook(std::shared_ptr<Engine> engine, std::shared_ptr<Kitchen> kitchen);
+        Cook(std::shared_ptr<Engine> engine, Kitchen* kitchen);
         ~Cook();
         void prepareOrder(std::shared_ptr<Order> order) override;
         void setNextChef() override;

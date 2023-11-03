@@ -1,20 +1,14 @@
-#ifndef UNHAPPY_H
-#define UNHAPPY_H
-
-#include "SatisfactionState.h"
-#include "Customer.h"
+#ifndef Unhappy_H
+#define Unhappy_H
 
 #include <string>
+#include "SatisfactionState.h"
 #include <algorithm>
-
-class Unhappy : public SatisfactionState
-{
+class Unhappy : public SatisfactionState{
     public:
-        Unhappy();
-        ~Unhappy();
-        void helpMe(std::shared_ptr<Customer> mood, std::string complaints);
-        void timeLaps(std::shared_ptr<Customer> mood, std::string complaints);
-        double getTip();
-        std::string getStateName();
+        Unhappy(CustomerTemplate* customer);
+        void console();
+        void anger();
+
 };
 #endif

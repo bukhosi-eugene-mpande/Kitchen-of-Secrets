@@ -1,30 +1,29 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 
+#include "backend/src/management/GameComponent.h"
+
 #include <vector>
 #include <memory> 
 #include <iostream>
-// #include "Receptionist.h"
 
-class ReservationSystem : public std::enable_shared_from_this<ReservationSystem> {
+class PrivateSection;
+class GeneralSection;
+class Host;
+class CustomerTemplate;
+
+class ReservationSystem : public GameComponent{
     private:
-        std::vector<std::shared_ptr<ReservationSystem>> reservations = std::vector<std::shared_ptr<ReservationSystem>>();
-        int reservationID;
-        int startTime;
-        int numberOfCustomers;
+        std::shared_ptr<PrivateSection> privateSection;
+        std::shared_ptr<GeneralSection> generalSection;
+        std::vector<std::shared_ptr<CustomerTemplate>> garbage;
     public:
-        ReservationSystem(int reservationID, int startTime, int numberOfCustomers);
-        void initializeAndPush();
+        ReservationSystem(std::shared_ptr<Engine> engine);
         ~ReservationSystem();
-        std::shared_ptr<ReservationSystem> getReservation(int index);
-        void setReservation(std::shared_ptr<ReservationSystem> reservation);
-        std::vector<std::shared_ptr<ReservationSystem>> getReservations();
-        int getReservationID();
-        void setReservationID(int reservationID);
-        int getStartTime();
-        void setStartTime(int startTime);
-        int getNumberOfCustomers();
-        void setNumberOfCustomers(int numberOfCustomers);
+        std::shared_ptr<Section> getPrivateSection();
+        std::shared_ptr<Section> getGeneralSection();
+        std::vector<std::shared_ptr<CustomerTemplate>>  getCustomers();
+        void clearOutTable(std::shared_ptr<Table> table);
 };
 
 #endif

@@ -1,10 +1,11 @@
+#include <iostream>
 #include "Kitchen.h"
 #include "DeputyHeadChef.h"
-#include "Management.h"
-#include "Order.h"
 #include "Meal.h"
 #include "HeadChef.h"
-#include <iostream>
+#include "../sudo_management/Management.h"
+#include "../ordering/Order.h"
+#include "../ordering/Waiter.h"
 
 Kitchen::Kitchen(std::shared_ptr<Engine> engine, std::shared_ptr<Management> management, std::vector<std::shared_ptr<Meal>> meals) : GameComponent(engine) {
     this->deputyHeadChef = nullptr;

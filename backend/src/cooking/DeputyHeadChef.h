@@ -18,7 +18,7 @@ class DeputyHeadChef : public StationChef {
         
     public:
 
-        DeputyHeadChef(Kitchen* kitchen);
+        DeputyHeadChef(std::shared_ptr<Engine> engine, Kitchen* kitchen);
 
         ~DeputyHeadChef();
 
@@ -33,6 +33,9 @@ class DeputyHeadChef : public StationChef {
         Kitchen* getKitchen() const;
 
         void setManagement();
+
+        virtual void sendEvent();
+        virtual void receiveEvent(std::string event);
 
 };
 
