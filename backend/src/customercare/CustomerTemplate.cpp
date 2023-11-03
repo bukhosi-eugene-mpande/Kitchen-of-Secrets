@@ -5,7 +5,7 @@
 #include "../ordering/Waiter.h"
 #include "../sudo_management/Management.h"
 
-CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management>) : name(name){
+CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> management) : name(name){
     this->Mood = std::make_shared<Happy>(this);
     this->readyToOrder = false;
     this->totalBill = 0;
@@ -58,6 +58,7 @@ void CustomerTemplate::notifyManagement(){
 }
 
 void CustomerTemplate::leave(){
+    this->guests.clear();
     this->management->clearOutTable(this->reservation->getTable());
 }
 
@@ -122,7 +123,13 @@ int CustomerTemplate::getNumGuests(){
 }
 
 std::string CustomerTemplate::getDesiredSection(){
-    return this->DesiredSection = DesiredSection;
+    return this->DesiredSection;
 }
 
+void CustomerTemplate::setDesiredSection(std::string DesiredSection){
+    this->DesiredSection = DesiredSection;
+}
 
+void CustomerTemplate::requestToBeSeated(){
+    this->management->requestToBeSeated(this->this_to_shared());
+}

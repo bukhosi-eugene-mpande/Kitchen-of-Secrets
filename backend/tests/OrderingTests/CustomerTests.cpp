@@ -1,7 +1,7 @@
 // #include <gtest/gtest.h>
 // #include <memory>
 
-// #include "./includes/include_all.h"
+// #include "../includes/include_all.h"
 
 // TEST(CustomerTest, ConstructorTest) {
 //     std::shared_ptr<Management> management = std::make_shared<Management>();

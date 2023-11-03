@@ -6,6 +6,7 @@
 #include "../ordering/MenuItem.h"
 
 FryChef::FryChef(Kitchen* Kitchen) : StationChef("Fry Chef",kitchen){
+    this->kitchen=kitchen;
 }
 
 FryChef::~FryChef(){}

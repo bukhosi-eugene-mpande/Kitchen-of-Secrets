@@ -8,11 +8,13 @@
 class PrivateSection;
 class GeneralSection;
 class Host;
+class CustomerTemplate;
 
 class ReservationSystem {
     private:
         std::shared_ptr<PrivateSection> privateSection;
         std::shared_ptr<GeneralSection> generalSection;
+        std::vector<std::shared_ptr<CustomerTemplate>> garbage;
 
     public:
         ReservationSystem();

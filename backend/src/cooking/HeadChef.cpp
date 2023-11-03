@@ -1,6 +1,7 @@
 #include "HeadChef.h"
 
 HeadChef::HeadChef(Kitchen* kitchen,Management* management) : Chef("Head Chef",kitchen){ 
+    this->kitchen=kitchen;
     this->management = management;
 }
 

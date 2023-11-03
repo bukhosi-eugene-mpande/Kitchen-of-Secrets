@@ -10,7 +10,7 @@ class Customer;
 
 class Section{
 
-    private:
+    protected:
         std::string name;
         int capacity;
         std::vector<std::shared_ptr<Table>> tables;

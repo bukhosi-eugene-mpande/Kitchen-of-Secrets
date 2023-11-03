@@ -6,6 +6,13 @@
 #include "../reservation/ReservationSystem.h"
 #include "../reservation/Table.h"
 #include "../reservation/Receptionist.h"
+#include "../reservation/Section.h"
+#include "../reservation/PrivateSection.h"
+#include "../reservation/GeneralSection.h"
+#include "../reservation/Reservation.h"
+#include "../ordering/Order.h"
+#include "../ordering/Waiter.h"
+#include "../customercare/CustomerTemplate.h"
 
 Management::Management() {
     this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
@@ -64,3 +71,16 @@ void Management::requestReservation(std::shared_ptr<CustomerTemplate> customer,s
 void Management::requestToBeSeated(std::shared_ptr<CustomerTemplate> customer) {
     this->receptionist->requestToBeSeated(customer);
 }
+
+std::shared_ptr<Section> Management::getGeneralSection() {
+    return this->reservationSystem->getGeneralSection();
+}
+
+std::shared_ptr<Section> Management::getPrivateSection() {
+    return this->reservationSystem->getPrivateSection();
+}
+
+std::vector<std::shared_ptr<CustomerTemplate>> Management::getCustomers() {
+    return this->reservationSystem->getCustomers();
+}
+

@@ -86,6 +86,8 @@ class CustomerTemplate{
 
         std::string getDesiredSection();
 
+        void setDesiredSection(std::string section);
+
         void requestToBeSeated();
 
 

@@ -11,6 +11,9 @@ class Kitchen;
 class Inventory;
 class ReservationSystem;
 class Receptionist;
+class Section;
+class CustomerTemplate;
+class Table;
 
 class Management {
     private:
@@ -45,6 +48,12 @@ class Management {
         void clearOutTable(std::shared_ptr<Table> table);
 
         void requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section);
+
+        std::shared_ptr<Section> getGeneralSection();
+
+        std::shared_ptr<Section> getPrivateSection();
+
+        std::vector<std::shared_ptr<CustomerTemplate>> getCustomers();
 
         void requestToBeSeated(std::shared_ptr<CustomerTemplate> customer);
 

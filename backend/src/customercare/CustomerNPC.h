@@ -11,9 +11,6 @@
 class Menu;
 
 class CustomerNPC: public CustomerTemplate{
-    private:
-        
-        
 
     public:
         CustomerNPC(std::shared_ptr<Management> management);
@@ -21,7 +18,6 @@ class CustomerNPC: public CustomerTemplate{
         CustomerNPC(std::shared_ptr<Management> management,bool hasGuests,std::string section);
 
         ~CustomerNPC();
-
 
         std::unordered_map<std::string,int> generateBeverageOrder(Menu menu);
 
