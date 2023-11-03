@@ -122,6 +122,10 @@ int CustomerTemplate::getNumGuests(){
     return this->numGuests;
 }
 
+void CustomerTemplate::setNumGuests(int numGuests){
+    this->numGuests = numGuests;
+}
+
 std::string CustomerTemplate::getDesiredSection(){
     return this->DesiredSection;
 }
