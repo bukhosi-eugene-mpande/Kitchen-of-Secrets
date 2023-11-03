@@ -22,7 +22,7 @@ function Staff() {
     ws.onopen = () => {
       ws.send('Staff');
     };
-    
+
     setSocket(ws);
 
     return () => {
@@ -74,7 +74,7 @@ function Staff() {
         </Panel>
 
         <Panel value={value} index={1}>
-          <Orders />
+          <Orders socket={socket} />
         </Panel>
 
         <Panel value={value} index={2}></Panel>

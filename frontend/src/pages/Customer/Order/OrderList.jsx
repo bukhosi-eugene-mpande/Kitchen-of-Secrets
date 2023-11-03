@@ -14,7 +14,7 @@ import {
 
 import LoadingButton from '@mui/lab/LoadingButton';
 
-function OrderList({socket}) {
+function OrderList({ socket }) {
   const [loading, setLoading] = useState(false);
   const { order, removeFromOrder } = useContext(OrderContext);
 
@@ -24,7 +24,7 @@ function OrderList({socket}) {
     setLoading(true);
 
     if (socket) {
-      socket.send(JSON.stringify({ type: 'make-order', ...order }));
+      socket.send(JSON.stringify({ type: 'make-order', data: { order } }));
     }
   }
 

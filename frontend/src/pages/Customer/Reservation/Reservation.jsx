@@ -37,12 +37,10 @@ function Reservation({ socket }) {
 
   useEffect(() => {
     if (socket) {
-      socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (data.available === 'yes') {
-          setOpen(true);
-          setLoading(false);
-        }
+      socket.addEventListener('message', handleAccept);
+
+      return () => {
+        socket.removeEventListener('message', handleAccept);
       };
     }
   }, [socket]);
@@ -60,11 +58,20 @@ function Reservation({ socket }) {
     };
 
     if (socket) {
-      socket.send(JSON.stringify({ type: 'make-res', ...details }));
-    } else {
-      console.log('Socket not found');
+      socket.send(JSON.stringify({ type: 'make-res', data: details }));
     }
   }
+
+  const handleAccept = (event) => {
+    const { type, data } = JSON.parse(event.data);
+
+    if (type === 'accept-res') {
+      if (data.available === 'yes') {
+        setOpen(true);
+        setLoading(false);
+      }
+    }
+  };
 
   function handleOKClick() {
     setOpen(false);

@@ -13,14 +13,21 @@ function Orders({ socket }) {
 
   useEffect(() => {
     if (socket) {
-      socket.onmessage = (event) => {
-        const { type, order } = JSON.parse(event.data);
-        if (type === 'make-order') {
-          setNewOrders((prevOrders) => [...prevOrders, order]);
-        }
+      socket.addEventListener('message', receiveOrder);
+
+      return () => {
+        socket.removeEventListener('message', receiveOrder);
       };
     }
   }, [socket]);
+
+  const receiveOrder = (event) => {
+    const { type, data } = JSON.parse(event.data);
+
+    if (type === 'make-order') {
+      setNewOrders((prevOrders) => [...prevOrders, data]);
+    }
+  };
 
   const handleCookClick = (order) => {
     setNewOrders((prevOrders) =>

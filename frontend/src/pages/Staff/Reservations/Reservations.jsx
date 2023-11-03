@@ -25,12 +25,13 @@ function Reservations({ socket }) {
   }, [socket]);
 
   const addReservation = (event) => {
-    console.log(event);
-    const newReservation = JSON.parse(event.data);
-    setReservations((prevReservations) => [
-      ...prevReservations,
-      newReservation
-    ]);
+    const { type, data } = JSON.parse(event.data);
+
+    console.log('Oh No');
+
+    if (type === 'make-res') {
+      setReservations((prevReservations) => [...prevReservations, data]);
+    }
   };
 
   function handleAccept(name) {
@@ -43,7 +44,9 @@ function Reservations({ socket }) {
     );
 
     if (socket) {
-      socket.send(JSON.stringify({ type: 'accept-res', available: 'yes' }));
+      socket.send(
+        JSON.stringify({ type: 'accept-res', data: { available: 'yes' } })
+      );
     }
   }
 

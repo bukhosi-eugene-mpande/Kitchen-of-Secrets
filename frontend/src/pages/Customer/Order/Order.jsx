@@ -18,18 +18,17 @@ import OrderList from './OrderList';
 
 export const OrderContext = createContext();
 
-function Order({socket}) {
+function Order({ socket }) {
   const [order, setOrder] = useState([]);
   const [open, setOpen] = useState(false);
   const { changeTab } = useContext(CustomerContext);
 
   useEffect(() => {
     if (socket) {
-      socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (data.received === 'yes') {
-          setOpen(true);
-        }
+      socket.addEventListener('message', handleReceived);
+
+      return () => {
+        socket.removeEventListener('message', handleReceived);
       };
     }
   }, [socket]);
@@ -43,6 +42,15 @@ function Order({socket}) {
     newOrder.splice(index, 1);
     setOrder(newOrder);
   }
+
+  const handleReceived = (event) => {
+    const { type, data } = JSON.parse(event.data);
+    if (type === 'receive-order') {
+      if (data.received === 'yes') {
+        setOpen(true);
+      }
+    }
+  };
 
   function handleOKClick() {
     setOpen(false);
