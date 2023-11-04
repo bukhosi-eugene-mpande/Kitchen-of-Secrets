@@ -28,7 +28,7 @@ function Instructions({ order }) {
       <Grid container spacing={2} sx={{ textAlign: 'center' }}>
         {order.food.map((foodItem, i) => {
           const requiredFoodItem = requiredIngredients.find(
-            (item) => item.name === foodItem
+            (item) => item.name === foodItem.name
           );
 
           return (
@@ -57,7 +57,7 @@ function Instructions({ order }) {
           <List>
             {order.beverages.map((beverage, index) => (
               <ListItem key={index}>
-                <ListItemText primary={beverage} sx={{ textAlign: 'center' }} />
+                <ListItemText primary={beverage.name} sx={{ textAlign: 'center' }} />
               </ListItem>
             ))}
           </List>

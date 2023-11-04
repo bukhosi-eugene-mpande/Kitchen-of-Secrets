@@ -18,7 +18,12 @@ function OrderList({ socket }) {
   const [loading, setLoading] = useState(false);
   const { order, removeFromOrder } = useContext(OrderContext);
 
-  const totalPrice = order.reduce((total, item) => total + item.price, 0);
+  const food = order.food;
+  const beverages = order.beverages;
+  
+  const totalFoodPrice = food.reduce((total, item) => total + item.price, 0);
+  const totalBeveragePrice = beverages.reduce((total, item) => total + item.price, 0);
+  const totalPrice = totalFoodPrice + totalBeveragePrice;
 
   function handleOrderClick() {
     setLoading(true);
@@ -62,10 +67,27 @@ function OrderList({ socket }) {
         <Divider />
 
         <List>
-          {order.map((item, index) => (
+          <Typography variant='h6'>Food</Typography>
+          {food.map((item, index) => (
             <ListItem key={index}>
               <ListItemText primary={`${item.name} - R${item.price}`} />
-              <Button variant='outlined' onClick={() => removeFromOrder(index)}>
+              <Button
+                variant='outlined'
+                onClick={() => removeFromOrder(index, 'food')}
+              >
+                Remove
+              </Button>
+            </ListItem>
+          ))}
+
+          <Typography variant='h6'>Beverages</Typography>
+          {beverages.map((item, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={`${item.name} - R${item.price}`} />
+              <Button
+                variant='outlined'
+                onClick={() => removeFromOrder(index, 'beverage')}
+              >
                 Remove
               </Button>
             </ListItem>

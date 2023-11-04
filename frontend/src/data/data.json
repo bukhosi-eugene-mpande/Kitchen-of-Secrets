@@ -12,6 +12,22 @@
     }
   ],
 
+  "foodMenu": [
+    { "name": "Pizza", "price": 10 },
+    { "name": "Burger", "price": 15 },
+    { "name": "Pasta", "price": 12 },
+    { "name": "Salad", "price": 8 },
+    { "name": "Soup", "price": 7 }
+  ],
+
+  "beverageMenu": [
+    { "name": "Coke", "price": 2 },
+    { "name": "Water", "price": 1 },
+    { "name": "Juice", "price": 3 },
+    { "name": "Coffee", "price": 4 },
+    { "name": "Tea", "price": 2 }
+  ],
+
   "requiredIngredients": [
     {
       "name": "Pizza",
@@ -28,6 +44,18 @@
     {
       "name": "Eggs",
       "ingredients": ["Eggs", "Oil"]
+    },
+    {
+      "name": "Pasta",
+      "ingredients": ["Pasta", "Tomato Sauce", "Cheese"]
+    },
+    {
+      "name": "Salad",
+      "ingredients": ["Lettuce", "Tomato", "Cheese"]
+    },
+    {
+      "name": "Soup",
+      "ingredients": ["Water", "Tomato Sauce", "Cheese"]
     }
   ],
 
@@ -43,6 +71,16 @@
     "Bread",
     "Butter",
     "Eggs",
-    "Oil"
+    "Oil",
+    "Pasta",
+    "Water",
+    "Soup",
+    "Salad",
+    "Juice",
+    "Coke",
+    "Coffee",
+    "Tea",
+    "Milk",
+    "Orange Juice"
   ]
 }

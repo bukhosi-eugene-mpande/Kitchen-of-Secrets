@@ -46,9 +46,15 @@ function Orders() {
   };
 
   const cookOrder = (order) => {
-    setNewOrders((prevOrders) =>
-      prevOrders.filter((o) => o.title !== order.title)
-    );
+    setNewOrders((prevOrders) => {
+      const index = prevOrders.findIndex((o) => o.title === order.title);
+
+      if (index !== -1) {
+        prevOrders.splice(index, 1);
+      }
+      
+      return [...prevOrders];
+    });
 
     setCookingOrders((prevOrders) => [...prevOrders, order]);
 

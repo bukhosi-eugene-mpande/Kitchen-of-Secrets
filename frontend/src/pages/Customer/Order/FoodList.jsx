@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 
 import { OrderContext } from './Order';
 
+import data from '../../../data/data.json';
+
 import {
   Box,
   List,
@@ -13,15 +15,8 @@ import {
 } from '@mui/material';
 
 function FoodList() {
+  const { foodMenu } = data;
   const { addToOrder } = useContext(OrderContext);
-
-  const food = [
-    { name: 'Pizza', price: 10 },
-    { name: 'Burger', price: 15 },
-    { name: 'Pasta', price: 12 },
-    { name: 'Salad', price: 8 },
-    { name: 'Soup', price: 7 }
-  ];
 
   return (
     <Box
@@ -41,10 +36,13 @@ function FoodList() {
       <Divider />
 
       <List>
-        {food.map((item, index) => (
+        {foodMenu.map((item, index) => (
           <ListItem key={index}>
             <ListItemText primary={`${item.name} - R${item.price}`} />
-            <Button variant='contained' onClick={() => addToOrder(item)}>
+            <Button
+              variant='contained'
+              onClick={() => addToOrder(item, 'food')}
+            >
               Add
             </Button>
           </ListItem>

@@ -30,8 +30,8 @@ function Cook() {
   const [open, setOpen] = useState(false);
   const [cooking, setCooking] = useState(false);
   const [isCooked, setIsCooked] = useState(false);
-  const [orders, setOrders] = useState(mockOrders);
-  const [selectedOrder, setSelectedOrder] = useState(mockOrders[0]);
+  const [orders, setOrders] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000/ws');
@@ -74,12 +74,14 @@ function Cook() {
   }, [cooking]);
 
   useEffect(() => {
-    socket.onmessage = (event) => {
-      const { type, data } = JSON.parse(event.data);
-      if (type === 'cook-order') {
-        setOrders((prevOrders) => [...prevOrders, data]);
-      }
-    };
+    if(socket) {
+      socket.onmessage = (event) => {
+        const { type, data } = JSON.parse(event.data);
+        if (type === 'cook-order') {
+          setOrders((prevOrders) => [...prevOrders, data]);
+        }
+      };
+    }
   }, [socket]);
 
   const selectOrder = (order) => {
@@ -98,6 +100,7 @@ function Cook() {
     setOpen(false);
   }
 
+  // use specific food ingredients not all
   const cook = () => {
     const sortedPot = [...pot].sort();
     const sortedIngredients = [...ingredients].sort();
@@ -114,12 +117,16 @@ function Cook() {
   };
 
   const sendOrder = () => {
-    socket.send(JSON.stringify({ type: 'serve-order', data: selectedOrder }));
     setIsCooked(false);
     setSelectedOrder({});
+    
     setOrders((prevOrders) =>
-      prevOrders.filter((order) => order !== selectedOrder)
+    prevOrders.filter((order) => order !== selectedOrder)
     );
+
+    if (socket) {
+      socket.send(JSON.stringify({ type: 'serve-order', data: selectedOrder }));
+    }
   };
 
   return (

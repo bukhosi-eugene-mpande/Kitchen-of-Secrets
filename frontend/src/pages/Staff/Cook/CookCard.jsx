@@ -18,7 +18,7 @@ function CookCard({ order, selectOrder }) {
           <Typography variant='h6'>Food:</Typography>
           {order.food.map((item, index) => (
             <Typography key={index} variant='body2'>
-              {item}
+              {item.name}
             </Typography>
           ))}
 
@@ -27,7 +27,7 @@ function CookCard({ order, selectOrder }) {
           <Typography variant='h6'>Beverages:</Typography>
           {order.beverages.map((item, index) => (
             <Typography key={index} variant='body2'>
-              {item}
+              {item.name}
             </Typography>
           ))}
         </CardContent>
