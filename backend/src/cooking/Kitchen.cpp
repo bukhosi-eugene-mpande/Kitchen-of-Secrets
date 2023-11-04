@@ -133,6 +133,7 @@ Management* Kitchen::getManagement() const
 void Kitchen::cancelOrder(std::shared_ptr<Order> order)
 {
     this->canceledOrders.push_back(order);
+    this->management->notifyWaiterOfCancellation(order->getWaiter());
 }
 
 void Kitchen::finishOrder(std::shared_ptr<Order> order)
