@@ -6,6 +6,7 @@ import {
   CalendarToday,
   RestaurantMenu
 } from '@mui/icons-material';
+import Cook from './Cook/Cook';
 import Orders from './Orders/Orders';
 import Reservations from './Reservations/Reservations';
 import Panel from '../../components/Panel';
@@ -56,7 +57,9 @@ function Staff() {
           <Orders />
         </Panel>
 
-        <Panel value={value} index={2}></Panel>
+        <Panel value={value} index={2}>
+          <Cook />
+        </Panel>
       </Box>
     </StaffContext.Provider>
   );

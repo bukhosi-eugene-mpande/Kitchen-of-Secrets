@@ -1,0 +1,86 @@
+{
+  "mockOrders": [
+    {
+      "table": 1,
+      "food": ["Pizza", "Burger"],
+      "beverages": ["Coffee", "Tea"]
+    },
+    {
+      "table": 2,
+      "food": ["Toast", "Eggs"],
+      "beverages": ["Orange Juice", "Milk"]
+    }
+  ],
+
+  "foodMenu": [
+    { "name": "Pizza", "price": 10 },
+    { "name": "Burger", "price": 15 },
+    { "name": "Pasta", "price": 12 },
+    { "name": "Salad", "price": 8 },
+    { "name": "Soup", "price": 7 }
+  ],
+
+  "beverageMenu": [
+    { "name": "Coke", "price": 2 },
+    { "name": "Water", "price": 1 },
+    { "name": "Juice", "price": 3 },
+    { "name": "Coffee", "price": 4 },
+    { "name": "Tea", "price": 2 }
+  ],
+
+  "requiredIngredients": [
+    {
+      "name": "Pizza",
+      "ingredients": ["Dough", "Tomato Sauce", "Cheese", "Pepperoni"]
+    },
+    {
+      "name": "Burger",
+      "ingredients": ["Bun", "Patty", "Lettuce", "Tomato", "Cheese"]
+    },
+    {
+      "name": "Toast",
+      "ingredients": ["Bread", "Butter"]
+    },
+    {
+      "name": "Eggs",
+      "ingredients": ["Eggs", "Oil"]
+    },
+    {
+      "name": "Pasta",
+      "ingredients": ["Pasta", "Tomato Sauce", "Cheese"]
+    },
+    {
+      "name": "Salad",
+      "ingredients": ["Lettuce", "Tomato", "Cheese"]
+    },
+    {
+      "name": "Soup",
+      "ingredients": ["Water", "Tomato Sauce", "Cheese"]
+    }
+  ],
+
+  "ingredients": [
+    "Dough",
+    "Tomato Sauce",
+    "Cheese",
+    "Pepperoni",
+    "Bun",
+    "Patty",
+    "Lettuce",
+    "Tomato",
+    "Bread",
+    "Butter",
+    "Eggs",
+    "Oil",
+    "Pasta",
+    "Water",
+    "Soup",
+    "Salad",
+    "Juice",
+    "Coke",
+    "Coffee",
+    "Tea",
+    "Milk",
+    "Orange Juice"
+  ]
+}
