@@ -3,15 +3,23 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { useSpring, animated } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
+import { useSpring, animated } from 'react-spring';
+import { interpolate } from 'react-spring';
+
 
 // import managerImage from '../SVG/manager.gif';  
 import managerImage from '../SVG/manager_1.svg';  
 import waiterImage from '../SVG/waiter1_1.svg'; 
 import waiterImage2 from '../SVG/waiter2.svg'; 
 import tableImage from '../SVG/table.svg';
+import pumpkinImage from '../SVG/pumpkin_1.svg';
+import headChefImage from '../SVG/headChef.svg';
 
 const Restaurant = () => {
     const handleDoRounds = () => {
+      // Set head chef to be visible
+      setHeadChefVisible(true);
+
         // Create and send your JSON request for doing rounds.
         // Example:
         // fetch('https://api.example.com/do-rounds', {
@@ -89,9 +97,36 @@ const Restaurant = () => {
       // this is where you call the current balance of the manager/player
     }
   
+    //managing the animation of the headChef
+    const [headChefVisible, setHeadChefVisible] = useState(false);
+    const [headChefPosition, setHeadChefPosition] = useState({ x: -200, y: 150 });
 
+    const chefAnimation = useSpring({
+      to: async (next, cancel) => {
+        // Chef appears and walks across the table
+        await next({ x: 100 });
+        // Chef walks back and disappears
+        await next({ x: -200 });
+        setHeadChefVisible(false); // Hide the chef when the animation is done
+      },
+      from: { x: -200 },
+      config: { duration: 5000 }, // Adjust the duration as needed
+      onRest: () => {
+        // Animation has finished
+      },
+    });
   return (
       <div style={containerStyle}>
+        {headChefVisible && (
+        <animated.img
+        src={headChefImage}
+        alt="Head Chef"
+        style={{
+          ...imageStyle3,
+          transform: chefAnimation.x.interpolate(x => `translate3d(${x}px, ${headChefPosition.y}px, 0)`),
+        }}
+      />
+      )}  
       {/* this is the waiter section */}
       <img
           src={waiterImage}
@@ -164,7 +199,8 @@ const Restaurant = () => {
               <a href="">Documentation</a>
               {/* this would be a link to doxygen */}
           </button> 
-      </div>                
+      </div>          
+          
     </div>
   );
 
@@ -180,6 +216,11 @@ const containerStyle = {
   width: '100vw',
   padding: '10px',
   fontFamily: 'Roboto',
+  // position: 'relative', // Add this line
+  backgroundImage: `url(${pumpkinImage})`, // Add this line
+  backgroundRepeat: 'no-repeat', // Add this line
+  backgroundSize: '200px', // Add this line
+  backgroundPosition: 'bottom right', // Add this line
 };
 
 const imageStyle = {
