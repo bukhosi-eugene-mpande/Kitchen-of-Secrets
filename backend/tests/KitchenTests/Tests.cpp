@@ -64,3 +64,18 @@ TEST(KitchenTest,ConstructorTest){
 
 }
 
+TEST(KitchenTest,GetCusineAndDrinkTest){  
+    //shared_ptr<Management> management
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+
+    //kitchen
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
+    
+    //check magament
+    EXPECT_FALSE(kitchen->getDrink("Witches' Brew Punch")->getIsAlcoholic());
+    EXPECT_TRUE(kitchen->getDrink("Vampire's Kiss Martini")->getIsAlcoholic());
+    EXPECT_EQ(kitchen->getCusine("Skeletal Ribs")->getPrice(),10.99);
+    EXPECT_EQ(kitchen->getCusine("Pumpkin Patch Risotto")->getIngredients().size(),3);
+
+}
+
