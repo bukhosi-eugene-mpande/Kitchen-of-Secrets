@@ -3,6 +3,7 @@ makefile
 .DS_STORE
 bin
 obj
+node_modules
 Documentation/.DS_STORE
 # accounting ingonores
 src/accounting/makefile
