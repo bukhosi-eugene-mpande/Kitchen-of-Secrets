@@ -14,6 +14,8 @@ class Receptionist;
 class Section;
 class CustomerTemplate;
 class Table;
+class Drink;
+class Cuisine;
 
 class Management {
     private:
@@ -29,17 +31,17 @@ class Management {
 
         void sendOrderToKitchen(std::shared_ptr<Order> order);
 
-        std::shared_ptr<Order> getOrderFromKitchen(std::shared_ptr<Waiter> waiter);
+        std::shared_ptr<Order> getOrderFromKitchen(Waiter* waiter);
 
-        std::shared_ptr<Order> getCanceledOrderFromKitchen(std::shared_ptr<Waiter> waiter);
+        std::shared_ptr<Order> getCanceledOrderFromKitchen(Waiter* waiter);
 
         void setKitchen(std::shared_ptr<Kitchen> kitchen);
 
         bool requestIngredients(std::unordered_map<std::string,int> ingredients);
 
-        void notifyWaiterOfCancellation(std::shared_ptr<Waiter> waiter);
+        void notifyWaiterOfCancellation(Waiter* waiter);
 
-        void notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter);
+        void notifyWaiterOfCompletion(Waiter* waiter);
 
         void setInventory(std::shared_ptr<Inventory> inventory);
 
@@ -56,6 +58,14 @@ class Management {
         std::vector<std::shared_ptr<CustomerTemplate>> getCustomers();
 
         void requestToBeSeated(std::shared_ptr<CustomerTemplate> customer);
+
+        std::shared_ptr<Drink> getDrink(std::string name);
+
+        std::shared_ptr<Cuisine> getCusine(std::string name);
+
+        std::unordered_map<int,std::string> getDrinksMenu();
+
+        std::unordered_map<int,std::string> getCuisineMenu();
 
 };
 
