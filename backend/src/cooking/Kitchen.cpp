@@ -28,7 +28,6 @@ Kitchen::Kitchen(Management* management) : management(management)
     for(auto meal : this->drinks){
         this->AvailableMeals[meal.second.get()->getName()] = meal.second;
     }
-
 }
 
 Kitchen::~Kitchen(){
@@ -63,9 +62,10 @@ std::string Kitchen::getChefName(std::string Meal)
 
 std::shared_ptr<Order> Kitchen::getPreparedOrder(Waiter* waiter)
 {
-    for (auto order : this->preparedOrders) {
-        if (order->getWaiter() == waiter) {
-            return order;
+    for (auto it = this->preparedOrders.begin(); it != this->preparedOrders.end(); ++it) {
+        if ((*it)->getWaiter() == waiter) {
+            this->preparedOrders.erase(it);
+            return *it;
         }
     }
     return nullptr;
@@ -73,9 +73,10 @@ std::shared_ptr<Order> Kitchen::getPreparedOrder(Waiter* waiter)
 
 std::shared_ptr<Order> Kitchen::getCanceledOrder(Waiter* waiter)
 {
-    for (auto order : this->canceledOrders) {
-        if (order->getWaiter() == waiter) {
-            return order;
+    for (auto it = this->canceledOrders.begin(); it != this->canceledOrders.end(); ++it) {
+        if ((*it)->getWaiter() == waiter) {
+            this->canceledOrders.erase(it);
+            return *it;
         }
     }
     return nullptr;
@@ -137,6 +138,7 @@ void Kitchen::cancelOrder(std::shared_ptr<Order> order)
 void Kitchen::finishOrder(std::shared_ptr<Order> order)
 {
     this->preparedOrders.push_back(order);
+    this->management->notifyWaiterOfCompletion(order->getWaiter());
 }
 
 void Kitchen::createHeadChef(){
@@ -193,63 +195,63 @@ std::shared_ptr<Cuisine> Kitchen::getCusine(std::string name){
 
 void Kitchen::generateCusines(){
     //these are the cuseines that are available in the restaurant
-    std::unordered_map<std::string, int> ingre1 = {{"eye of newt", 2}, {"bat wings", 1}, {"toadstools", 3}};
+    std::unordered_map<std::string, int> ingre1 = {{"eye of newt", 2}};
     std::shared_ptr<Cuisine> cus1 = std::make_shared<Cuisine>(13.99, "Witch's Brew Stew", "Deputy Head Chef", ingre1);
     cuisines["Witch's Brew Stew"] = cus1;
 
-    std::unordered_map<std::string, int> ingre2 = {{"pasta", 2}, {"zombie brains", 1}, {"bloody tomato sauce", 3}};
+    std::unordered_map<std::string, int> ingre2 = {{"pasta", 2}};
     std::shared_ptr<Cuisine> cus2 = std::make_shared<Cuisine>(11.99, "Zombie Brain Pasta", "Deputy Head Chef", ingre2);
     cuisines["Zombie Brain Pasta"] = cus2;
 
-    std::unordered_map<std::string, int> ingre3 = {{"ground beef", 2}, {"mummy wraps", 1}, {"cursed spices", 3}};
+    std::unordered_map<std::string, int> ingre3 = {{"ground beef", 2}};
     std::shared_ptr<Cuisine> cus3 = std::make_shared<Cuisine>(12.99, "Mummy Meatloaf", "Deputy Head Chef", ingre3 );
     cuisines["Mummy Meatloaf"] = cus3;
 
-    std::unordered_map<std::string, int> ingre4 = {{"blood garlic", 2}, {"butter", 1}, {"undead herbs", 3}};
+    std::unordered_map<std::string, int> ingre4 = {{"blood garlic", 2}};
     std::shared_ptr<Cuisine> cus4 = std::make_shared<Cuisine>(14.99, "Vampire Garlic Bread", "Baker", ingre4);
     cuisines["Vampire Garlic Bread"] = cus4;
 
-    std::unordered_map<std::string, int> ingre5 = {{"ectoplasmic meat", 2}, {"spooky noodles", 1}, {"haunting spices", 3}};
+    std::unordered_map<std::string, int> ingre5 = {{"ectoplasmic meat", 2}};
     std::shared_ptr<Cuisine> cus5 = std::make_shared<Cuisine>(10.99, "Ghostly Goulash", "Baker", ingre5);
     cuisines["Ghostly Goulash"] = cus5;
 
-    std::unordered_map<std::string, int> ingre6 = {{"monster patty", 2}, {"bolt bun", 1}, {"electric ketchup", 3}};
+    std::unordered_map<std::string, int> ingre6 = {{"monster patty", 2}};
     std::shared_ptr<Cuisine> cus6 = std::make_shared<Cuisine>(13.99, "Frankenstein's Monster Burger", "Baker", ingre6);
     cuisines["Frankenstein's Monster Burger"] = cus6;
 
-    std::unordered_map<std::string, int> ingre7 = {{"moonlit meatballs", 2}, {"howling sauce", 1}, {"ferocious herbs", 3}};
+    std::unordered_map<std::string, int> ingre7 = {{"moonlit meatballs", 2}};
     std::shared_ptr<Cuisine> cus7 = std::make_shared<Cuisine>(11.99, "Werewolf Bites", "Cook", ingre7);
     cuisines["Werewolf Bites"] = cus7;
 
-    std::unordered_map<std::string, int> ingre8 = {{"witch's fingers", 2}, {"poisonous dipping sauce", 1}, {"cursed herbs", 3}};
+    std::unordered_map<std::string, int> ingre8 = {{"witch's fingers", 2}};
     std::shared_ptr<Cuisine> cus8 = std::make_shared<Cuisine>(12.99, "Wicked Witch Fingers", "Cook", ingre8);
     cuisines["Wicked Witch Fingers"] = cus8;
 
-    std::unordered_map<std::string, int> ingre9 = {{"bandage crust", 2}, {"tombstone toppings", 1}, {"ancient herbs", 3}};
+    std::unordered_map<std::string, int> ingre9 = {{"bandage crust", 2}};
     std::shared_ptr<Cuisine> cus9 = std::make_shared<Cuisine>(14.99, "Mummy Mummy Pizza", "Cook", ingre9);
     cuisines["Mummy Mummy Pizza"] = cus9;
 
-    std::unordered_map<std::string, int> ingre10 = {{"shrieking greens", 2}, {"haunted croutons", 1}, {"possession dressing", 3}};
+    std::unordered_map<std::string, int> ingre10 = {{"shrieking greens", 2}};
     std::shared_ptr<Cuisine> cus10 = std::make_shared<Cuisine>(10.99, "Screaming Salad", "Fry Chef", ingre10);
     cuisines["Screaming Salad"] = cus10;
 
-    std::unordered_map<std::string, int> ingre11 = {{"goblin bits", 2}, {"swampy broth", 1}, {"troll spices", 3}};
+    std::unordered_map<std::string, int> ingre11 = {{"goblin bits", 2}};
     std::shared_ptr<Cuisine> cus11 = std::make_shared<Cuisine>(13.99, "Goblin Gumbo", "Fry Chef", ingre11);
     cuisines["Goblin Gumbo"] = cus11;
 
-    std::unordered_map<std::string, int> ingre12 = {{"spooky sausages", 2}, {"ghoulish buns", 1}, {"phantom condiments", 3}};
+    std::unordered_map<std::string, int> ingre12 = {{"spooky sausages", 2}};
     std::shared_ptr<Cuisine> cus12 = std::make_shared<Cuisine>(11.99, "Haunted Hot Dogs", "Fry Chef", ingre12);
     cuisines["Haunted Hot Dogs"] = cus12;
 
-    std::unordered_map<std::string, int> ingre13 = {{"pumpkin rice", 2}, {"scarecrow risotto", 1}, {"spicy pumpkin puree", 3}};
+    std::unordered_map<std::string, int> ingre13 = {{"pumpkin rice", 2}};
     std::shared_ptr<Cuisine> cus13 = std::make_shared<Cuisine>(12.99, "Pumpkin Patch Risotto", "Grill Chef", ingre13);
     cuisines["Pumpkin Patch Risotto"] = cus13;
 
-    std::unordered_map<std::string, int> ingre14 = {{"cauldron chicken", 2}, {"mystical spices", 1}, {"enchanted vegetables", 3}};
+    std::unordered_map<std::string, int> ingre14 = {{"cauldron chicken", 2}};
     std::shared_ptr<Cuisine> cus14 = std::make_shared<Cuisine>(14.99, "Cursed Cauldron Curry", "Grill Chef", ingre14);
     cuisines["Cursed Cauldron Curry"] = cus14;
 
-    std::unordered_map<std::string, int> ingre15 = {{"skeleton ribs", 2}, {"spine-tingling sauce", 1}, {"graveyard herbs", 3}};
+    std::unordered_map<std::string, int> ingre15 = {{"skeleton ribs", 2}};
     std::shared_ptr<Cuisine> cus15 = std::make_shared<Cuisine>(10.99, "Skeletal Ribs", "Grill Chef", ingre15);
     cuisines["Skeletal Ribs"] = cus15;
 
@@ -257,43 +259,43 @@ void Kitchen::generateCusines(){
 
 void Kitchen::generateDrinks(){
     //these are the drinks that are available in the restaurant
-    std::unordered_map<std::string, int> ingre1 = {{"witch's potion", 2}, {"ghostly ice", 1}, {"spiderweb garnish", 3}};
+    std::unordered_map<std::string, int> ingre1 = {{"witch's potion", 2}};
     std::shared_ptr<Drink> drink1 = std::make_shared<Drink>(false, 9.99, "Witches' Brew Punch", "Deputy Head Chef", ingre1);
     drinks["Witches' Brew Punch"] = drink1;
 
-    std::unordered_map<std::string, int> ingre2 = {{"vampire blood vodka", 2}, {"bloody rim", 1}, {"fang garnish", 3}};
+    std::unordered_map<std::string, int> ingre2 = {{"vampire blood vodka", 2}};
     std::shared_ptr<Drink> drink2 = std::make_shared<Drink>(true, 8.99, "Vampire's Kiss Martini", "Deputy Head Chef", ingre2);
     drinks["Vampire's Kiss Martini"] = drink2;
 
-    std::unordered_map<std::string, int> ingre3 = {{"zombie virus rum", 2}, {"brain juice", 1}, {"rotting fruit", 3}};
+    std::unordered_map<std::string, int> ingre3 = {{"zombie virus rum", 2}};
     std::shared_ptr<Drink> drink3 = std::make_shared<Drink>(false, 7.99, "Zombie Elixir", "Deputy Head Chef", ingre3);
     drinks["Zombie Elixir"] = drink3;
 
-    std::unordered_map<std::string, int> ingre4 = {{"mummy wrap rum", 2}, {"ancient mint", 1}, {"linen twist", 3}};
+    std::unordered_map<std::string, int> ingre4 = {{"mummy wrap rum", 2}};
     std::shared_ptr<Drink> drink4 = std::make_shared<Drink>(true, 10.99, "Mummy Mojito", "Deputy Head Chef", ingre4);
     drinks["Mummy Mojito"] = drink4;
 
-    std::unordered_map<std::string, int> ingre5 = {{"poison apple cider", 2}, {"witch's spell syrup", 1}, {"black cat garnish", 3}};
+    std::unordered_map<std::string, int> ingre5 = {{"poison apple cider", 2}};
     std::shared_ptr<Drink> drink5 = std::make_shared<Drink>(false, 8.99, "Wicked Witch's Cider", "Deputy Head Chef", ingre5);
     drinks["Wicked Witch's Cider"] = drink5;
 
-    std::unordered_map<std::string, int> ingre6 = {{"ectoplasmic spirit", 2}, {"haunting fizz", 1}, {"spectral lime", 3}};
+    std::unordered_map<std::string, int> ingre6 = {{"ectoplasmic spirit", 2}};
     std::shared_ptr<Drink> drink6 = std::make_shared<Drink>(false, 9.99, "Ghostly Goblet", "Deputy Head Chef", ingre6);
     drinks["Ghostly Goblet"] = drink6;
 
-    std::unordered_map<std::string, int> ingre7 = {{"moonlit whiskey", 2}, {"howling lemon", 1}, {"feral sugar", 3}};
+    std::unordered_map<std::string, int> ingre7 = {{"moonlit whiskey", 2}};
     std::shared_ptr<Drink> drink7 = std::make_shared<Drink>(true, 10.99, "Werewolf Whiskey Sour", "Deputy Head Chef", ingre7);
     drinks["Werewolf Whiskey Sour"] = drink7;
 
-    std::unordered_map<std::string, int> ingre8 = {{"pumpkin rum", 2}, {"cinnamon charm", 1}, {"spice swirl", 3}};
+    std::unordered_map<std::string, int> ingre8 = {{"pumpkin rum", 2}};
     std::shared_ptr<Drink> drink8 = std::make_shared<Drink>(false, 7.99, "Pumpkin Spice Potion", "Deputy Head Chef", ingre8);
     drinks["Pumpkin Spice Potion"] = drink8;
 
-    std::unordered_map<std::string, int> ingre9 = {{"goblin ale", 2}, {"swampy froth", 1}, {"troll twist", 3}};
+    std::unordered_map<std::string, int> ingre9 = {{"goblin ale", 2}};
     std::shared_ptr<Drink> drink9 = std::make_shared<Drink>(false, 9.99, "Goblin Grog", "Deputy Head Chef", ingre9);
     drinks["Goblin Grog"] = drink9;
 
-    std::unordered_map<std::string, int> ingre10 = {{"haunting wine", 2}, {"ethereal fruit", 1}, {"possession punch", 3}};
+    std::unordered_map<std::string, int> ingre10 = {{"haunting wine", 2}};
     std::shared_ptr<Drink> drink10 = std::make_shared<Drink>(true, 8.99, "Spectral Sangria", "Deputy Head Chef", ingre10);
     drinks["Spectral Sangria"] = drink10;
 }

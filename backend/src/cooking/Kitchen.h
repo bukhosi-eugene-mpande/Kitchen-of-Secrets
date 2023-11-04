@@ -91,8 +91,7 @@ class Kitchen {
 
         void generateCusines();
 
-        void generateDrinks();
-        
+        void generateDrinks();        
 };
 
 #endif
