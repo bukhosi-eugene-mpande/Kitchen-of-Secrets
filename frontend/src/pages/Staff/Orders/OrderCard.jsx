@@ -4,7 +4,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { Box, Card, CardContent, CardActions, Typography } from '@mui/material';
 
 function OrderCard({ order, type, cookOrder }) {
-  console.log(order);
   return (
     <Box sx={{ m: 2 }}>
       <Card variant='outlined' sx={{ width: 200 }}>

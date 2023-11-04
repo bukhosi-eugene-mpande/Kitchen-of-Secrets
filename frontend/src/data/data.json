@@ -1,0 +1,48 @@
+{
+  "mockOrders": [
+    {
+      "table": 1,
+      "food": ["Pizza", "Burger"],
+      "beverages": ["Coffee", "Tea"]
+    },
+    {
+      "table": 2,
+      "food": ["Toast", "Eggs"],
+      "beverages": ["Orange Juice", "Milk"]
+    }
+  ],
+
+  "requiredIngredients": [
+    {
+      "name": "Pizza",
+      "ingredients": ["Dough", "Tomato Sauce", "Cheese", "Pepperoni"]
+    },
+    {
+      "name": "Burger",
+      "ingredients": ["Bun", "Patty", "Lettuce", "Tomato", "Cheese"]
+    },
+    {
+      "name": "Toast",
+      "ingredients": ["Bread", "Butter"]
+    },
+    {
+      "name": "Eggs",
+      "ingredients": ["Eggs", "Oil"]
+    }
+  ],
+
+  "ingredients": [
+    "Dough",
+    "Tomato Sauce",
+    "Cheese",
+    "Pepperoni",
+    "Bun",
+    "Patty",
+    "Lettuce",
+    "Tomato",
+    "Bread",
+    "Butter",
+    "Eggs",
+    "Oil"
+  ]
+}
