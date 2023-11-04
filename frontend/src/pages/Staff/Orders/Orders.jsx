@@ -54,8 +54,10 @@ function Orders() {
 
     if (socket) {
       socket.send(
-        JSON.stringify({ type: 'cook-order', data: { received: 'yes' } })
+        JSON.stringify({ type: 'receive-order', data: { received: 'yes' } })
       );
+
+      socket.send(JSON.stringify({ type: 'cook-order', data: order }));
     }
   };
 

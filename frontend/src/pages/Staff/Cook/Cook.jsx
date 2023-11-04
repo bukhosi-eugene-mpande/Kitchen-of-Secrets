@@ -16,8 +16,6 @@ import {
   LinearProgress
 } from '@mui/material';
 
-import LoadingButton from '@mui/lab/LoadingButton';
-
 import CookList from './CookList';
 import Instructions from './Instructions';
 
@@ -26,6 +24,7 @@ import data from '../../../data/data.json';
 function Cook() {
   const { mockOrders, ingredients } = data;
 
+  const [socket, setSocket] = useState(null);
   const [pot, setPot] = useState([]);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
@@ -34,10 +33,25 @@ function Cook() {
   const [orders, setOrders] = useState(mockOrders);
   const [selectedOrder, setSelectedOrder] = useState(mockOrders[0]);
 
-  const socket = new WebSocket('ws://your-websocket-url');
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000/ws');
+
+    ws.onopen = () => {
+      ws.send('S-Cook');
+    };
+
+    setSocket(ws);
+
+    return () => {
+      if (ws) {
+        ws.close(1000, 'S-Cook left');
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let timer = null;
+
     if (cooking) {
       timer = setInterval(() => {
         setProgress((oldProgress) => {
@@ -45,7 +59,9 @@ function Cook() {
             clearInterval(timer);
             return 100;
           }
+
           const newProgress = oldProgress + 100 / 30;
+
           return newProgress;
         });
       }, 1000);
@@ -59,10 +75,12 @@ function Cook() {
 
   useEffect(() => {
     socket.onmessage = (event) => {
-      const receivedOrder = JSON.parse(event.data);
-      setOrders((prevOrders) => [...prevOrders, receivedOrder]);
+      const { type, data } = JSON.parse(event.data);
+      if (type === 'cook-order') {
+        setOrders((prevOrders) => [...prevOrders, data]);
+      }
     };
-  }, []);
+  }, [socket]);
 
   const selectOrder = (order) => {
     setSelectedOrder(order);
@@ -96,7 +114,7 @@ function Cook() {
   };
 
   const sendOrder = () => {
-    //socket.send(JSON.stringify(selectedOrder));
+    socket.send(JSON.stringify({ type: 'serve-order', data: selectedOrder }));
     setIsCooked(false);
     setSelectedOrder({});
     setOrders((prevOrders) =>
