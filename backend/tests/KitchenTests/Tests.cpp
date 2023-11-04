@@ -75,7 +75,47 @@ TEST(KitchenTest,GetCusineAndDrinkTest){
     EXPECT_FALSE(kitchen->getDrink("Witches' Brew Punch")->getIsAlcoholic());
     EXPECT_TRUE(kitchen->getDrink("Vampire's Kiss Martini")->getIsAlcoholic());
     EXPECT_EQ(kitchen->getCusine("Skeletal Ribs")->getPrice(),10.99);
-    EXPECT_EQ(kitchen->getCusine("Pumpkin Patch Risotto")->getIngredients().size(),3);
+    EXPECT_EQ(kitchen->getCusine("Pumpkin Patch Risotto")->getIngredients().size(),1);
+}
+
+TEST(KitchenTest,OrderingProcessTest){  
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
+    management->setKitchen(kitchen);
+    Section* section = management->getGeneralSection().get();
+    std::shared_ptr<Waiter> waiterPtr = std::make_shared<Waiter>(section, management.get());
+
+    Customer*  customer1 = new Customer(management);
+
+    CustomerNPC* customer3 = new CustomerNPC(management,true,"General Section");
+
+    //seting up the main customer
+    customer1->setManagement(management);
+    customer1->setDesiredSection("General Section");
+    customer1->requestReservation();
+    customer1->requestToBeSeated();
+
+    //seting up the NPC customer
+    customer3->setManagement(management);
+    customer3->requestReservation();
+    customer3->requestToBeSeated();
+    
+    //SEETING UP DRINKS ORDER
+    customer1->setBeverageOrder({{"Witches' Brew Punch",1},{"Vampire's Kiss Martini",2}});
+
+    //seting up food order
+    customer1->setFoodOrder({{"Vampire Garlic Bread",5},{"Werewolf Bites",4},{"Screaming Salad",3},{"Cursed Cauldron Curry",2}});
+    
+    //waiter going on rounds
+    waiterPtr->doOrderRounds();
+
+    //check for customer1 order;
+    EXPECT_NE(customer1->getFinishedOrder(),nullptr);
+    EXPECT_TRUE(customer1->getFinishedOrder()->IsFinished());
+
+    //check for customer3 order;
+    EXPECT_NE(customer3->getFinishedOrder(),nullptr);
+    EXPECT_TRUE(customer3->getFinishedOrder()->IsFinished());
 
 }
 
