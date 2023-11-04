@@ -3,16 +3,17 @@
 
 #include "AbstractOrder.h"
 class Waiter;
+class Table;
 
 class Order : public AbstractOrder {
     private:
-        int tableNumber;
-        std::shared_ptr<Waiter> waiter;
+        std::shared_ptr<Table>  table;
+        Waiter* waiter;
         bool isCancelled;
 
     public:
 
-        Order(int tableNumber, std::vector<std::shared_ptr<MenuItem>> meals, std::shared_ptr<Waiter> waiter);
+        Order(std::shared_ptr<Table> table, std::vector<std::shared_ptr<MenuItem>> meals, Waiter* waiter);
 
         Order(const Order& other);
 
@@ -22,17 +23,17 @@ class Order : public AbstractOrder {
 
         std::unordered_map<std::string,int> calculateIngredients();
 
-        std::shared_ptr<Waiter> getWaiter() const;
+        Waiter* getWaiter() const;
 
-        int getTableNumber() const;
+        std::shared_ptr<Table> getTable() const;
 
         bool getIsCancelled() const;
 
         void setIsCancelled(bool isCancelled);
 
-        void setWaiter(std::shared_ptr<Waiter> waiter);
+        void setWaiter(Waiter* waiter);
 
-        void setTableNumber(int tableNumber);
+        void setTable(std::shared_ptr<Table> table);
 
         void addMeal(std::shared_ptr<MenuItem> meal);
 

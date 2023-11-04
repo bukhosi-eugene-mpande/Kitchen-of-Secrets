@@ -13,28 +13,38 @@
 #include "Menu.h"
 #include "OrderBuilder.h"
 
+#include "../reservation/Section.h"
+#include "../sudo_management/Management.h"
+#include "../customercare/CustomerTemplate.h"
+
+class Food;
+class Beverage;
+
 class Waiter{
     private:
+        Section* section;
+        Management* management;
         std::vector<std::shared_ptr<Order>> orders;
         std::shared_ptr<OrderBuilder> orderBuilder;
-        std::shared_ptr<Menu> menu;
-        std::string name;
+        std::shared_ptr<Menu> BeverageMenu;
+        std::shared_ptr<Menu> FoodMenu;
         int id;
+        static int nextId;
 
     public:
-        Waiter();
+        Waiter(Section* section, Management* management);
         ~Waiter();
-        void takeOrder();
-        void serveOrder();
-        double billOrder();
+        std::vector<std::shared_ptr<MenuItem>> takeDrinksOrder(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
+        std::vector<std::shared_ptr<MenuItem>> takeFoodOrder(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
+        void doOrderRounds();
+        void serveOrder(std::shared_ptr<Order> order);
+        double billOrder(std::shared_ptr<Order> order);
         void sendOrdersToKitchen();
-        void giveOrderToCustomer();
-        std::shared_ptr<MenuItem> createFoodItem();
-        std::shared_ptr<MenuItem> createDrinkItem();
-        std::shared_ptr<Menu> createMenu();
-        std::shared_ptr<Order> getCanceledOrderFromKitchen();
-        std::shared_ptr<Order> getOrderFromKitchen();
-        void buildOrder();
+        std::shared_ptr<Food> createFoodItem(double price,std::string name, std::unordered_map<std::string,int> ingredients);
+        std::shared_ptr<Beverage> createDrinkItem(bool isAlcoholic,double price,std::string name, std::unordered_map<std::string,int> ingredients);
+        void createMenus();
+        void getCanceledOrderFromKitchen();
+        void getOrderFromKitchen();
         int getId();
 
 };
