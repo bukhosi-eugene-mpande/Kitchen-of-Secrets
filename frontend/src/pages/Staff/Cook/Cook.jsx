@@ -22,7 +22,7 @@ import Instructions from './Instructions';
 import data from '../../../data/data.json';
 
 function Cook() {
-  const { mockOrders, ingredients } = data;
+  const { requiredIngredients, ingredients } = data;
 
   const [socket, setSocket] = useState(null);
   const [pot, setPot] = useState([]);
@@ -74,7 +74,7 @@ function Cook() {
   }, [cooking]);
 
   useEffect(() => {
-    if(socket) {
+    if (socket) {
       socket.onmessage = (event) => {
         const { type, data } = JSON.parse(event.data);
         if (type === 'cook-order') {
@@ -100,10 +100,20 @@ function Cook() {
     setOpen(false);
   }
 
-  // use specific food ingredients not all
   const cook = () => {
+    let sortedIngredients = [];
+
+    for (let item of selectedOrder.food) {
+      const food = requiredIngredients.find((food) => food.name === item.name);
+
+      if (food) {
+        sortedIngredients = [...sortedIngredients, ...food.ingredients];
+      }
+    }
+
+    sortedIngredients.sort();
+
     const sortedPot = [...pot].sort();
-    const sortedIngredients = [...ingredients].sort();
 
     if (JSON.stringify(sortedPot) === JSON.stringify(sortedIngredients)) {
       setCooking(true);
@@ -117,11 +127,12 @@ function Cook() {
   };
 
   const sendOrder = () => {
+    setPot([]);
     setIsCooked(false);
-    setSelectedOrder({});
-    
+    setSelectedOrder(null);
+
     setOrders((prevOrders) =>
-    prevOrders.filter((order) => order !== selectedOrder)
+      prevOrders.filter((order) => order !== selectedOrder)
     );
 
     if (socket) {
