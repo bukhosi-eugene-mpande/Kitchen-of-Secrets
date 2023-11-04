@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 // import { useSpring, animated } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 
-import managerImage from '../SVG/manager_1.svg'; 
+// import managerImage from '../SVG/manager.gif';  
+import managerImage from '../SVG/manager_1.svg';  
 import waiterImage from '../SVG/waiter1_1.svg'; 
 import waiterImage2 from '../SVG/waiter2.svg'; 
 import tableImage from '../SVG/table.svg';
@@ -68,34 +69,38 @@ const Restaurant = () => {
     };
 
     const [roundsHovered, setRoundsHovered] = useState(false);
-    // const [buyMoreHovered, setBuyMoreHovered] = useState(false);
+    const [buyMoreHovered, setBuyMoreHovered] = useState(false);
     const [sendWaiterHovered, setSendWaiterHovered] = useState(false);
    
     // Initial positions for waiters
-    const waiterPosition = { x: 100, y: 150 };
-    const waiterPosition2 = { x: 100, y: 200 };
+    const [waiterPosition, setWaiterPosition] = useState({ x: 100, y: 150 });
+    const [waiterPosition2, setWaiterPosition2] = useState({ x: 100, y: 200 });
 
+    // this is the drag function for the waiter within table section...which is not specific to the tables.
     const bindWaiter = useDrag(({ offset: [x, y] }) => {
-        waiterPosition.x = x;
-        waiterPosition.y = y;
+      setWaiterPosition({ x, y });
     });
 
     const bindWaiter2 = useDrag(({ offset: [x, y] }) => {
-        waiterPosition2.x = x;
-        waiterPosition2.y = y;
+        setWaiterPosition2({ x, y });
     });
+
+    const currBalance = () => {
+      // this is where you call the current balance of the manager/player
+    }
+  
 
   return (
       <div style={containerStyle}>
       {/* this is the waiter section */}
       <img
-            src={waiterImage}
-            alt="Waiter"
-            style={{
-                ...imageStyle3,
-                transform: `translate3d(${waiterPosition.x}px, ${waiterPosition.y}px, 0)`,
-            }}
-            {...bindWaiter()}
+          src={waiterImage}
+          alt="Waiter"
+          style={{
+              ...imageStyle3,
+              transform: `translate3d(${waiterPosition.x}px, ${waiterPosition.y}px, 0)`,
+          }}
+          {...bindWaiter()}
         />
         <img
             src={waiterImage2}
@@ -106,41 +111,44 @@ const Restaurant = () => {
             }}
             {...bindWaiter2()}
         />
-      <div className="container row mt-5">
-          <div className='col-3 '>
-              <img src={managerImage} alt="Manager" style={imageStyle} /> 
-          </div>
-          <div className='col-9'> 
-            {/* this is the table section below */}
-            <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
-            <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
-          </div>
-          <div className='row justify-content-center col-12 mt-5'>
-              <button className="col-4 mt-5 mr-2 button-64 " onClick={handleDoRounds} style={buttonStyle} onMouseEnter={() => setRoundsHovered(true)} onMouseLeave={() => setRoundsHovered(false)}>
-                <span style={{
-                    ...spanStyle,
-                    background: roundsHovered ? 'none' : spanStyle.backgroundColor,
-                    }}>Do Rounds</span>
-              </button>
-              {/* <button className="col-4 mt-5 mr-2 button-64 " style={buttonStyle} onMouseEnter={() => setBuyMoreHovered(true)} onMouseLeave={() => setBuyMoreHovered(false)} onClick={handleBuyIngredients}>
-                <span style={{
-                    ...spanStyle,
-                    background: buyMoreHovered ? 'none' : spanStyle.backgroundColor,
-                    }}>Buy More Ingredients</span>
-              </button> */}
-              <button className="col-4 mt-5 button-64 " style={buttonStyle} onMouseEnter={() => setSendWaiterHovered(true)} onMouseLeave={() => setSendWaiterHovered(false)} onClick={handleSendWaiter}>
-                <span style={{
-                    ...spanStyle,
-                    background: sendWaiterHovered ? 'none' : spanStyle.backgroundColor,
-                    }}>Send Waiter to Table</span>
-              </button>
-          </div>
+      <div className="container">
+        <div className='row justify-content-center'><h3>Your Current Balance is: ${currBalance}</h3></div>
+        <div className="row mt-5">
+            <div className='col-3 '>
+                <img src={managerImage} alt="Manager" style={imageStyle} /> 
+            </div>
+            <div className='col-9'> 
+              {/* this is the table section below */}
+              <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
+              <img className="col-3 mt-5" src={tableImage} alt="Table" style={imageStyle2} />
+            </div>
+            <div className='row justify-content-center col-12 mt-5'>
+                <button className="col-4 mt-5 mr-2 button-64 " onClick={handleDoRounds} style={buttonStyle} onMouseEnter={() => setRoundsHovered(true)} onMouseLeave={() => setRoundsHovered(false)}>
+                  <span style={{
+                      ...spanStyle,
+                      background: roundsHovered ? 'none' : spanStyle.backgroundColor,
+                      }}>Do Rounds</span>
+                </button>
+                <button className="col-4 mt-5 mr-2 button-64 " style={buttonStyle} onMouseEnter={() => setBuyMoreHovered(true)} onMouseLeave={() => setBuyMoreHovered(false)} onClick={handleBuyIngredients}>
+                  <span style={{
+                      ...spanStyle,
+                      background: buyMoreHovered ? 'none' : spanStyle.backgroundColor,
+                      }}>Buy More Ingredients</span>
+                </button>
+                <button className="col-4 mt-3 button-64 " style={buttonStyle} onMouseEnter={() => setSendWaiterHovered(true)} onMouseLeave={() => setSendWaiterHovered(false)} onClick={handleSendWaiter}>
+                  <span style={{
+                      ...spanStyle,
+                      background: sendWaiterHovered ? 'none' : spanStyle.backgroundColor,
+                      }}>Send Waiter to Table</span>
+                </button>
+            </div>
+        </div>
       </div>
       
       <div className="row " style={footerSec}>

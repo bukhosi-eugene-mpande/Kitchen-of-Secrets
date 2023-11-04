@@ -68,7 +68,7 @@ const PrivateRestaurant = () => {
     };
 
     const [roundsHovered, setRoundsHovered] = useState(false);
-    // const [buyMoreHovered, setBuyMoreHovered] = useState(false);
+    const [buyMoreHovered, setBuyMoreHovered] = useState(false);
     const [sendWaiterHovered, setSendWaiterHovered] = useState(false);
    
     // Initial positions for waiters
@@ -128,8 +128,13 @@ const PrivateRestaurant = () => {
                     background: roundsHovered ? 'none' : spanStyle.backgroundColor,
                     }}>Do Rounds</span>
               </button>
-              
-              <button className="col-4 mt-5 button-64 " style={buttonStyle} onMouseEnter={() => setSendWaiterHovered(true)} onMouseLeave={() => setSendWaiterHovered(false)} onClick={handleSendWaiter}>
+              <button className="col-4 mt-5 mr-2 button-64 " style={buttonStyle} onMouseEnter={() => setBuyMoreHovered(true)} onMouseLeave={() => setBuyMoreHovered(false)} onClick={handleBuyIngredients}>
+                <span style={{
+                    ...spanStyle,
+                    background: buyMoreHovered ? 'none' : spanStyle.backgroundColor,
+                    }}>Buy More Ingredients</span>
+              </button>
+              <button className="col-4 mt-3 button-64 " style={buttonStyle} onMouseEnter={() => setSendWaiterHovered(true)} onMouseLeave={() => setSendWaiterHovered(false)} onClick={handleSendWaiter}>
                 <span style={{
                     ...spanStyle,
                     background: sendWaiterHovered ? 'none' : spanStyle.backgroundColor,

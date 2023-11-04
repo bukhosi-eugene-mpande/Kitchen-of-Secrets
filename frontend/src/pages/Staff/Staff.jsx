@@ -5,7 +5,6 @@ import { Payments, TableRestaurant } from '@mui/icons-material';
 
 import Restaurant from './Restaurant';
 import PrivateRestaurant from './PrivateRestaurant';
-import BuyIngredients from './BuyIngredients';
 import Panel from '../../components/Panel';
 
 function Staff() {
@@ -26,7 +25,7 @@ function Staff() {
         <Tabs value={value} onChange={handleChange}>
           <Tab icon={<TableRestaurant />} label='General Section' sx={{ width: '100%' }} /> 
           <Tab icon={<TableRestaurant />} label='Private Section' sx={{ width: '100%' }} /> 
-          <Tab icon={<Payments />} label='Buy Ingredients' sx={{ width: '100%' }} />
+          {/* <Tab icon={<Payments />} label='Buy Ingredients' sx={{ width: '100%' }} /> */}
         </Tabs>
       </Box>
 
@@ -36,10 +35,6 @@ function Staff() {
 
       <Panel value={value} index={1}>
         <PrivateRestaurant />
-      </Panel>
-
-      <Panel value={value} index={2}>
-        <BuyIngredients />
       </Panel>
 
     </Box>
