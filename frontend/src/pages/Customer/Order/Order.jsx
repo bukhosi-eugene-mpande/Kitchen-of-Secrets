@@ -19,7 +19,14 @@ import OrderList from './OrderList';
 export const OrderContext = createContext();
 
 function Order() {
-  const [order, setOrder] = useState([]);
+  const randomTable = Math.floor(Math.random() * 6) + 1;
+
+  const [order, setOrder] = useState({
+    food: [],
+    beverages: [],
+    table: randomTable
+  });
+  
   const [open, setOpen] = useState(false);
   const [socket, setSocket] = useState(null);
   const { changeTab } = useContext(CustomerContext);
@@ -50,19 +57,25 @@ function Order() {
     }
   }, [socket]);
 
-  function addToOrder(item) {
-    setOrder([...order, item]);
+  function addToOrder(item, category) {
+    setOrder((prevOrder) => {
+      const newOrder = { ...prevOrder };
+      newOrder[category].push(item);
+      return newOrder;
+    });
   }
 
-  function removeFromOrder(index) {
-    const newOrder = [...order];
-    newOrder.splice(index, 1);
-    setOrder(newOrder);
+  function removeFromOrder(index, category) {
+    setOrder((prevOrder) => {
+      const newOrder = { ...prevOrder };
+      newOrder[category].splice(index, 1);
+      return newOrder;
+    });
   }
 
   const handleReceived = (event) => {
     const { type, data } = JSON.parse(event.data);
-    if (type === 'cook-order') {
+    if (type === 'receive-order') {
       if (data.received === 'yes') {
         setOpen(true);
       }

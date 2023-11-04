@@ -11,10 +11,12 @@ int main()
 
     std::mutex mtx;
 
+    crow::websocket::connection* c_Eat = nullptr;
     crow::websocket::connection* c_Order = nullptr;
     crow::websocket::connection* c_Reservation = nullptr;
 
 
+    crow::websocket::connection* s_Cook = nullptr;
     crow::websocket::connection* s_Order = nullptr;
     crow::websocket::connection* s_Reservations = nullptr;
 
@@ -84,6 +86,16 @@ int main()
                     s_Order = &conn;
                     CROW_LOG_INFO << "Staff Order Connected";
                 }
+                else if (s_Cook == nullptr && data == "S-Cook")
+                {
+                    s_Cook = &conn;
+                    CROW_LOG_INFO << "Staff Cook Connected";
+                }
+                else if (c_Eat == nullptr && data == "C-Eat")
+                {
+                    c_Eat = &conn;
+                    CROW_LOG_INFO << "Staff Cook Connected";
+                }
                 else if (data == "C-Reservation" || data == "S-Reservations" || data == "C-Order" || data == "S-Order")
                 {
                     CROW_LOG_INFO << "Connection already established";
@@ -107,10 +119,20 @@ int main()
                         s_Order->send_text(data);
                         CROW_LOG_INFO << "Order request sent to staff";
                     }
-                    else if(jsonData["type"] == "cook-order")
+                    else if(jsonData["type"] == "receive-order")
                     {
                         c_Order->send_text(data);
                         CROW_LOG_INFO << "Order accepted by staff";
+                    }
+                    else if(jsonData["type"] == "cook-order")
+                    {
+                        s_Cook->send_text(data);
+                        CROW_LOG_INFO << "Order cooking by staff";
+                    }
+                    else if(jsonData["type"] == "serve-order")
+                    {
+                        c_Eat->send_text(data);
+                        CROW_LOG_INFO << "Order served to customer";
                     }
                 }
             }
