@@ -119,3 +119,87 @@ TEST(KitchenTest,OrderingProcessTest){
 
 }
 
+TEST(KitchenTest,OrderingProcessTestFail){  
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
+    management->setKitchen(kitchen);
+    Section* section = management->getGeneralSection().get();
+    std::shared_ptr<Waiter> waiterPtr = std::make_shared<Waiter>(section, management.get());
+
+    Customer*  customer1 = new Customer(management);
+
+    Customer* customer2 = new Customer(management);
+
+    //seting up the main customer
+    customer1->setManagement(management);
+    customer1->setDesiredSection("General Section");
+    customer1->requestReservation();
+    customer1->requestToBeSeated();
+
+    //seting up the other character
+    customer2->setManagement(management);
+    customer2->setDesiredSection("General Section");
+    customer2->requestReservation();
+    customer2->requestToBeSeated();
+    
+    //SEETING UP DRINKS ORDER
+    customer1->setBeverageOrder({{"Witches' Brew Punch",1},{"Vampire's Kiss Martini",200000}});
+
+    //seting up food order
+    customer1->setFoodOrder({{"Vampire Garlic Bread",5},{"Werewolf Bites",4},{"Screaming Salad",3},{"Cursed Cauldron Curry",2}});
+
+    //SEETING UP DRINKS ORDER
+    customer2->setBeverageOrder({{"Witches' Brew Punch",1},{"Vampire's Kiss Martini",2}});
+
+    //seting up food order
+    customer2->setFoodOrder({{"Vampire Garlic Bread",5},{"Werewolf Bites",4},{"Screaming Salad",3},{"Cursed Cauldron Curry",200000}});
+    
+    //waiter going on rounds
+    waiterPtr->doOrderRounds();
+
+    //check for customer1 order;
+    EXPECT_NE(customer1->getFinishedOrder(),nullptr);
+    EXPECT_FALSE(customer1->getFinishedOrder()->IsFinished());
+
+    //check for customer3 order;
+    EXPECT_NE(customer2->getFinishedOrder(),nullptr);
+    EXPECT_FALSE(customer2->getFinishedOrder()->IsFinished());
+
+}
+
+TEST(KitchenTest,HeadchefRounds){  
+    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
+    management->setKitchen(kitchen);
+    Section* section = management->getGeneralSection().get();
+    std::shared_ptr<Waiter> waiterPtr = std::make_shared<Waiter>(section, management.get());
+
+    Customer*  customer1 = new Customer(management);
+
+    Customer* customer2 = new Customer(management);
+
+    //seting up the main customer
+    customer1->setManagement(management);
+    customer1->setDesiredSection("General Section");
+    customer1->requestReservation();
+    customer1->requestToBeSeated();
+    customer1->anger();
+
+    //seting up the other character
+    customer2->setManagement(management);
+    customer2->setDesiredSection("General Section");
+    customer2->requestReservation();
+    customer2->requestToBeSeated();
+    customer2->anger();
+
+    EXPECT_EQ(customer1->getMood()->getStateName(),"Neutral");
+    EXPECT_EQ(customer2->getMood()->getStateName(),"Neutral");
+
+    kitchen->getHeadChef()->goOnRounds();
+
+    EXPECT_EQ(customer1->getMood()->getStateName(),"Happy");
+    EXPECT_EQ(customer2->getMood()->getStateName(),"Happy");
+
+
+}
+
