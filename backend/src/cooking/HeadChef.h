@@ -27,7 +27,6 @@ class HeadChef : public Chef{
 
         void goOnRounds();
 
-        void handleComplaint();
 };
 
 #endif

@@ -61,17 +61,17 @@ std::string Kitchen::getChefName(std::string Meal)
     return this->AvailableMeals[Meal]->getChef();
 }
 
-std::shared_ptr<Order> Kitchen::getPreparedOrder(std::shared_ptr<Waiter> waiter)
+std::shared_ptr<Order> Kitchen::getPreparedOrder(Waiter* waiter)
 {
     for (auto order : this->preparedOrders) {
-        if (order->getWaiter().get()->getId() == waiter.get()->getId()) {
+        if (order->getWaiter() == waiter) {
             return order;
         }
     }
     return nullptr;
 }
 
-std::shared_ptr<Order> Kitchen::getCanceledOrder(std::shared_ptr<Waiter> waiter)
+std::shared_ptr<Order> Kitchen::getCanceledOrder(Waiter* waiter)
 {
     for (auto order : this->canceledOrders) {
         if (order->getWaiter() == waiter) {
@@ -181,6 +181,14 @@ std::vector<std::string> Kitchen::generateListOfResposibilties(std::string chefN
     }
 
     return responsibilities;
+}
+
+std::shared_ptr<Drink> Kitchen::getDrink(std::string name){
+    return this->drinks[name];
+}
+
+std::shared_ptr<Cuisine> Kitchen::getCusine(std::string name){
+    return this->cuisines[name];
 }
 
 void Kitchen::generateCusines(){

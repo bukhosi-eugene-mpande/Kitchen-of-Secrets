@@ -43,9 +43,9 @@ class Kitchen {
 
         void removeMeal(std::string name);
 
-        std::shared_ptr<Order> getPreparedOrder(std::shared_ptr<Waiter> waiter);
+        std::shared_ptr<Order> getPreparedOrder(Waiter* waiter);
 
-        std::shared_ptr<Order> getCanceledOrder(std::shared_ptr<Waiter> waiter);
+        std::shared_ptr<Order> getCanceledOrder(Waiter* waiter);
 
         std::unordered_map<std::string,int> getIngredients(std::string name);
 
@@ -56,6 +56,10 @@ class Kitchen {
         std::unordered_map<int,std::string> getMenu();
 
         std::unordered_map<int,std::string> getDrinksMenu();
+
+        std::shared_ptr<Drink> getDrink(std::string name);
+
+        std::shared_ptr<Cuisine> getCusine(std::string name);
 
         std::unordered_map<int,std::string> getCuisineMenu();
 
