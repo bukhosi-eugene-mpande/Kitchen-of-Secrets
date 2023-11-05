@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import {
   Box,
   CircularProgress,
@@ -70,6 +71,10 @@ function Eat() {
           />
 
           <Typography variant='h3'>Your food is being prepared...</Typography>
+
+          <Button variant='contained' size='large'>
+            Cancel Order
+          </Button>
         </>
       )}
 

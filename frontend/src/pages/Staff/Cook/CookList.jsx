@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import CookCard from './CookCard';
 
+import { CookContext } from './Cook';
+
 import { Box, Typography } from '@mui/material';
 
-function CookList({ orders, selectOrder }) {
+function CookList() {
+  const { orders, selectOrder } = useContext(CookContext);
+
   return (
     <Box
       sx={{
