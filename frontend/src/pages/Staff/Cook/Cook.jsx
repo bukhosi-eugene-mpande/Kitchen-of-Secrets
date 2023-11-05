@@ -120,7 +120,10 @@ function Cook() {
           sx={{
             width: '60%',
             display: 'flex',
-            textAlign: 'center'
+            textAlign: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            padding: '20px',
+          borderRadius: '10px',
           }}
         >
           <Ingredients />

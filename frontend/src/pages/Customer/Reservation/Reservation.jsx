@@ -130,7 +130,10 @@ function Reservation() {
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          padding: '20px',
+          borderRadius: '10px',
         }}
       >
         <TextField
