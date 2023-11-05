@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { CookContext } from './Cook';
 
 import Grid from '@mui/material/Unstable_Grid2';
-import { Box, List, Divider, ListItem, ListItemText, Typography } from '@mui/material';
+
+import {
+  Box,
+  List,
+  Divider,
+  ListItem,
+  ListItemText,
+  Typography
+} from '@mui/material';
 
 import data from '../../../data/data.json';
 
 function Instructions({ order }) {
-  const { requiredIngredients } = data;
+  const requiredIngredients = data.requiredIngredients;
 
   return (
     <Box
@@ -20,7 +30,7 @@ function Instructions({ order }) {
       }}
     >
       <Typography variant='h5' sx={{ mb: 2, textAlign: 'center' }}>
-      Ingredients for Table-{order.table} order
+        Ingredients for Table-{order.table} order
       </Typography>
 
       <Divider sx={{ mb: 2 }} />
@@ -33,9 +43,7 @@ function Instructions({ order }) {
 
           return (
             <Grid item xs={4} key={i}>
-              <Typography variant='h6'>
-                {requiredFoodItem.name}
-              </Typography>
+              <Typography variant='h6'>{requiredFoodItem.name}</Typography>
 
               <List>
                 {requiredFoodItem.ingredients.map((ingredient, j) => (
@@ -57,7 +65,10 @@ function Instructions({ order }) {
           <List>
             {order.beverages.map((beverage, index) => (
               <ListItem key={index}>
-                <ListItemText primary={beverage.name} sx={{ textAlign: 'center' }} />
+                <ListItemText
+                  primary={beverage.name}
+                  sx={{ textAlign: 'center' }}
+                />
               </ListItem>
             ))}
           </List>
