@@ -20,7 +20,8 @@ void OrderBuilder::addMeal(std::shared_ptr<MenuItem> meal) {
     this->meals.push_back(meal);
 }
 
-std::shared_ptr<Order> OrderBuilder::getOrder() {
+std::shared_ptr<Order> OrderBuilder::getOrder() 
+{
     this->order = std::make_shared<Order>(this->tableNumber, this->meals, this->waiter);
     return this->order;
 }

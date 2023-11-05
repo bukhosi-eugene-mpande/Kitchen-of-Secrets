@@ -25,7 +25,7 @@ class Menu{
         void setMenuItems(std::unordered_map<int, std::string> menuItems);
         int getNumberOnMenu();
         void setNumberOnMenu(int numberOnMenu);
-        std::string getitemName();
+        std::string getItemName();
         void setItemName(std::string);
         int getNumOfItems();
         void setNumOfItems(int numOfItems);

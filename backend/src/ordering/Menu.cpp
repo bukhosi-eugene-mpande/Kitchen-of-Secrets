@@ -38,7 +38,7 @@ void Menu::setNumberOnMenu(int numberOnMenu)
     this->numberOnMenu=numberOnMenu;
 }
 
-std::string Menu::getitemName()
+std::string Menu::getItemName()
 {
     return itemName;
 }

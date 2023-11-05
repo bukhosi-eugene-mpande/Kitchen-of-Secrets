@@ -13,8 +13,8 @@ MenuItem::~MenuItem(){
 
 MenuItem::MenuItem(const MenuItem& other) {
     this->name = other.name;
-    this->mealIngredients = other.getMealIngredients() ;
-    this->mealPrice = other.getMealPrice();
+    this->mealIngredients = other.mealIngredients ;
+    this->mealPrice = other.mealPrice;
 }
 
 std::unordered_map<std::string,int> MenuItem::getMealIngredients() const {
