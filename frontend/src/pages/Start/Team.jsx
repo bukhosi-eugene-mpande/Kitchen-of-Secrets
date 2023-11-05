@@ -23,7 +23,7 @@ const teamMembers = [
     image: '../assets/img/josh.jpg',
   },
   {
-    name: 'Eugene Mpanza',
+    name: 'Eugene Mpande',
     role: 'Team Leader',
     image: '../assets/img/eugene.jpg',
   },
@@ -35,7 +35,7 @@ const teamMembers = [
   {
     name: 'Thato Kalagobe',
     role: 'Reservations & Frontend',
-    image: '../assets/img/thato.jpg',
+    image: Thato,
   },
 ];
 
