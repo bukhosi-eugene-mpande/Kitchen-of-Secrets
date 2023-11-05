@@ -7,6 +7,7 @@
 #include <memory>
 #include <unordered_map>
 
+
 class SatisfactionState;
 class Reservation;
 class Waiter;
@@ -33,7 +34,7 @@ class CustomerTemplate{
         bool ordered;
         bool hasGuests;
         bool isMain;
-        bool isEating;
+        bool isDoneEating;
         std::string paymentType;
 
     public:
@@ -46,9 +47,11 @@ class CustomerTemplate{
         double calculateFinalBill(double bill);
 
         //make customer eat
-        bool getIsEating();
+        bool getIsDoneEating();
 
-        void setIsEating();
+        //void setPaymentType(std::string paymentType);
+
+        void setIsDoneEating();
 
         void setMood(std::shared_ptr<SatisfactionState> Mood);
 
@@ -58,7 +61,7 @@ class CustomerTemplate{
 
         std::string getPaymentType();
 
-        std::string setpaymentType(std::string getPaymentType);
+        void setPaymentType(std::string paymentType);
 
         bool IsReadyToOrder();
 

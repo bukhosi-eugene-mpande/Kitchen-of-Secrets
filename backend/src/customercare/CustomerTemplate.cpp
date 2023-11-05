@@ -6,16 +6,16 @@
 #include "../sudo_management/Management.h"
 #include "../ordering/Menu.h"
 
-CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> management) : name(name){
+CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> management) : name(name), management(management){
     this->Mood = std::make_shared<Happy>(this);
     this->readyToOrder = false;
     this->readyToPay = false;
-    this->isEating=false;
+    this->isDoneEating=false;
     this->ordered = false;
     this->totalBill = 0;
-    this->management = management;
+   // this->management = management;
     this->reservation = nullptr;
-    this->paymentType = "";
+    this->paymentType = "card";
 }
 
 CustomerTemplate::~CustomerTemplate(){
@@ -26,14 +26,14 @@ std::shared_ptr<SatisfactionState> CustomerTemplate::getMood(){
     return this->Mood;
 }
 
-void CustomerTemplate::setIsEating()
+void CustomerTemplate::setIsDoneEating()
 {
-    this->isEating=true;
+    this->isDoneEating=true;
 }
 
-bool CustomerTemplate::getIsEating()
+bool CustomerTemplate::getIsDoneEating()
 {
-    return this->isEating;
+    return this->isDoneEating;
 }
 double CustomerTemplate::calculateFinalBill(double bill){
     return this->Mood->calculateBill(bill);
@@ -80,6 +80,7 @@ void CustomerTemplate::notifyManagement(){
 void CustomerTemplate::leave(){
     this->guests.clear();
     this->management->clearOutTable(this->reservation->getTable());
+    //std::cout<<"Customer has left"<<std::endl;
 }
 
 std::string CustomerTemplate::getName(){
@@ -91,9 +92,11 @@ std::string CustomerTemplate::getPaymentType()
     return this->paymentType;
 }
 
-std::string CustomerTemplate::setpaymentType(std::string paymentType){
-    this->paymentType==paymentType;
+void CustomerTemplate::setPaymentType(std::string paymentType){
+   
+    this->paymentType=paymentType;
 }
+
 bool CustomerTemplate::IsReadyToOrder(){
     return this->readyToOrder;
 }

@@ -19,10 +19,6 @@ class CustomerNPC: public CustomerTemplate{
 
         ~CustomerNPC();
 
-        std::unordered_map<std::string,int> generateBeverageOrder(Menu menu);
-
-        std::unordered_map<std::string,int> generateFoodOrder(Menu menu);
-
         int generateRandomAmmountOfGuests(int min, int max);
         
 };

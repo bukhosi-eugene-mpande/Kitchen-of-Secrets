@@ -20,6 +20,8 @@ Management::Management() {
     this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"eye of newt", 1000},{"pasta", 1000},{"ground beef", 1000},{"blood garlic", 1000},{"ectoplasmic meat", 1000},{"monster patty", 1000},{"moonlit meatballs", 1000},{"witch's fingers", 1000},{"bandage crust", 1000},{"shrieking greens", 1000},{"goblin bits", 1000},{"spooky sausages", 1000},{"pumpkin rice", 1000},{"cauldron chicken", 1000},{"skeleton ribs", 1000},{"witch's potion", 1000},{"vampire blood vodka", 1000},{"zombie virus rum", 1000},{"mummy wrap rum", 1000},{"poison apple cider", 1000},{"ectoplasmic spirit", 1000},{"moonlit whiskey", 1000},{"pumpkin rum", 1000},{"goblin ale", 1000},{"haunting wine", 1000}}));
     this->reservationSystem = std::make_shared<ReservationSystem>();
     this->receptionist = std::make_shared<Receptionist>(this->reservationSystem);
+    this->accounting = std::make_shared<Accounting>();
+    this->billReceived=false;
 }
 
 Management::~Management() {
@@ -45,6 +47,9 @@ void Management::notifyWaiterOfCancellation(Waiter* waiter) {
     waiter->getCanceledOrderFromKitchen();
 }
 
+void Management::pay(std::string paymentType, double bill){
+    this->accounting->pay(paymentType,bill);
+}
 void Management::notifyWaiterOfCompletion(Waiter* waiter) {
     waiter->getOrderFromKitchen();
 }
@@ -59,6 +64,7 @@ void Management::setInventory(std::shared_ptr<Inventory> inventory){
 
 void Management::notifyPlayerOfChangeInMood() {
     // TODO - implement a function in the ui that will display a message to the player
+    std::cout<<"MOOD changes"<<std::endl;
 }
 
 void Management::clearOutTable(std::shared_ptr<Table> table) {
@@ -94,9 +100,11 @@ std::shared_ptr<Cuisine> Management::getCusine(std::string name) {
 }
 
 std::unordered_map<int,std::string> Management::getDrinksMenu(){
+    std::cout<<"I can NOW get here"<<std::endl;
     return this->kitchen->getDrinksMenu();
 }
 
 std::unordered_map<int,std::string> Management::getCuisineMenu(){
+    std::cout<<"I can ALSO get here"<<std::endl;
     return this->kitchen->getCuisineMenu();
 }

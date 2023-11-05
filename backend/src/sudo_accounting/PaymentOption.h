@@ -2,7 +2,7 @@
 #define PAYMENTOTIONS_H
 #include <iostream>
 #include <string>
-class Payment{
+class Accounting{
     private:
     std::string payment;
     double bill;
@@ -11,6 +11,10 @@ class Payment{
             std::cout<<"Payment type received as "<<payment<<std::endl;
         };
 
+        void pay(std::string paymentType, double bill)
+        {
+            std::cout<<"Payment type and bill received"<<std::endl;
+        }
         void receiveBill(double bill){
             std::cout<<"Bill received as R"<<bill<<std::endl;
         };

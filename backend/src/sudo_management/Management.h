@@ -7,6 +7,7 @@
 #include <memory>
 
 class Waiter;
+class Accounting;
 class Kitchen;
 class Inventory;
 class ReservationSystem;
@@ -23,11 +24,18 @@ class Management {
         std::shared_ptr<Inventory> inventory;
         std::shared_ptr<ReservationSystem> reservationSystem;
         std::shared_ptr<Receptionist> receptionist;
+        std::shared_ptr<Accounting> accounting;
+        bool billReceived;
+        
 
     public:
         Management();
 
         ~Management();
+
+        bool hasReceivedBill(){
+            return this->billReceived=true;
+        }
 
         void sendOrderToKitchen(std::shared_ptr<Order> order);
 
@@ -44,6 +52,8 @@ class Management {
         void notifyWaiterOfCompletion(Waiter* waiter);
 
         void setInventory(std::shared_ptr<Inventory> inventory);
+
+        void pay(std::string paymentType, double bill);
 
         void notifyPlayerOfChangeInMood();
 
