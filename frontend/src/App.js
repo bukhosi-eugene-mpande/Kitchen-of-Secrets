@@ -5,6 +5,7 @@ import { purple, orange } from '@mui/material/colors';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import Start from './pages/Start/Start';
+import Team from './pages/Start/Team';
 import Staff from './pages/Staff/Staff';
 import Customer from './pages/Customer/Customer';
 import NotFound from './pages/NotFound/NotFound';
@@ -42,6 +43,7 @@ function App() {
           <Route path='*' element={<NotFound />} />
           <Route index path='/staff' element={<Staff />} />
           <Route index path='/customer' element={<Customer />} />
+          <Route index path='/team' element={<Team />} />
           <Route path="order" element={<Order />} /> {/* Adding this route for the "Order" page */}
           <Route path="payment" element={<Payment />} /> {/* Adding this route for the "Payment" page */}
         </Routes>

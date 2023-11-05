@@ -5,14 +5,12 @@ import { useDrag } from 'react-use-gesture';
 import { useSpring, animated } from 'react-spring';
 import { interpolate } from 'react-spring';
 
-
-// import managerImage from '../SVG/manager.gif';  
-import managerImage from '../SVG/manager_1.svg';  
-import waiterImage from '../SVG/waiter1_1.svg'; 
-import waiterImage2 from '../SVG/waiter2.svg'; 
-import tableImage from '../SVG/table.svg';
-import pumpkinImage from '../SVG/pumpkin_1.svg';
-import headChefImage from '../SVG/headChef.svg';
+import managerImage from '../assets/SVG/manager_1.svg';  
+import waiterImage from '../assets/SVG/waiter1_1.svg'; 
+import waiterImage2 from '../assets/SVG/waiter2.svg'; 
+import tableImage from '../assets/SVG/table.svg';
+import pumpkinImage from '../assets/SVG/pumpkin_1.svg';
+import headChefImage from '../assets/SVG/headChef.svg';
 
 const Restaurant = () => {
     const handleDoRounds = () => {

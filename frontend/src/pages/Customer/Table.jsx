@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { Link } from 'react-router-dom';
-import ghostImage from '../SVG/customer_1.svg'; 
-import tableImage from '../SVG/table.svg';
+import ghostImage from '../assets/SVG/customer_1.svg'; 
+import tableImage from '../assets/SVG/table.svg';
 
 const Table = () => {
 
