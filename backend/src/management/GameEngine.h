@@ -74,8 +74,8 @@ class GameEngine : public Engine {
         std::vector<std::shared_ptr<GameComponent>> components;
     public:
         virtual void notify(std::shared_ptr<GameComponent> sender, std::string event);
-        virtual void registerComponent(std::shared_ptr<GameComponent> component) = 0;
-        virtual void unregisterComponent(std::shared_ptr<GameComponent> component) = 0;
+        virtual void registerGameComponent(std::shared_ptr<GameComponent> gameComponent) = 0;
+        virtual void unregisterGameComponent(std::shared_ptr<GameComponent> gameComponent) = 0;
 };
 
 #endif

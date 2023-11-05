@@ -25,7 +25,7 @@ class CustomerTemplate : public GameComponent {
         std::shared_ptr<SatisfactionState> Mood;
         std::unordered_map<std::string,int> order;
         std::string DesiredSection;
-        int numGuests;
+        int numberOfGuests;
         double totalBill;
         bool readyToOrder;
         bool hasGuests;
@@ -62,7 +62,7 @@ class CustomerTemplate : public GameComponent {
         std::string getDesiredSection();
         void setDesiredSection(std::string section);
         void requestToBeSeated();
-        virtual void sendEvent();
-        virtual void receiveEvent(std::string event);
+        virtual void sendEvent() = 0;
+        virtual void receiveEvent(std::string event) = 0;
 };
 #endif

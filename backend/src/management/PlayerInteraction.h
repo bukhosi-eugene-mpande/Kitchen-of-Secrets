@@ -26,8 +26,9 @@ class PlayerInteraction {
         std::shared_ptr<Inventory> inventory;
         std::shared_ptr<ReservationSystem> reservationSystem;
         std::shared_ptr<Receptionist> receptionist;
+        std::shared_ptr<Waiter> waiter;
     public:
-        PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shared_ptr<Inventory> inventory, std::shared_ptr<ReservationSystem> reservationSystem, std::shared_ptr<Receptionist> receptionist);
+        PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shared_ptr<Inventory> inventory, std::shared_ptr<ReservationSystem> reservationSystem, std::shared_ptr<Receptionist> receptionist, std::shared_ptr<Waiter> waiter);
         
         ~PlayerInteraction();
 

@@ -24,7 +24,7 @@ class AbstractOrder : public GameComponent {
         double getPrice() const;
         bool IsFinished();
         virtual void sendEvent();
-        virtual virtual void receiveEvent(std::string event);
+        virtual void receiveEvent(std::string event);
 };
 
 #endif
