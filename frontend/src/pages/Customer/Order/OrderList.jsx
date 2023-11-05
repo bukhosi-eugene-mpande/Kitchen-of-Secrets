@@ -20,16 +20,21 @@ function OrderList({ socket }) {
 
   const food = order.food;
   const beverages = order.beverages;
-  
+
   const totalFoodPrice = food.reduce((total, item) => total + item.price, 0);
-  const totalBeveragePrice = beverages.reduce((total, item) => total + item.price, 0);
+  const totalBeveragePrice = beverages.reduce(
+    (total, item) => total + item.price,
+    0
+  );
   const totalPrice = totalFoodPrice + totalBeveragePrice;
 
   function handleOrderClick() {
     setLoading(true);
 
     if (socket) {
-      socket.send(JSON.stringify({ type: 'make-order', data: { order } }));
+      socket.send(
+        JSON.stringify({ type: 'make-order', data: { order, totalPrice } })
+      );
     }
   }
 

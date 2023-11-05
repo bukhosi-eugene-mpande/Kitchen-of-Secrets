@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-
 import { CustomerContext } from '../Customer';
-
 import {
   Box,
   Button,
@@ -12,30 +10,27 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  DialogContentText
+  DialogContentText,
 } from '@mui/material';
-
 import LoadingButton from '@mui/lab/LoadingButton';
 
 function Reservation() {
   const { changeTab } = useContext(CustomerContext);
 
   const [socket, setSocket] = useState(null);
-
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [name, setName] = useState('Ashley');
-  const [seating, setSeating] = useState('Indoor');
-  const [guests, setNumberOfGuests] = useState('1');
-
-  const [time, setTime] = useState(
-    new Date().toLocaleTimeString('en-US', {
+  const [formData, setFormData] = useState({
+    name: 'Ashley',
+    seating: 'Indoor',
+    guests: '1',
+    time: new Date().toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: 'numeric',
-      hour12: false
-    })
-  );
+      hour12: false,
+    }),
+  });
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000/ws');
@@ -65,14 +60,13 @@ function Reservation() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     setLoading(true);
 
     const details = {
-      name,
-      time,
-      guests,
-      seating
+      name: formData.name,
+      time: formData.time,
+      guests: formData.guests,
+      seating: formData.seating,
     };
 
     if (socket) {
@@ -96,87 +90,91 @@ function Reservation() {
     changeTab(null, 1);
   }
 
+  const handleInputChange = (key, value) => {
+    setFormData({ ...formData, [key]: value });
+  };
+
   return (
     <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
-      <Typography variant='h1' sx={{ m: 2 }}>
+      <Typography variant="h1" sx={{ m: 2 }}>
         Reservation
       </Typography>
 
-      <Typography variant='h3' sx={{ m: 2 }}>
+      <Typography variant="h3" sx={{ m: 2 }}>
         Fill Out The Form To Make Reservation
       </Typography>
 
       <Box
-        component='form'
+        component="form"
         onSubmit={handleSubmit}
         sx={{
           m: 2,
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         <TextField
           required
           fullWidth
-          type='text'
-          value={name}
+          type="text"
+          value={formData.name}
           sx={{ m: 3 }}
-          label='Name'
-          onChange={(e) => setName(e.target.value)}
-          helperText='Please enter your name'
+          label="Name"
+          onChange={(e) => handleInputChange('name', e.target.value)}
+          helperText="Please enter your name"
         />
 
         <TextField
           required
           fullWidth
-          type='time'
-          value={time}
+          type="time"
+          value={formData.time}
           sx={{ m: 3 }}
-          label='Desired Time'
-          onChange={(e) => setTime(e.target.value)}
-          helperText='Please enter the time you would like to eat'
+          label="Desired Time"
+          onChange={(e) => handleInputChange('time', e.target.value)}
+          helperText="Please enter the time you would like to eat"
         />
 
         <TextField
           select
           required
           fullWidth
-          label='Area'
+          label="Area"
           sx={{ m: 3 }}
-          value={seating}
-          onChange={(e) => setSeating(e.target.value)}
-          helperText='Please select where you would like to eat'
+          value={formData.seating}
+          onChange={(e) => handleInputChange('seating', e.target.value)}
+          helperText="Please select where you would like to eat"
         >
-          <MenuItem value='Indoor'>Indoor</MenuItem>
-          <MenuItem value='Outdoor'>Outdoor</MenuItem>
+          <MenuItem value="Indoor">Indoor</MenuItem>
+          <MenuItem value="Outdoor">Outdoor</MenuItem>
         </TextField>
 
         <TextField
           required
           fullWidth
-          type='number'
+          type="number"
           sx={{ m: 3 }}
-          value={guests}
-          label='Number of Guests'
-          onChange={(e) => setNumberOfGuests(e.target.value)}
-          helperText='Please enter the number of guests to reserve for'
+          value={formData.guests}
+          label="Number of Guests"
+          onChange={(e) => handleInputChange('guests', e.target.value)}
+          helperText="Please enter the number of guests to reserve for"
         />
 
         <LoadingButton
-          size='large'
-          type='submit'
-          color='primary'
+          size="large"
+          type="submit"
+          color="primary"
           loading={loading}
-          variant='contained'
+          variant="contained"
         >
           Reserve
         </LoadingButton>
