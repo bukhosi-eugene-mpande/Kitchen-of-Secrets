@@ -13,11 +13,13 @@ int main()
 
     crow::websocket::connection* c_Eat = nullptr;
     crow::websocket::connection* c_Order = nullptr;
+    crow::websocket::connection* c_Payment = nullptr;
     crow::websocket::connection* c_Reservation = nullptr;
 
 
     crow::websocket::connection* s_Cook = nullptr;
     crow::websocket::connection* s_Order = nullptr;
+    crow::websocket::connection* s_Accounting = nullptr;
     crow::websocket::connection* s_Reservations = nullptr;
 
 
@@ -96,7 +98,17 @@ int main()
                     c_Eat = &conn;
                     CROW_LOG_INFO << "Staff Cook Connected";
                 }
-                else if (data == "C-Reservation" || data == "S-Reservations" || data == "C-Order" || data == "S-Order")
+                else if (c_Payment == nullptr && data == "C-Payment")
+                {
+                    c_Payment = &conn;
+                    CROW_LOG_INFO << "Customer Payment Connected";
+                }
+                else if (s_Accounting == nullptr && data == "S-Accounting")
+                {
+                    s_Accounting = &conn;
+                    CROW_LOG_INFO << "Staff Accounting Connected";
+                }
+                else if (data == "C-Reservation" || data == "S-Reservations" || data == "C-Order" || data == "S-Order" || data == "S-Cook" || data == "C-Eat" || data == "C-Payment" || data == "S-Accounting")
                 {
                     CROW_LOG_INFO << "Connection already established";
                 }
@@ -117,6 +129,7 @@ int main()
                     else if(jsonData["type"] == "make-order")
                     {
                         s_Order->send_text(data);
+                        c_Payment->send_text(data);
                         CROW_LOG_INFO << "Order request sent to staff";
                     }
                     else if(jsonData["type"] == "receive-order")
@@ -133,6 +146,15 @@ int main()
                     {
                         c_Eat->send_text(data);
                         CROW_LOG_INFO << "Order served to customer";
+                    }
+                    else if(jsonData["type"] == "make-payment")
+                    {
+                        s_Accounting->send_text(data);
+                        CROW_LOG_INFO << "Payment received by staff";
+                    }
+                    else
+                    {
+                        CROW_LOG_INFO << "Unknown message received";
                     }
                 }
             }
