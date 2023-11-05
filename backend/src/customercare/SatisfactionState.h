@@ -18,6 +18,7 @@ class SatisfactionState{
         virtual void console()=0;
         virtual void anger()=0;
         double calculateBill(double bill);
+        double getTip();
         std::string getStateName();
 };
 #endif

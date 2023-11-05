@@ -9,10 +9,13 @@
 CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> management) : name(name){
     this->Mood = std::make_shared<Happy>(this);
     this->readyToOrder = false;
+    this->readyToPay = false;
+    this->isEating=false;
     this->ordered = false;
     this->totalBill = 0;
     this->management = management;
     this->reservation = nullptr;
+    this->paymentType = "";
 }
 
 CustomerTemplate::~CustomerTemplate(){
@@ -23,6 +26,15 @@ std::shared_ptr<SatisfactionState> CustomerTemplate::getMood(){
     return this->Mood;
 }
 
+void CustomerTemplate::setIsEating()
+{
+    this->isEating=true;
+}
+
+bool CustomerTemplate::getIsEating()
+{
+    return this->isEating;
+}
 double CustomerTemplate::calculateFinalBill(double bill){
     return this->Mood->calculateBill(bill);
 }
@@ -43,8 +55,14 @@ double CustomerTemplate::getTotalBill(){
     return this->totalBill;
 }
 
-void CustomerTemplate::setReadyToOrder(bool readyToOrder){
+void CustomerTemplate::setReadyToOrder(bool readyToOrder)
+{
     this->readyToOrder = readyToOrder;
+}
+
+void CustomerTemplate::setReadyToPay(bool readyToPay)
+{
+    this->readyToPay = readyToPay;
 }
 
 void CustomerTemplate::console(){
@@ -68,8 +86,21 @@ std::string CustomerTemplate::getName(){
     return this->name;
 }
 
+std::string CustomerTemplate::getPaymentType()
+{
+    return this->paymentType;
+}
+
+std::string CustomerTemplate::setpaymentType(std::string paymentType){
+    this->paymentType==paymentType;
+}
 bool CustomerTemplate::IsReadyToOrder(){
     return this->readyToOrder;
+}
+
+bool CustomerTemplate::IsReadyToPay()
+{
+    return this->readyToPay;
 }
 
 std::shared_ptr<Reservation> CustomerTemplate::getReservation(){

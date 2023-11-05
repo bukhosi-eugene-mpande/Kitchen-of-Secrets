@@ -12,9 +12,13 @@ double SatisfactionState::calculateBill(double bill){
     return bill;
 }
 
+double SatisfactionState::getTip(){
+    return tip;
+}
 std::string SatisfactionState::getStateName(){
     return stateName;
 }
+
 
 void SatisfactionState::setCustomer(CustomerTemplate* customer){
     this->customer = customer;

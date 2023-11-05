@@ -29,9 +29,12 @@ class CustomerTemplate{
         int numGuests;
         double totalBill;
         bool readyToOrder;
+        bool readyToPay;
         bool ordered;
         bool hasGuests;
         bool isMain;
+        bool isEating;
+        std::string paymentType;
 
     public:
         CustomerTemplate(std::string name, std::shared_ptr<Management> management);
@@ -42,13 +45,24 @@ class CustomerTemplate{
 
         double calculateFinalBill(double bill);
 
+        //make customer eat
+        bool getIsEating();
+
+        void setIsEating();
+
         void setMood(std::shared_ptr<SatisfactionState> Mood);
 
         std::unordered_map<std::string,int> getOrder();
 
         std::string getName();
 
+        std::string getPaymentType();
+
+        std::string setpaymentType(std::string getPaymentType);
+
         bool IsReadyToOrder();
+
+        bool IsReadyToPay();
 
         std::unordered_map<std::string,int> requestBeverageOrder(std::shared_ptr<Menu> menu);
 
@@ -81,6 +95,8 @@ class CustomerTemplate{
         double getTotalBill();
 
         void setReadyToOrder(bool readyToOrder);
+
+        void setReadyToPay(bool readyToPay);
 
         void console();
 
