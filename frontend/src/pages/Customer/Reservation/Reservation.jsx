@@ -99,13 +99,22 @@ function Reservation() {
   return (
     <Box
       sx={{
+        backgroundImage: `url('./assets/ReservationBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'center'
       }}
     >
-      <Typography variant='h1' sx={{ m: 2 }}>
+      <Typography variant='h1' sx={{
+        m: 2, color: 'white',
+        fontFamily: 'Gloria Hallelujah, cursive',
+        fontWeight: 700
+      }}>
         Reservation
       </Typography>
 
