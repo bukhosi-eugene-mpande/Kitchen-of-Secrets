@@ -46,10 +46,6 @@ void PlayerInteraction::notifyWaiterOfCompletion() {
     waiter->getOrderFromKitchen();
 }
 
-void PlayerInteraction::setInventory(std::shared_ptr<Inventory> inventory){
-    this->inventory = inventory;
-}
-
 void PlayerInteraction::notifyPlayerOfChangeInMood() {
     // TODO - implement a function in the ui that will display a message to the player
 }
