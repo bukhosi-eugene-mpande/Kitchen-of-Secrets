@@ -18,6 +18,10 @@ function Payment() {
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000/ws');
 
+    ws.onopen = () => {
+      ws.send('C-Payment');
+    };
+
     setSocket(ws);
 
     return () => {
@@ -31,7 +35,7 @@ function Payment() {
         const { type, data } = JSON.parse(event.data);
 
         if (type === 'make-order') {
-          setTotal(data.total + Number(tip));
+          setTotal(data.totalPrice + Number(tip));
         }
       };
     }
@@ -47,6 +51,12 @@ function Payment() {
 
   return (
     <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'center'
+      }}
     >
       <Typography variant='h1' sx={{ m: 2 }}>
         Payment

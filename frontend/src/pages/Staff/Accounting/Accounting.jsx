@@ -20,6 +20,10 @@ function Accounting() {
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000/ws');
 
+    ws.onopen = () => {
+      ws.send('S-Accounting');
+    };
+
     setSocket(ws);
 
     return () => {
@@ -66,7 +70,7 @@ function Accounting() {
         <DialogTitle>{'Payment Received'}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            A payment of {paymentAmount} has been received.
+            A payment of R{paymentAmount} has been received.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
