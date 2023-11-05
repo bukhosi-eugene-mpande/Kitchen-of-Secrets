@@ -10,16 +10,6 @@ PlayerInteraction::PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shar
     customer = std::make_shared<Customer>(engine, this);
 }
 
-PlayerInteraction::PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shared_ptr<Inventory> inventory, std::shared_ptr<ReservationSystem> reservationSystem, std::shared_ptr<Receptionist> receptionist, std::shared_ptr<Waiter> waiter, std::shared_ptr<Customer> customer, std::shared_ptr<Engine> engine) {
-    kitchen = std::make_shared<Kitchen>(this);
-    inventory = std::make_shared<Inventory>(this);
-    reservationSystem = std::make_shared<ReservationSystem>(this);
-    receptionist = std::make_shared<Receptionist>(this);
-    engine = std::make_shared<Engine>();
-    waiter = std::make_shared<Waiter>(engine);
-    customer = std::make_shared<Customer>(engine, this);
-}
-
 PlayerInteraction::~PlayerInteraction() {}
 
 void PlayerInteraction::sendOrderToKitchen() {
