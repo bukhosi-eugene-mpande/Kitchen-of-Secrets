@@ -6,12 +6,18 @@ import {
   Select,
   MenuItem,
   Button,
-  TextField
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
 } from '@mui/material';
 
 function Payment() {
   const [tip, setTip] = useState(0);
   const [total, setTotal] = useState(0);
+  const [open, setOpen] = useState(false);
   const [socket, setSocket] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('card');
 
@@ -46,7 +52,14 @@ function Payment() {
       socket.send(
         JSON.stringify({ type: 'make-payment', data: { total, paymentMethod } })
       );
+
+      setOpen(true);
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    window.close();
   };
 
   return (
@@ -106,6 +119,16 @@ function Payment() {
           Pay
         </Button>
       </Box>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>{'Payment Successful'}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Thank you for eating at KOS.</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
