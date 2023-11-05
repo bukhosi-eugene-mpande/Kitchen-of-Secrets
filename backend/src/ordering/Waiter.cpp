@@ -28,8 +28,10 @@ void Waiter::sendOrdersToKitchen()
     }
 }
 
-void Waiter::sendBillToAccounting(double)
-{}
+void Waiter::sendBillToAccounting(double bill)
+{
+    accounting->receiveBill(bill);
+}
 
 // void Waiter::sendTypeToAccounting(std::string payType)
 // {}
@@ -134,7 +136,7 @@ void Waiter::serveBill(std::shared_ptr<CustomerTemplate> customer,std::shared_pt
 
     //calculate Bill if they are didnt open tab
     if(payType!="tab"){
-        customer->calculateFinalBill(tempBill);
+        sendBillToAccounting(customer->calculateFinalBill(tempBill));
     }
     //leave
     customer->leave();
