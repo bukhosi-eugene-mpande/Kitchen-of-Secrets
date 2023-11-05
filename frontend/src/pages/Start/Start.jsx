@@ -5,7 +5,7 @@ import { Box, Button, Typography } from '@mui/material';
 
 function Start() {
   const navigate = useNavigate();
-
+  
   return (
     <Box
       sx={{
