@@ -16,37 +16,37 @@ function Payment() {
   const [paymentMethod, setPaymentMethod] = useState('card');
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8000');
-
-    ws.onmessage = (event) => {
-      const { type, data } = JSON.parse(event.data);
-
-      if (type === 'make-order') {
-        setTotal(data.total + Number(tip));
-      }
-    };
+    const ws = new WebSocket('ws://localhost:8000/ws');
 
     setSocket(ws);
 
     return () => {
       ws.close();
     };
-  }, [tip]);
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.onmessage = (event) => {
+        const { type, data } = JSON.parse(event.data);
+
+        if (type === 'make-order') {
+          setTotal(data.total + Number(tip));
+        }
+      };
+    }
+  }, [socket]);
 
   const handlePayment = () => {
     if (socket) {
-      socket.send(JSON.stringify({ total, paymentMethod }));
+      socket.send(
+        JSON.stringify({ type: 'make-payment', data: { total, paymentMethod } })
+      );
     }
   };
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center'
-      }}
     >
       <Typography variant='h1' sx={{ m: 2 }}>
         Payment
@@ -68,8 +68,8 @@ function Payment() {
           value={tip}
           label='Tip'
           type='number'
-          sx={{ m: 2, width: '100%' }}
           variant='outlined'
+          sx={{ m: 2, width: '100%' }}
           InputLabelProps={{ shrink: true }}
           onChange={(event) => {
             setTip(Number(event.target.value));
@@ -78,8 +78,8 @@ function Payment() {
         />
 
         <Select
-          sx={{ m: 2, width: '100%' }}
           value={paymentMethod}
+          sx={{ m: 2, width: '100%' }}
           onChange={(event) => setPaymentMethod(event.target.value)}
         >
           <MenuItem value={'card'}>Card</MenuItem>
