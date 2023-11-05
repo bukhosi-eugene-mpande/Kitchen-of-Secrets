@@ -8,9 +8,9 @@ Meal::Meal(double price,std::string name,std::string chef, std::unordered_map<st
 }
 
 Meal::Meal(const Meal& other) {
-    this->price = other.price;
-    this->name = other.name;
-    this->ingredients = other.ingredients;
+    this->price = other.getPrice();
+    this->name = other.getName();
+    this->ingredients = other.getIngredients();
 }
 
 Meal::~Meal() {
@@ -46,6 +46,10 @@ void Meal::setIngredients(std::unordered_map<std::string,int> ingredients) {
 
 void Meal::setPrice(double price) {
     this->price = price;
+}
+
+bool Meal::getIsAlcoholic() const {
+    return this->isAlcoholic;
 }
 
 

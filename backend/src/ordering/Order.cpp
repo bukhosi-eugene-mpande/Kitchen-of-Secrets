@@ -1,16 +1,17 @@
 #include "Order.h"
 #include "MenuItem.h"
 #include "Waiter.h"
+#include "../reservation/Table.h"
 
-Order::Order(int tableNumber, std::vector<std::shared_ptr<MenuItem>> meals, std::shared_ptr<Waiter> waiter) {
-    this->tableNumber = tableNumber;
+Order::Order(std::shared_ptr<Table> table, std::vector<std::shared_ptr<MenuItem>> meals, Waiter* waiter) {
+    this->table = table;
     this->meals = meals;
     this->waiter = waiter;
     this->isCancelled = false;
 }
 
 Order::Order(const Order& other) {
-    this->tableNumber = other.tableNumber;
+    this->table = other.table;
     this->meals = other.meals;
     this->waiter = other.waiter;
     this->isCancelled = other.isCancelled;
@@ -42,12 +43,12 @@ std::unordered_map<std::string,int> Order::calculateIngredients() {
     return ingredients;
 }
 
-std::shared_ptr<Waiter> Order::getWaiter() const {
+Waiter* Order::getWaiter() const {
     return this->waiter;
 }
 
-int Order::getTableNumber() const {
-    return this->tableNumber;
+std::shared_ptr<Table> Order::getTable() const {
+    return this->table;
 }
 
 bool Order::getIsCancelled() const {
@@ -58,12 +59,12 @@ void Order::setIsCancelled(bool isCancelled) {
     this->isCancelled = isCancelled;
 }
 
-void Order::setWaiter(std::shared_ptr<Waiter> waiter) {
+void Order::setWaiter(Waiter* waiter) {
     this->waiter = waiter;
 }
 
-void Order::setTableNumber(int tableNumber) {
-    this->tableNumber = tableNumber;
+void Order::setTable(std::shared_ptr<Table> table) {
+    this->table = table;
 }
 
 void Order::addMeal(std::shared_ptr<MenuItem> meal) {

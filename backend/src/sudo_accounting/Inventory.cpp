@@ -12,13 +12,17 @@ Inventory::~Inventory() {
 }
 
 bool Inventory::requestIngredients(std::unordered_map<std::string,int> ingredients) {
+
     for (auto const& ingredient : ingredients) {
-        if (this->inventory[ingredient.first] < ingredient.second) {
+        if (this->inventory.find(ingredient.first) == this->inventory.end() || this->inventory[ingredient.first] < ingredient.second) {
             return false;
         }
     }
+    
     for (auto const& ingredient : ingredients) {
-        this->inventory[ingredient.first] -= ingredient.second;
+        if (this->inventory.find(ingredient.first) != this->inventory.end()) {
+            this->inventory[ingredient.first] -= ingredient.second;
+        }
     }
     return true;
 }

@@ -10,7 +10,10 @@ class Meal {
         std::unordered_map<std::string,int> ingredients;
         std::string name;
         std::string chef; 
-        double price; 
+        double price;
+
+    protected: 
+        bool isAlcoholic; 
 
     public:
         Meal(double price,std::string name,std::string chef, std::unordered_map<std::string,int> ingredients);
@@ -34,6 +37,8 @@ class Meal {
         double getPrice() const;
 
         void setPrice(double price);
+
+        bool getIsAlcoholic() const;
 
 };
 

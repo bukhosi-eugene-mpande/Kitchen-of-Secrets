@@ -11,6 +11,8 @@ class SatisfactionState;
 class Reservation;
 class Waiter;
 class Management;
+class Menu;
+class Order;
 
 class CustomerTemplate{
     protected:
@@ -20,10 +22,14 @@ class CustomerTemplate{
         std::string name;
         std::shared_ptr<SatisfactionState> Mood;
         std::unordered_map<std::string,int> order;
+        std::unordered_map<std::string,int> BevarageOrder;
+        std::unordered_map<std::string,int> FoodOrder;
+        std::shared_ptr<Order> finishedOrder;
         std::string DesiredSection;
         int numGuests;
         double totalBill;
         bool readyToOrder;
+        bool ordered;
         bool hasGuests;
         bool isMain;
 
@@ -44,7 +50,33 @@ class CustomerTemplate{
 
         bool IsReadyToOrder();
 
+        std::unordered_map<std::string,int> requestBeverageOrder(std::shared_ptr<Menu> menu);
+
+        std::unordered_map<std::string,int> requestFoodOrder(std::shared_ptr<Menu> menu);
+
+        std::unordered_map<std::string,int> generateBeverageOrder(std::shared_ptr<Menu> menu);
+
+        std::unordered_map<std::string,int> generateFoodOrder(std::shared_ptr<Menu> menu);
+
         void setOrder(std::unordered_map<std::string,int> order);
+
+        void setBeverageOrder(std::unordered_map<std::string,int> order);
+
+        void setFoodOrder(std::unordered_map<std::string,int> order);
+
+        std::unordered_map<std::string,int> getBeverageOrder();
+
+        std::unordered_map<std::string,int> getFoodOrder();
+
+        bool getOrdered();
+
+        void setOrdered(bool ordered);
+
+        std::shared_ptr<Order> getFinishedOrder();
+
+        void setFinishedOrder(std::shared_ptr<Order> order);
+
+        void setTotalBill(double bill);
 
         double getTotalBill();
 
@@ -91,6 +123,8 @@ class CustomerTemplate{
         void setDesiredSection(std::string section);
 
         void requestToBeSeated();
+
+        int generateRandomNum(int min, int max);
 
 
 

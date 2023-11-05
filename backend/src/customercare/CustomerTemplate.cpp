@@ -4,10 +4,12 @@
 #include "../reservation/Reservation.h"
 #include "../ordering/Waiter.h"
 #include "../sudo_management/Management.h"
+#include "../ordering/Menu.h"
 
 CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> management) : name(name){
     this->Mood = std::make_shared<Happy>(this);
     this->readyToOrder = false;
+    this->ordered = false;
     this->totalBill = 0;
     this->management = management;
     this->reservation = nullptr;
@@ -137,3 +139,87 @@ void CustomerTemplate::setDesiredSection(std::string DesiredSection){
 void CustomerTemplate::requestToBeSeated(){
     this->management->requestToBeSeated(this->this_to_shared());
 }
+
+//functions needed for ordering
+
+int CustomerTemplate::generateRandomNum(int min, int max){
+    srand(time(0)); 
+    return min + rand() % (max - min + 1); 
+}
+
+std::unordered_map<std::string,int> CustomerTemplate::getBeverageOrder(){
+    return this->BevarageOrder;
+}
+
+std::unordered_map<std::string,int> CustomerTemplate::getFoodOrder(){
+    return this->FoodOrder;
+}
+
+void CustomerTemplate::setBeverageOrder(std::unordered_map<std::string,int> order){
+    this->BevarageOrder = order;
+}
+
+void CustomerTemplate::setFoodOrder(std::unordered_map<std::string,int> order){
+    this->FoodOrder = order;
+}
+
+std::unordered_map<std::string, int> CustomerTemplate::generateBeverageOrder(std::shared_ptr<Menu> menu){
+    std::unordered_map<std::string, int> order;
+    int numBeverages = generateRandomNum(1,3);
+    for(int i = 0; i < numBeverages; i++){
+        int beverageIndex = generateRandomNum(1, 10);
+        std::string beverage = menu->getMenuItems()[beverageIndex];
+        int quantity = generateRandomNum(1,3);
+        order[beverage] = quantity;
+    }
+    return order;
+}
+
+std::unordered_map<std::string, int> CustomerTemplate::generateFoodOrder(std::shared_ptr<Menu> menu){
+    std::unordered_map<std::string, int> order;
+    int num = generateRandomNum(1,3);
+    for(int i = 0; i < num; i++){
+        int foodIndex = generateRandomNum(1, 15);
+        std::string beverage = menu->getMenuItems()[foodIndex];
+        int quantity = generateRandomNum(1,3);
+        order[beverage] = quantity;
+    }
+    return order;
+}
+
+std::unordered_map<std::string,int> CustomerTemplate::requestBeverageOrder(std::shared_ptr<Menu> menu){
+    if(this->name == "NPC"){
+        return generateBeverageOrder(menu);
+    }else{
+        return getBeverageOrder();
+    }
+}
+
+std::unordered_map<std::string,int> CustomerTemplate::requestFoodOrder(std::shared_ptr<Menu> menu){
+    if(this->name == "NPC"){
+        return generateFoodOrder(menu);
+    }else{
+        return getFoodOrder();
+    }
+}
+
+void CustomerTemplate::setOrdered(bool ordered){
+    this->ordered = ordered;
+}
+
+bool CustomerTemplate::getOrdered(){
+    return this->ordered;
+}
+
+void CustomerTemplate::setFinishedOrder(std::shared_ptr<Order> order){
+    this->finishedOrder = order;
+}
+
+std::shared_ptr<Order> CustomerTemplate::getFinishedOrder(){
+    return this->finishedOrder;
+}
+
+void CustomerTemplate::setTotalBill(double bill){
+    this->totalBill = bill;
+}
+
