@@ -14,19 +14,38 @@ Waiter::Waiter(Section* section, Management* management){
     this->orderBuilder = std::make_shared<OrderBuilder>();
     this->createMenus();
     this->id = Waiter::nextId++;
+    this->payType="";
 }
 
 Waiter::~Waiter() {
 
 }
 
-void Waiter::sendOrdersToKitchen() {
+void Waiter::sendOrdersToKitchen()
+{
     for(auto order : this->orders) {
         this->management->sendOrderToKitchen(order);
     }
 }
 
+void Waiter::sendBillToAccounting(double bill)
+{
+    accounting->receiveBill(bill);
+}
+
+// void Waiter::sendTypeToAccounting(std::string payType)
+// {}
+
+void Waiter::getPaymentTypeFromCustomer(std::shared_ptr<CustomerTemplate> customer)
+{
+    payType=customer->getPaymentType();
+    accounting->receivePaymentType(payType);
+}
+
 std::vector<std::shared_ptr<MenuItem>> Waiter::takeDrinksOrder(std::shared_ptr<CustomerTemplate> customer,std::shared_ptr<Table> table) {
+    //get payment type
+    getPaymentTypeFromCustomer(customer);
+    //commenc with order
     std::vector<std::shared_ptr<MenuItem>> beverages;
     std::unordered_map<std::string, int> drinks = customer->requestBeverageOrder(this->BeverageMenu);
     for(auto drk : drinks) {
@@ -44,6 +63,11 @@ std::vector<std::shared_ptr<MenuItem>> Waiter::takeDrinksOrder(std::shared_ptr<C
 }
 
 std::vector<std::shared_ptr<MenuItem>> Waiter::takeFoodOrder(std::shared_ptr<CustomerTemplate> customer,std::shared_ptr<Table> table) {
+    
+    //ask for payment type again if customeer didnt order drinks
+    if(payType=="")
+        getPaymentTypeFromCustomer(customer);
+    
     std::vector<std::shared_ptr<MenuItem>> foods;
     std::unordered_map<std::string, int> meals = customer->requestFoodOrder(this->FoodMenu);
     for(auto meal : meals) {
@@ -99,12 +123,25 @@ void Waiter::serveOrder(std::shared_ptr<Order> order) {
             }
         }
     }
+
 }
 
 double Waiter::billOrder(std::shared_ptr<Order> order) {
     return order->calculatePrice();
 }
 
+void Waiter::serveBill(std::shared_ptr<CustomerTemplate> customer,std::shared_ptr<Order> order)
+{
+    customer->setIsEating();
+    double tempBill= billOrder(order);
+
+    //calculate Bill if they are didnt open tab
+    if(payType!="tab"){
+        sendBillToAccounting(customer->calculateFinalBill(tempBill));
+    }
+    //leave
+    customer->leave();
+}
 std::shared_ptr<Food> Waiter::createFoodItem(double price,std::string name, std::unordered_map<std::string,int> ingredients) {
     return std::make_shared<Food>(price,name,ingredients);
 }
