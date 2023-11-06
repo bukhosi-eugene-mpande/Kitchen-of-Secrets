@@ -74,6 +74,7 @@ function Orders() {
         backgroundSize: 'cover',
         backgroundPosition: 'top',
         backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
