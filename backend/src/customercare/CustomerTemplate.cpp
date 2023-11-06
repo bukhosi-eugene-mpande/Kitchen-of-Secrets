@@ -255,9 +255,6 @@ void CustomerTemplate::setTotalBill(double bill){
     this->totalBill = bill;
 }
 
-std::string CustomerTemplate::getPaymentType(){
-    return this->paymentType;
-}
 
 void CustomerTemplate::setPaymentType(std::string paymentType){
     this->paymentType = paymentType;

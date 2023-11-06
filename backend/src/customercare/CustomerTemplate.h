@@ -36,7 +36,6 @@ class CustomerTemplate{
         bool hasGuests;
         bool isMain;
         bool isEating;
-        std::string paymentType;
 
     public:
         CustomerTemplate(std::string name, std::shared_ptr<Management> management);
@@ -150,7 +149,6 @@ class CustomerTemplate{
 
         bool getDoneEating();
 
-        std::string getPaymentType();
 
 
 

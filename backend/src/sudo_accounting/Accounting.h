@@ -13,8 +13,9 @@ class Accounting{
 
         std::string pay(std::string paymentType, double bill)
         {
-            return "Payment type and bill received";
+            return "Payment type and bill received as";
         }
+        
         std::string receiveBill(double bill){
             return "Bill received";
         };

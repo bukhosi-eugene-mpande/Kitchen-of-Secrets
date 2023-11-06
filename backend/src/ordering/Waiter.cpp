@@ -130,18 +130,6 @@ double Waiter::billOrder(std::shared_ptr<Order> order) {
     return order->calculatePrice();
 }
 
-void Waiter::serveBill(std::shared_ptr<CustomerTemplate> customer,std::shared_ptr<Order> order)
-{
-    customer->setIsEating();
-    double tempBill= billOrder(order);
-
-    //calculate Bill if they are didnt open tab
-    if(payType!="tab"){
-        sendBillToAccounting(customer->calculateFinalBill(tempBill));
-    }
-    //leave
-    customer->leave();
-}
 std::shared_ptr<Food> Waiter::createFoodItem(double price,std::string name, std::unordered_map<std::string,int> ingredients) {
     return std::make_shared<Food>(price,name,ingredients);
 }
@@ -177,7 +165,8 @@ void Waiter::serveBill(){
             if(customers[i]->getDoneEating()){
                 double bill = this->billOrder(customers[i]->getFinishedOrder());
                 customers[i]->setTotalBill(bill);
-                this->management->pay(customers[i]->getPaymentType(),bill);
+                std::string reciept = this->management->pay(customers[i]->getPaymentType(),bill);
+                reciepts.push_back(reciept);
                 if(customers[i]->getName()!="NPC"){
                     customers[i]->leave();
                 }
@@ -193,6 +182,10 @@ void Waiter::serveBill(){
             }
         }
     }
+}
+
+std::vector<std::string> Waiter::getRecipts(){
+    return this->reciepts;
 }
 
 

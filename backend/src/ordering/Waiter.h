@@ -25,10 +25,12 @@ class Waiter{
     private:
         Section* section;
         Management* management;
+        std::vector<std::string> reciepts;
         std::vector<std::shared_ptr<Order>> orders;
         std::shared_ptr<OrderBuilder> orderBuilder;
         std::shared_ptr<Menu> BeverageMenu;
         std::shared_ptr<Menu> FoodMenu;
+        Accounting* accounting;
         int id;
         static int nextId;
         std::string payType;
@@ -54,6 +56,6 @@ class Waiter{
         void serveBill(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Order> order);
         int getId();
         void serveBill();
-
+        std::vector<std::string> getRecipts();
 };
 #endif
