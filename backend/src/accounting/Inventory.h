@@ -9,12 +9,16 @@
 class Inventory {
     private:
         std::unordered_map<std::string, int> inventory;
-        double totalCost;
+        
     public:
         Inventory();
+
         Inventory(const Inventory& other);
+
         ~Inventory();
+
         bool requestIngredients(std::unordered_map<std::string,int> ingredients);
+
         std::unordered_map<std::string,int> getInventory() const;
 };
 

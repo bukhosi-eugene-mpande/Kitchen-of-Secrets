@@ -1,7 +1,7 @@
 #include "Accounting.h"
-#include "Billing/CashBill.h"
-#include "Billing/CardBill.h"
-#include "Billing/MultiBill.h"
+#include "CashBill.h"
+#include "CardBill.h"
+#include "MultiBill.h"
 
 Accounting::Accounting()
 {
@@ -41,7 +41,10 @@ std::string Accounting::pay(double amount, std::string paymentType){
 
 Accounting::~Accounting()
 {
-    delete tab;
-    delete billing;
-    delete inventory;
+
+}
+
+double Accounting::getBalance()
+{
+    return balance;
 }
