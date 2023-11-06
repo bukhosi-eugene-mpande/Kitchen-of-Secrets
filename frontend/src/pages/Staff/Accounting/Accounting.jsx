@@ -63,6 +63,17 @@ function Accounting() {
         justifyContent: 'center'
       }}
     >
+      <img
+        src="./assets/customers/customer0.png"
+        alt="skeleton"
+        style={{
+          position: 'absolute',
+          bottom: '100px',
+          left: '100px',
+          width: '200px',
+          height: 'auto',
+        }}
+      />
       <Typography variant='h1' sx={{ m: 2,color: 'white',
         fontFamily: 'Gloria Hallelujah, cursive',
         fontWeight: 700 }}>
