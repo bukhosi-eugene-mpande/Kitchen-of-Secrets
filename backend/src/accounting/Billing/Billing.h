@@ -3,14 +3,13 @@
 
 #include "BillStrategy.h"
 
-class Billing
-{
-private:
-    BillStrategy *billStrategy;
+class Billing{
+    private:
+        BillStrategy *billStrategy;
 
-public:
-    Billing(BillStrategy *billStrategy);
-    json pay(double amount);
+    public:
+        Billing(BillStrategy *billStrategy);
+        std::string pay(double amount);
 };
 
 #endif

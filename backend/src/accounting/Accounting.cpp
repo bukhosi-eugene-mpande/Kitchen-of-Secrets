@@ -8,16 +8,15 @@ Accounting::Accounting()
     balance = 0.0;
 }
 
-json Accounting::closeTab()
+std::string Accounting::closeTab()
 {
     Tab *tab = new Tab();
-    json tabData = tab->closeTab();
+    std::string tabData = tab->closeTab();
     balance += 10;
     return tabData;
 }
 
-json Accounting::pay(double amount, std::string paymentType)
-{
+std::string Accounting::pay(double amount, std::string paymentType){
     if (paymentType == "cash")
     {
         billing = new Billing(new CashBill(amount));
@@ -32,13 +31,10 @@ json Accounting::pay(double amount, std::string paymentType)
     }
     else
     {
-        return
-        {
-            "error", "Invalid payment type"
-        };
+        return "Invalid payment type";
     }
 
-    json paymentData = billing->pay(amount);
+    std::string paymentData = billing->pay(amount);
     balance -= amount;
     return paymentData;
 }

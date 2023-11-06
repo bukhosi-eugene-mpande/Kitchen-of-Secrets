@@ -5,9 +5,9 @@
 
 class MultiBill : public BillStrategy
 {
-public:
-    MultiBill(double billAmount);
-    json pay(double amount);
+    public:
+        MultiBill(double billAmount);
+        std::string pay(double amount);
 };
 
 #endif

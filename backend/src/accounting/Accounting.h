@@ -5,22 +5,21 @@
 #include "Billing/Billing.h"
 #include "Inventory/Inventory.h"
 
-class Accounting
-{
-private:
-    double balance;
+class Accounting{
+    private:
+        double balance;
 
-    Tab *tab;
-    Billing *billing;
-    Inventory *inventory;
+        Tab *tab;
+        Billing *billing;
+        Inventory *inventory;
 
-public:
-    Accounting();
+    public:
+        Accounting();
+        ~Accounting();
 
-    json closeTab();
-    json pay(double amount, std::string paymentType);
+        std::string closeTab();
+        std::string pay(double amount, std::string paymentType);
 
-    ~Accounting();
 };
 
 #endif

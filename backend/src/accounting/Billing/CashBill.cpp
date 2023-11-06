@@ -2,20 +2,16 @@
 
 CashBill::CashBill(double billAmount) : BillStrategy(billAmount) {}
 
-json CashBill::pay(double amount)
+std::string CashBill::pay(double amount)
 {
     if (amount >= billAmount)
     {
         billAmount -= amount;
 
-        return {
-            {"status", "success"},
-            {"message", "Cash Payment successful"}};
+        return "Cash Payment successful";
     }
     else
     {
-        return {
-            {"status", "error"},
-            {"message", "Cash Payment unsuccessful"}};
+        return "Cash Payment unsuccessful";
     }
 }

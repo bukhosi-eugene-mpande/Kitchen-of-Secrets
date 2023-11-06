@@ -2,7 +2,7 @@
 
 MultiBill::MultiBill(double billAmount) : BillStrategy(billAmount) {}
 
-json MultiBill::pay(double amount)
+std::string MultiBill::pay(double amount)
 {
     int numPayments = 0;
     
@@ -14,14 +14,10 @@ json MultiBill::pay(double amount)
 
     if (billAmount <= 0)
     {
-        return {
-            {"status", "success"},
-            {"message", "Multi Payment successful"}};
+        return "Multi Payment successful";
     }
     else
     {
-        return {
-            {"status", "error"},
-            {"message", "Multi Payment failed. Insufficient funds."}};
+        return "Multi Payment failed. Insufficient funds.";
     }
 }

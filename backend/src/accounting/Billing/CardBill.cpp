@@ -2,20 +2,16 @@
 
 CardBill::CardBill(double billAmount) : BillStrategy(billAmount) {}
 
-json CardBill::pay(double amount)
+std::string CardBill::pay(double amount)
 {
     if (amount >= billAmount)
     {
         billAmount -= amount;
         
-        return {
-            {"status", "success"},
-            {"message", "Card Payment successful"}};
+        return "Card Payment successful";
     }
     else
     {
-        return {
-            {"status", "error"},
-            {"message", "Card Payment unsuccessful"}};
+        return "Card Payment unsuccessful";
     }
 }

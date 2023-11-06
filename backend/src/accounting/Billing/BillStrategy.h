@@ -1,18 +1,15 @@
 #ifndef BILLSTRATEGY_H
 #define BILLSTRATEGY_H
 
-#include "../../json.hpp"
+#include <string>
 
-using json = nlohmann::json;
+class BillStrategy {
+    protected:
+        double billAmount;
 
-class BillStrategy
-{
-protected:
-    double billAmount;
-
-public:
-    BillStrategy(double billAmount);
-    virtual json pay(double amount) = 0;
+    public:
+        BillStrategy(double billAmount);
+        virtual std::string pay(double amount) = 0;
 };
 
 #endif

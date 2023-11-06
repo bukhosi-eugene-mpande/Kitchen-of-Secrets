@@ -3,11 +3,10 @@
 
 #include "BillStrategy.h"
 
-class CashBill : public BillStrategy
-{
-public:
-    CashBill(double billAmount);
-    json pay(double amount);
+class CashBill : public BillStrategy{
+    public:
+        CashBill(double billAmount);
+        std::string pay(double amount);
 };
 
 #endif
