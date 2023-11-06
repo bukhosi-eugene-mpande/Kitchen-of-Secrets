@@ -28,6 +28,8 @@ class CustomerTemplate{
         std::string DesiredSection;
         int numGuests;
         double totalBill;
+        bool isDoneEating;
+        std::string paymentType;
         bool readyToOrder;
         bool ordered;
         bool hasGuests;
@@ -125,6 +127,14 @@ class CustomerTemplate{
         void requestToBeSeated();
 
         int generateRandomNum(int min, int max);
+
+        void setPaymentType(std::string paymentType);
+
+        void setDoneEating(bool isDoneEating);
+
+        bool getDoneEating();
+
+        std::string getPaymentType();
 
 
 

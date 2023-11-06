@@ -95,6 +95,7 @@ void Waiter::serveOrder(std::shared_ptr<Order> order) {
             std::vector<std::shared_ptr<CustomerTemplate>> customers = table->getCustomers();
             for(int i = 0; i < (int) customers.size(); i++) {
                 customers[i]->setFinishedOrder(order);
+                customers[i]->setDoneEating(true);
             }
         }
     }
@@ -127,6 +128,35 @@ void Waiter::getOrderFromKitchen() {
     this->serveOrder(order);
 }
 
+int Waiter::getId() {
+    return this->id;
+}
+
+void Waiter::serveBill(){
+    std::vector<std::shared_ptr<Table>> tables = this->section->getTables();
+    for(auto table : tables ) {
+        std::vector<std::shared_ptr<CustomerTemplate>> customers = table->getCustomers();
+        for(int i = 0; i < (int) customers.size(); i++) {
+            if(customers[i]->getDoneEating()){
+                double bill = this->billOrder(customers[i]->getFinishedOrder());
+                customers[i]->setTotalBill(bill);
+                this->management->pay(customers[i]->getPaymentType(),bill);
+                if(customers[i]->getName()!="NPC"){
+                    customers[i]->leave();
+                }
+            }
+            
+        }
+    }
+    for(auto table : tables ) {
+        std::vector<std::shared_ptr<CustomerTemplate>> customers = table->getCustomers();
+        for(int i = 0; i < (int) customers.size(); i++) {
+            if(customers[i]->getHasGuests()==true && customers[i]->getName()=="NPC"){
+                customers[i]->leave();
+            }
+        }
+    }
+}
 
 
 

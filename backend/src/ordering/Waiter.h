@@ -46,6 +46,7 @@ class Waiter{
         void getCanceledOrderFromKitchen();
         void getOrderFromKitchen();
         int getId();
+        void serveBill();
 
 };
 #endif

@@ -13,6 +13,8 @@ CustomerTemplate::CustomerTemplate(std::string name,std::shared_ptr<Management> 
     this->totalBill = 0;
     this->management = management;
     this->reservation = nullptr;
+    this->isDoneEating = false;
+    this->paymentType = "card";
 }
 
 CustomerTemplate::~CustomerTemplate(){
@@ -222,4 +224,21 @@ std::shared_ptr<Order> CustomerTemplate::getFinishedOrder(){
 void CustomerTemplate::setTotalBill(double bill){
     this->totalBill = bill;
 }
+
+std::string CustomerTemplate::getPaymentType(){
+    return this->paymentType;
+}
+
+void CustomerTemplate::setPaymentType(std::string paymentType){
+    this->paymentType = paymentType;
+}
+
+bool CustomerTemplate::getDoneEating(){
+    return this->isDoneEating;
+}
+
+void CustomerTemplate::setDoneEating(bool isDoneEating){
+    this->isDoneEating = isDoneEating;
+}
+
 

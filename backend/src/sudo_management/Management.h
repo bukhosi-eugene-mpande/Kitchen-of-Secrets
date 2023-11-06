@@ -6,6 +6,8 @@
 #include <string>
 #include <memory>
 
+#include "../sudo_accounting/Accounting.h"
+
 class Waiter;
 class Kitchen;
 class Inventory;
@@ -23,6 +25,7 @@ class Management {
         std::shared_ptr<Inventory> inventory;
         std::shared_ptr<ReservationSystem> reservationSystem;
         std::shared_ptr<Receptionist> receptionist;
+        std::shared_ptr<Accounting> accounting;
 
     public:
         Management();
@@ -66,6 +69,8 @@ class Management {
         std::unordered_map<int,std::string> getDrinksMenu();
 
         std::unordered_map<int,std::string> getCuisineMenu();
+
+        std::string pay(std::string payment,double bill);
 
 };
 
