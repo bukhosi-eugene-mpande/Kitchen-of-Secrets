@@ -112,8 +112,14 @@ function Pot() {
 
       {cooking ? (
         <>
-        <LinearProgress variant='determinate' value={progress} />
-        <iframe src="https://giphy.com/embed/iFV5aJmkNPSGr0ByQ7" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <LinearProgress variant='determinate' value={progress} />
+          <img
+            src="./assets/cooking.gif"
+            alt="cooking"
+            style={{
+              width: '300px',
+              height: 'auto'
+            }} />
         </>
       ) : (
         <Button
