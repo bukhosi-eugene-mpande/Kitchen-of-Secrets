@@ -123,8 +123,7 @@ function Reservations() {
 
       <List sx={{ p: 2 ,
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        padding: '20px',
-        borderRadius: '10px'}}>
+        borderRadius: 2}}>
         {reservations.map((reservation, index) => (
           <ListItem
             key={index}
