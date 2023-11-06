@@ -70,6 +70,7 @@ function Payment() {
         backgroundPosition: 'bottom',
         backgroundRepeat: 'no-repeat',
         display: 'flex',
+        minHeight: '100vh',
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'center'
