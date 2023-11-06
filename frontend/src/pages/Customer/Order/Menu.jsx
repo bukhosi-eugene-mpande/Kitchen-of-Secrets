@@ -14,7 +14,10 @@ function Menu() {
         width: '50%',
         border: '2px solid',
         borderRadius: '4px',
-        borderColor: 'primary.main'
+        borderColor: 'primary.main',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: '20px',
+        borderRadius: '10px'
       }}
     >
       <Typography variant='h3' sx={{ m: 2 }}>
