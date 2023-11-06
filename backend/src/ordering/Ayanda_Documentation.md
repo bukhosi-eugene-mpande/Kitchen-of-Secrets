@@ -5,13 +5,21 @@
 My responsibilities for this project include the Ordering system and the backend as well
 # System Name: 
 Ordering
-# What Is The [Put Your System Name Here] Systems's Purpose:
+# What Is The [Ordering] Systems's Purpose:
+The purpose of my system is to is to 
+1. Create Menu & MenuItems
+2. Build the table orders
+3. Manage the Waiter's iteractions with the customer
+# What Are The [Ordeiring] System's Components:
+1. 
 
-# What Are The [Put Your System Name Here] System's Components:
-
-# What Design Patterns Does The [Put Your System Name Here] System Use:
+# What Design Patterns Does The [Ordering] System Use:
+1. Factory
+2. Builder 
 
 # What Other Systems Does The [Put Your System Name Here] System Interact With:
+I interact with the kitchen via management 
+I interact with the accounting via Management
 
 # Diagrams
 
