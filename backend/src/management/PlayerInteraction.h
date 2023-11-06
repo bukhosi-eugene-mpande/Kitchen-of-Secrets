@@ -10,11 +10,14 @@
 #include "backend/src/ordering/MenuItem.h"
 #include "backend/src/ordering/Waiter.h"
 #include "backend/src/sudo_accounting/Inventory.h" //TAKE NOTE DIRECTORY NEEDS TO CHANGE
+#include "backend/src/json.hpp"
 
 #include <unordered_map>
 #include <vector>
 #include <string>
 #include <memory>
+
+using json = nlohmann::json;
 
 class Waiter;
 class Kitchen;
@@ -35,11 +38,11 @@ class PlayerInteraction {
         std::shared_ptr<Customer> customer;
         std::shared_ptr<Engine> engine;
     public:
-        PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shared_ptr<Inventory> inventory, std::shared_ptr<ReservationSystem> reservationSystem, std::shared_ptr<Receptionist> receptionist, std::shared_ptr<Waiter> waiter, std::shared_ptr<Customer> customer, std::shared_ptr<Engine> engine);
+        PlayerInteraction();
         
         ~PlayerInteraction();
 
-        void sendOrderToKitchen();
+        json sendOrderToKitchen(json order);
 
         std::shared_ptr<Order> getOrderFromKitchen();
 
@@ -55,7 +58,7 @@ class PlayerInteraction {
 
         void clearOutTable(std::shared_ptr<Table> table);
 
-        void requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section);
+        json requestReservation(json reservation);
 
         std::shared_ptr<Section> getGeneralSection();
 

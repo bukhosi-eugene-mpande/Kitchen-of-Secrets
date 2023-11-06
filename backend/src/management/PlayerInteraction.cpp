@@ -1,6 +1,6 @@
 #include "PlayerInteraction.h"
 
-PlayerInteraction::PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shared_ptr<Inventory> inventory, std::shared_ptr<ReservationSystem> reservationSystem, std::shared_ptr<Receptionist> receptionist, std::shared_ptr<Waiter> waiter, std::shared_ptr<Customer> customer, std::shared_ptr<Engine> engine) {
+PlayerInteraction:PlayerInteraction() {
     kitchen = std::make_shared<Kitchen>(this);
     inventory = std::make_shared<Inventory>(this);
     reservationSystem = std::make_shared<ReservationSystem>(this);
@@ -11,6 +11,21 @@ PlayerInteraction::PlayerInteraction(std::shared_ptr<Kitchen> kitchen, std::shar
 }
 
 PlayerInteraction::~PlayerInteraction() {}
+
+json PlayerInteraction::sendOrderToKitchen(json order) {
+    int size = order["size"];
+    std::vector<std::shared_ptr<MenuItem>> meals;
+    for (int i = 0; i < size; i++) {
+        std::unordered_map<std::string, int> ingredients;
+        for (int j = 0; j < size; j++) {
+            ingredients.at("");
+        }
+        meals[i] = std::make_shared<MenuItem>(engine, 0.00, "name", ingredients);
+    }
+    std::shared_ptr<Order> order = std::make_shared<Order>(engine, 1, meals, waiter);
+    this->kitchen->addOrder(order);
+
+}
 
 void PlayerInteraction::sendOrderToKitchen() {
     int size = 10;
@@ -54,8 +69,9 @@ void PlayerInteraction::clearOutTable(std::shared_ptr<Table> table) {
     this->reservationSystem->clearOutTable(table);
 }
 
-void PlayerInteraction::requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section) {
-    this->receptionist->requestReservation(customer,section);
+json PlayerInteraction::requestReservation(json reservation) {
+    this->receptionist->requestReservation(customer, reservation["section"]);
+    return reservation;
 }
 
 void PlayerInteraction::requestToBeSeated(std::shared_ptr<CustomerTemplate> customer) {
