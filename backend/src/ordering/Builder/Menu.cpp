@@ -1,3 +1,4 @@
+
 #include "Menu.h"
 
 Menu::Menu(std::string name)
@@ -14,6 +15,7 @@ void Menu::setName(std::string name)
 {
     this->name=name;
 }
+
 
 std::map<std::string, double>  Menu::getItems()
 {

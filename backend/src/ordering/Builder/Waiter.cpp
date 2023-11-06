@@ -30,7 +30,13 @@ void Waiter::takeOrder()
 
     //cleanup
     delete order;
-}
+}/**
+ * The serveOrder function takes an order from management, lists the items in the order, and then the
+ * customer eats the food.
+ * 
+ * @param customer A pointer to a Customer object.
+ */
+
 
 void Waiter::serveOrder(Customer* customer)
 {

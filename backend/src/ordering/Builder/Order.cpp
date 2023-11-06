@@ -1,3 +1,7 @@
+/**
+ * The function "listItems" prints out the complete order with the item names and their corresponding
+ * prices.
+ */
 #include "Order.h"
 
 void Order::listItems() const

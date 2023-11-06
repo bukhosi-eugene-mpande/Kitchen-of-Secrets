@@ -1,8 +1,18 @@
+/**
+ * The Management class in this C++ code receives an order from a waiter, sends it to the kitchen,
+ * receives the completed order from the kitchen, and sends the payment type to accounting.
+ */
 #include "Management.h"
 
 Management::Management()
 {}
 
+/**
+ * The sendOrder function in the Management class receives an order from the waiter and sends it to the
+ * kitchen.
+ * 
+ * @param order The "order" parameter is a pointer to an object of type "Order".
+ */
 void Management::sendOrder(Order* order) 
 {
     // Send the order to the kitchen and wait for it to be ready
@@ -12,6 +22,12 @@ void Management::sendOrder(Order* order)
 }
 
 
+/**
+ * The receiveOrder function in the Management class receives a completed order from the kitchen and
+ * returns it.
+ * 
+ * @return The function `receiveOrder()` is returning a pointer to an `Order` object.
+ */
 Order* Management::receiveOrder()
 {
     // Receive the completed order from the kitchen
@@ -26,6 +42,13 @@ Order* Management::receiveOrder()
 }
 
 
+/**
+ * The function "sendPaymentType" in the Management class receives a payment type from a waiter and
+ * sends it to the accounting department.
+ * 
+ * @param paymentType The paymentType parameter is a string that represents the type of payment
+ * received from the waiter.
+ */
 void Management::sendPaymentType(std::string paymentType)
 {
     std::cout<<"Management receives payment type from waiter"<<std::endl;
