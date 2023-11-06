@@ -34,44 +34,6 @@ const PrivateRestaurant = () => {
         //   });
     };
 
-    const handleBuyIngredients = () => {
-        // Create and send your JSON request for buying more ingredients.
-        // Example:
-        // fetch('https://api.example.com/buy-ingredients', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(yourBuyIngredientsData),
-        // })
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     console.log(data);
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //   });
-    };
-
-    const handleSendWaiter = () => {
-        // Create and send your JSON request for sending a waiter to a table.
-        // Example:
-        // fetch('https://api.example.com/send-waiter', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(yourSendWaiterData),
-        // })
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     console.log(data);
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //   });
-    };
-
     //animation for manager
     const [teetered, setTeetered] = useState(false);
 
@@ -86,9 +48,7 @@ const PrivateRestaurant = () => {
     }
 
     const [roundsHovered, setRoundsHovered] = useState(false);
-    const [buyMoreHovered, setBuyMoreHovered] = useState(false);
-    const [sendWaiterHovered, setSendWaiterHovered] = useState(false);
-   
+
     // Initial positions for waiters
     const [waiterPosition, setWaiterPosition] = useState({ x: 100, y: 150 });
     const [waiterPosition2, setWaiterPosition2] = useState({ x: 100, y: 200 });
@@ -101,10 +61,6 @@ const PrivateRestaurant = () => {
     const bindWaiter2 = useDrag(({ offset: [x, y] }) => {
         setWaiterPosition2({ x, y });
     });
-
-    const currBalance = () => {
-      // this is where you call the current balance of the manager/player
-    }
   
     //managing the animation of the headChef
     const [headChefVisible, setHeadChefVisible] = useState(false);
@@ -147,7 +103,7 @@ const PrivateRestaurant = () => {
             {...bindWaiter2()}
         />
       <div className="container">
-        <div className='row justify-content-center'><h3>Your Current Balance is: ${currBalance}</h3></div>
+        {/* <div className='row justify-content-center'><h3>Your Current Balance is: ${currBalance}</h3></div> */}
         <div className="row mt-5">
           <div className='col-3 '>
               <img src={managerImage} alt="Manager" style={{ ...imageStyle, ...teeterAnimation }}
@@ -180,41 +136,15 @@ const PrivateRestaurant = () => {
             )}
           </div>
           <div className='row justify-content-center col-12 mt-5'>
-              <button className="col-4 mt-5 mr-2 button-64 " onClick={handleDoRounds} style={buttonStyle} onMouseEnter={() => setRoundsHovered(true)} onMouseLeave={() => setRoundsHovered(false)}>
+              <button className="col-4 mt-5 button-64 " onClick={handleDoRounds} style={buttonStyle} onMouseEnter={() => setRoundsHovered(true)} onMouseLeave={() => setRoundsHovered(false)}>
                 <span style={{
                     ...spanStyle,
                     background: roundsHovered ? 'none' : spanStyle.backgroundColor,
                     }}>Do Rounds</span>
               </button>
-              <button className="col-4 mt-5 mr-2 button-64 " style={buttonStyle} onMouseEnter={() => setBuyMoreHovered(true)} onMouseLeave={() => setBuyMoreHovered(false)} onClick={handleBuyIngredients}>
-                <span style={{
-                    ...spanStyle,
-                    background: buyMoreHovered ? 'none' : spanStyle.backgroundColor,
-                    }}>Buy More Ingredients</span>
-              </button>
-              <button className="col-4 mt-3 button-64 " style={buttonStyle} onMouseEnter={() => setSendWaiterHovered(true)} onMouseLeave={() => setSendWaiterHovered(false)} onClick={handleSendWaiter}>
-                <span style={{
-                    ...spanStyle,
-                    background: sendWaiterHovered ? 'none' : spanStyle.backgroundColor,
-                    }}>Send Waiter to Table</span>
-              </button>
           </div>
         </div>
-      </div>
-      <div className="row mt-5" style={footerSec}>
-          <div className="col-2 mt-4 mx-2 justify-content-center">
-            <img src={Logo} width="100px" alt="logo"/>
-          </div>
-    
-          <button className="col-2 mt-4 mx-2 justify-content-center" style={buttonStyle2}>
-              <a href="https://github.com/Gini24mp/Kitchen-of-Secrets">GitHub</a>
-          </button>  
-
-          <button className="col-2 mt-4 mx-2 justify-content-center" style={buttonStyle2}>
-              <a href="">Documentation</a>
-              {/* this would be a link to doxygen */}
-          </button> 
-      </div>                
+      </div>               
       
     </div>
   );

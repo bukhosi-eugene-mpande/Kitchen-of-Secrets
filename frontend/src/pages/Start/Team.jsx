@@ -52,7 +52,7 @@ const Team = () => {
       <div className="team-container text-center justify-content-center container">
         <div className="card-deck row">
 
-            <Card className="col-3" style={{ backgroundColor: 'white'}}>
+            <Card className="col-3" style={{ backgroundColor: 'black', color: 'white'}}>
               <img src={Ashley} alt='Ashley' width='150px' style={{borderRadius:'5%'}} className='justify-content-center mt-3 ml-1'/>
               <Card.Body>
                 <Card.Title>Ashley Kapaso</Card.Title>
@@ -60,7 +60,7 @@ const Team = () => {
               </Card.Body>
             </Card>
 
-            <Card className="col-3" style={{ backgroundColor: 'white' }}>
+            <Card className="col-3" style={{ backgroundColor: 'black', color: 'white'}}>
               <img src={Ayanda} alt='Ayanda' width='150px' style={{borderRadius:'5%'}} className='justify-content-center mt-3 ml-1'/>
               <Card.Body>
                 <Card.Title>Ayanda Juqu</Card.Title>
@@ -68,7 +68,7 @@ const Team = () => {
               </Card.Body>
             </Card>
 
-            <Card className="col-3" style={{ backgroundColor: 'black', color:'white' }}>
+            <Card className="col-3" style={{ backgroundColor: 'white', color:'black' }}>
               <img src={Joshua} alt='Joshua' width='150px' style={{borderRadius:'5%'}} className='justify-content-center mt-3 ml-1' />
               <Card.Body>
                 <Card.Title>Joshua Wereley</Card.Title>
@@ -76,7 +76,7 @@ const Team = () => {
               </Card.Body>
             </Card>
 
-            <Card className="col-3" style={{ backgroundColor: 'black', color:'white' }}>
+            <Card className="col-3" style={{ backgroundColor: 'white', color:'black' }}>
               <img src={Eugene} alt='Eugene' width='150px' style={{borderRadius:'5%'}} className='justify-content-center mt-3 ml-1'/>
               <Card.Body>
                 <Card.Title>Eugene Mpande</Card.Title>
@@ -84,7 +84,7 @@ const Team = () => {
               </Card.Body>
             </Card>
 
-            <Card className="col-3" style={{ backgroundColor: 'white' }}>
+            <Card className="col-3" style={{ backgroundColor: 'black', color: 'white'}}>
               <img src={Chenoa} alt='Chenoa' width='150px' style={{borderRadius:'5%'}} className='justify-content-center mt-3 ml-1'/>
               <Card.Body>
                 <Card.Title>Chenoa Perkett</Card.Title>
@@ -92,7 +92,7 @@ const Team = () => {
               </Card.Body>
             </Card>
 
-            <Card className="col-3" style={{ backgroundColor: 'white' }}>
+            <Card className="col-3" style={{ backgroundColor: 'black', color: 'white'}}>
               <img src={Thato} alt='Thato' width='150px' style={{borderRadius:'5%'}} className='justify-content-center mt-3 ml-1'/>
               <Card.Body>
                 <Card.Title>Thato Kalagobe</Card.Title>

@@ -36,7 +36,7 @@ function Staff() {
             borderColor: 'divider'
           }}
         >
-          <Tabs value={value} onChange={changeTab}>
+          <Tabs value={value} onChange={changeTab} variant="scrollable" scrollButtons="auto">
             <Tab
               icon={<CalendarToday />}
               label='Reservations'
@@ -62,6 +62,7 @@ function Staff() {
               label='Accounting'
               sx={{ width: '100%' }}
             />
+            
           </Tabs>
         </Box>
 

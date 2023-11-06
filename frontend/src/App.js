@@ -9,8 +9,6 @@ import Team from './pages/Start/Team';
 import Staff from './pages/Staff/Staff';
 import Customer from './pages/Customer/Customer';
 import NotFound from './pages/NotFound/NotFound';
-// import Order from './pages/Customer/Order'; 
-// import Payment from './pages/Customer/Payment';
 
 function App() {
   const theme = createTheme({
@@ -21,15 +19,6 @@ function App() {
       },
       secondary: {
         main: orange[600]
-      }
-    },
-    components: {
-      MuiTabs: {
-        styleOverrides: {
-          flexContainer: {
-            justifyContent: 'center'
-          }
-        }
       }
     }
   });
