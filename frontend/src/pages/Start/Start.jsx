@@ -99,13 +99,13 @@ function Start() {
       </Button>
 
       <Box variant='footer' sx={footerStyle}>
-        <Link href="https://github.com" sx={linkStyle}>
+        <Link href="https://github.com/Gini24mp/Kitchen-of-Secrets" sx={linkStyle}>
           GitHub
         </Link>
         <Link href="https://documentation-link.com" sx={linkStyle}>
           Documentation
         </Link>
-        <Link href="/our-team" sx={linkStyle}>
+        <Link href="/team" sx={linkStyle}>
           Our Team
         </Link>
       </Box>

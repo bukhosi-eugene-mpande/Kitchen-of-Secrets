@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { purple, orange } from '@mui/material/colors';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
+import Team from './pages/Start/Team';
 import Start from './pages/Start/Start';
 import Staff from './pages/Staff/Staff';
 import Customer from './pages/Customer/Customer';
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Start />} />
           <Route path='*' element={<NotFound />} />
+          <Route index path='/team' element={<Team />} />
           <Route index path='/staff' element={<Staff />} />
           <Route index path='/customer' element={<Customer />} />
         </Routes>

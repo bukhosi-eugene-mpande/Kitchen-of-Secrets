@@ -6,7 +6,8 @@ import {
   MenuBook,
   PointOfSale,
   CalendarToday,
-  RestaurantMenu
+  RestaurantMenu,
+  TableRestaurant
 } from '@mui/icons-material';
 
 import Cook from './Cook/Cook';
@@ -14,6 +15,8 @@ import Orders from './Orders/Orders';
 import Panel from '../../components/Panel';
 import Accounting from './Accounting/Accounting';
 import Reservations from './Reservations/Reservations';
+import Restaurant from './Restaurant';
+import PrivateRestaurant from './PrivateRestaurant';
 
 import backgroundSound from '../../assets/sounds/background.mp3';
 
@@ -35,7 +38,12 @@ function Staff() {
             borderColor: 'divider'
           }}
         >
-          <Tabs value={value} onChange={changeTab}>
+          <Tabs
+            value={value}
+            onChange={changeTab}
+            variant='scrollable'
+            scrollButtons='auto'
+          >
             <Tab
               icon={<CalendarToday />}
               label='Reservations'
@@ -45,6 +53,16 @@ function Staff() {
             <Tab
               icon={<RestaurantMenu />}
               label='Cook'
+              sx={{ width: '100%' }}
+            />
+            <Tab
+              icon={<TableRestaurant />}
+              label='Restaurant'
+              sx={{ width: '100%' }}
+            />
+            <Tab
+              icon={<TableRestaurant />}
+              label='Private Restaurant'
               sx={{ width: '100%' }}
             />
             <Tab
@@ -68,6 +86,14 @@ function Staff() {
         </Panel>
 
         <Panel value={value} index={3}>
+          <Restaurant />
+        </Panel>
+
+        <Panel value={value} index={4}>
+          <PrivateRestaurant />
+        </Panel>
+
+        <Panel value={value} index={5}>
           <Accounting />
         </Panel>
       </Box>
