@@ -25,8 +25,6 @@ class Waiter{
     private:
         Section* section;
         Management* management;
-        Payment* accounting;
-        
         std::vector<std::shared_ptr<Order>> orders;
         std::shared_ptr<OrderBuilder> orderBuilder;
         std::shared_ptr<Menu> BeverageMenu;
