@@ -185,17 +185,6 @@ function Eat() {
   );
 }
 
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-  // height: '100vh',
-  width: '100vw',
-  padding: '10px',
-  fontFamily: 'Roboto',
-};
-
 const buttonStyle = {
   alignItems: 'center',
   backgroundImage: 'linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB)',
@@ -229,55 +218,10 @@ const spanStyle = {
   transition: 'background 300ms', 
 };
 
-// const imageStyle = {
-//   width: '150px', 
-
-// };
-
 const imageStyle2 = {
   width: '600px', 
   marginleft: '50%',
   zindex: '-1',
 };
-
-
-const footerSec = {
-  // position: 'absolute',
-  bottom: '0',
-  width: '100%',
-  height: '60px',
-  // backgroundColor: '#f5f5f5',
-  textAlign: 'center',
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: '12px',
-  color: 'white',
-}
-
-const buttonStyle2 = {
-  alignItems: 'center',
-  backgroundImage: 'black',
-  border: '0',
-  borderRadius: '8px',
-  boxShadow: 'rgba(151, 65, 252, 0.2) 0 15px 30px -5px',
-  boxSizing: 'border-box',
-  color: '#FFFFFF',
-  display: 'flex',
-  fontFamily: 'Phantomsans, sans-serif',
-  fontSize: '20px',
-  justifyContent: 'center',
-  lineHeight: '1em',
-  maxWidth: '100%',
-  minWidth: '140px',
-  padding: '3px',
-  textDecoration: 'none',
-  userSelect: 'none',
-  WebkitUserSelect: 'none',
-  touchAction: 'manipulation',
-  whiteSpace: 'nowrap',
-  cursor: 'pointer',
-}
 
 export default Eat;
