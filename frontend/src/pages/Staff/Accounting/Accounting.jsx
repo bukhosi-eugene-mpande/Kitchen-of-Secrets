@@ -69,7 +69,10 @@ function Accounting() {
         Accounting
       </Typography>
 
-      <Typography variant='h2' sx={{ m: 2 }}>
+      <Typography variant='h2' sx={{ m: 2 ,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: '20px',
+        borderRadius: '10px' }}>
         Bank Balance: R{bankBalance}
       </Typography>
 
