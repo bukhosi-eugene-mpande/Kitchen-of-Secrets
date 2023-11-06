@@ -15,6 +15,8 @@ import Panel from '../../components/Panel';
 import Accounting from './Accounting/Accounting';
 import Reservations from './Reservations/Reservations';
 
+import backgroundSound from '../../assets/sounds/background.mp3';
+
 export const StaffContext = createContext();
 
 function Staff() {
@@ -69,6 +71,7 @@ function Staff() {
           <Accounting />
         </Panel>
       </Box>
+      <audio src={backgroundSound} autoPlay loop />
     </StaffContext.Provider>
   );
 }
