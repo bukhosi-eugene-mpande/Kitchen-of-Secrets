@@ -11,6 +11,7 @@ import waiterImage2 from '../assets/SVG/waiter2.svg';
 import tableImage from '../assets/SVG/table.svg';
 import pumpkinImage from '../assets/SVG/pumpkin_1.svg';
 import headChefImage from '../assets/SVG/headChef.svg';
+import Logo from '../assets/png/logo.png';
 
 const Restaurant = () => {
     const handleDoRounds = () => {
@@ -204,7 +205,7 @@ const Restaurant = () => {
       
       <div className="row " style={footerSec}>
           <div className="col-2 mt-1 mx-2 justify-content-center">
-              <p>some logo? </p>
+            <img src={Logo} width="100px" alt="logo"/>
           </div>
     
           <button className="col-2 mt-1 mx-2 justify-content-center" style={buttonStyle2}>
@@ -232,11 +233,11 @@ const containerStyle = {
   width: '100vw',
   padding: '10px',
   fontFamily: 'Roboto',
-  // position: 'relative', // Add this line
-  backgroundImage: `url(${pumpkinImage})`, // Add this line
-  backgroundRepeat: 'no-repeat', // Add this line
-  backgroundSize: '200px', // Add this line
-  backgroundPosition: 'bottom right', // Add this line
+  // // position: 'relative', // Add this line
+  // backgroundImage: `url(${pumpkinImage})`, // Add this line
+  // backgroundRepeat: 'no-repeat', // Add this line
+  // backgroundSize: '200px', // Add this line
+  // backgroundPosition: 'bottom right', // Add this line
 };
 
 const imageStyle = {

@@ -6,14 +6,12 @@ import {
   MenuBook,
   PointOfSale,
   DinnerDining,
-  CalendarToday,
-  TableRestaurant
+  CalendarToday
 } from '@mui/icons-material';
 
 import Eat from './Eat/Eat';
 import Order from './Order/Order';
 import Payment from './Payment/Payment';
-import Table from './Table';
 import Panel from '../../components/Panel';
 import Reservation from './Reservation/Reservation';
 
@@ -43,7 +41,6 @@ const Customer = () => {
             />
             <Tab icon={<MenuBook />} label='Order' sx={{ width: '100%' }} />
             <Tab icon={<DinnerDining />} label='Eat' sx={{ width: '100%' }} />
-            <Tab icon={<TableRestaurant />} label='Table' sx={{ width: '100%' }} /> {/* should this be in the same page as Eat?? */}
             <Tab
               icon={<PointOfSale />}
               label='Payment'
@@ -62,10 +59,6 @@ const Customer = () => {
 
         <Panel value={value} index={2}>
           <Eat />
-        </Panel>
-
-        <Panel value={value} index={3}>
-          <Table />
         </Panel>
 
         <Panel value={value} index={4}>
