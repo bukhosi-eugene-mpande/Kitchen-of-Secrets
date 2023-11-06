@@ -70,6 +70,10 @@ function Orders() {
   return (
     <Box
       sx={{
+        backgroundImage: `url('./assets/OrderExBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
