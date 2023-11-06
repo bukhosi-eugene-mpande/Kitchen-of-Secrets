@@ -107,14 +107,10 @@ function Reservations() {
     position: 'absolute',
     bottom: '100px', 
     left: '100px',
+    transform: 'translateX(-50%)',
     width: '200px', 
-    height: 'auto'
-  }}
-  onMouseEnter={(e) => {
-    e.target.style.transform = 'translate(100px, 0)'; // Move the image 100px to the right
-  }}
-  onMouseLeave={(e) => {
-    e.target.style.transform = 'translate(0, 0)'; // Reset the image position
+    height: 'auto',
+    animation: 'moveLeftRight 4s linear infinite',
   }}
 />
       <Typography variant='h1' sx={{
@@ -156,7 +152,21 @@ function Reservations() {
       <h1>Available tables</h1>
 				<div className="row tables">{tableImages}</div>
 			</div>
-
+      <style>
+        {`
+          @keyframes moveLeftRight {
+            0% {
+              transform: translateX(-50%); // Start in the middle
+            }
+            50% {
+              transform: translateX(50%); // Move to the right
+            }
+            100% {
+              transform: translateX(-50%); // Move back to the middle
+            }
+          }
+        `}
+      </style>
     </Box>
 
     
