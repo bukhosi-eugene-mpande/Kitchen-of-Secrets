@@ -1,38 +1,36 @@
-#include "Management.h"
+#include "backend/src/sudo_management/Management.h"
 
-#include "../ordering/Waiter.h"
-#include "../cooking/Kitchen.h"
-#include "../sudo_accounting/Inventory.h"
-#include "../reservation/ReservationSystem.h"
-#include "../reservation/Table.h"
-#include "../reservation/Receptionist.h"
-#include "../reservation/Section.h"
-#include "../reservation/PrivateSection.h"
-#include "../reservation/GeneralSection.h"
-#include "../reservation/Reservation.h"
-#include "../ordering/Order.h"
-#include "../ordering/Waiter.h"
-#include "../customercare/CustomerTemplate.h"
-
-Management::Management() {
-    this->inventory = std::make_shared<Inventory>(std::unordered_map<std::string,int>({{"tomato", 10}, {"lettuce", 10}, {"cheese", 10}, {"patty", 10}}));
-    this->reservationSystem = std::make_shared<ReservationSystem>();
-    this->receptionist = std::make_shared<Receptionist>(this->reservationSystem);
-
+Management:Management() {
+    kitchen = std::make_shared<Kitchen>(this);
+    inventory = std::make_shared<Inventory>(this);
+    reservationSystem = std::make_shared<ReservationSystem>(this);
+    receptionist = std::make_shared<Receptionist>(this);
+    engine = std::make_shared<Engine>();
+    waiter = std::make_shared<Waiter>(engine);
+    customer = std::make_shared<Customer>(engine, this);
 }
 
-Management::~Management() {
-}
+Management::~Management() {}
 
-void Management::sendOrderToKitchen(std::shared_ptr<Order> order) {
+json Management::sendOrderToKitchen(json order) {
+    int size = order["size"];
+    std::vector<std::shared_ptr<MenuItem>> meals;
+    for (int i = 0; i < size; i++) {
+        std::unordered_map<std::string, int> ingredients;
+        for (int j = 0; j < size; j++) {
+            ingredients.at("");
+        }
+        meals[i] = std::make_shared<MenuItem>(engine, 0.00, "name", ingredients);
+    }
+    std::shared_ptr<Order> order = std::make_shared<Order>(engine, 1, meals, waiter);
     this->kitchen->addOrder(order);
 }
 
-std::shared_ptr<Order> Management::getOrderFromKitchen(std::shared_ptr<Waiter> waiter) {
+std::shared_ptr<Order> Management::getOrderFromKitchen() {
     return this->kitchen->getPreparedOrder(waiter);
 }
 
-std::shared_ptr<Order> Management::getCanceledOrderFromKitchen(std::shared_ptr<Waiter> waiter) {
+std::shared_ptr<Order> Management::getCanceledOrderFromKitchen() {
     return this->kitchen->getCanceledOrder(waiter);
 }
 
@@ -40,20 +38,12 @@ bool Management::requestIngredients(std::unordered_map<std::string,int> ingredie
     return this->inventory->requestIngredients(ingredients);
 }
 
-void Management::notifyWaiterOfCancellation(std::shared_ptr<Waiter> waiter) {
+void Management::notifyWaiterOfCancellation() {
     waiter->getCanceledOrderFromKitchen();
 }
 
-void Management::notifyWaiterOfCompletion(std::shared_ptr<Waiter> waiter) {
+void Management::notifyWaiterOfCompletion() {
     waiter->getOrderFromKitchen();
-}
-
-void Management::setKitchen(std::shared_ptr<Kitchen> kitchen) {
-    this->kitchen = kitchen;
-}
-
-void Management::setInventory(std::shared_ptr<Inventory> inventory){
-    this->inventory = inventory;
 }
 
 void Management::notifyPlayerOfChangeInMood() {
@@ -64,8 +54,9 @@ void Management::clearOutTable(std::shared_ptr<Table> table) {
     this->reservationSystem->clearOutTable(table);
 }
 
-void Management::requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section) {
-    this->receptionist->requestReservation(customer,section);
+json Management::requestReservation(json reservation) {
+    this->receptionist->requestReservation(customer, reservation["section"]);
+    return reservation;
 }
 
 void Management::requestToBeSeated(std::shared_ptr<CustomerTemplate> customer) {
@@ -83,4 +74,3 @@ std::shared_ptr<Section> Management::getPrivateSection() {
 std::vector<std::shared_ptr<CustomerTemplate>> Management::getCustomers() {
     return this->reservationSystem->getCustomers();
 }
-

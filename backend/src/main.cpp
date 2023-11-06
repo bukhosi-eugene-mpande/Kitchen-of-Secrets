@@ -8,94 +8,38 @@
 #include "../tests/includes/management_all.cpp"
 
 int main() {
-
     std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
+    management->setKitchen(kitchen);
+    Section* section = management->getGeneralSection().get();
+    std::shared_ptr<Waiter> waiterPtr = std::make_shared<Waiter>(section, management.get());
+
     Customer*  customer1 = new Customer(management);
-    Customer*  customer2 = new Customer(management);
+
     CustomerNPC* customer3 = new CustomerNPC(management,true,"General Section");
-    CustomerNPC* customer4 = new CustomerNPC(management,true,"Private Section");
 
-    customer3->getDesiredSection();
-
+    //seting up the main customer
     customer1->setManagement(management);
     customer1->setDesiredSection("General Section");
     customer1->requestReservation();
-
-    customer2->setManagement(management);
-    customer2->setDesiredSection("Private Section");
-    customer2->requestReservation();
-
-    customer3->setManagement(management);
-    customer3->requestReservation();
-
-    customer4->setManagement(management);
-    customer4->requestReservation();
-
-
     customer1->requestToBeSeated();
 
-    customer2->requestToBeSeated();
-
+    //seting up the NPC customer
+    customer3->setManagement(management);
+    customer3->requestReservation();
     customer3->requestToBeSeated();
+    
+    //SEETING UP DRINKS ORDER
+    customer1->setBeverageOrder({{"Witches' Brew Punch",1},{"Vampire's Kiss Martini",2}});
 
-    customer4->requestToBeSeated();
+    //seting up food order
+    customer1->setFoodOrder({{"Vampire Garlic Bread",5},{"Werewolf Bites",4},{"Screaming Salad",3},{"Cursed Cauldron Curry",2}});
+    
+    //waiter going on rounds
+    waiterPtr->doOrderRounds();
 
-    std::shared_ptr<Section> privateSection = management->getPrivateSection();
-
-    std::shared_ptr<Section> generalSection = management->getPrivateSection();
-
-    std::shared_ptr<Table> table1 = customer1->getReservation()->getTable();
-
-    std::shared_ptr<Table> table2 = customer2->getReservation()->getTable();
-
-    std::shared_ptr<Table> table3 = customer3->getReservation()->getTable();
-
-    std::shared_ptr<Table> table4 = customer4->getReservation()->getTable();
-
-    std::vector<std::shared_ptr<CustomerTemplate>> customersPri = privateSection->getAllCustomers();
-    std::vector<std::shared_ptr<CustomerTemplate>> customersGen = generalSection->getAllCustomers();
-
-    bool flag = false;
-
-    for(int i=0;i<(int)customersGen.size();i++){
-        if(customersGen[i]->getName()=="Main Character"){
-            flag = true;
-        }
-    }
-
-    flag = false;
-
-    for(int i=0;i<(int)customersPri.size();i++){
-        if(customersPri[i]->getName()=="Main Character"){
-            flag = true;
-        }
-    }
-
-
-    flag = false;
-
-    for(int i=0;i<(int)customersGen.size();i++){
-        if(customersGen[i]->getName()=="NPC"){
-            flag = true;
-        }
-    }
-
-
-    flag = false;
-
-    for(int i=0;i<(int)customersPri.size();i++){
-        if(customersPri[i]->getName()=="NPC"){
-            flag = true;
-        }
-    }
-
-    customer1->leave();
-
-    customer2->leave();
-
-    customer3->leave();
-
-    customer4->leave();
-     
+    //seting payment
+    waiterPtr->serveBill();
+    
     return 0;
 }
