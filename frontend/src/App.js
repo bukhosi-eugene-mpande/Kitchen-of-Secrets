@@ -8,6 +8,8 @@ import Start from './pages/Start/Start';
 import Staff from './pages/Staff/Staff';
 import Customer from './pages/Customer/Customer';
 import NotFound from './pages/NotFound/NotFound';
+import Order from './pages/Customer/Order'; 
+import Payment from './pages/Customer/Payment';
 
 function App() {
   const theme = createTheme({
@@ -40,6 +42,9 @@ function App() {
           <Route path='*' element={<NotFound />} />
           <Route index path='/staff' element={<Staff />} />
           <Route index path='/customer' element={<Customer />} />
+          <Route index path='/team' element={<Team />} />
+          <Route path="order" element={<Order />} /> 
+          <Route path="payment" element={<Payment />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
