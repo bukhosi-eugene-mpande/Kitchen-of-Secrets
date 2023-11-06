@@ -52,6 +52,10 @@ function Accounting() {
   return (
     <Box
       sx={{
+        backgroundImage: `url('./assets/PaymentBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'bottom',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
