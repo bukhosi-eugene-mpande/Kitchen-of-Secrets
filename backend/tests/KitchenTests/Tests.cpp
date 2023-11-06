@@ -236,5 +236,18 @@ TEST(Payment,payTest){
 
     //seting payment
     waiterPtr->serveBill();
+
+    std::vector<std::string> recipts = waiterPtr->getRecipts();
+
+    bool flag = true;
+
+    for(auto recipt : recipts){
+        if(recipt!="Payment type and bill received as"){
+            flag = false;
+        }
+    }
+
+    EXPECT_TRUE(flag);
+    
 }
 
