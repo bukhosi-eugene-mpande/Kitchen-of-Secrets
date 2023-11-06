@@ -1,4 +1,4 @@
-#include "crow.h"
+#include "crow_all.h"
 #include "accounting/Accounting.h"
 #include "crow/middlewares/cors.h"
 
