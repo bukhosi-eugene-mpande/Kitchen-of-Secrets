@@ -67,23 +67,25 @@ function Reservations() {
   const [tableStatus, setTableStatus] = useState(Array(6).fill(false));
 
   const tableImages = Array.from({ length: 6 }, (_, tableIndex) => {
-    const tableStatusIndex = tableStatus[tableIndex] === undefined ? false : tableStatus[tableIndex];
-    const src = tableStatusIndex ? `/assets/tables/BookedTable${tableIndex}.png` : `/assets/tables/table${tableIndex}.png`;
+    const tableStatusIndex =
+      tableStatus[tableIndex] === undefined ? false : tableStatus[tableIndex];
+    const src = tableStatusIndex
+      ? `/assets/tables/BookedTable${tableIndex}.png`
+      : `/assets/tables/table${tableIndex}.png`;
     return (
-      <div key={`table-${tableIndex}`} className="col-2">
+      <div key={`table-${tableIndex}`} className='col-2'>
         <img style={{ width: '100px' }} src={src} alt={`Table ${tableIndex}`} />
       </div>
     );
   });
 
   const handleCustomerClick = () => {
-
     const updatedTableStatus = [...tableStatus];
 
     updatedTableStatus[0] = true;
 
     setTableStatus(updatedTableStatus);
-  }
+  };
 
   return (
     <Box
@@ -99,10 +101,9 @@ function Reservations() {
         justifyContent: 'center'
       }}
     >
-
       <img
-        src="./assets/dracula.png"
-        alt="dracula"
+        src='./assets/dracula.png'
+        alt='dracula'
         style={{
           position: 'absolute',
           bottom: '100px',
@@ -110,25 +111,32 @@ function Reservations() {
           transform: 'translateX(-50%)',
           width: '200px',
           height: 'auto',
-          animation: 'moveLeftRight 4s linear infinite',
+          animation: 'moveLeftRight 4s linear infinite'
         }}
       />
-      <Typography variant='h1' sx={{
-        m: 2, color: 'white',
-        fontFamily: 'Gloria Hallelujah, cursive',
-        fontWeight: 700
-      }}>
+      <Typography
+        variant='h1'
+        sx={{
+          m: 2,
+          color: 'white',
+          fontFamily: 'Gloria Hallelujah, cursive',
+          fontWeight: 700
+        }}
+      >
         Reservations
       </Typography>
 
-      <List sx={{ p: 2 ,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        borderRadius: 2}}>
+      <List
+        sx={{
+          p:2,
+          borderRadius: 2,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)'
+        }}
+      >
         {reservations.map((reservation, index) => (
           <ListItem
             key={index}
             sx={{
-              m: 2,
               borderRadius: 2,
               border: '2px solid',
               borderColor: reservation.accepted ? 'grey' : 'primary.main'
@@ -152,7 +160,7 @@ function Reservations() {
 
       <div>
         <h1>Available tables</h1>
-        <div className="row tables">{tableImages}</div>
+        <div className='row tables'>{tableImages}</div>
       </div>
       <style>
         {`
@@ -170,8 +178,6 @@ function Reservations() {
         `}
       </style>
     </Box>
-
-
   );
 }
 

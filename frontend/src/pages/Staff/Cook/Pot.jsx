@@ -112,7 +112,6 @@ function Pot() {
 
       {cooking ? (
         <>
-          <LinearProgress variant='determinate' value={progress} />
           <img
             src="./assets/cooking.gif"
             alt="cooking"
@@ -120,6 +119,7 @@ function Pot() {
               width: '300px',
               height: 'auto'
             }} />
+          <LinearProgress variant='determinate' value={progress} />
         </>
       ) : (
         <Button
