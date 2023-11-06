@@ -99,6 +99,18 @@ function Reservations() {
         justifyContent: 'center'
       }}
     >
+
+<img
+  src="./assets/dracula.png"
+  alt="dracula"
+  style={{
+    position: 'absolute',
+    bottom: '100px', 
+    left: '100px',
+    width: '200px', 
+    height: 'auto'
+  }}
+/>
       <Typography variant='h1' sx={{
         m: 2, color: 'white',
         fontFamily: 'Gloria Hallelujah, cursive',
@@ -133,11 +145,15 @@ function Reservations() {
           </ListItem>
         ))}
       </List>
+      
       <div>
       <h1>Available tables</h1>
 				<div className="row tables">{tableImages}</div>
 			</div>
+
     </Box>
+
+    
   );
 }
 
