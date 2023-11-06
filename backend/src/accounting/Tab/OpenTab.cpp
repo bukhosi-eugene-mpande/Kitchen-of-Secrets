@@ -4,13 +4,11 @@
 
 OpenTab::OpenTab(Tab *tab) : TabState(tab) {}
 
-json OpenTab::closeTab()
+std::string OpenTab::closeTab()
 {
     tab->setState(new CloseTab(tab));
 
-    return {
-        {"status", "success"},
-        {"message", "Tab closed successfully"}};
+    return "Tab closed successfully";
 }
 
 double OpenTab::getBillTotal()
@@ -25,11 +23,9 @@ double OpenTab::getBillTotal()
     return total;
 }
 
-json OpenTab::addOrderCost(double cost)
+std::string OpenTab::addOrderCost(double cost)
 {
     orders.push_back(cost);
 
-    return {
-        {"status", "success"},
-        {"message", "Order added successfully"}};
+    return "Order added successfully";
 }

@@ -3,17 +3,16 @@
 
 #include "TabState.h"
 
-class Tab
-{
-private:
-    TabState *state;
+class Tab{
+    private:
+        TabState *state;
 
-public:
-    Tab();
-    json closeTab();
-    double getBillTotal();
-    json addOrderCost(double cost);
-    void setState(TabState *state);
+    public:
+        Tab();
+        std::string closeTab();
+        double getBillTotal();
+        std::string addOrderCost(double cost);
+        void setState(TabState *state);
 };
 
 #endif

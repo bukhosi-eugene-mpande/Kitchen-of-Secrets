@@ -7,7 +7,7 @@ Tab::Tab()
     state = new OpenTab(this);
 }
 
-json Tab::closeTab()
+std::string Tab::closeTab()
 {
     return state->closeTab();
 }
@@ -17,15 +17,13 @@ double Tab::getBillTotal()
     return state->getBillTotal();
 }
 
-json Tab::addOrderCost(double cost)
+std::string Tab::addOrderCost(double cost)
 {
     if (getBillTotal() > 1000)
     {
         setState(new OverdueTab(this));
 
-        return {
-            {"status", "error"},
-            {"message", "Tab is overdue"}};
+        return"Tab is overdue";
     }
     else
     {

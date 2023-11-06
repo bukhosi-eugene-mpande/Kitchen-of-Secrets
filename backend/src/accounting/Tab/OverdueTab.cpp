@@ -2,11 +2,9 @@
 
 OverdueTab::OverdueTab(Tab *tab) : TabState(tab) {}
 
-json OverdueTab::closeTab()
+std::string OverdueTab::closeTab()
 {
-    return {
-        {"status", "error"},
-        {"message", "Tab is overdue"}};
+    return "Tab is overdue";
 }
 
 double OverdueTab::getBillTotal()
@@ -21,9 +19,7 @@ double OverdueTab::getBillTotal()
     return total;
 }
 
-json OverdueTab::addOrderCost(double cost)
+std::string OverdueTab::addOrderCost(double cost)
 {
-    return {
-        {"status", "error"},
-        {"message", "Tab is overdue"}};
+    return"Tab is overdue";
 }

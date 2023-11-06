@@ -17,9 +17,9 @@ protected:
 public:
     TabState(Tab *tab);
 
-    virtual json closeTab() = 0;
+    virtual std::string closeTab() = 0;
     virtual double getBillTotal() = 0;
-    virtual json addOrderCost(double cost) = 0;
+    virtual std::string addOrderCost(double cost) = 0;
 };
 
 #endif

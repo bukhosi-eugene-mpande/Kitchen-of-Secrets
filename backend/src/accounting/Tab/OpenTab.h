@@ -8,9 +8,9 @@ class OpenTab : public TabState
 public:
     OpenTab(Tab *tab);
     
-    json closeTab();
+    std::string closeTab();
     double getBillTotal();
-    json addOrderCost(double cost);
+    std::string addOrderCost(double cost);
 };
 
 #endif

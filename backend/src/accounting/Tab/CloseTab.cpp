@@ -2,11 +2,9 @@
 
 CloseTab::CloseTab(Tab *tab) : TabState(tab) {}
 
-json CloseTab::closeTab()
+std::string CloseTab::closeTab()
 {
-    return {
-        {"status", "error"},
-        {"message", "Tab is closed"}};
+    return "Tab is closed";
 }
 
 double CloseTab::getBillTotal()
@@ -21,9 +19,7 @@ double CloseTab::getBillTotal()
     return total;
 }
 
-json CloseTab::addOrderCost(double cost)
+std::string CloseTab::addOrderCost(double cost)
 {
-    return {
-        {"status", "error"},
-        {"message", "Tab is closed"}};
+    return "Tab is closed";
 }
