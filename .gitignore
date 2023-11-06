@@ -58,5 +58,3 @@ src/tests/makefile
 src/tests/.vscode
 src/tests/.DS_STORE
 src/tests/main.cpp
-
-
