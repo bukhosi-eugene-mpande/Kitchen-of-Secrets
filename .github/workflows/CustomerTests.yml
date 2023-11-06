@@ -1,0 +1,19 @@
+name: CustomerTests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get install -y libgtest-dev cmake
+
+    - name: Build and Test
+      run: |
+        cd backend/tests/CustomerTests
+        make run_tests
