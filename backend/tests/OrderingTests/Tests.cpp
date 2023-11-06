@@ -1,12 +1,8 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "../includes/customercare_all.cpp"
-#include "../includes/reservation_all.cpp"
-#include "../includes/inventory_all.cpp"
-#include "../includes/ordering_all.cpp"
-#include "../includes/cooking_all.cpp"
-#include "../includes/management_all.cpp"
+#include "../includes/include_all.h"
+#include "../includes/include_all.cpp"
 
 TEST(BeverageTest, ConstructorTest) {
     std::unordered_map<std::string, int> ingredients = {{"water", 1}, {"sugar", 2}};
@@ -58,7 +54,7 @@ TEST(FoodTest, CloneTest) {
 
 TEST(MenuTest, MenuConstructorTest){
     //shared_ptr<Management> management
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
 
     //kitchen
     std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
@@ -73,7 +69,7 @@ TEST(MenuTest, MenuConstructorTest){
 }
 
 TEST(OrderTests, OrderConstructorTest){
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
     management->setKitchen(kitchen);
     Section* section = management->getGeneralSection().get();
@@ -100,7 +96,7 @@ TEST(OrderTests, OrderConstructorTest){
 
 TEST(OrderTests, CalculatePriceTest)
 {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
     management->setKitchen(kitchen);
     Section* section = management->getGeneralSection().get();
@@ -125,7 +121,7 @@ TEST(OrderTests, CalculatePriceTest)
 
 TEST(OrderTest, CalculateIngredientsTest)
 {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
     management->setKitchen(kitchen);
     Section* section = management->getGeneralSection().get();
@@ -156,7 +152,7 @@ TEST(OrderTest, CalculateIngredientsTest)
 
 TEST(OrderTest, AddMealTest)
 {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
     management->setKitchen(kitchen);
     Section* section = management->getGeneralSection().get();
@@ -192,7 +188,7 @@ TEST(OrderTest, AddMealTest)
 
 TEST(OrderBuilderTest, CreateOrderTest) 
 {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Kitchen> kitchen = std::make_shared<Kitchen>(management.get());
     management->setKitchen(kitchen);
     Section* section = management->getGeneralSection().get();
