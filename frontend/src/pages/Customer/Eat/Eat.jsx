@@ -14,7 +14,7 @@ function Eat() {
   const [foodStatus, setFoodStatus] = useState('waiting');
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8000/ws');
+    const ws = new WebSocket('ws://tns303q8-8000.uks1.devtunnels.ms/ws');
 
     ws.onopen = () => {
       ws.send('C-Eat');

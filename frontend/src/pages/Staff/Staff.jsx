@@ -6,7 +6,8 @@ import {
   MenuBook,
   PointOfSale,
   CalendarToday,
-  RestaurantMenu
+  RestaurantMenu,
+  TableRestaurant
 } from '@mui/icons-material';
 
 import Cook from './Cook/Cook';
@@ -14,6 +15,8 @@ import Orders from './Orders/Orders';
 import Panel from '../../components/Panel';
 import Accounting from './Accounting/Accounting';
 import Reservations from './Reservations/Reservations';
+import Restaurant from './Restaurant';
+import PrivateRestaurant from './PrivateRestaurant';
 
 export const StaffContext = createContext();
 
@@ -46,6 +49,15 @@ function Staff() {
               sx={{ width: '100%' }}
             />
             <Tab
+              icon={<TableRestaurant />}
+              label='Restaurant'
+              sx={{ width: '100%' }}/>
+            <Tab
+              icon={<TableRestaurant />}
+              label='Private Restaurant'
+              sx={{ width: '100%' }}
+            />
+            <Tab
               icon={<PointOfSale />}
               label='Accounting'
               sx={{ width: '100%' }}
@@ -66,6 +78,14 @@ function Staff() {
         </Panel>
 
         <Panel value={value} index={3}>
+        <Restaurant />
+        </Panel>
+
+        <Panel value={value} index={4}>
+          <PrivateRestaurant />
+        </Panel>
+
+        <Panel value={value} index={5}>
           <Accounting />
         </Panel>
       </Box>

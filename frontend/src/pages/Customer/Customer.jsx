@@ -6,7 +6,8 @@ import {
   MenuBook,
   PointOfSale,
   DinnerDining,
-  CalendarToday
+  CalendarToday,
+  TableRestaurant
 } from '@mui/icons-material';
 
 import Eat from './Eat/Eat';
