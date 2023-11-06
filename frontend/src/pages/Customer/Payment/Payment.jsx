@@ -77,7 +77,7 @@ function Payment() {
       }}
     >
     
-      <Typography variant='h1' sx={{ m: 2, color: 'white',
+      <Typography variant='h1' sx={{ m: 4, color: 'white',
         fontFamily: 'Gloria Hallelujah, cursive',
         fontWeight: 700 }}>
         Payment
