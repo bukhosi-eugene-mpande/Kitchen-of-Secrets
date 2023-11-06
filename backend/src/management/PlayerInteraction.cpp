@@ -1,81 +1,52 @@
 #include "PlayerInteraction.h"
+#include "../cooking/Kitchen.h"
+#include "../reservation/ReservationSystem.h"
+#include "../reservation/Receptionist.h"
+#include "../customercare/Customer.h"
+#include "../management/Engine.h"
+#include "../ordering/MenuItem.h"
+#include "../ordering/Waiter.h"
+#include "../accounting/Inventory.h" 
+#include "../accounting/Accounting.h"
 
-PlayerInteraction:PlayerInteraction() {
-    kitchen = std::make_shared<Kitchen>(this);
-    inventory = std::make_shared<Inventory>(this);
-    reservationSystem = std::make_shared<ReservationSystem>(this);
-    receptionist = std::make_shared<Receptionist>(this);
-    engine = std::make_shared<Engine>();
-    waiter = std::make_shared<Waiter>(engine);
-    customer = std::make_shared<Customer>(engine, this);
-}
+PlayerInteraction::PlayerInteraction() {
+    reservationSystem = std::make_shared<ReservationSystem>();
 
-PlayerInteraction::~PlayerInteraction() {}
+    receptionist = std::make_shared<Receptionist>(reservationSystem);
 
-json PlayerInteraction::sendOrderToKitchen(json order) {
-    int size = order["size"];
-    std::vector<std::shared_ptr<MenuItem>> meals;
-    for (int i = 0; i < size; i++) {
-        std::unordered_map<std::string, int> ingredients;
-        for (int j = 0; j < size; j++) {
-            ingredients.at("");
-        }
-        meals[i] = std::make_shared<MenuItem>(engine, 0.00, "name", ingredients);
-    }
-    std::shared_ptr<Order> order = std::make_shared<Order>(engine, 1, meals, waiter);
-    this->kitchen->addOrder(order);
+    inventory = std::make_shared<Inventory>();
+
+    accounting = std::make_shared<Accounting>();
 
 }
 
-void PlayerInteraction::sendOrderToKitchen() {
-    int size = 10;
-    std::vector<std::shared_ptr<MenuItem>> meals;
-    for (int i = 0; i < size; i++) {
-        std::unordered_map<std::string, int> ingredients;
-        for (int j = 0; j < size; j++) {
-            ingredients.at("");
-        }
-        meals[i] = std::make_shared<MenuItem>(engine, 0.00, "name", ingredients);
-    }
-    std::shared_ptr<Order> order = std::make_shared<Order>(engine, 1, meals, waiter);
-    this->kitchen->addOrder(order);
+PlayerInteraction::~PlayerInteraction() {
+
 }
 
-std::shared_ptr<Order> PlayerInteraction::getOrderFromKitchen() {
-    return this->kitchen->getPreparedOrder(waiter);
-}
-
-std::shared_ptr<Order> PlayerInteraction::getCanceledOrderFromKitchen() {
-    return this->kitchen->getCanceledOrder(waiter);
-}
-
-bool PlayerInteraction::requestIngredients(std::unordered_map<std::string,int> ingredients) {
-    return this->inventory->requestIngredients(ingredients);
-}
-
-void PlayerInteraction::notifyWaiterOfCancellation() {
-    waiter->getCanceledOrderFromKitchen();
-}
-
-void PlayerInteraction::notifyWaiterOfCompletion() {
-    waiter->getOrderFromKitchen();
+//customer interaction with reservation system
+void PlayerInteraction::clearOutTable(std::shared_ptr<Table> table) {
+    this->reservationSystem->clearOutTable(table);
 }
 
 void PlayerInteraction::notifyPlayerOfChangeInMood() {
     // TODO - implement a function in the ui that will display a message to the player
 }
 
-void PlayerInteraction::clearOutTable(std::shared_ptr<Table> table) {
-    this->reservationSystem->clearOutTable(table);
-}
-
-json PlayerInteraction::requestReservation(json reservation) {
-    this->receptionist->requestReservation(customer, reservation["section"]);
-    return reservation;
+void PlayerInteraction::requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section) {
+    this->receptionist->requestReservation(customer,section);
 }
 
 void PlayerInteraction::requestToBeSeated(std::shared_ptr<CustomerTemplate> customer) {
     this->receptionist->requestToBeSeated(customer);
+}
+
+void PlayerInteraction::notifyWaiterOfCancellation(Waiter* waiter) {
+    waiter->getCanceledOrderFromKitchen();
+}
+
+void PlayerInteraction::notifyWaiterOfCompletion(Waiter* waiter) {
+    waiter->getOrderFromKitchen();
 }
 
 std::shared_ptr<Section> PlayerInteraction::getGeneralSection() {
@@ -86,6 +57,50 @@ std::shared_ptr<Section> PlayerInteraction::getPrivateSection() {
     return this->reservationSystem->getPrivateSection();
 }
 
+bool PlayerInteraction::requestIngredients(std::unordered_map<std::string,int> ingredients) {
+    return this->inventory->requestIngredients(ingredients);
+}
+
+void PlayerInteraction::sendOrderToKitchen(std::shared_ptr<Order> order) {
+    this->kitchen->addOrder(order);
+}
+
+std::shared_ptr<Order> PlayerInteraction::getOrderFromKitchen(Waiter* waiter) {
+    return this->kitchen->getPreparedOrder(waiter);
+}
+
+std::shared_ptr<Order> PlayerInteraction::getCanceledOrderFromKitchen(Waiter* waiter) {
+    return this->kitchen->getCanceledOrder(waiter);
+}
+
+void PlayerInteraction::setKitchen(std::shared_ptr<Kitchen> kitchen) {
+    this->kitchen = kitchen;
+}
+
+void PlayerInteraction::setInventory(std::shared_ptr<Inventory> inventory){
+    this->inventory = inventory;
+}
+
 std::vector<std::shared_ptr<CustomerTemplate>> PlayerInteraction::getCustomers() {
     return this->reservationSystem->getCustomers();
+}
+
+std::shared_ptr<Drink> PlayerInteraction::getDrink(std::string name) {
+    return this->kitchen->getDrink(name);
+}
+
+std::shared_ptr<Cuisine> PlayerInteraction::getCusine(std::string name) {
+    return this->kitchen->getCusine(name);
+}
+
+std::unordered_map<int,std::string> PlayerInteraction::getDrinksMenu(){
+    return this->kitchen->getDrinksMenu();
+}
+
+std::unordered_map<int,std::string> PlayerInteraction::getCuisineMenu(){
+    return this->kitchen->getCuisineMenu();
+}
+
+std::string PlayerInteraction::pay(std::string payment,double bill) {
+    return this->accounting->pay(bill,payment);
 }
