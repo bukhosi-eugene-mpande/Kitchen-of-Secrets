@@ -1,15 +1,11 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "../includes/customercare_all.cpp"
-#include "../includes/reservation_all.cpp"
-#include "../includes/inventory_all.cpp"
-#include "../includes/ordering_all.cpp"
-#include "../includes/cooking_all.cpp"
-#include "../includes/management_all.cpp"
+#include "../includes/include_all.h"
+#include "../includes/include_all.cpp"
 
 TEST(CustomerTest, ConstructorTest) {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Customer>  customer = std::make_shared<Customer>(management);
     customer->setManagement(management);
 
@@ -17,11 +13,11 @@ TEST(CustomerTest, ConstructorTest) {
     EXPECT_EQ(customer->getMood()->getStateName(), "Happy");
     EXPECT_FALSE(customer->IsReadyToOrder());
     EXPECT_EQ(customer->getTotalBill(), 0);
-    EXPECT_EQ(customer->getManagement(), management);
+    EXPECT_EQ(customer->getPlayerInteraction(), management);
 }
 
 TEST(CustomerTest, MoodChange) {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     std::shared_ptr<Customer>  customer = std::make_shared<Customer>(management);
     customer->setManagement(management);
 
@@ -29,7 +25,7 @@ TEST(CustomerTest, MoodChange) {
     EXPECT_EQ(customer->getMood()->getStateName(), "Happy");
     EXPECT_FALSE(customer->IsReadyToOrder());
     EXPECT_EQ(customer->getTotalBill(), 0);
-    EXPECT_EQ(customer->getManagement(), management);
+    EXPECT_EQ(customer->getPlayerInteraction(), management);
 
     customer->anger();
     EXPECT_EQ(customer->getMood()->getStateName(), "Neutral");
@@ -46,7 +42,7 @@ TEST(CustomerTest, MoodChange) {
 }
 
 TEST(CustomerTest, ReservationTest) {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     Customer*  customer1 = new Customer(management);
     Customer*  customer2 = new Customer(management);
 
@@ -65,7 +61,7 @@ TEST(CustomerTest, ReservationTest) {
 }
 
 TEST(CustomerTest, SeatingTest) {
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     Customer*  customer1 = new Customer(management);
     Customer*  customer2 = new Customer(management);
     CustomerNPC* customer3 = new CustomerNPC(management,true,"General Section");
@@ -169,7 +165,7 @@ TEST(CustomerTest, SeatingTest) {
 }
 
 TEST(CustomerTest,LeaveTests){
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
     Customer*  customer1 = new Customer(management);
     Customer*  customer2 = new Customer(management);
     CustomerNPC* customer3 = new CustomerNPC(management,true,"General Section");
@@ -284,7 +280,7 @@ TEST(CustomerTest,LeaveTests){
 }
 
 TEST(CustomerTest,MergeAndSplitTests){
-    std::shared_ptr<Management> management = std::make_shared<Management>();
+    std::shared_ptr<PlayerInteraction> management = std::make_shared<PlayerInteraction>();
 
     CustomerNPC* customer3 = new CustomerNPC(management,true,"General Section");
     CustomerNPC* customer4 = new CustomerNPC(management,true,"Private Section");
