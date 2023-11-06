@@ -111,7 +111,10 @@ function Pot() {
       </List>
 
       {cooking ? (
+        <>
         <LinearProgress variant='determinate' value={progress} />
+        <iframe src="https://giphy.com/embed/iFV5aJmkNPSGr0ByQ7" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </>
       ) : (
         <Button
           color='primary'
