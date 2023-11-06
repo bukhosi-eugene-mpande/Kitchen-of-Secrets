@@ -1,3 +1,9 @@
+
+/**
+ * @file PlayerInteraction.h
+ * @brief Contains the declaration of the PlayerInteraction class.
+ */
+
 #ifndef PLAYER_INTERACTION_H
 #define PLAYER_INTERACTION_H
 
@@ -24,35 +30,51 @@ class Order;
 class Cuisine;
 class Drink;
 
+/**
+ * @class PlayerInteraction
+ * @brief Manages interactions and communication between different parts of the restaurant simulation game.
+ *
+ * The PlayerInteraction class is responsible for managing interactions and communication between various components of the restaurant simulation game. It facilitates interactions between customers, waiters, kitchen staff, inventory management, reservations, and more.
+ */
 class PlayerInteraction {
+private:
+    std::shared_ptr<ReservationSystem> reservationSystem; ///< A pointer to the reservation system.
+    std::shared_ptr<Receptionist> receptionist; ///< A pointer to the receptionist.
+    std::shared_ptr<CustomerTemplate> customer; ///< A pointer to a customer.
+    std::shared_ptr<Inventory> inventory; ///< A pointer to the inventory management system.
+    std::shared_ptr<Kitchen> kitchen; ///< A pointer to the kitchen where food is prepared.
+    std::shared_ptr<Accounting> accounting; ///< A pointer to the accounting system.
 
-    private:
-        std::shared_ptr<ReservationSystem> reservationSystem;
+public:
+    /**
+     * @brief Constructor for the PlayerInteraction class.
+     */
+    PlayerInteraction();
 
-        std::shared_ptr<Receptionist> receptionist;
+    /**
+     * @brief Destructor for the PlayerInteraction class.
+     */
+    ~PlayerInteraction();
 
-        std::shared_ptr<CustomerTemplate> customer;
+    // Interaction between customer and reservation
 
-        std::shared_ptr<Inventory> inventory;
+    /**
+     * @brief Clear and clean a table after the customer has left.
+     * @param table A pointer to the table to be cleared.
+     */
+    void clearOutTable(std::shared_ptr<Table> table);
 
-        std::shared_ptr<Kitchen> kitchen;
+    /**
+     * @brief Notify the player of changes in customer mood.
+     */
+    void notifyPlayerOfChangeInMood();
 
-        std::shared_ptr<Accounting> accounting;
-
-        //why do have a pointer to a class that has a pure vitual function
-
-    public:
-        PlayerInteraction();
-        
-        ~PlayerInteraction();
-
-        //interaction between customer and reservation
-
-        void clearOutTable(std::shared_ptr<Table> table);
-
-        void notifyPlayerOfChangeInMood();
-
-        void requestReservation(std::shared_ptr<CustomerTemplate> customer,std::string section);
+    /**
+     * @brief Request a reservation for a customer in a specific section.
+     * @param customer A pointer to the customer.
+     * @param section The section of the restaurant where the reservation is requested.
+     */
+    void requestReservation(std::shared_ptr<CustomerTemplate> customer, std::string section);
 
         void requestToBeSeated(std::shared_ptr<CustomerTemplate> customer);
 

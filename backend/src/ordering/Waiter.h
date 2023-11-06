@@ -1,3 +1,8 @@
+/**
+ * @file Waiter.h
+ * @brief Contains the declaration of the Waiter class.
+ */
+
 #ifndef WAITER_H
 #define WAITER_H
 
@@ -20,38 +25,57 @@
 class Food;
 class Beverage;
 
-class Waiter{
-    private:
-        //used to communicate with othe classes outside of the ordering system
-        PlayerInteraction* management;
+/**
+ * @class Waiter
+ * @brief Represents a waiter responsible for taking and managing customer orders.
+ *
+ * The Waiter class manages customer orders in a restaurant, including taking drink and food orders, creating and delivering orders, and interacting with the kitchen and customers.
+ */
+class Waiter {
+private:
+    PlayerInteraction* management; /**< A pointer used to communicate with classes outside of the ordering system. */
+    Section* section; /**< The section to which the waiter is assigned. */
+    std::shared_ptr<OrderBuilder> orderBuilder; /**< A builder for creating orders. */
+    std::shared_ptr<Menu> BeverageMenu; /**< The menu for beverages. */
+    std::shared_ptr<Menu> FoodMenu; /**< The menu for food. */
+    std::vector<std::string> reciepts; /**< A vector of receipts for orders. */
+    std::vector<std::shared_ptr<Order>> orders; /**< A vector of orders managed by the waiter. */
+    static int nextId; /**< A static variable to keep track of the next available waiter ID. */
+    int id; /**< The unique identifier for the waiter. */
 
-        //section the waiter is assigned to
-        Section* section;
+public:
+    /**
+     * @brief Constructor for the Waiter class.
+     * @param section A pointer to the section to which the waiter is assigned.
+     * @param management A pointer used to communicate with classes outside of the ordering system.
+     */
+    Waiter(Section* section, PlayerInteraction* management);
 
-        //builder for the menu
-        std::shared_ptr<OrderBuilder> orderBuilder;
+    /**
+     * @brief Destructor for the Waiter class.
+     */
+    ~Waiter();
 
-        //menu for the waiter
-        std::shared_ptr<Menu> BeverageMenu;
-        std::shared_ptr<Menu> FoodMenu;
+    /**
+     * @brief Take drink orders from a customer and add them to an order.
+     * @param customer A shared pointer to the customer placing the order.
+     * @param table A shared pointer to the table associated with the order.
+     * @return A vector of shared pointers to the menu items included in the drink order.
+     */
+    std::vector<std::shared_ptr<MenuItem>> takeDrinksOrder(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
 
+    /**
+     * @brief Take food orders from a customer and add them to an order.
+     * @param customer A shared pointer to the customer placing the order.
+     * @param table A shared pointer to the table associated with the order.
+     * @return A vector of shared pointers to the menu items included in the food order.
+     */
+    std::vector<std::shared_ptr<MenuItem>> takeFoodOrder(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
 
-        std::vector<std::string> reciepts;
-        std::vector<std::shared_ptr<Order>> orders;
-
-        static int nextId;
-        int id;
-
-    public:
-        Waiter(Section* section, PlayerInteraction* management);
-        
-        ~Waiter();
-        
-        std::vector<std::shared_ptr<MenuItem>> takeDrinksOrder(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
-        
-        std::vector<std::shared_ptr<MenuItem>> takeFoodOrder(std::shared_ptr<CustomerTemplate> customer, std::shared_ptr<Table> table);
-        
-        void doOrderRounds();
+    /**
+     * @brief Perform order rounds to manage customer orders and deliver them.
+     */
+    void doOrderRounds();
         
         void getPaymentTypeFromCustomer(std::shared_ptr<CustomerTemplate> customer);
         

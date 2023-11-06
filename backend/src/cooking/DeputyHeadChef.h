@@ -1,5 +1,10 @@
-#ifndef DeputyHeadChef_H
-#define DeputyHeadChef_H
+/**
+ * @file DeputyHeadChef.h
+ * @brief Contains the declaration of the DeputyHeadChef class, derived from the StationChef class.
+ */
+
+#ifndef DEPUTYHEADCHEF_H
+#define DEPUTYHEADCHEF_H
 
 #include <unordered_map>
 #include <vector>
@@ -12,30 +17,63 @@
 
 class Management;
 
-
+/**
+ * @class DeputyHeadChef
+ * @brief Represents a deputy head chef in the kitchen.
+ *
+ * The DeputyHeadChef class is derived from the StationChef class and provides
+ * additional functionality for managing orders and interacting with the kitchen's management.
+ */
 class DeputyHeadChef : public StationChef {
-    private: 
-        PlayerInteraction* management;
-        bool flag;
-        
-    public:
+private:
+    PlayerInteraction* management; ///< A pointer to the management interface.
+    bool flag; ///< A flag used for internal management.
 
-        DeputyHeadChef(Kitchen* kitchen);
+public:
+    /**
+     * @brief Constructor for the DeputyHeadChef class.
+     * @param kitchen A pointer to the kitchen where the deputy head chef works.
+     */
+    DeputyHeadChef(Kitchen* kitchen);
 
-        ~DeputyHeadChef();
+    /**
+     * @brief Destructor for the DeputyHeadChef class.
+     */
+    ~DeputyHeadChef();
 
-        void prepareOrder(std::shared_ptr<Order> order);
+    /**
+     * @brief Prepare an order.
+     * @param order A shared pointer to the order to be prepared.
+     */
+    void prepareOrder(std::shared_ptr<Order> order);
 
-        void setNextChef();
+    /**
+     * @brief Set the next chef in the kitchen.
+     */
+    void setNextChef();
 
-        void cancelOrder(std::shared_ptr<Order> order);
+    /**
+     * @brief Cancel an order.
+     * @param order A shared pointer to the order to be canceled.
+     */
+    void cancelOrder(std::shared_ptr<Order> order);
 
-        void finishOrder(std::shared_ptr<Order> order);
-        
-        Kitchen* getKitchen() const;
+    /**
+     * @brief Finish preparing an order.
+     * @param order A shared pointer to the order that is ready for serving.
+     */
+    void finishOrder(std::shared_ptr<Order> order);
 
-        void setManagement();
+    /**
+     * @brief Get a pointer to the kitchen where the deputy head chef works.
+     * @return A pointer to the kitchen.
+     */
+    Kitchen* getKitchen() const;
 
+    /**
+     * @brief Set the management interface for the deputy head chef.
+     */
+    void setManagement();
 };
 
 #endif
