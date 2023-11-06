@@ -39,23 +39,28 @@ This document outlines the requirements for the backend API that the frontend wi
 
 ### 2. Manager page
 
+- **_These are the button return values:_**
+
 - **Endpoint:** `/manager`
 - **Method:** GET
 
-**Response:**
+**Request:**
 
 ```json
 {
   "privatetables": [
     {
       "table_id": 1,
-      "table_name": "table_name",
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     },
     {
       "table_id": 2,
-      "table_name": "table_name",
+      "table_status": "table_status",
+      "table_capacity": "table_capacity"
+    },
+    {
+      "table_id": 3,
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     }
@@ -63,48 +68,79 @@ This document outlines the requirements for the backend API that the frontend wi
   "generaltables" :[
     {
       "table_id": 1,
-      "table_name": "table_name",
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     },
     {
       "table_id": 2,
-      "table_name": "table_name",
+      "table_status": "table_status",
+      "table_capacity": "table_capacity"
+    },
+    {
+      "table_id": 3,
       "table_status": "table_status",
       "table_capacity": "table_capacity"
     }
   ],
-  "Balance": "user123"
+  "do_rounds": [
+    {
+      "rounds":true,
+      "ingredients": false,
+      "waiter": false
+    }
+  ],
+  "buy_ingredients":[
+    {
+      "rounds":false,
+      "ingredients": true,
+      "waiter": false
+    }
+  ],
+  "send_waiter": [
+    {
+      "rounds":false,
+      "ingredients": false,
+      "waiter": true
+    }
+  ],
+  "Balance": "user123" 
 
 }
 ```
 
-Button return values:
+### 3. Customer Page
 
-``` json
-  do rounds
-  {
-  rounds:true
-  ingredients: false
-  waiter: false
-  }
+- **Endpoint:** `/Ordering`
+- **Method:** GET
+**Response:**
 
-  buy ingredients
+```json
+[
   {
-  rounds:false
-  ingredients: true
-  waiter: false
+    "table":[
+      {
+        "table_id": "table_id",
+        "table_status": "table_status",
+        "table_capacity": "table_capacity"
+      }
+    ],
+    "send_order":[
+      {
+        "send_order":true,
+        "pay_order":false
+      }
+    ],
+    "pay_order":[
+      {
+        "send_order":false,
+        "pay_order":true
+      }
+    ]
   }
-
-  send waiter
-  {
-  rounds:false
-  ingredients: false
-  waiter: true
-  }
+]
 ```
 
-### 3. Ordering
+### 4. Ordering
 
 - **Endpoint:** `/Ordering`
 - **Method:** GET
@@ -125,8 +161,3 @@ Button return values:
   }
 ]
 ```
-
-Main manager page:
-
-
-
