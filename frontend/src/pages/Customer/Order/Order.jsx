@@ -102,7 +102,9 @@ function Order() {
           justifyContent: 'center'
         }}
       >
-        <Typography variant='h1' sx={{ m: 2 }}>
+        <Typography variant='h1' sx={{ m: 2 ,color: 'white',
+        fontFamily: 'Gloria Hallelujah, cursive',
+        fontWeight: 700}}>
           Order
         </Typography>
 
