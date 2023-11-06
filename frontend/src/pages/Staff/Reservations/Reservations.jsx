@@ -67,23 +67,23 @@ function Reservations() {
   const [tableStatus, setTableStatus] = useState(Array(6).fill(false));
 
   const tableImages = Array.from({ length: 6 }, (_, tableIndex) => {
-		const tableStatusIndex = tableStatus[tableIndex] === undefined ? false : tableStatus[tableIndex];
-		const src = tableStatusIndex ? `/assets/tables/BookedTable${tableIndex}.png` : `/assets/tables/table${tableIndex}.png`;
-		return (
-			<div key={`table-${tableIndex}`} className="col-2">
-				<img style={{width: '100px' }} src={src} alt={`Table ${tableIndex}`} />
-			</div>
-		);
-	});
+    const tableStatusIndex = tableStatus[tableIndex] === undefined ? false : tableStatus[tableIndex];
+    const src = tableStatusIndex ? `/assets/tables/BookedTable${tableIndex}.png` : `/assets/tables/table${tableIndex}.png`;
+    return (
+      <div key={`table-${tableIndex}`} className="col-2">
+        <img style={{ width: '100px' }} src={src} alt={`Table ${tableIndex}`} />
+      </div>
+    );
+  });
 
   const handleCustomerClick = () => {
 
-		const updatedTableStatus = [...tableStatus];
+    const updatedTableStatus = [...tableStatus];
 
-		updatedTableStatus[1] = true;
+    updatedTableStatus[0] = true;
 
-		setTableStatus(updatedTableStatus);
-	}
+    setTableStatus(updatedTableStatus);
+  }
 
   return (
     <Box
@@ -100,19 +100,19 @@ function Reservations() {
       }}
     >
 
-<img
-  src="./assets/dracula.png"
-  alt="dracula"
-  style={{
-    position: 'absolute',
-    bottom: '100px', 
-    left: '100px',
-    transform: 'translateX(-50%)',
-    width: '200px', 
-    height: 'auto',
-    animation: 'moveLeftRight 4s linear infinite',
-  }}
-/>
+      <img
+        src="./assets/dracula.png"
+        alt="dracula"
+        style={{
+          position: 'absolute',
+          bottom: '100px',
+          left: '100px',
+          transform: 'translateX(-50%)',
+          width: '200px',
+          height: 'auto',
+          animation: 'moveLeftRight 4s linear infinite',
+        }}
+      />
       <Typography variant='h1' sx={{
         m: 2, color: 'white',
         fontFamily: 'Gloria Hallelujah, cursive',
@@ -147,11 +147,11 @@ function Reservations() {
           </ListItem>
         ))}
       </List>
-      
+
       <div>
-      <h1>Available tables</h1>
-				<div className="row tables">{tableImages}</div>
-			</div>
+        <h1>Available tables</h1>
+        <div className="row tables">{tableImages}</div>
+      </div>
       <style>
         {`
           @keyframes moveLeftRight {
@@ -169,7 +169,7 @@ function Reservations() {
       </style>
     </Box>
 
-    
+
   );
 }
 
