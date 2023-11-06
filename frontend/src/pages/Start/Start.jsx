@@ -50,30 +50,30 @@ function Start() {
     <Box
       sx={appStyle}
     >
-       
-       <img
-  src="./assets/flyingBat.gif"
-  alt="Flying Bat"
-  style={{
-    position: 'absolute',
-    top: '100px',
-    right: '100px', 
-    width: '200px',
-    height: 'auto'
-  }}
-/>
-<img
-  src="./assets/flyingBat.gif"
-  alt="Flying Bat"
-  style={{
-    position: 'absolute',
-    bottom: '100px', 
-    left: '100px',
-    width: '200px', 
-    height: 'auto'
-  }}
-/>
-       <div className="App-header" style={headerStyle}>
+
+      <img
+        src="./assets/flyingBat.gif"
+        alt="Flying Bat"
+        style={{
+          position: 'absolute',
+          top: '100px',
+          right: '100px',
+          width: '200px',
+          height: 'auto'
+        }}
+      />
+      <img
+        src="./assets/flyingBat.gif"
+        alt="Flying Bat"
+        style={{
+          position: 'absolute',
+          bottom: '100px',
+          left: '100px',
+          width: '200px',
+          height: 'auto'
+        }}
+      />
+      <div className="App-header" style={headerStyle}>
         <h1 style={h1Style}>Welcome To The Kitchen Of Secrets</h1>
       </div>
 
