@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, Link } from '@mui/material';
 
 function Start() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Start() {
     fontWeight: 700,
   };
   const footerStyle = {
-    backgroundColor: 'purple',
+    backgroundColor: 'primary.main',
     color: 'white',
     padding: '10px',
     textAlign: 'center',
@@ -76,17 +76,17 @@ function Start() {
         Staff
       </Button>
 
-      <footer style={footerStyle}>
-        <a href="https://github.com" style={linkStyle}>
+      <Box variant='footer' sx={footerStyle}>
+        <Link href="https://github.com" sx={linkStyle}>
           GitHub
-        </a>
-        <a href="https://documentation-link.com" style={linkStyle}>
+        </Link>
+        <Link href="https://documentation-link.com" sx={linkStyle}>
           Documentation
-        </a>
-        <a href="/our-team" style={linkStyle}>
+        </Link>
+        <Link href="/our-team" sx={linkStyle}>
           Our Team
-        </a>
-      </footer>
+        </Link>
+      </Box>
     </Box>
   );
 }

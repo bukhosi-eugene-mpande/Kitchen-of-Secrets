@@ -65,13 +65,19 @@ function Payment() {
   return (
     <Box
       sx={{
+        backgroundImage: `url('./assets/PaymentBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'bottom',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'center'
       }}
     >
-      <Typography variant='h1' sx={{ m: 2 }}>
+      <Typography variant='h1' sx={{ m: 2, color: 'white',
+        fontFamily: 'Gloria Hallelujah, cursive',
+        fontWeight: 700 }}>
         Payment
       </Typography>
 
@@ -80,10 +86,13 @@ function Payment() {
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          padding: '20px',
+          borderRadius: '10px'
         }}
       >
-        <Typography variant='h3' sx={{ m: 2 }}>
+        <Typography variant='h3' sx={{ m: 2  }}>
           Total: R{total}
         </Typography>
 
