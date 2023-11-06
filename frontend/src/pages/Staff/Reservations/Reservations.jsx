@@ -110,6 +110,12 @@ function Reservations() {
     width: '200px', 
     height: 'auto'
   }}
+  onMouseEnter={(e) => {
+    e.target.style.transform = 'translate(100px, 0)'; // Move the image 100px to the right
+  }}
+  onMouseLeave={(e) => {
+    e.target.style.transform = 'translate(0, 0)'; // Reset the image position
+  }}
 />
       <Typography variant='h1' sx={{
         m: 2, color: 'white',
