@@ -24,10 +24,12 @@ function Ingredients() {
         m: 2,
         p: 2,
         width: '100%',
+        maxHeight: 500,
         borderRadius: '4px',
         border: '4px solid',
         justifyContent: 'center',
-        borderColor: 'primary.main'
+        borderColor: 'primary.main',
+        overflow: 'scroll'
       }}
     >
       <Typography variant='h3'>Ingredients</Typography>

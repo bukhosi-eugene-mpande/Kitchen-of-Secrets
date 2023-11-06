@@ -110,9 +110,12 @@ function Cook() {
           justifyContent: 'center'
         }}
       >
-        <Typography variant='h1'>Cook</Typography>
+        <Typography variant='h1' sx={{ color: 'white',
+        fontFamily: 'Gloria Hallelujah, cursive',
+        fontWeight: 700
+      }}>Cook</Typography>
 
-        <CookList />
+        <CookList/>
 
         {selectedOrder && <Instructions order={selectedOrder} />}
 
@@ -123,7 +126,8 @@ function Cook() {
             textAlign: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             padding: '20px',
-          borderRadius: '10px',
+            borderRadius: '10px',
+
           }}
         >
           <Ingredients />
