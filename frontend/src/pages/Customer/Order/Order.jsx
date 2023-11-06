@@ -90,7 +90,11 @@ function Order() {
   return (
     <OrderContext.Provider value={{ order, addToOrder, removeFromOrder }}>
       <Box
-        sx={{
+        sx={{ 
+        backgroundImage: `url('./assets/OrderExBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top',
+        backgroundRepeat: 'no-repeat',
           display: 'flex',
           textAlign: 'center',
           alignItems: 'center',
