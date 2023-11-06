@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
-
-import { CookContext } from './Cook';
+import React from 'react';
 
 import Grid from '@mui/material/Unstable_Grid2';
 
@@ -26,7 +24,8 @@ function Instructions({ order }) {
         width: '60%',
         border: '4px solid',
         borderRadius: '4px',
-        borderColor: 'primary.main'
+        borderColor: 'primary.main',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)'
       }}
     >
       <Typography variant='h5' sx={{ mb: 2, textAlign: 'center' }}>

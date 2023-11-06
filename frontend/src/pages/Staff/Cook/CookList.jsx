@@ -17,7 +17,8 @@ function CookList() {
         width: '60%',
         border: '4px solid',
         borderRadius: '4px',
-        borderColor: 'primary.main'
+        borderColor: 'primary.main',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)'
       }}
     >
       <Typography variant='h4'>New Orders</Typography>
