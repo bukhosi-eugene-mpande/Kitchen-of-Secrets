@@ -1,52 +1,29 @@
-#include "crow.h"
-#include "accounting/Accounting.h"
-#include "crow/middlewares/cors.h"
-
 #include <mutex>
+#include <vector>
+#include <string>
 #include <unordered_set>
+
+#include "crow.h"
+#include "crow/middlewares/cors.h"
+#include "management/GameRunner.h"
 
 int main()
 {
+    std::mutex mtx;
     crow::App<crow::CORSHandler> app;
 
-    std::mutex mtx;
+    GameRunner* gameRunner = new GameRunner();
 
     crow::websocket::connection* c_Eat = nullptr;
+    crow::websocket::connection* c_Floor = nullptr;
     crow::websocket::connection* c_Order = nullptr;
     crow::websocket::connection* c_Payment = nullptr;
     crow::websocket::connection* c_Reservation = nullptr;
-
 
     crow::websocket::connection* s_Cook = nullptr;
     crow::websocket::connection* s_Order = nullptr;
     crow::websocket::connection* s_Accounting = nullptr;
     crow::websocket::connection* s_Reservations = nullptr;
-
-
-    auto accounting = std::make_shared<Accounting>();
-
-    CROW_ROUTE(app, "/close")([accounting](){
-        crow::response res(std::string(accounting->closeTab().dump()));
-        res.add_header("Content-Type", "application/json");
-        return res;
-    });
-
-    CROW_ROUTE(app, "/payy")([accounting](){
-        crow::response res(std::string(accounting->pay(35, "cash").dump()));
-        res.add_header("Content-Type", "application/json");
-        return res;
-    });
-
-    CROW_ROUTE(app, "/reservation").methods("POST"_method)([](const crow::request& req){
-
-        std:: cout << "Reservation Request: \n" + req.body << std::endl;
-
-        crow::response res("{\"available\": \"yes\"}");
-        res.add_header("Content-Type", "application/json");
-        res.code = 200;
-        
-        return res;
-    });
 
     CROW_ROUTE(app, "/ws")
         .websocket()
@@ -98,6 +75,11 @@ int main()
                     c_Eat = &conn;
                     CROW_LOG_INFO << "Staff Cook Connected";
                 }
+                else if (c_Floor == nullptr && data == "C-Floor")
+                {
+                    c_Floor = &conn;
+                    CROW_LOG_INFO << "Customer Floor Connected";
+                }
                 else if (c_Payment == nullptr && data == "C-Payment")
                 {
                     c_Payment = &conn;
@@ -118,6 +100,7 @@ int main()
 
                     if (jsonData["type"] == "make-res")
                     {
+                        gameRunner->requestReservation(jsonData["data"]["details"]["section"]);
                         s_Reservations->send_text(data);
                         CROW_LOG_INFO << "Reservation request sent to staff";
                     }
@@ -128,6 +111,25 @@ int main()
                     }
                     else if(jsonData["type"] == "make-order")
                     {
+                        std::unordered_map<std::string,int> food;
+                        std::vector<json> foodOrder = jsonData["data"]["order"]["food"];
+
+                        for (json item:foodOrder)
+                        {
+                            food.insert({item["name"],1});
+                        }
+
+                        std::unordered_map<std::string,int> beverages;
+                        std::vector<json> beverageOrder = jsonData["data"]["order"]["beverages"];
+
+                        for (json item:beverageOrder)
+                        {
+                            beverages.insert({item["name"],1});
+                        }
+
+                        gameRunner->sendFoodOrder(food);
+                        gameRunner->sendBeverageOrder(beverages);
+
                         s_Order->send_text(data);
                         c_Payment->send_text(data);
                         CROW_LOG_INFO << "Order request sent to staff";
@@ -142,14 +144,39 @@ int main()
                         s_Cook->send_text(data);
                         CROW_LOG_INFO << "Order cooking by staff";
                     }
+                    else if (jsonData["type"] == "change-mood")
+                    {
+                        s_Cook->send_text(data);
+                        gameRunner->changeMood();
+                        CROW_LOG_INFO << "Mood changed by customer";
+                    }
                     else if(jsonData["type"] == "serve-order")
                     {
                         c_Eat->send_text(data);
                         CROW_LOG_INFO << "Order served to customer";
                     }
+                    else if(jsonData["type"] == "do-rounds")
+                    {
+                        c_Floor->send_text(data);
+                        gameRunner->doRoundsWaiter();
+                        CROW_LOG_INFO << "Order served to customer";
+                    }
+                    else if(jsonData["type"] == "open-tab")
+                    {
+                        std::string str = jsonData["data"]["total"];
+                        double total = std::stod(str);
+
+                        //gameRunner->addToTab(total);
+                        s_Accounting->send_text(data);
+                        CROW_LOG_INFO << "Tab opened";
+                    }
                     else if(jsonData["type"] == "make-payment")
                     {
+                        std::string str = jsonData["data"]["total"];
+                        double total = std::stod(str);
+
                         s_Accounting->send_text(data);
+                        gameRunner->payment(jsonData["data"]["paymentMethod"], total);
                         CROW_LOG_INFO << "Payment received by staff";
                     }
                     else
