@@ -17,13 +17,13 @@ int main()
     GameRunner* gameRunner = new GameRunner();
 
     crow::websocket::connection* c_Eat = nullptr;
-    crow::websocket::connection* c_Floor = nullptr;
     crow::websocket::connection* c_Order = nullptr;
     crow::websocket::connection* c_Payment = nullptr;
     crow::websocket::connection* c_Reservation = nullptr;
 
     crow::websocket::connection* s_Cook = nullptr;
     crow::websocket::connection* s_Order = nullptr;
+    crow::websocket::connection* s_Floor = nullptr;
     crow::websocket::connection* s_Accounting = nullptr;
     crow::websocket::connection* s_Reservations = nullptr;
 
@@ -77,9 +77,9 @@ int main()
                     c_Eat = &conn;
                     CROW_LOG_INFO << "Staff Cook Connected";
                 }
-                else if (c_Floor == nullptr && data == "C-Floor")
+                else if (s_Floor == nullptr && data == "S-Floor")
                 {
-                    c_Floor = &conn;
+                    s_Floor = &conn;
                     CROW_LOG_INFO << "Customer Floor Connected";
                 }
                 else if (c_Payment == nullptr && data == "C-Payment")
@@ -92,7 +92,7 @@ int main()
                     s_Accounting = &conn;
                     CROW_LOG_INFO << "Staff Accounting Connected";
                 }
-                else if (data == "C-Reservation" || data == "S-Reservations" || data == "C-Order" || data == "S-Order" || data == "S-Cook" || data == "C-Eat" || data == "C-Payment" || data == "S-Accounting")
+                else if (data == "C-Reservation" || data == "S-Reservations" || data == "C-Order" || data == "S-Order" || data == "S-Cook" || data == "C-Eat" || data == "C-Payment" || data == "S-Accounting" || data == "S-Floor")
                 {
                     CROW_LOG_INFO << "Connection already established";
                 }
@@ -159,9 +159,9 @@ int main()
                     }
                     else if(jsonData["type"] == "do-rounds")
                     {
-                        c_Floor->send_text(data);
+                        s_Floor->send_text(data);
                         gameRunner->doRoundsWaiter();
-                        CROW_LOG_INFO << "Order served to customer";
+                        CROW_LOG_INFO << "Checking on customers";
                     }
                     else if(jsonData["type"] == "open-tab")
                     {
