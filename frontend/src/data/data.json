@@ -1,86 +1,188 @@
 {
-  "mockOrders": [
+  "foodMenu": [
     {
-      "table": 1,
-      "food": ["Pizza", "Burger"],
-      "beverages": ["Coffee", "Tea"]
+      "name": "Witch's Brew Stew",
+      "price": 13.99
     },
     {
-      "table": 2,
-      "food": ["Toast", "Eggs"],
-      "beverages": ["Orange Juice", "Milk"]
+      "name": "Zombie Brain Pasta",
+      "price": 11.99
+    },
+    {
+      "name": "Mummy Meatloaf",
+      "price": 12.99
+    },
+    {
+      "name": "Vampire Garlic Bread",
+      "price": 14.99
+    },
+    {
+      "name": "Ghostly Goulash",
+      "price": 10.99
+    },
+    {
+      "name": "Frankenstein's Monster Burger",
+      "price": 13.99
+    },
+    {
+      "name": "Werewolf Bites",
+      "price": 11.99
+    },
+    {
+      "name": "Wicked Witch Fingers",
+      "price": 12.99
+    },
+    {
+      "name": "Mummy Mummy Pizza",
+      "price": 14.99
+    },
+    {
+      "name": "Screaming Salad",
+      "price": 10.99
+    },
+    {
+      "name": "Goblin Gumbo",
+      "price": 13.99
+    },
+    {
+      "name": "Haunted Hot Dogs",
+      "price": 11.99
+    },
+    {
+      "name": "Pumpkin Patch Risotto",
+      "price": 12.99
+    },
+    {
+      "name": "Cursed Cauldron Curry",
+      "price": 14.99
+    },
+    {
+      "name": "Skeletal Ribs",
+      "price": 10.99
     }
   ],
 
-  "foodMenu": [
-    { "name": "Pizza", "price": 10 },
-    { "name": "Burger", "price": 15 },
-    { "name": "Pasta", "price": 12 },
-    { "name": "Salad", "price": 8 },
-    { "name": "Soup", "price": 7 }
-  ],
-
   "beverageMenu": [
-    { "name": "Coke", "price": 2 },
-    { "name": "Water", "price": 1 },
-    { "name": "Juice", "price": 3 },
-    { "name": "Coffee", "price": 4 },
-    { "name": "Tea", "price": 2 }
+    {
+      "name": "Witches' Brew Punch",
+      "price": 9.99
+    },
+    {
+      "name": "Vampire's Kiss Martini",
+      "price": 8.99
+    },
+    {
+      "name": "Zombie Elixir",
+      "price": 7.99
+    },
+    {
+      "name": "Mummy Mojito",
+      "price": 10.99
+    },
+    {
+      "name": "Wicked Witch's Cider",
+      "price": 8.99
+    },
+    {
+      "name": "Ghostly Goblet",
+      "price": 9.99
+    },
+    {
+      "name": "Werewolf Whiskey Sour",
+      "price": 10.99
+    },
+    {
+      "name": "Pumpkin Spice Potion",
+      "price": 7.99
+    },
+    {
+      "name": "Goblin Grog",
+      "price": 9.99
+    },
+    {
+      "name": "Spectral Sangria",
+      "price": 8.99
+    }
   ],
 
   "requiredIngredients": [
     {
-      "name": "Pizza",
-      "ingredients": ["Dough", "Tomato Sauce", "Cheese", "Pepperoni"]
+      "name": "Witch's Brew Stew",
+      "ingredients": ["eye of newt"]
     },
     {
-      "name": "Burger",
-      "ingredients": ["Bun", "Patty", "Lettuce", "Tomato", "Cheese"]
+      "name": "Zombie Brain Pasta",
+      "ingredients": ["pasta"]
     },
     {
-      "name": "Toast",
-      "ingredients": ["Bread", "Butter"]
+      "name": "Mummy Meatloaf",
+      "ingredients": ["ground beef"]
     },
     {
-      "name": "Eggs",
-      "ingredients": ["Eggs", "Oil"]
+      "name": "Vampire Garlic Bread",
+      "ingredients": ["blood garlic"]
     },
     {
-      "name": "Pasta",
-      "ingredients": ["Pasta", "Tomato Sauce", "Cheese"]
+      "name": "Ghostly Goulash",
+      "ingredients": ["ectoplasmic meat"]
     },
     {
-      "name": "Salad",
-      "ingredients": ["Lettuce", "Tomato", "Cheese"]
+      "name": "Frankenstein's Monster Burger",
+      "ingredients": ["monster patty"]
     },
     {
-      "name": "Soup",
-      "ingredients": ["Water", "Tomato Sauce", "Cheese"]
+      "name": "Werewolf Bites",
+      "ingredients": ["moonlit meatballs"]
+    },
+    {
+      "name": "Wicked Witch Fingers",
+      "ingredients": ["witch's fingers"]
+    },
+    {
+      "name": "Mummy Mummy Pizza",
+      "ingredients": ["bandage crust"]
+    },
+    {
+      "name": "Screaming Salad",
+      "ingredients": ["shrieking greens"]
+    },
+    {
+      "name": "Goblin Gumbo",
+      "ingredients": ["goblin bits"]
+    },
+    {
+      "name": "Haunted Hot Dogs",
+      "ingredients": ["spooky sausages"]
+    },
+    {
+      "name": "Pumpkin Patch Risotto",
+      "ingredients": ["pumpkin rice"]
+    },
+    {
+      "name": "Cursed Cauldron Curry",
+      "ingredients": ["cauldron chicken"]
+    },
+    {
+      "name": "Skeletal Ribs",
+      "ingredients": ["skeleton ribs"]
     }
   ],
 
   "ingredients": [
-    "Dough",
-    "Tomato Sauce",
-    "Cheese",
-    "Pepperoni",
-    "Bun",
-    "Patty",
-    "Lettuce",
-    "Tomato",
-    "Bread",
-    "Butter",
-    "Eggs",
-    "Oil",
-    "Pasta",
-    "Water",
-    "Soup",
-    "Salad",
-    "Juice",
-    "Coke",
-    "Coffee",
-    "Tea",
-    "Milk",
-    "Orange Juice"
+    "eye of newt",
+    "pasta",
+    "ground beef",
+    "blood garlic",
+    "ectoplasmic meat",
+    "monster patty",
+    "moonlit meatballs",
+    "witch's fingers",
+    "bandage crust",
+    "shrieking greens",
+    "goblin bits",
+    "spooky sausages",
+    "pumpkin rice",
+    "cauldron chicken",
+    "skeleton ribs"
   ]
 }
