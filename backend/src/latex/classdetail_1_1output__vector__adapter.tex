@@ -1,0 +1,64 @@
+\hypertarget{classdetail_1_1output__vector__adapter}{}\doxysection{detail\+::output\+\_\+vector\+\_\+adapter\texorpdfstring{$<$}{<} Char\+Type, Allocator\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classdetail_1_1output__vector__adapter}\index{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$@{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$}}
+
+
+output adapter for byte vectors  
+
+
+
+
+{\ttfamily \#include $<$json.\+hpp$>$}
+
+
+
+Inheritance diagram for detail\+::output\+\_\+vector\+\_\+adapter\texorpdfstring{$<$}{<} Char\+Type, Allocator\+Type \texorpdfstring{$>$}{>}\+:
+% FIG 0
+
+
+Collaboration diagram for detail\+::output\+\_\+vector\+\_\+adapter\texorpdfstring{$<$}{<} Char\+Type, Allocator\+Type \texorpdfstring{$>$}{>}\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1output__vector__adapter_a24c27c9c4437f007083ad40c1ca89924}\label{classdetail_1_1output__vector__adapter_a24c27c9c4437f007083ad40c1ca89924}} 
+{\bfseries output\+\_\+vector\+\_\+adapter} (std\+::vector$<$ Char\+Type, Allocator\+Type $>$ \&vec) noexcept
+\item 
+void \mbox{\hyperlink{classdetail_1_1output__vector__adapter_ab2f37bf696c716ddb6c0b88b30304da5}{write\+\_\+character}} (Char\+Type c) override
+\item 
+void \mbox{\hyperlink{classdetail_1_1output__vector__adapter_a6744f381ec104be129327caadcede1f7}{write\+\_\+characters}} (const Char\+Type $\ast$s, std\+::size\+\_\+t length) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Char\+Type, typename Allocator\+Type = std\+::allocator$<$\+Char\+Type$>$$>$\newline
+class detail\+::output\+\_\+vector\+\_\+adapter$<$ Char\+Type, Allocator\+Type $>$}
+output adapter for byte vectors 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdetail_1_1output__vector__adapter_ab2f37bf696c716ddb6c0b88b30304da5}\label{classdetail_1_1output__vector__adapter_ab2f37bf696c716ddb6c0b88b30304da5}} 
+\index{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$@{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$}!write\_character@{write\_character}}
+\index{write\_character@{write\_character}!detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$@{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$}}
+\doxysubsubsection{\texorpdfstring{write\_character()}{write\_character()}}
+{\footnotesize\ttfamily template$<$typename Char\+Type , typename Allocator\+Type  = std\+::allocator$<$\+Char\+Type$>$$>$ \\
+void \mbox{\hyperlink{classdetail_1_1output__vector__adapter}{detail\+::output\+\_\+vector\+\_\+adapter}}$<$ Char\+Type, Allocator\+Type $>$\+::write\+\_\+character (\begin{DoxyParamCaption}\item[{Char\+Type}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structdetail_1_1output__adapter__protocol}{detail\+::output\+\_\+adapter\+\_\+protocol$<$ Char\+Type $>$}}.
+
+\mbox{\Hypertarget{classdetail_1_1output__vector__adapter_a6744f381ec104be129327caadcede1f7}\label{classdetail_1_1output__vector__adapter_a6744f381ec104be129327caadcede1f7}} 
+\index{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$@{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$}!write\_characters@{write\_characters}}
+\index{write\_characters@{write\_characters}!detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$@{detail::output\_vector\_adapter$<$ CharType, AllocatorType $>$}}
+\doxysubsubsection{\texorpdfstring{write\_characters()}{write\_characters()}}
+{\footnotesize\ttfamily template$<$typename Char\+Type , typename Allocator\+Type  = std\+::allocator$<$\+Char\+Type$>$$>$ \\
+void \mbox{\hyperlink{classdetail_1_1output__vector__adapter}{detail\+::output\+\_\+vector\+\_\+adapter}}$<$ Char\+Type, Allocator\+Type $>$\+::write\+\_\+characters (\begin{DoxyParamCaption}\item[{const Char\+Type $\ast$}]{s,  }\item[{std\+::size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structdetail_1_1output__adapter__protocol}{detail\+::output\+\_\+adapter\+\_\+protocol$<$ Char\+Type $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+json.\+hpp\end{DoxyCompactItemize}

@@ -167,9 +167,7 @@ int main()
                     }
                     else if(jsonData["type"] == "open-tab")
                     {
-                        std::cout<<jsonData.dump(4)<<std::endl;
-
-                        //gameRunner->addToTab(total);
+                        gameRunner->addToTab(jsonData["data"]["total"]);
                         s_Accounting->send_text(data);
                         CROW_LOG_INFO << "Tab opened";
                     }

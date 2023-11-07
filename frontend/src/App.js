@@ -9,6 +9,7 @@ import Start from './pages/Start/Start';
 import Staff from './pages/Staff/Staff';
 import Customer from './pages/Customer/Customer';
 import NotFound from './pages/NotFound/NotFound';
+import Documentation from './pages/documentation/Documentation';
 
 function App() {
   const theme = createTheme({
@@ -42,6 +43,7 @@ function App() {
           <Route index path='/team' element={<Team />} />
           <Route index path='/staff' element={<Staff />} />
           <Route index path='/customer' element={<Customer />} />
+          <Route index path='/documentation' element={<Documentation />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

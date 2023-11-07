@@ -2,6 +2,7 @@
 
 GameRunner::GameRunner(){
     this->playerInteraction = std::make_shared<PlayerInteraction>();
+    this->tab = std::make_shared<Tab>();
     this->foodFlag = false;
     this->beverageFlag = false;
 
@@ -73,4 +74,12 @@ std::unordered_map<int, std::string>  GameRunner::getBeverageMenu(){
 
 void GameRunner::doRoundsWaiter(){
     waiter->doOrderRounds();
+}
+
+std::string GameRunner::addToTab(double cost){
+    return tab->addOrderCost(cost);
+}
+
+std::shared_ptr<Tab> GameRunner::getTab(){
+    return tab;
 }
