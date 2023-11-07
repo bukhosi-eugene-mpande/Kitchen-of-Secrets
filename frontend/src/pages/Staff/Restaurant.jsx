@@ -11,9 +11,31 @@ import tableImage from '../assets/SVG/table.svg';
 import headChefImage from '../assets/SVG/headChef.svg';
 
 const Restaurant = () => {
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000/ws');
+
+    ws.onopen = () => {
+      ws.send('S-Floor');
+    };
+
+    setSocket(ws);
+
+    return () => {
+      if (ws) {
+        ws.close(1000, 'S-Floor disconnected');
+      }
+    };
+  }, []);
+
   const handleDoRounds = () => {
-    // Set head chef to be visible
     setHeadChefVisible(true);
+
+    if (socket) {
+      socket.send(
+        JSON.stringify({ type: 'do-rounds', data: 'checking on customer' })
+      );
+    }
   };
 
   //animation for manager

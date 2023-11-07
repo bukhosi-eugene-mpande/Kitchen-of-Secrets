@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 
 function Payment() {
-  const [tip, setTip] = useState(0);
   const [total, setTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [socket, setSocket] = useState(null);
@@ -51,6 +50,16 @@ function Payment() {
     if (socket) {
       socket.send(
         JSON.stringify({ type: 'make-payment', data: { total, paymentMethod } })
+      );
+
+      setOpen(true);
+    }
+  };
+
+  const handleTab = () => {
+    if (socket) {
+      socket.send(
+        JSON.stringify({ type: 'open-tab', data: { total } })
       );
 
       setOpen(true);
@@ -98,19 +107,6 @@ function Payment() {
           Total: R{total}
         </Typography>
 
-        <TextField
-          value={tip}
-          label='Tip'
-          type='number'
-          variant='outlined'
-          sx={{ m: 2, width: '100%' }}
-          InputLabelProps={{ shrink: true }}
-          onChange={(event) => {
-            setTip(Number(event.target.value));
-          }}
-          onBlur={() => setTotal((prevTotal) => prevTotal + tip)}
-        />
-
         <Select
           value={paymentMethod}
           sx={{ m: 2, width: '100%' }}
@@ -128,6 +124,15 @@ function Payment() {
           onClick={handlePayment}
         >
           Pay
+        </Button>
+
+        <Button
+          size='large'
+          sx={{ m: 2 }}
+          variant='contained'
+          onClick={handleTab}
+        >
+          Add To Tab
         </Button>
       </Box>
 

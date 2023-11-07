@@ -36,7 +36,7 @@ function Accounting() {
       socket.onmessage = (event) => {
         const { type, data } = JSON.parse(event.data);
 
-        if (type === 'make-payment') {
+        if (type === 'make-payment' || type === 'open-tab') {
           setOpen(true);
           setPaymentAmount(data.total);
           setBankBalance((prevBalance) => prevBalance + data.total);
@@ -47,6 +47,7 @@ function Accounting() {
 
   const handleClose = () => {
     setOpen(false);
+    window.close();
   };
 
   return (
