@@ -1,7 +1,7 @@
 CC = g++
-CFLAGS = -std=c++11 -g
+CFLAGS = -std=c++11 -g -lpthread
 LDFLAGS =
-SOURCES = main.cpp 
+SOURCES = server.cpp 
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = my_program
 
