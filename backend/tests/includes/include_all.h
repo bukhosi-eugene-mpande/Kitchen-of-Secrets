@@ -60,5 +60,6 @@
 #include "../../src/management/GameComponent.h"
 #include "../../src/management/GameEngine.h"
 #include "../../src/management/PlayerInteraction.h"
+#include "../../src/management/GameRunner.h"
 
 #endif

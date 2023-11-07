@@ -39,9 +39,7 @@ class PlayerInteraction {
 
         std::shared_ptr<Accounting> accounting;
 
-        // std::shared_ptr<Waiter> waiter;
-
-        //why do have a pointer to a class that a pure vitual function
+        //why do have a pointer to a class that has a pure vitual function
 
     public:
         PlayerInteraction();

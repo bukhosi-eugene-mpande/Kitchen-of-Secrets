@@ -57,3 +57,4 @@
 #include "../../src/management/GameComponent.cpp"
 #include "../../src/management/GameEngine.cpp"
 #include "../../src/management/PlayerInteraction.cpp"
+#include "../../src/management/GameRunner.cpp"

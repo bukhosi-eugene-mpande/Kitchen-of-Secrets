@@ -4,6 +4,5 @@
 #include "../tests/includes/include_all.cpp"
 
 int main() {
- 
     return 0;
 }
