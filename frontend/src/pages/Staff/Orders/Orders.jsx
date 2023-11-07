@@ -70,13 +70,20 @@ function Orders() {
   return (
     <Box
       sx={{
+        backgroundImage: `url('./assets/OrderExBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'center'
       }}
     >
-      <Typography variant='h1' sx={{ m: 2 }}>
+      <Typography variant='h1' sx={{ m: 2 ,color: 'white',
+        fontFamily: 'Gloria Hallelujah, cursive',
+        fontWeight: 700 }}>
         Orders
       </Typography>
 

@@ -26,7 +26,7 @@ function Order() {
     beverages: [],
     table: randomTable
   });
-  
+
   const [open, setOpen] = useState(false);
   const [socket, setSocket] = useState(null);
   const { changeTab } = useContext(CustomerContext);
@@ -91,6 +91,11 @@ function Order() {
     <OrderContext.Provider value={{ order, addToOrder, removeFromOrder }}>
       <Box
         sx={{
+          backgroundImage: `url('./assets/OrderExBackground.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'top',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '100vh',
           display: 'flex',
           textAlign: 'center',
           alignItems: 'center',
@@ -98,7 +103,11 @@ function Order() {
           justifyContent: 'center'
         }}
       >
-        <Typography variant='h1' sx={{ m: 2 }}>
+        <Typography variant='h1' sx={{
+          m: 2, color: 'white',
+          fontFamily: 'Gloria Hallelujah, cursive',
+          fontWeight: 700
+        }}>
           Order
         </Typography>
 

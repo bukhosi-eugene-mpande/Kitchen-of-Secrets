@@ -52,17 +52,49 @@ function Accounting() {
   return (
     <Box
       sx={{
+        backgroundImage: `url('./assets/PaymentBackground.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'center'
       }}
     >
-      <Typography variant='h1' sx={{ m: 2 }}>
+      <img
+        src="./assets/customers/customer0.png"
+        alt="skeleton"
+        style={{
+          position: 'absolute',
+          bottom: '100px',
+          left: '100px',
+          width: '200px',
+          height: 'auto',
+        }}
+      />
+      <img
+        src="./assets/customers/customer0.png"
+        alt="skeleton"
+        style={{
+          position: 'absolute',
+          bottom: '100px',
+          right: '100px',
+          width: '200px',
+          height: 'auto',
+        }}
+      />
+      <Typography variant='h1' sx={{ m: 4,color: 'white',
+        fontFamily: 'Gloria Hallelujah, cursive',
+        fontWeight: 700 }}>
         Accounting
       </Typography>
 
-      <Typography variant='h2' sx={{ m: 2 }}>
+      <Typography variant='h2' sx={{ m: 2 ,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: '20px',
+        borderRadius: '10px' }}>
         Bank Balance: R{bankBalance}
       </Typography>
 

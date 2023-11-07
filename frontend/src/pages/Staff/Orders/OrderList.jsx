@@ -13,7 +13,10 @@ function OrderList({ type, orders, cookOrder }) {
         width: '60%',
         border: '4px solid',
         borderRadius: '4px',
-        borderColor: 'primary.main'
+        borderColor: 'primary.main',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: '20px',
+        borderRadius: '10px'
       }}
     >
       <Typography variant='h4'>{type}</Typography>

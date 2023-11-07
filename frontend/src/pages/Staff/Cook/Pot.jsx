@@ -111,7 +111,16 @@ function Pot() {
       </List>
 
       {cooking ? (
-        <LinearProgress variant='determinate' value={progress} />
+        <>
+          <img
+            src="./assets/cooking.gif"
+            alt="cooking"
+            style={{
+              width: '300px',
+              height: 'auto'
+            }} />
+          <LinearProgress variant='determinate' value={progress} />
+        </>
       ) : (
         <Button
           color='primary'
