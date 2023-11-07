@@ -1,10 +1,5 @@
-/**
- * @file GeneralTable.h
- * @brief Contains the declaration of the GeneralTable class, representing a general table in a restaurant.
- */
-
-#ifndef GENERALTABLE_H
-#define GENERALTABLE_H
+#ifndef GeneralTable_H
+#define GeneralTable_H
 
 #include <string>
 #include <vector>
@@ -12,23 +7,12 @@
 
 #include "Table.h"
 
-/**
- * @class GeneralTable
- * @brief Represents a general table in a restaurant.
- *
- * The GeneralTable class is a specific type of restaurant table typically found in general dining sections.
- */
-class GeneralTable : public Table {
-public:
-    /**
-     * @brief Constructor for the GeneralTable class.
-     */
-    GeneralTable();
+class GeneralTable : public Table{
 
-    /**
-     * @brief Destructor for the GeneralTable class.
-     */
-    ~GeneralTable();
+    public:
+        GeneralTable();
+        ~GeneralTable();
+
 };
 
 #endif

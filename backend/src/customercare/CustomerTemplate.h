@@ -1,10 +1,7 @@
-/**
- * @file CustomerTemplate.h
- * @brief Contains the declaration of the CustomerTemplate class.
- */
-
 #ifndef CUSTOMER_TEMPLATE_H
 #define CUSTOMER_TEMPLATE_H
+
+
 
 #include <string>
 #include <vector>
@@ -19,76 +16,49 @@ class Waiter;
 class Menu;
 class Order;
 
-/**
- * @class CustomerTemplate
- * @brief Represents a template for customer behavior in the restaurant.
- *
- * The CustomerTemplate class provides a template for modeling customer behavior in the restaurant. It includes attributes and methods related to reservations, orders, mood, and interactions with the restaurant management system.
- */
 class CustomerTemplate{
-protected:
-    //reservation
-    std::shared_ptr<Reservation> reservation;
-    //system interaction
-    std::shared_ptr<PlayerInteraction> management;
-    //mood a customer is in
-    std::shared_ptr<SatisfactionState> Mood;
-    //guests
-    std::vector<std::shared_ptr<CustomerTemplate>> guests;
-    //finished order
-    std::shared_ptr<Order> finishedOrder;
+    protected:
+        //reservation
+        std::shared_ptr<Reservation> reservation;
+        //system interaction
+        std::shared_ptr<PlayerInteraction> management;
+        //mood a customer is in
+        std::shared_ptr<SatisfactionState> Mood;
+        //guests
+        std::vector<std::shared_ptr<CustomerTemplate>> guests;
+        //finished order
+        std::shared_ptr<Order> finishedOrder;
 
-    std::unordered_map<std::string,int> FoodOrder;
-    std::unordered_map<std::string,int> BevarageOrder;
-    std::unordered_map<std::string,int> order;
+        std::unordered_map<std::string,int> FoodOrder;
+        std::unordered_map<std::string,int> BevarageOrder;
+        std::unordered_map<std::string,int> order;
 
-    std::string DesiredSection;
-    std::string name;
-    std::string paymentType;
+        std::string DesiredSection;
+        std::string name;
+        std::string paymentType;
 
-    int numberOfGuests;
+        int numberOfGuests;
 
-    double totalBill;
+        double totalBill;
 
-    bool isDoneEating;
-    bool readyToOrder;
-    bool readyToPay;
-    bool ordered;
-    bool hasGuests;
-    bool isMain;
-    bool isEating;
+        bool isDoneEating;
+        bool readyToOrder;
+        bool readyToPay;
+        bool ordered;
+        bool hasGuests;
+        bool isMain;
+        bool isEating;
 
-public:
-    /**
-     * @brief Constructor for the CustomerTemplate class.
-     * @param name The name of the customer.
-     * @param management A shared pointer to the player interaction management.
-     */
-    CustomerTemplate(std::string name, std::shared_ptr<PlayerInteraction> management);
+    public:
+        CustomerTemplate(std::string name, std::shared_ptr<PlayerInteraction> management);
 
-    /**
-     * @brief Destructor for the CustomerTemplate class.
-     */
-    ~CustomerTemplate();
+        ~CustomerTemplate();
 
-    /**
-     * @brief Get the mood of the customer.
-     * @return A shared pointer to the customer's mood state.
-     */
-    std::shared_ptr<SatisfactionState> getMood();
+        std::shared_ptr<SatisfactionState> getMood();
 
-    /**
-     * @brief Calculate the final bill based on the customer's satisfaction level.
-     * @param bill The initial bill amount.
-     * @return The final bill amount.
-     */
-    double calculateFinalBill(double bill);
+        double calculateFinalBill(double bill);
 
-    /**
-     * @brief Check if the customer is currently eating.
-     * @return True if the customer is eating, otherwise false.
-     */
-    bool getIsEating();
+        bool getIsEating();
 
         void setIsEating();
 
