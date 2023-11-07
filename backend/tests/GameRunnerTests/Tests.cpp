@@ -25,4 +25,12 @@ TEST(GameRunnerTst, RunningGameTest) {
 
     EXPECT_EQ(payment, "Cash Payment successful");
 
+    gameRunner->addToTab(10.0);
+
+    gameRunner->addToTab(10.0);
+
+    gameRunner->addToTab(10.0);
+
+    EXPECT_EQ(gameRunner->getTab()->getBillTotal(),30.0);
+
 }
