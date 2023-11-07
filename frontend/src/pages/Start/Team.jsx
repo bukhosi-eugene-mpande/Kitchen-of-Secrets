@@ -11,39 +11,6 @@ import Eugene from '../assets/img/eugene.jpg';
 import Chenoa from '../assets/img/chenoa.jpg';
 import Thato from '../assets/img/thato.jpg';
 
-const teamMembers = [
-  {
-    name: 'Ashley Kapaso',
-    role: 'Team Leader',
-    image: Ashley
-  },
-  {
-    name: 'Ayanda Juqu',
-    role: 'Team Leader',
-    image: Ayanda
-  },
-  {
-    name: 'Joshua Wereley',
-    role: 'Management System',
-    image: Joshua
-  },
-  {
-    name: 'Eugene Mpande',
-    role: 'Team Leader',
-    image: Eugene
-  },
-  {
-    name: 'Chenoa Perkett',
-    role: 'Team Leader',
-    image: Chenoa
-  },
-  {
-    name: 'Thato Kalagobe',
-    role: 'Reservations & Frontend',
-    image: Thato
-  }
-];
-
 const Team = () => {
   return (
     <div className='team' style={team}>
@@ -158,14 +125,6 @@ const Team = () => {
       </div>
     </div>
   );
-};
-
-const getCardBackgroundColor = (name) => {
-  // Check if the name matches the conditions for purple background
-  if (name === 'Eugene Mpanza' || name === 'Joshua Wereley') {
-    return 'purple'; // Set the background color to purple
-  }
-  return ''; // Default background color
 };
 
 const team = {

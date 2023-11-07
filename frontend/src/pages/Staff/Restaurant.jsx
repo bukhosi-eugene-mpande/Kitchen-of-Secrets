@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDrag } from 'react-use-gesture';
 import { useSpring, animated } from 'react-spring';
 import { interpolate } from 'react-spring';
@@ -11,6 +11,7 @@ import tableImage from '../assets/SVG/table.svg';
 import headChefImage from '../assets/SVG/headChef.svg';
 
 const Restaurant = () => {
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000/ws');

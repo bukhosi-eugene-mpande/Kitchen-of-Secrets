@@ -40,7 +40,7 @@ function Payment() {
         const { type, data } = JSON.parse(event.data);
 
         if (type === 'make-order') {
-          setTotal(data.totalPrice + Number(tip));
+          setTotal(data.totalPrice);
         }
       };
     }

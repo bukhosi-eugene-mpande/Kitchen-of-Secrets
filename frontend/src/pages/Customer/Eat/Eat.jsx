@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSpring, animated } from 'react-spring';
-import ghostImage from '../../assets/SVG/customer_1.svg'; 
+import ghostImage from '../../assets/SVG/customer_1.svg';
 import tableOrange from '../../assets/png/tableorange.png';
 import tableRed from '../../assets/png/tablered.png';
 import tableNormal from '../../assets/SVG/table.svg';
@@ -13,6 +13,8 @@ import {
   Typography
 } from '@mui/material';
 
+import { CustomerContext } from '../Customer';
+
 function Eat() {
   const [socket, setSocket] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -20,6 +22,8 @@ function Eat() {
   const [buttonClicks, setButtonClicks] = useState(0);
   const [tableImage, setTableImage] = useState(`${tableNormal}`);
   const [waitHovered, setWaitHovered] = useState(false);
+
+  const { changeTab } = useContext(CustomerContext);
 
   const handleWait = () => {
     if (buttonClicks < 2) {
@@ -35,22 +39,22 @@ function Eat() {
   //floating for ghost animation
   const floatAnimation = useSpring({
     from: {
-        transform: 'translate(0, 0)',
-        opacity: 1,
+      transform: 'translate(0, 0)',
+      opacity: 1
     },
     to: async (next) => {
-        while (true) {
+      while (true) {
         await next({
-            transform: 'translate(0, -50px)',
-            opacity: 0.7,
+          transform: 'translate(0, -50px)',
+          opacity: 0.7
         });
         await next({
-            transform: 'translate(0, 50px)',
-            opacity: 1,
+          transform: 'translate(0, 50px)',
+          opacity: 1
         });
-        }
+      }
     },
-    config: { duration: 2000 }, 
+    config: { duration: 2000 }
   });
 
   useEffect(() => {
@@ -104,28 +108,28 @@ function Eat() {
         justifyContent: 'center'
       }}
     >
-    <div className="row justify-content-center mt-3 mb-5">
+      <div className='row justify-content-center mt-3 mb-5'>
         <div className='col-3 '>
-            <animated.img 
+          <animated.img
             src={ghostImage}
-            alt="Customer"
+            alt='Customer'
             style={{
-            ...floatAnimation,
-            position: 'absolute',
-            top: '100px', 
-            left: '0px',
-            width: '150px', 
-            height: 'auto', 
-            zindex: '999',
+              ...floatAnimation,
+              position: 'absolute',
+              top: '100px',
+              left: '0px',
+              width: '150px',
+              height: 'auto',
+              zindex: '999'
             }}
-        />
+          />
         </div>
         <div className='col-9'>
-            <img src={tableImage} alt="Table" style={imageStyle2} />
+          <img src={tableImage} alt='Table' style={imageStyle2} />
         </div>
-    </div>
+      </div>
 
-    {/* <div className=""> */}
+      {/* <div className=""> */}
       {foodStatus === 'waiting' && (
         <>
           <CircularProgress
@@ -149,10 +153,6 @@ function Eat() {
             value={progress}
             sx={{ m: 2, height: 10, width: '60%' }}
           />
-
-          <Button variant='contained' size='large'>
-            Enquire
-          </Button>
         </>
       )}
 
@@ -160,19 +160,34 @@ function Eat() {
         <>
           <Typography variant='h5'>You finished eating.</Typography>
 
-          <Button variant='contained' size='large' sx={{ m: 2 }}>
+          <Button
+            variant='contained'
+            size='large'
+            sx={{ m: 2 }}
+            onClick={() => changeTab(null, 3)}
+          >
             Proceed To Payment
           </Button>
         </>
       )}
-    {/* </div> */}
-    <div className='row justify-content-center col-12 mt-5'>
+      {/* </div> */}
+      <div className='row justify-content-center col-12 mt-5'>
         {buttonClicks < 2 && (
-          <button className="col-4 mt-5 button-64" onClick={handleWait} style={buttonStyle} onMouseEnter={() => setWaitHovered(true)} onMouseLeave={() => setWaitHovered(false)}>
-            <span style={{
-              ...spanStyle,
-              background: waitHovered ? 'none' : spanStyle.backgroundColor,
-            }}>Get Angry</span>
+          <button
+            className='col-4 mt-5 button-64'
+            onClick={handleWait}
+            style={buttonStyle}
+            onMouseEnter={() => setWaitHovered(true)}
+            onMouseLeave={() => setWaitHovered(false)}
+          >
+            <span
+              style={{
+                ...spanStyle,
+                background: waitHovered ? 'none' : spanStyle.backgroundColor
+              }}
+            >
+              Get Angry
+            </span>
           </button>
         )}
 
@@ -181,7 +196,6 @@ function Eat() {
         )} */}
       </div>
     </Box>
-
   );
 }
 
@@ -206,7 +220,7 @@ const buttonStyle = {
   WebkitUserSelect: 'none',
   touchAction: 'manipulation',
   whiteSpace: 'nowrap',
-  cursor: 'pointer',
+  cursor: 'pointer'
 };
 
 const spanStyle = {
@@ -215,13 +229,13 @@ const spanStyle = {
   borderRadius: '6px',
   width: '100%',
   height: '100%',
-  transition: 'background 300ms', 
+  transition: 'background 300ms'
 };
 
 const imageStyle2 = {
-  width: '600px', 
+  width: '600px',
   marginleft: '50%',
-  zindex: '-1',
+  zindex: '-1'
 };
 
 export default Eat;

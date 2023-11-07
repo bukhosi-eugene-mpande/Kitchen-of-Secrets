@@ -23,7 +23,7 @@ function Reservation() {
 
   const [formData, setFormData] = useState({
     name: 'Ashley',
-    seating: 'Indoor',
+    seating: 'General Section',
     guests: '1',
     time: new Date().toLocaleTimeString('en-US', {
       hour: 'numeric',
@@ -66,7 +66,7 @@ function Reservation() {
       name: formData.name,
       time: formData.time,
       guests: formData.guests,
-      seating: formData.seating,
+      section: formData.seating,
     };
 
     if (socket) {
@@ -160,14 +160,14 @@ function Reservation() {
           select
           required
           fullWidth
-          label="Area"
+          label="Section"
           sx={{ m: 3 }}
           value={formData.seating}
           onChange={(e) => handleInputChange('seating', e.target.value)}
           helperText="Please select where you would like to eat"
         >
-          <MenuItem value="Indoor">Indoor</MenuItem>
-          <MenuItem value="Outdoor">Outdoor</MenuItem>
+          <MenuItem value="General Section">General</MenuItem>
+          <MenuItem value="Private Section">Private</MenuItem>
         </TextField>
 
         <TextField
