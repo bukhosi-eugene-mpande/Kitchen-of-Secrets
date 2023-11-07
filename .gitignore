@@ -1,0 +1,11 @@
+*.o
+server
+.vscode
+.DS_STORE
+node_modules
+bin
+obj
+build
+out
+*.out
+
