@@ -9,7 +9,6 @@ function Orders() {
 
   const [newOrders, setNewOrders] = useState([]);
   const [cookingOrders, setCookingOrders] = useState([]);
-  const [completedOrders, setCompletedOrders] = useState([]);
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000/ws');
@@ -89,7 +88,6 @@ function Orders() {
 
       <OrderList type='New' orders={newOrders} cookOrder={cookOrder} />
       <OrderList type='Cooking' orders={cookingOrders} />
-      <OrderList type='Completed' orders={completedOrders} />
     </Box>
   );
 }

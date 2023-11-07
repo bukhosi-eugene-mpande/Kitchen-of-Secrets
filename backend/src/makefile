@@ -3,7 +3,7 @@ CFLAGS = -std=c++11 -g -lpthread
 LDFLAGS =
 SOURCES = server.cpp 
 OBJECTS = $(SOURCES:.cpp=.o)
-EXECUTABLE = my_program
+EXECUTABLE = server
 
 .PHONY: all run run_gdb clean
 
