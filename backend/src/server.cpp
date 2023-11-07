@@ -102,7 +102,9 @@ int main()
 
                     if (jsonData["type"] == "make-res")
                     {
-                        gameRunner->requestReservation(jsonData["data"]["details"]["section"]);
+                        std::cout << jsonData.dump(4) << std::endl;
+                        std::cout << jsonData["data"]["section"] << std::endl;
+                        gameRunner->requestReservation(jsonData["data"]["section"]);
                         s_Reservations->send_text(data);
                         CROW_LOG_INFO << "Reservation request sent to staff";
                     }
@@ -165,8 +167,7 @@ int main()
                     }
                     else if(jsonData["type"] == "open-tab")
                     {
-                        std::string str = jsonData["data"]["total"];
-                        double total = std::stod(str);
+                        std::cout<<jsonData.dump(4)<<std::endl;
 
                         //gameRunner->addToTab(total);
                         s_Accounting->send_text(data);
@@ -174,11 +175,8 @@ int main()
                     }
                     else if(jsonData["type"] == "make-payment")
                     {
-                        std::string str = jsonData["data"]["total"];
-                        double total = std::stod(str);
-
                         s_Accounting->send_text(data);
-                        gameRunner->payment(jsonData["data"]["paymentMethod"], total);
+                        gameRunner->payment(jsonData["data"]["paymentMethod"], jsonData["data"]["total"]);
                         CROW_LOG_INFO << "Payment received by staff";
                     }
                     else
